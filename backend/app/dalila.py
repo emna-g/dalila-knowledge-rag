@@ -8,10 +8,11 @@ C'est exactement ce que le LLM recevrait pour rédiger la réponse (le LLM n'est
 from backend.app.comprendre import Comprendre
 from backend.app.outils import Outils
 from backend.app.recherche import Recherche
+from backend.config import MODELE, RERANKER
 
 
 class Dalila:
-    def __init__(self, modele="e5", reranker=False, echantillon=False):
+    def __init__(self, modele=MODELE, reranker=RERANKER, echantillon=False):
         self.comprendre = Comprendre()
         self.outils = Outils()
         self.recherche = Recherche(modele=modele, reranker=reranker, echantillon=echantillon)

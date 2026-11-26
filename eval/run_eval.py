@@ -9,7 +9,7 @@ Mesures : rappel@5 (la bonne réponse est-elle dans les 5 premiers ?), MRR (rang
 réponse), par langue ; temps de réponse (médiane et 95e centile).
 """
 import argparse, csv, json, re, statistics, time, pathlib
-from backend.config import LEXIQUE, RACINE
+from backend.config import LEXIQUE, MODELE, RACINE, RERANKER
 from backend.app.dalila import Dalila
 
 
@@ -22,8 +22,8 @@ def attendu_ok(attendu, r):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--modele", default="e5")
-    ap.add_argument("--reranker", action="store_true")
+    ap.add_argument("--modele", default=MODELE)
+    ap.add_argument("--reranker", action=argparse.BooleanOptionalAction, default=RERANKER)
     ap.add_argument("--echantillon", action="store_true")
     ap.add_argument("--questions", default=str(LEXIQUE / "tests/questions_test.csv"))
     a = ap.parse_args()

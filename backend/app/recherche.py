@@ -1,7 +1,7 @@
 """Recherche des passages à citer, directement dans MariaDB (remplace ChromaDB).
 
     from backend.app.recherche import Recherche
-    r = Recherche(modele="e5")          # ou "bge" ; reranker=True pour reclasser avec bge-reranker-v2-m3
+    r = Recherche(modele="bge", reranker=True)   # « e5 » est le modèle léger de secours
     r.chercher("comodités près de Sidi Achour", zone_ids=["930508"], k=5)
 
 Étapes :
@@ -15,7 +15,7 @@
 6) Option : reclassement des 20 premiers par un « reranker » (modèle qui lit la question et le passage ensemble).
 """
 import collections, math, re
-from backend.config import MODELES_RECHERCHE, NOM_RERANKER, db
+from backend.config import MODELE, MODELES_RECHERCHE, NOM_RERANKER, RERANKER, db
 from lexicon.outils.normaliser import NormaliseurTunisien, tokens
 
 PRIORITAIRES = {"reponse_validee_afi": 1.0, "fiche_zone": 1.0, "formulaire": 0.6, "procedure": 0.6}
@@ -48,14 +48,14 @@ class BM25:
 
 
 class Recherche:
-    def __init__(self, modele="e5", reranker=False, lexique=True, echantillon=False):
+    def __init__(self, modele=MODELE, reranker=RERANKER, lexique=True, echantillon=False):
         from sentence_transformers import SentenceTransformer
         self.cfg = MODELES_RECHERCHE[modele]
-        self.modele = SentenceTransformer(self.cfg["nom"], device="cpu")
+        self.modele = SentenceTransformer(self.cfg["nom"], device=None)
         self.reranker = None
         if reranker:
             from sentence_transformers import CrossEncoder
-            self.reranker = CrossEncoder(NOM_RERANKER, device="cpu", max_length=512)
+            self.reranker = CrossEncoder(NOM_RERANKER, device=None, max_length=512)
         self.norm = NormaliseurTunisien() if lexique else None
         self.con = db("root" if echantillon else "ro")
         filtre = " AND id IN (SELECT id FROM dalila_echantillon_eval)" if echantillon else ""

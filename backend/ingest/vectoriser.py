@@ -7,7 +7,7 @@ python -m backend.ingest.vectoriser --modele e5 --depuis-chroma <dossier index_c
 Seuls les passages encore sans vecteur sont calculés : on peut arrêter et relancer.
 """
 import argparse, json, time
-from backend.config import MODELES_RECHERCHE, db
+from backend.config import MODELE, MODELES_RECHERCHE, db
 
 
 def vers_sql(vec):
@@ -16,7 +16,7 @@ def vers_sql(vec):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--modele", choices=list(MODELES_RECHERCHE), default="e5")
+    ap.add_argument("--modele", choices=list(MODELES_RECHERCHE), default=MODELE)
     ap.add_argument("--depuis-chroma")
     ap.add_argument("--lot", type=int, default=32)
     ap.add_argument("--longueur-max", type=int, default=512, help="nombre maximal de jetons par passage")
@@ -47,7 +47,7 @@ def main():
     if not todo:
         return
     from sentence_transformers import SentenceTransformer
-    m = SentenceTransformer(cfg["nom"], device="cpu")
+    m = SentenceTransformer(cfg["nom"], device=None)
     m.max_seq_length = a.longueur_max
     t0 = time.time()
     for i in range(0, len(todo), a.lot):

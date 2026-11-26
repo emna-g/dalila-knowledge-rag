@@ -4,8 +4,8 @@ Variables (fichier .env à la racine du dépôt, jamais dans git ; voir .env.exa
   DB_HOST, DB_PORT, DB_NAME, DB_ROOT_PASSWORD, DB_RO_USER, DB_RO_PASSWORD, DB_RW_USER, DB_RW_PASSWORD
   DALILA_DONNEES   dossier dalila_fusion décompressé (défaut : donnees/dalila_fusion)
   DALILA_MODELES   dossier des modèles d'embeddings (défaut : modeles/)
-  DALILA_MODELE    modèle de recherche : "e5" (défaut) ou "bge"
-  DALILA_RERANKER  1 pour activer le reclassement par bge-reranker-v2-m3
+  DALILA_MODELE    modèle de recherche : "bge" (BGE-M3, défaut) ou "e5" (multilingual-e5-small, plus léger)
+  DALILA_RERANKER  1 (défaut) : reclassement par bge-reranker-v2-m3 ; 0 pour le couper
 """
 import os, pathlib
 
@@ -33,8 +33,8 @@ MODELES_RECHERCHE = {
     "bge": {"nom": "BAAI/bge-m3", "colonne": "embedding_bge", "dim": 1024,
             "prefixe_question": "", "prefixe_passage": ""},
 }
-MODELE = os.environ.get("DALILA_MODELE", "e5")
-RERANKER = os.environ.get("DALILA_RERANKER", "0") == "1"
+MODELE = os.environ.get("DALILA_MODELE", "bge")
+RERANKER = os.environ.get("DALILA_RERANKER", "1") == "1"
 NOM_RERANKER = "BAAI/bge-reranker-v2-m3"
 
 
