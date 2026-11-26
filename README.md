@@ -13,6 +13,8 @@ Cette branche (`refonte-revue-1-12`) applique les points 1 à 12 de la revue de 
 
 Les explications fichier par fichier sont dans **[GUIDE_COMPLET.md](GUIDE_COMPLET.md)**, et les choix chiffrés dans **[DECISIONS.md](DECISIONS.md)**.
 
+**Point 10 reporté :** la comparaison e5 / BGE-M3 / reranker demande environ 40 min de calcul sur ce PC ; e5-small reste le modèle par défaut. Les commandes pour la relancer sont dans DECISIONS.md.
+
 ## Installer (Windows, sans Docker)
 
 1. **MariaDB 11.8** en version zip (sans installateur ni service) :
