@@ -65,12 +65,22 @@ h1{{font-size:22px}} h2{{font-size:17px;margin-top:28px;border-bottom:2px solid 
     webbrowser.open(PAGE.as_uri())
 
 
+def regime_de(gouv):
+    """Régime des zones où il y a des lots disponibles dans ce gouvernorat (d'après la base)."""
+    lots = c.chercher_lots(gouvernorat=gouv, limite=1000)
+    reg = {c.zone(z)["zone_developpement_regional"] for z in {l["zone_id"] for l in lots}}
+    return {frozenset({1}): "developpement_regional", frozenset({0}): "littoral"}.get(frozenset(reg))
+
+
 def analyser(question):
     res = r.chercher(question, k=5)
     mots = tokens(res["requete"].lower())
     fen = set(mots) | {" ".join(mots[i:i + n]) for n in (2, 3) for i in range(len(mots))}
     concepts = set().union(*[etiquettes.get(m, set()) for m in fen]) if fen else set()
     gouvs = [fr(x) for x in concepts if (x, RDF.type, GOUV) in g]
+    regime = regime_de(gouvs[0]) if gouvs else None
+    if regime:  # on refait la recherche en écartant les fiches de l'autre régime (littoral / régional)
+        res = r.chercher(question, k=5, regime=regime)
     b = []
     ajout = res["requete"][len(question):].strip(" |") if res["requete"] != question else ""
     b.append("<h2>1. Langue : comment Dalila a compris la question</h2>")
@@ -89,12 +99,18 @@ def analyser(question):
     if gouvs:
         lots = c.chercher_lots(gouvernorat=gouvs[0], limite=10)
         b.append(f"<p><b>{len(lots)}</b> lot(s) disponible(s) affiché(s) dans le gouvernorat de <b>{e(gouvs[0])}</b>, "
-                 "du moins cher au plus cher :</p><table><tr><th>Zone</th><th>Lot</th><th>Surface</th><th>Prix</th></tr>")
+                 "du moins cher au plus cher :</p><table><tr><th>Zone</th><th>Lot</th><th>Surface</th><th>Prix au m²</th>"
+                 "<th>Prix du terrain*</th></tr>")
         for l in lots:
             conf = " (à confirmer)" if l["a_confirmer"] else ""
+            total = f"{l['surface_m2'] * l['prix_m2_dt']:,.0f} DT".replace(",", " ") if l["prix_m2_dt"] else "non publié"
             b.append(f"<tr><td>{e(l['zone_fr'])}</td><td>{e(l['lot_num'])}{conf}</td>"
-                     f"<td>{l['surface_m2']:.0f} m²</td><td>{l['prix_m2_dt']} DT/m²</td></tr>")
-        b.append("</table>")
+                     f"<td>{l['surface_m2']:.0f} m²</td><td>{l['prix_m2_dt']} DT/m²</td><td>{total}</td></tr>")
+        b.append("</table><p class='note'>* Le prix au m² est fixé par zone : tous les lots d'une même zone ont le même "
+                 "prix au m². Prix du terrain = surface × prix au m², estimation hors frais (contrat, piquetage).</p>")
+        if regime:
+            b.append(f"<p class='note'>Zone(s) de {'développement régional' if regime == 'developpement_regional' else 'la côte / Grand Tunis'} "
+                     "(d'après la base) : les textes ci-dessous ne gardent que les règles de ce type de zone.</p>")
         shown = True
     for t, nom in (("port", "un port"), ("aeroport", "un aéroport"), ("gare", "une gare"), ("autoroute", "une autoroute")):
         if any(str(x).endswith("/" + t) for x in concepts):

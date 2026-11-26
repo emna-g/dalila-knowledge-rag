@@ -42,7 +42,7 @@ python demo_dalila.py "n7eb terrain f Sfax"
 ## Résultats actuels
 
 - **Graphe :** 19 468 faits. Il est cohérent selon le raisonneur owlrl, et une requête SPARQL de test répond pour chaque famille (`graphe/rapport_graphe.json`).
-- **Recherche :** la bonne réponse est dans les 5 premiers résultats pour 20 questions sur 30 (16 sur 25 en tunisien). La recherche par le sens seule n'en trouvait que 12 sur 30 (`evaluation/resume.json`).
+- **Recherche :** la bonne réponse est dans les 5 premiers résultats pour 19 questions sur 30 (15 sur 25 en tunisien), avec des textes dans la langue de la question. La recherche par le sens seule n'en trouvait que 12 sur 30 (`evaluation/resume.json`).
 
 ## Règles
 

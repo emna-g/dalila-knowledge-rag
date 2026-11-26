@@ -116,12 +116,14 @@ Exemple : un visiteur écrit **« chnowa lwra9 lazmin bech na5ou ma9sem sina3i? 
 | Recherche par le sens seule, sans lexique | 12/30 | 9/25 |
 | Recherche par le sens seule, avec lexique | 12/30 | 9/25 |
 | Hybride (sens + mots-clés) + filtres, sans lexique | 17/30 | 13/25 |
-| **Hybride + filtres + lexique** (réglage retenu) | **20/30** | **16/25** |
+| **Hybride + filtres + lexique + préférence de langue** (réglage retenu) | **19/30** | **15/25** |
 
 **Ce qu'on en retient :**
 - La recherche par le sens seule était gênée par des passages vides de sens (mentions légales, plans du site) qui « ressemblent à tout ». Les filtres et les mots-clés corrigent cela.
 - Le lexique n'aide que si la recherche par mots-clés est active : il ajoute surtout des mots (« papiers », « terrain », « قطعة أرض »).
 - Une partie des échecs restants sont des questions de **chiffres** (« le moins cher », « près de l'aéroport », « eau et électricité ») : elles se règlent avec `chiffres.py` et le graphe, pas avec les passages. C'est voulu.
+- La recherche préfère les textes dans la langue de la question (arabe si la question est en lettres arabes, sinon français) : les 5 textes ne mélangent plus le français et l'arabe. Cela coûte 1 question au test, mais les réponses sont plus cohérentes.
+- Quand le gouvernorat est connu, on écarte les fiches de l'AFI de l'autre type de zone (littoral / Grand Tunis ou développement régional). Exemple : pour Sfax (Menzel Chekir, zone de développement régional), les règles du Grand Tunis ne sont plus proposées.
 - Ce jeu de test est petit et en partie écrit pour l'occasion : le jury apportera ses propres questions.
 
 ## 7. Ce que chaque brique couvre dans le cahier des charges

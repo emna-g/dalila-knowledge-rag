@@ -33,6 +33,10 @@ PRIORITAIRES = {"reponse_validee_afi": 1.0, "fiche_zone": 1.0, "formulaire": 0.6
 STOP = set("le la les de des du un une et a au aux en dans pour par sur est que qui quoi quel quelle ce il y l d "
            "the of to in and is what how في من على الى إلى و ما".split())
 LONGUEUR_MIN = 200
+# Fiches de la base de connaissances AFI propres à un régime de zone (vérifiées sur leurs titres) :
+# 12, 13, 14 = zones de développement régional ; 15, 16, 17 = zones littorales et Grand Tunis.
+FICHES_REGIONAL, FICHES_LITTORAL = {12, 13, 14}, {15, 16, 17}
+AUTRE_REGIME = {"developpement_regional": FICHES_LITTORAL, "littoral": FICHES_REGIONAL}
 
 
 class BM25:
@@ -84,8 +88,21 @@ class Recherche:
             return True
         return p.get("pertinence") != "secondaire" and len(p["texte"]) >= LONGUEUR_MIN
 
-    def chercher(self, question, k=5, profondeur=60):
+    @staticmethod
+    def langue_de(question):
+        """Langue de réponse attendue : arabe si la question est en lettres arabes, sinon français
+        (le tunisien en arabizi est rapproché des textes français)."""
+        ar = sum("؀" <= ch <= "ۿ" for ch in question)
+        lat = sum(ch.isalpha() and ch.isascii() for ch in question)
+        return "ar" if ar > lat else "fr"
+
+    def chercher(self, question, k=5, profondeur=60, regime=None, langue="auto"):
+        """regime : 'developpement_regional' ou 'littoral' quand la zone ou le gouvernorat est connu ;
+        les fiches de l'AFI qui concernent l'autre régime sont alors écartées.
+        langue : 'auto' (d'après la question), 'fr', 'ar', 'en' ou None pour ne rien préférer."""
         q, tn = self.requete(question)
+        if langue == "auto":
+            langue = self.langue_de(question)
         v = self.modele.encode(["query: " + q], normalize_embeddings=True).tolist()
         res = self.col.query(query_embeddings=v, n_results=profondeur)
         sens = [i for i in res["ids"][0] if self._garde(self.P[self.pos[i]])]
@@ -98,8 +115,13 @@ class Recherche:
             for r, i in enumerate(mots):
                 score[i] += 1 / (60 + r)
         if self.filtres:
-            for i in score:
-                score[i] += PRIORITAIRES.get(self.P[self.pos[i]]["type"], 0) * 0.005
+            for i in list(score):
+                p = self.P[self.pos[i]]
+                score[i] += PRIORITAIRES.get(p["type"], 0) * 0.005
+                if langue and p.get("langue") not in (langue, "toutes"):
+                    score[i] -= 0.01  # passage dans une autre langue que la question : passe après
+                if regime and p.get("kb_id") in AUTRE_REGIME.get(regime, set()):
+                    del score[i]  # fiche AFI de l'autre régime (littoral / développement régional)
         out, par_source = [], collections.Counter()
         for i in sorted(score, key=score.get, reverse=True):
             if len(out) == k:
