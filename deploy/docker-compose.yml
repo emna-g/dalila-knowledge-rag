@@ -1,0 +1,68 @@
+# Dalila : tout démarrer avec Docker Compose (depuis le dossier deploy/, toujours avec --env-file ../.env).
+#
+#   docker compose --env-file ../.env up -d db                                     base MariaDB 11.8 (afi.sql chargé au 1er démarrage)
+#   docker compose --env-file ../.env --profile build run --rm ingest              construit tout : tables, vues, graphe, vecteurs (long)
+#   docker compose --env-file ../.env run --rm kg load --location /data --file /graphe/dalila.trig   charge le graphe dans Oxigraph
+#   docker compose --env-file ../.env up -d kg                                     interface SPARQL : http://localhost:7878
+#   docker compose --env-file ../.env --profile eval run --rm eval                 évaluation (rapports dans eval/reports/)
+#
+# Avant le premier lancement :
+#   - copier .env.example en .env à la racine du dépôt et remplir les mots de passe ;
+#   - mettre afi.sql dans donnees/afi.sql et décompresser dalila_fusion dans donnees/dalila_fusion/.
+# afi.sql est chargé TEL QUEL au tout premier démarrage de la base (volume vide).
+
+name: dalila
+
+services:
+  db:
+    image: mariadb:11.8
+    env_file: ../.env
+    environment:
+      MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:?mettre DB_ROOT_PASSWORD dans .env}
+      MARIADB_DATABASE: afi
+    command: ["--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci", "--max-allowed-packet=256M"]
+    volumes:
+      - dbdata:/var/lib/mysql
+      - ../donnees/afi.sql:/docker-entrypoint-initdb.d/00_afi.sql:ro
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
+      retries: 30
+
+  kg:
+    image: ghcr.io/oxigraph/oxigraph:latest   # à épingler (tag ou digest) avant le gel de la démo
+    # Sert SPARQL + interface sur le port 7878. Charger le graphe une fois (après « ingest ») :
+    #   docker compose run --rm kg load --location /data --file /graphe/dalila.trig
+    command: ["serve", "--location", "/data", "--bind", "0.0.0.0:7878"]
+    volumes:
+      - kgdata:/data
+      - ../ontology/abox:/graphe:ro
+    ports:
+      - "127.0.0.1:7878:7878"
+
+  ingest:
+    profiles: ["build"]
+    build: {context: .., dockerfile: deploy/Dockerfile}
+    env_file: ../.env
+    environment: {DB_HOST: db, DB_PORT: "3306"}
+    depends_on: {db: {condition: service_healthy}}
+    command: ["/bin/sh", "-c", "python -m backend.ingest.migrer && python -m backend.ingest.charger_fusion && python -m backend.ingest.construire_abox && python -m backend.ingest.vectoriser"]
+    volumes:
+      - models:/models
+      - ../donnees:/data:ro
+      - ../ontology:/app/ontology
+
+  eval:
+    profiles: ["eval"]
+    build: {context: .., dockerfile: deploy/Dockerfile}
+    env_file: ../.env
+    environment: {DB_HOST: db, DB_PORT: "3306"}
+    depends_on: {db: {condition: service_healthy}}
+    command: ["python", "-m", "eval.run_eval"]
+    volumes:
+      - models:/models
+      - ../donnees:/data:ro
+      - ../ontology:/app/ontology:ro
+      - ../eval/reports:/app/eval/reports
+
+volumes: {dbdata: {}, kgdata: {}, models: {}}

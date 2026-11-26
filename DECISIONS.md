@@ -28,7 +28,9 @@ Chaque décision suit un point de la revue de l'équipe. Les chiffres viennent d
 ```
 Les 3 réglages sont comparés sur le même échantillon. Choisir le meilleur qui reste sous le budget de temps de réponse, puis mettre `DALILA_MODELE=bge` dans `.env` (et vectoriser tout l'index).
 
+| 13 | **Docker Compose** (`deploy/`) : MariaDB 11.8 (afi.sql chargé tel quel au premier démarrage), Oxigraph serveur avec interface SPARQL, image Python (torch CPU épinglé) pour construire et évaluer. Données montées en lecture seule, secrets dans `.env`. | Fichier validé par `docker compose config`. Pas lancé sur le PC d'Emna : le disque C: (où Docker range ses images) n'a plus assez de place. À lancer sur le PC de l'équipe. |
+| 14 | **Partage du Drive réservé à l'équipe** : les dossiers « Hackathon Dalila » et ses sous-dossiers étaient en « toute personne ayant le lien ». Le changement se fait à la main par la propriétaire du Drive. | Instructions données à Emna le 26/11. |
+
 ## Reporté
 
-- Point 13 : Docker Compose. Point 14 : partage du Drive.
 - Point 10 : vecteurs BGE-M3 et comparaison chiffrée, à lancer sur un PC puissant.

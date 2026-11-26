@@ -78,6 +78,23 @@ Prérequis : Python 3.10 à 3.12, MariaDB **11.8** (type VECTOR), environ 8 Go d
    Vérifier aussi le temps par question avec le reranker (budget du cahier des charges : 35 s par réponse).
 6. Pousser les rapports `eval/reports/*` sur la branche et noter le choix final dans `DECISIONS.md` (point 10).
 
+## Avec Docker (point 13)
+
+Tout se lance depuis `deploy/`, avec le fichier `.env` de la racine. Il faut d'abord mettre `afi.sql` dans
+`donnees/afi.sql` et décompresser les données dans `donnees/dalila_fusion/` (un vrai dossier, pas un raccourci).
+
+```
+cd deploy
+docker compose --env-file ../.env up -d db                         MariaDB 11.8 ; afi.sql est chargé tel quel au 1er démarrage
+docker compose --env-file ../.env --profile build run --rm ingest  tables, vues, graphe, vecteurs BGE-M3 (long, voir plus haut)
+docker compose --env-file ../.env run --rm kg load --location /data --file /graphe/dalila.trig
+docker compose --env-file ../.env up -d kg                         graphe dans Oxigraph, interface SPARQL : http://localhost:7878
+docker compose --env-file ../.env --profile eval run --rm eval     évaluation, rapports dans eval/reports/
+```
+Seuls MariaDB et Oxigraph tournent en continu ; l'image Python (`deploy/Dockerfile`, torch CPU épinglé) sert à
+construire et à évaluer. Il n'y a pas encore d'API ni d'interface web : elles viendront avec le backend de l'équipe.
+Sans Docker, l'installation Windows ci-dessus reste valable.
+
 ## Tester
 
 - `tester.bat` (double-clic) : pose une question, une page s'ouvre avec ce que Dalila a trouvé.
@@ -89,4 +106,5 @@ Prérequis : Python 3.10 à 3.12, MariaDB **11.8** (type VECTOR), environ 8 Go d
 - Le compte `dalila_ro` ne lit que les vues publiques : les noms des acquéreurs et les contrats lui sont inaccessibles.
 - Les libellés que personne n'a encore vérifiés (allemand, turc, algérien, libyen, formes tunisiennes non attestées) sont dans le graphe nommé **a-valider**.
 - Lexique : `translitteration_arabizi_tarc.csv` et `variantes_arabizi_tarc.csv` dérivent du corpus TArC (CC BY-NC-SA 4.0) : **démo seulement**.
-- Pas de Docker pour l'instant (point 13 de la revue reporté). Ancienne version SQLite + ChromaDB : `ancien_sqlite_chroma/`.
+- Les données (afi.sql, dalila_fusion) ne sont jamais dans git ni dans l'image Docker : elles sont montées en lecture seule.
+- Ancienne version SQLite + ChromaDB : `ancien_sqlite_chroma/`.
