@@ -1,0 +1,129 @@
+# Ontologie de Dalila (AFI) : écrite à la main, versionnée, lisible dans Protégé.
+# Les DONNÉES (zones, lots, services…) ne sont pas ici : elles sont générées dans ontology/abox/ par
+# backend/ingest/construire_abox.py, à partir de la base MariaDB.
+# Règle (cahier des charges §IV.5) : aucun prix, aucun statut, aucune disponibilité, aucune distance dans le graphe :
+# ces chiffres restent dans la base. Le graphe ne garde que des concepts, des liens et des libellés.
+# Libellés : ici seulement le français. Les autres langues sont dans les graphes nommés
+# « lexique » (formes attestées) et « a-valider » (traductions à faire relire).
+
+@prefix dal:     <https://afi.nat.tn/ontology/dalila#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+<https://afi.nat.tn/ontology/dalila> a owl:Ontology ;
+    owl:versionInfo "2.0" ;
+    rdfs:comment "Ontologie de Dalila, assistante de l'Agence Foncière Industrielle (AFI)."@fr .
+
+# ---------------------------------------------------------------- les 9 familles du cahier des charges (§IV.5)
+dal:Famille a owl:Class ; skos:prefLabel "Famille de concepts"@fr .
+
+dal:Lieu            a owl:Class ; dal:famille true ; skos:prefLabel "Lieu"@fr .
+dal:Lot             a owl:Class ; dal:famille true ; skos:prefLabel "Lot"@fr ;
+    rdfs:comment "Le graphe garde seulement le lien vers le lot ; surface, prix et statut sont lus dans la base."@fr .
+dal:SecteurActivite a owl:Class ; dal:famille true ; skos:prefLabel "Secteur d'activité"@fr .
+dal:Commodite       a owl:Class ; dal:famille true ; skos:prefLabel "Commodité et proximité"@fr .
+dal:Demarche        a owl:Class ; dal:famille true ; skos:prefLabel "Démarche"@fr .
+dal:Incitation      a owl:Class ; dal:famille true ; skos:prefLabel "Incitation"@fr .
+dal:Organisme       a owl:Class ; dal:famille true ; skos:prefLabel "Organisme"@fr .
+dal:Projet          a owl:Class ; dal:famille true ; skos:prefLabel "Projet"@fr .
+dal:ServiceAFI      a owl:Class ; dal:famille true ; skos:prefLabel "Service de l'AFI"@fr .
+# Branche ajoutée (correction G5) : un document n'est pas une démarche.
+dal:Document        a owl:Class ; skos:prefLabel "Document"@fr .
+
+[] a owl:AllDisjointClasses ;
+   owl:members ( dal:Lieu dal:Lot dal:SecteurActivite dal:Commodite dal:Demarche dal:Incitation
+                 dal:Organisme dal:Projet dal:ServiceAFI dal:Document ) .
+
+# ---------------------------------------------------------------- sous-classes
+dal:Gouvernorat      a owl:Class ; rdfs:subClassOf dal:Lieu ; skos:prefLabel "Gouvernorat"@fr .
+dal:ZoneIndustrielle a owl:Class ; rdfs:subClassOf dal:Lieu ; skos:prefLabel "Zone industrielle"@fr .
+[] a owl:AllDisjointClasses ; owl:members ( dal:Gouvernorat dal:ZoneIndustrielle ) .
+
+# Commodités : trois sortes, bien séparées (correction G5)
+dal:TypeProximite  a owl:Class ; rdfs:subClassOf dal:Commodite ; skos:prefLabel "Infrastructure proche (port, aéroport…)"@fr ;
+    rdfs:comment "La distance (km) est dans la base, table dalila_zone_distances."@fr .
+dal:TypeEquipement a owl:Class ; rdfs:subClassOf dal:Commodite ; skos:prefLabel "Équipement de la zone (électricité, eau…)"@fr ;
+    rdfs:comment "La valeur (kVA/ha, m3/jour/ha…) est dans la base, table dalila_zone_equipements."@fr .
+dal:TypeService    a owl:Class ; rdfs:subClassOf dal:Commodite ; skos:prefLabel "Service proche (banque, poste, santé…)"@fr ;
+    rdfs:comment "Les services et leurs distances sont dans la base, table dalila_services_proches."@fr .
+[] a owl:AllDisjointClasses ; owl:members ( dal:TypeProximite dal:TypeEquipement dal:TypeService ) .
+
+dal:Activite a owl:Class ; rdfs:subClassOf dal:SecteurActivite ; skos:prefLabel "Activité"@fr ;
+    rdfs:comment "Activité de la nomenclature de l'APII (remplace la table par_activite_nat absente)."@fr .
+
+dal:Procedure a owl:Class ; rdfs:subClassOf dal:Demarche ; skos:prefLabel "Procédure"@fr .
+dal:Etape     a owl:Class ; rdfs:subClassOf dal:Demarche ; skos:prefLabel "Étape"@fr .
+dal:Piece     a owl:Class ; rdfs:subClassOf dal:Demarche ; skos:prefLabel "Pièce à fournir"@fr .
+dal:Frais     a owl:Class ; rdfs:subClassOf dal:Demarche ; skos:prefLabel "Frais"@fr ;
+    rdfs:comment "Le montant est cité tel que la source le donne (texte), avec sa source."@fr .
+[] a owl:AllDisjointClasses ; owl:members ( dal:Procedure dal:Etape dal:Piece dal:Frais ) .
+
+dal:RegleIncitation a owl:Class ; rdfs:subClassOf dal:Incitation ; skos:prefLabel "Règle d'incitation"@fr ;
+    rdfs:comment "Avantage cité mot pour mot depuis une source officielle (TIA, loi 2016-71), avec sa source."@fr .
+dal:RegimeZone a owl:Class ; rdfs:subClassOf dal:Incitation ; skos:prefLabel "Régime de zone"@fr ;
+    rdfs:comment "Développement régional ou littoral / Grand Tunis : les conditions de vente de l'AFI diffèrent."@fr .
+
+dal:NatureProjet a owl:Class ; rdfs:subClassOf dal:Projet ; skos:prefLabel "Nature du projet (usine, dépôt…)"@fr .
+
+dal:CahierDesCharges a owl:Class ; rdfs:subClassOf dal:Document ; skos:prefLabel "Cahier des charges de zone"@fr .
+dal:PlanLotissement  a owl:Class ; rdfs:subClassOf dal:Document ; skos:prefLabel "Plan de lotissement"@fr .
+dal:Formulaire       a owl:Class ; rdfs:subClassOf dal:Document ; skos:prefLabel "Formulaire"@fr .
+
+# ---------------------------------------------------------------- relations (liens seulement, pas de chiffres)
+dal:dansGouvernorat a owl:ObjectProperty , owl:FunctionalProperty ;
+    rdfs:domain dal:ZoneIndustrielle ; rdfs:range dal:Gouvernorat ; skos:prefLabel "dans le gouvernorat"@fr .
+dal:dansZone a owl:ObjectProperty , owl:FunctionalProperty ;
+    rdfs:domain dal:Lot ; rdfs:range dal:ZoneIndustrielle ; skos:prefLabel "dans la zone"@fr .
+dal:contientLot a owl:ObjectProperty ; owl:inverseOf dal:dansZone ; skos:prefLabel "contient le lot"@fr .
+dal:procheDe a owl:ObjectProperty ;
+    rdfs:domain dal:ZoneIndustrielle ; rdfs:range dal:TypeProximite ; skos:prefLabel "a une distance connue vers"@fr .
+dal:aEquipement a owl:ObjectProperty ;
+    rdfs:domain dal:ZoneIndustrielle ; rdfs:range dal:TypeEquipement ; skos:prefLabel "dispose de l'équipement"@fr .
+dal:aServiceProche a owl:ObjectProperty ;
+    rdfs:domain dal:ZoneIndustrielle ; rdfs:range dal:TypeService ; skos:prefLabel "a un service proche de type"@fr .
+dal:aRegime a owl:ObjectProperty ;
+    rdfs:domain dal:ZoneIndustrielle ; rdfs:range dal:RegimeZone ; skos:prefLabel "relève du régime"@fr .
+dal:aDocument a owl:ObjectProperty ;
+    rdfs:domain dal:ZoneIndustrielle ; rdfs:range dal:Document ; skos:prefLabel "a pour document"@fr .
+dal:dansSecteur a owl:ObjectProperty ;
+    rdfs:domain dal:Activite ; rdfs:range dal:SecteurActivite ; skos:prefLabel "dans le secteur"@fr .
+dal:organismeCompetent a owl:ObjectProperty ;
+    rdfs:domain dal:SecteurActivite ; rdfs:range dal:Organisme ; skos:prefLabel "organisme compétent"@fr .
+dal:commoditeUtile a owl:ObjectProperty ;
+    rdfs:domain dal:SecteurActivite ; rdfs:range dal:Commodite ; skos:prefLabel "commodité utile"@fr .
+dal:fourniPar a owl:ObjectProperty ;
+    rdfs:domain dal:ServiceAFI ; rdfs:range dal:Organisme ; skos:prefLabel "fourni par"@fr .
+dal:aProcedure a owl:ObjectProperty ;
+    rdfs:domain dal:ServiceAFI ; rdfs:range dal:Procedure ; skos:prefLabel "suit la procédure"@fr .
+dal:aEtape a owl:ObjectProperty ;
+    rdfs:domain dal:Procedure ; rdfs:range dal:Etape ; skos:prefLabel "a pour étape"@fr .
+dal:demandePiece a owl:ObjectProperty ;
+    rdfs:domain dal:Procedure ; rdfs:range dal:Piece ; skos:prefLabel "demande la pièce"@fr .
+dal:aFrais a owl:ObjectProperty ;
+    rdfs:domain dal:Procedure ; rdfs:range dal:Frais ; skos:prefLabel "a pour frais"@fr .
+dal:pourRegime a owl:ObjectProperty ;
+    rdfs:domain dal:Procedure ; rdfs:range dal:RegimeZone ; skos:prefLabel "s'applique au régime"@fr .
+dal:avantage a owl:ObjectProperty ;
+    rdfs:domain dal:RegimeZone ; rdfs:range dal:RegleIncitation ; skos:prefLabel "donne droit à"@fr .
+dal:formulaire a owl:ObjectProperty ;
+    rdfs:domain dal:Procedure ; rdfs:range dal:Formulaire ; skos:prefLabel "utilise le formulaire"@fr .
+
+# Le projet d'un investisseur est décrit par ces propriétés (qualification du projet) ; ses valeurs viennent
+# de la conversation, jamais de la base AFI.
+dal:aSecteur a owl:ObjectProperty ; rdfs:domain dal:Projet ; rdfs:range dal:SecteurActivite ; skos:prefLabel "secteur du projet"@fr .
+dal:aNature  a owl:ObjectProperty ; rdfs:domain dal:Projet ; rdfs:range dal:NatureProjet ; skos:prefLabel "nature du projet"@fr .
+dal:emplois       a owl:DatatypeProperty ; rdfs:domain dal:Projet ; rdfs:range xsd:integer ; skos:prefLabel "emplois prévus"@fr .
+dal:investissement a owl:DatatypeProperty ; rdfs:domain dal:Projet ; rdfs:range xsd:decimal ; skos:prefLabel "investissement prévu (DT)"@fr .
+dal:surfaceSouhaitee a owl:DatatypeProperty ; rdfs:domain dal:Projet ; rdfs:range xsd:decimal ; skos:prefLabel "surface souhaitée (m²)"@fr .
+
+dal:idAFI a owl:DatatypeProperty ; skos:prefLabel "identifiant dans la base AFI"@fr .
+dal:ficheAFI a owl:DatatypeProperty ; rdfs:range xsd:integer ; skos:prefLabel "fiche de la base de connaissances AFI"@fr .
+dal:ordre a owl:DatatypeProperty ; rdfs:range xsd:integer ; skos:prefLabel "ordre"@fr .
+dal:texteSource a owl:DatatypeProperty ; skos:prefLabel "texte cité de la source"@fr .
+dal:lienPDF a owl:DatatypeProperty ; rdfs:range xsd:anyURI ; skos:prefLabel "lien du PDF officiel"@fr .
+dal:famille a owl:AnnotationProperty .
+dal:aValider a owl:AnnotationProperty ; rdfs:comment "Libellé ou forme à faire relire par un locuteur."@fr .

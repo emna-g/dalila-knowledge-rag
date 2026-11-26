@@ -1,0 +1,6 @@
+PREFIX dal: <https://afi.nat.tn/ontology/dalila#>
+PREFIX d: <https://afi.nat.tn/ontology/dalila/donnees/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+# BF17 : « terrain », « plot », « أرض » et « 9at3a » mènent au même concept
+SELECT DISTINCT ?concept WHERE { VALUES ?m { "terrain"@fr "plot"@en "أرض"@ar "9at3a"@aeb-Latn } ?concept skos:altLabel ?m }

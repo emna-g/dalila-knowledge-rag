@@ -1,0 +1,7 @@
+PREFIX dal: <https://afi.nat.tn/ontology/dalila#>
+PREFIX d: <https://afi.nat.tn/ontology/dalila/donnees/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+# Projet : propriétés qui décrivent le projet d un investisseur (qualification)
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+SELECT ?propriete WHERE { ?p rdfs:domain dal:Projet ; skos:prefLabel ?propriete }

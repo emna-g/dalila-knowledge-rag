@@ -1,0 +1,6 @@
+PREFIX dal: <https://afi.nat.tn/ontology/dalila#>
+PREFIX d: <https://afi.nat.tn/ontology/dalila/donnees/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+# BF20 : un projet de pêche -> organisme compétent et zones proches de la commodité utile
+SELECT ?organisme ?zone WHERE { d:secteur\/peche_aquaculture dal:organismeCompetent/skos:altLabel ?organisme ; dal:commoditeUtile ?c . ?z dal:procheDe ?c ; skos:prefLabel ?zone . FILTER(LANG(?zone)="fr") } LIMIT 10

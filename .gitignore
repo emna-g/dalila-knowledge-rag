@@ -19,3 +19,10 @@ __pycache__/
 .env
 *.key
 resultat.html
+
+.venv/
+
+# Graphe généré (reconstruit par backend.ingest.construire_abox)
+ontology/store/
+ontology/abox/dalila.trig
+resultat.html

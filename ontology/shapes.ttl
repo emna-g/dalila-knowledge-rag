@@ -1,0 +1,54 @@
+# Contrôles SHACL (pyshacl) : règles que le graphe doit respecter. Un échec bloque la construction.
+@prefix sh:      <http://www.w3.org/ns/shacl#> .
+@prefix dal:     <https://afi.nat.tn/ontology/dalila#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix shp:     <https://afi.nat.tn/ontology/dalila/shapes#> .
+
+# Chaque zone : exactement un gouvernorat, un libellé français, un identifiant AFI, une source.
+shp:Zone a sh:NodeShape ; sh:targetClass dal:ZoneIndustrielle ;
+  sh:property [ sh:path dal:dansGouvernorat ; sh:minCount 1 ; sh:maxCount 1 ; sh:class dal:Gouvernorat ] ;
+  sh:property [ sh:path dal:idAFI ; sh:minCount 1 ; sh:maxCount 1 ] ;
+  sh:property [ sh:path dcterms:source ; sh:minCount 1 ] ;
+  sh:property [ sh:path skos:prefLabel ; sh:qualifiedValueShape [ sh:languageIn ( "fr" ) ] ; sh:qualifiedMinCount 1 ] .
+
+# Chaque lot : exactement une zone, un identifiant ; jamais de prix ni de statut dans le graphe.
+shp:Lot a sh:NodeShape ; sh:targetClass dal:Lot ;
+  sh:property [ sh:path dal:dansZone ; sh:minCount 1 ; sh:maxCount 1 ; sh:class dal:ZoneIndustrielle ] ;
+  sh:property [ sh:path dal:idAFI ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+# Chaque service de l'AFI : au moins une source et une procédure.
+shp:Service a sh:NodeShape ; sh:targetClass dal:ServiceAFI ;
+  sh:property [ sh:path dcterms:source ; sh:minCount 1 ] ;
+  sh:property [ sh:path dal:aProcedure ; sh:minCount 1 ] .
+
+# Règles d'incitation, étapes, pièces, frais : toujours le texte cité et sa source.
+shp:Cite a sh:NodeShape ;
+  sh:targetClass dal:RegleIncitation , dal:Etape , dal:Piece , dal:Frais , dal:Activite ;
+  sh:property [ sh:path dcterms:source ; sh:minCount 1 ] ;
+  sh:property [ sh:path skos:prefLabel ; sh:minCount 1 ] .
+
+# Les 9 familles : un libellé dans chacune des 8 langues du cahier des charges.
+shp:Famille a sh:NodeShape ;
+  sh:targetNode dal:Lieu , dal:Lot , dal:SecteurActivite , dal:Commodite , dal:Demarche , dal:Incitation ,
+                dal:Organisme , dal:Projet , dal:ServiceAFI ;
+  sh:property [ sh:path skos:prefLabel ; sh:qualifiedValueShape [ sh:languageIn ( "fr" ) ] ; sh:qualifiedMinCount 1 ] ;
+  sh:property [ sh:path skos:prefLabel ; sh:qualifiedValueShape [ sh:languageIn ( "en" ) ] ; sh:qualifiedMinCount 1 ] ;
+  sh:property [ sh:path skos:prefLabel ; sh:qualifiedValueShape [ sh:languageIn ( "ar" ) ] ; sh:qualifiedMinCount 1 ] ;
+  sh:property [ sh:path skos:prefLabel ; sh:qualifiedValueShape [ sh:languageIn ( "de" ) ] ; sh:qualifiedMinCount 1 ] ;
+  sh:property [ sh:path skos:prefLabel ; sh:qualifiedValueShape [ sh:languageIn ( "tr" ) ] ; sh:qualifiedMinCount 1 ] ;
+  sh:property [ sh:path skos:prefLabel ; sh:qualifiedValueShape [ sh:languageIn ( "aeb" ) ] ; sh:qualifiedMinCount 1 ] ;
+  sh:property [ sh:path skos:prefLabel ; sh:qualifiedValueShape [ sh:languageIn ( "arq" ) ] ; sh:qualifiedMinCount 1 ] ;
+  sh:property [ sh:path skos:prefLabel ; sh:qualifiedValueShape [ sh:languageIn ( "ayl" ) ] ; sh:qualifiedMinCount 1 ] .
+
+# Pas de chiffre dans les synonymes (une forme apprise ne doit jamais porter un prix ou une surface).
+shp:SynonymeSansChiffre a sh:NodeShape ; sh:targetSubjectsOf skos:altLabel ;
+  sh:property [ sh:path skos:altLabel ; sh:pattern "^(?!.*(^| )[0-9٠-٩][0-9٠-٩.,]*( |$)).*$" ;
+                sh:message "Un synonyme contient un nombre isolé (les chiffres de l'arabizi, comme 9at3a, sont permis)." ] .
+
+# Interdit dans le graphe : prix, statut, disponibilité, distance (une seule source par chiffre = la base).
+shp:PasDeChiffresMetier a sh:NodeShape ; sh:targetSubjectsOf dal:idAFI ;
+  sh:sparql [ sh:message "Propriété chiffrée interdite dans le graphe (prix, statut, distance, surface)." ;
+    sh:select """SELECT $this WHERE { $this ?p ?o .
+      FILTER(REGEX(STR(?p), "prix|statut|disponib|distance|km|surface_m2|surfaceM2", "i")) }""" ] .

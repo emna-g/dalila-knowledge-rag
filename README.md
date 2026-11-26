@@ -1,51 +1,52 @@
-# Dalila : graphe de connaissances et recherche (ChromaDB)
+# Dalila : base de connaissances et recherche (version MariaDB + Oxigraph)
 
-Code de la partie « données et recherche » de **Dalila**, l'assistante de l'AFI (Agence Foncière Industrielle), pour le Hackathon AGENTIC (novembre 2026).
+Partie « données et recherche » de **Dalila**, l'assistante de l'AFI (Agence Foncière Industrielle), Hackathon AGENTIC 2026.
+Cette branche (`refonte-revue-1-12`) applique les points 1 à 12 de la revue de l'équipe (`docs` : « 14 — Review of the data/RAG pipeline »).
 
-Trois briques, chacune avec un seul rôle :
-
-| Brique | Fichier | Rôle |
+| Brique | Où | Rôle |
 |---|---|---|
-| **Chiffres** | `base/dalila.sqlite` (créé par `construire_sqlite.py`) | Prix, surfaces, statuts des lots, distances. **Source unique des chiffres.** |
-| **Graphe** | `graphe/dalila.ttl` (créé par `construire_graphe.py`) | Ontologie OWL/RDF, 9 familles de concepts, synonymes multilingues. **Sans prix ni statut.** |
-| **Recherche** | `index_chroma/` (créé par `construire_index.py`) | Passages de texte à citer, recherche hybride (sens + mots-clés) avec le lexique tunisien. |
+| **MariaDB 11.8** | `db/migrations/` | **Source unique des chiffres et des textes.** `afi.sql` est chargé **tel quel** ; nos tables `dalila_*` et `agent_*` sont ajoutées à côté ; la carte et Dalila lisent les mêmes vues `v_pub_*`. Les passages et leurs vecteurs (type `VECTOR`) y sont aussi : ChromaDB n'est plus utilisé. |
+| **Graphe (Oxigraph)** | `ontology/` | Le **sens** : ontologie OWL écrite à la main (`dalila.ttl`), données générées depuis la base (aucun prix, statut ni distance), contrôles SHACL (`shapes.ttl`), graphes nommés (core, abox, lexique, a-valider, appris/…), requêtes de test (`queries/*.rq`). |
+| **Recherche** | `backend/app/` | Comprendre la question avec le graphe, lire les chiffres dans les vues, trouver les passages à citer (filtres SQL + sens + mots-clés). |
+| **Lexique tunisien** | `lexicon/` | Comprendre l'arabizi et la darija (formes attestées seulement). |
+| **Évaluation** | `eval/` | Mesures (rappel@5, MRR, chiffres exacts, temps) et modèle de jeu de test pour l'équipe. |
 
-Le détail de chaque fichier et des concepts est dans **[GUIDE_COMPLET.md](GUIDE_COMPLET.md)**.
+Les explications fichier par fichier sont dans **[GUIDE_COMPLET.md](GUIDE_COMPLET.md)**, et les choix chiffrés dans **[DECISIONS.md](DECISIONS.md)**.
 
-## Installation
+## Installer (Windows, sans Docker)
 
-Python 3.10 ou plus récent.
+1. **MariaDB 11.8** en version zip (sans installateur ni service) :
+   ```
+   mariadb-install-db.exe --datadir=<dossier>\data --password=<mot de passe root> --port=3307
+   mariadbd.exe --defaults-file=<dossier>\data\my.ini --console
+   ```
+2. **Charger `afi.sql` tel quel** dans une base `afi` (utf8mb4), puis copier `.env.example` en `.env` et le remplir.
+3. **Python** dans un environnement virtuel :
+   ```
+   python -m venv .venv
+   .venv\Scripts\python -m pip install torch==2.14.1 --index-url https://download.pytorch.org/whl/cpu --extra-index-url https://pypi.org/simple
+   .venv\Scripts\python -m pip install -r requirements.txt
+   ```
+4. **Données** : décompresser les 2 zips `dalila_fusion_partie*.zip` du Drive d'équipe dans `donnees/dalila_fusion/`.
+
+## Construire (dans l'ordre)
 
 ```
-python -m pip install --target libs torch --index-url https://download.pytorch.org/whl/cpu --extra-index-url https://pypi.org/simple
-python -m pip install --target libs -r requirements.txt
+.venv\Scripts\python -m backend.ingest.migrer           tables dalila_*, agent_*, vues v_pub_*, comptes dalila_ro / dalila_rw
+.venv\Scripts\python -m backend.ingest.charger_fusion   remplit les tables depuis dalila_fusion (doublons écartés)
+.venv\Scripts\python -m backend.ingest.vectoriser --modele e5     vecteurs des passages (environ 25 min)
+.venv\Scripts\python -m backend.ingest.construire_abox  graphe : génération, SHACL, OWL RL, Oxigraph, requêtes de test
 ```
 
-Les bibliothèques vont dans `libs/` et le modèle d'embeddings (multilingual-e5-small, environ 470 Mo) dans `modeles/`. Ces deux dossiers ne sont pas versionnés.
+## Tester
 
-## Données
-
-Les données ne sont pas dans ce dépôt (taille et confidentialité). Il faut télécharger depuis le Drive de l'équipe, dossier « Hackathon Dalila / Pipeline Dalila (graphe + ChromaDB) – 26-11 », les deux fichiers `dalila_fusion_partie1_base_zones_lots.zip` et `dalila_fusion_partie2_textes_passages.zip`. On les décompresse dans `donnees/dalila_fusion/`.
-
-## Construire et tester
-
-```
-python construire_sqlite.py --donnees donnees/dalila_fusion --sortie base/dalila.sqlite
-python construire_graphe.py --donnees donnees/dalila_fusion --lexique lexique_tunisien --sortie graphe
-python construire_index.py  --donnees donnees/dalila_fusion --sortie index_chroma
-python evaluer.py
-python demo_dalila.py "n7eb terrain f Sfax"
-```
-
-`construire_index.py` prend environ 27 minutes sur un processeur.
-
-## Résultats actuels
-
-- **Graphe :** 19 468 faits. Il est cohérent selon le raisonneur owlrl, et une requête SPARQL de test répond pour chaque famille (`graphe/rapport_graphe.json`).
-- **Recherche :** la bonne réponse est dans les 5 premiers résultats pour 19 questions sur 30 (15 sur 25 en tunisien), avec des textes dans la langue de la question. La recherche par le sens seule n'en trouvait que 12 sur 30 (`evaluation/resume.json`).
+- `tester.bat` (double-clic) : pose une question, une page s'ouvre avec ce que Dalila a trouvé.
+- `.venv\Scripts\python -m eval.run_eval` : jeu de 30 questions ; `--questions eval/testset/<fichier>.csv` pour un autre jeu.
 
 ## Règles
 
-- Un chiffre vient **toujours** de la base SQLite, jamais d'un passage ni du graphe.
-- Aucune donnée personnelle dans ce dépôt (les noms d'acquéreurs sont masqués dans les données, qui restent hors du dépôt).
-- Lexique : les fichiers `translitteration_arabizi_tarc.csv` et `variantes_arabizi_tarc.csv` sont dérivés du corpus TArC (licence CC BY-NC-SA 4.0, usage non commercial).
+- Un chiffre (prix, surface, disponibilité, distance) vient **toujours** des vues MariaDB, jamais d'un passage ni du graphe.
+- Le compte `dalila_ro` ne lit que les vues publiques : les noms des acquéreurs et les contrats lui sont inaccessibles.
+- Les libellés que personne n'a encore vérifiés (allemand, turc, algérien, libyen, formes tunisiennes non attestées) sont dans le graphe nommé **a-valider**.
+- Lexique : `translitteration_arabizi_tarc.csv` et `variantes_arabizi_tarc.csv` dérivent du corpus TArC (CC BY-NC-SA 4.0) : **démo seulement**.
+- Pas de Docker pour l'instant (point 13 de la revue reporté). Ancienne version SQLite + ChromaDB : `ancien_sqlite_chroma/`.

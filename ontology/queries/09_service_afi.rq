@@ -1,0 +1,6 @@
+PREFIX dal: <https://afi.nat.tn/ontology/dalila#>
+PREFIX d: <https://afi.nat.tn/ontology/dalila/donnees/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+# Service AFI : frais et pièces de l attestation d insertion d hypothèque (prêt bancaire)
+SELECT ?frais ?piece WHERE { d:service\/attestation_insertion_hypotheque dal:aProcedure ?p . ?p dal:aFrais/skos:prefLabel ?frais ; dal:demandePiece/skos:prefLabel ?piece }

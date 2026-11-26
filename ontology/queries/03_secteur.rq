@@ -1,0 +1,6 @@
+PREFIX dal: <https://afi.nat.tn/ontology/dalila#>
+PREFIX d: <https://afi.nat.tn/ontology/dalila/donnees/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+# Secteur : activités de la nomenclature APII liées au plastique
+SELECT ?activite ?secteur WHERE { ?a a dal:Activite ; skos:prefLabel ?activite ; dal:dansSecteur/skos:prefLabel ?secteur . FILTER(CONTAINS(LCASE(STR(?activite)), "plastique")) } LIMIT 10

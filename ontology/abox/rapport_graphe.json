@@ -1,0 +1,236 @@
+{
+ "genere_le": "2026-11-26T19:18",
+ "triplets": {
+  "core": 249,
+  "abox": 13855,
+  "lexique": 319,
+  "a-valider": 435
+ },
+ "activites_nomenclature_APII": 484,
+ "etapes": 44,
+ "pieces": 78,
+ "frais": 5,
+ "libelles_par_langue_[lexique,a-valider,core+abox]": {
+  "fr": [
+   137,
+   0,
+   883
+  ],
+  "en": [
+   24,
+   9,
+   0
+  ],
+  "ar": [
+   10,
+   54,
+   73
+  ],
+  "aeb-Arab": [
+   35,
+   37,
+   0
+  ],
+  "aeb-Latn": [
+   43,
+   106,
+   0
+  ],
+  "aeb": [
+   70,
+   9,
+   0
+  ],
+  "de": [
+   0,
+   9,
+   0
+  ],
+  "tr": [
+   0,
+   9,
+   0
+  ],
+  "arq": [
+   0,
+   9,
+   0
+  ],
+  "ayl": [
+   0,
+   9,
+   0
+  ],
+  "-": [
+   0,
+   0,
+   8
+  ]
+ },
+ "shacl_conforme": true,
+ "shacl_rapport": "",
+ "owlrl_erreurs": [],
+ "requetes_sparql_oxigraph": {
+  "01_lieu": {
+   "nb_resultats": 4,
+   "exemple": [
+    [
+     "<https://afi.nat.tn/ontology/dalila/donnees/zone/930607>",
+     "\"ENFIDHA 2\"@fr"
+    ],
+    [
+     "<https://afi.nat.tn/ontology/dalila/donnees/zone/930602>",
+     "\"SOUSSE II\"@fr"
+    ],
+    [
+     "<https://afi.nat.tn/ontology/dalila/donnees/zone/930601>",
+     "\"SOUSSE I\"@fr"
+    ]
+   ]
+  },
+  "02_lot": {
+   "nb_resultats": 1,
+   "exemple": [
+    [
+     "\"67\"^^<http://www.w3.org/2001/XMLSchema#integer>"
+    ]
+   ]
+  },
+  "03_secteur": {
+   "nb_resultats": 6,
+   "exemple": [
+    [
+     "\"Fabrication de plaques, feuilles, tubes et profilés en matières plastiques\"@fr",
+     "\"Industries manufacturières\"@fr"
+    ],
+    [
+     "\"Fabrication d'éléments en matières plastiques pour la construction\"@fr",
+     "\"Industries manufacturières\"@fr"
+    ],
+    [
+     "\"Fabrication d'autres articles en matières plastiques\"@fr",
+     "\"Industries manufacturières\"@fr"
+    ]
+   ]
+  },
+  "04_commodite": {
+   "nb_resultats": 21,
+   "exemple": [
+    [
+     "\"Parking\"@fr"
+    ],
+    [
+     "\"Faculté / institut\"@fr"
+    ],
+    [
+     "\"Lycée\"@fr"
+    ]
+   ]
+  },
+  "05_demarche": {
+   "nb_resultats": 13,
+   "exemple": [
+    [
+     "\"autorisations administratives nécessaires pour l'activité projetée\"@fr"
+    ],
+    [
+     "\"attestation de dépôt du projet auprès de l'Agence de Promotion de l'Industrie et de l'Innovation (APII)\"@fr"
+    ],
+    [
+     "\"frais de rédaction du contrat de vente\"@fr"
+    ]
+   ]
+  },
+  "06_incitation": {
+   "nb_resultats": 11,
+   "exemple": [
+    [
+     "\"Subvention couvrant 85 % des dépenses de travaux d’infrastructure dans le secteur industriel, dans la limite de 10 % du coût du projet et avec un plafond de 1 million TND.\"@fr",
+     "\"https://tia.gov.tn/fr/pourquoi-la-tunisie/package-dincitation-general/ (table chatbot_sources id 3)\""
+    ],
+    [
+     "\"Prise en charge par l’État d’une partie des salaires versés aux employés tunisiens en fonction du niveau d’encadrement, dans toutes les activités sauf celles exclues des incitations au titre du développement régional.\"@fr",
+     "\"https://tia.gov.tn/fr/pourquoi-la-tunisie/package-dincitation-general/ (table chatbot_sources id 3)\""
+    ],
+    [
+     "\"Exonération totale de la contribution patronale à la sécurité sociale pendant 5 ans (16,57 % des salaires bruts).\"@fr",
+     "\"https://tia.gov.tn/fr/pourquoi-la-tunisie/package-dincitation-general/ (table chatbot_sources id 3)\""
+    ]
+   ]
+  },
+  "07_organisme": {
+   "nb_resultats": 3,
+   "exemple": [
+    [
+     "\"Pêche et aquaculture\"@fr",
+     "\"APIA\""
+    ],
+    [
+     "\"Industries extractives (minéraux bruts et autres)\"@fr",
+     "\"APII\""
+    ],
+    [
+     "\"Industries manufacturières\"@fr",
+     "\"APII\""
+    ]
+   ]
+  },
+  "08_projet": {
+   "nb_resultats": 5,
+   "exemple": [
+    [
+     "\"nature du projet\"@fr"
+    ],
+    [
+     "\"emplois prévus\"@fr"
+    ],
+    [
+     "\"investissement prévu (DT)\"@fr"
+    ]
+   ]
+  },
+  "09_service_afi": {
+   "nb_resultats": 6,
+   "exemple": [
+    [
+     "\"Attestation d'insertion d'hypothèque : 50 DT\"@fr",
+     "\"copie conforme du contrat de vente enregistré\"@fr"
+    ],
+    [
+     "\"Attestation d'insertion d'hypothèque : 50 DT\"@fr",
+     "\"quittance de paiement de 50 DT\"@fr"
+    ],
+    [
+     "\"Attestation d'insertion d'hypothèque : 50 DT\"@fr",
+     "\"formulaire selon le modèle fourni\"@fr"
+    ]
+   ]
+  },
+  "10_bf17_synonymes": {
+   "nb_resultats": 1,
+   "exemple": [
+    [
+     "<https://afi.nat.tn/ontology/dalila#Lot>"
+    ]
+   ]
+  },
+  "11_bf20_raisonnement": {
+   "nb_resultats": 10,
+   "exemple": [
+    [
+     "\"APIA\"",
+     "\"Beja Bouteffaha\"@fr"
+    ],
+    [
+     "\"APIA\"",
+     "\"Jendouba El IRTIYEH\"@fr"
+    ],
+    [
+     "\"APIA\"",
+     "\"Sbikha 2\"@fr"
+    ]
+   ]
+  }
+ },
+ "toutes_les_requetes_repondent": true
+}

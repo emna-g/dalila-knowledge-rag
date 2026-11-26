@@ -1,0 +1,2 @@
+﻿id,langue,question,ecrite_par,statut_relecture,scenario,passages_attendus,verite_sql,reponse_attendue
+E-fr-01,fr,"<la question, telle qu'un investisseur l'écrirait>",equipe:<prénom>,a_relire,lots,,SELECT COUNT(*) FROM v_pub_lots_disponibles WHERE zone_id='930900',57

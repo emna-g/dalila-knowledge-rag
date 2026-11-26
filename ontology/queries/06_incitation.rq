@@ -1,0 +1,6 @@
+PREFIX dal: <https://afi.nat.tn/ontology/dalila#>
+PREFIX d: <https://afi.nat.tn/ontology/dalila/donnees/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+# Incitation : avantages du développement régional, avec leur source
+SELECT ?avantage ?source WHERE { d:regime\/developpement_regional dal:avantage ?r . ?r dal:texteSource ?avantage ; dcterms:source ?source }
