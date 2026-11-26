@@ -1,0 +1,7 @@
+# Installation (sur D: pour ne pas remplir C:) :
+#   python -m pip install --target libs torch --index-url https://download.pytorch.org/whl/cpu --extra-index-url https://pypi.org/simple
+#   python -m pip install --target libs -r requirements.txt
+rdflib==7.6.0
+owlrl==7.6.2
+chromadb==1.5.9
+sentence-transformers==6.3.0

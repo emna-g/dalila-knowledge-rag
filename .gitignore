@@ -1,0 +1,20 @@
+# Bibliothèques et modèle (lourds, réinstallables)
+libs/
+modeles/
+tmp/
+
+# Données (sur le Drive de l'équipe) et fichiers générés
+donnees/
+base/
+index_chroma/
+*.sqlite
+*.zip
+
+# Python
+__pycache__/
+*.pyc
+*.log
+
+# Secrets
+.env
+*.key

@@ -1,0 +1,67 @@
+﻿id,categorie,francais,anglais,arabe_standard,tunisien_lettres_arabes (attesté),arabizi (attesté),mots_francais_melanges (attestés),formes_a_valider_par_un_locuteur,statut,sources
+terrain,foncier,terrain | lot | parcelle,plot,قطعة أرض | مقسم | أرض,قطعة | أرض | مقسم,9at3a | ma9sem,terrain | terain | lot,تيران | 9it3a | 9a6a3a | ard | 2ard | ardh | mo9sem | m9asem | tiran,atteste_donnees_afi,ar_afi; cdc_afi; conv_afi; tarc; tsac
+zone_industrielle,foncier,zone industrielle | zone,industrial zone,منطقة صناعية | المنطقة الصناعية | المناطق الصناعية,منطقة صناعية,,zone,زون | mante9a sina3ia | manti9a sina3iya | zone industriel | zon,a_valider_locuteur,ar_afi; conv_afi
+usine,projet,usine | fabrique,factory,مصنع | وحدة صناعية,,usine,usine,معمل | مصنع | فابريكة | يزين | ma3mel | masna3 | mosna3 | fabrika | yzine,a_valider_locuteur,ar_afi; conv_afi; tsac
+depot,projet,dépôt | entrepôt,warehouse,مستودع (non vu dans textes AFI) | مخزن (non vu dans textes AFI),,,,مخزن | ديبو | حانوت | ma5zen | makhzen | dipo | depot | 7anout,a_valider_locuteur,tarc; tsac
+industriel,projet,industriel,industrial,صناعي | صناعية,صناعي | صناعية,sina3i,,sna3i | sina3iya | sna3ia,atteste_donnees_afi,ar_afi; conv_afi
+projet,projet,projet,project,مشروع,مشروع,machrou3 | projet,projet,بروجي | mashrou3 | mechrou3 | proji,atteste_donnees_afi,ar_afi; cdc_afi; conv_afi; tarc; tsac
+surface,lot,superficie | surface | m²,area,مساحة | متر مربع | هكتار,مساحة | متر | ميترو | هكتار,m2 | mitrou,m2,mse7a | masa7a | mitro | metre | hectar,atteste_corpus_public,ar_afi; conv_afi; tarc; tsac
+disponible,lot,disponible | libre,available,متاح | متوفر | شاغر (non vu dans textes AFI),موجود | فمّا | فما,mawjoud | mawjouda | famma | fama,disponible,فاضي | fame | fadhi,atteste_corpus_public,ar_afi; tarc; tsac; tunizi
+gouvernorat,lieu,gouvernorat | région,governorate,ولاية | معتمدية | جهة,ولاية | جهة | بلاصة,wleya | blasa | blassa,gouvernorat,wileya | wlaya | jiha,atteste_donnees_afi,ar_afi; conv_afi; tarc; tsac; tunizi
+nord_sud,lieu,nord | sud | sahel,north / south,الشمال | الجنوب | الساحل,الشمال | الجنوب | الساحل,essa7el,nord | sud,chmel | ejjnoub | janoub | sa7el | sahel,atteste_corpus_public,ar_afi; tarc; tsac
+proche,proximite,près de | proche | à côté,near,قريب من (non vu dans textes AFI) | بالقرب من,قريب | بحذا | حذا | قدام,9rib | 9odem | bahtha | 9oddem,près | à côté,krib | 9rayeb | b7dha | 7dha,atteste_corpus_public,ar_afi; tarc; tsac; tunizi
+loin,proximite,loin,far,بعيد,بعيد,b3id,,b3ida,atteste_corpus_public,ar_afi; tarc; tsac; tunizi
+port,proximite,port,port,ميناء,ميناء,port,port,مرسى | بور | marsa | por | mina,a_valider_locuteur,ar_afi; conv_afi; tarc; tsac
+aeroport,proximite,aéroport,airport,مطار,,aeroport | airport,aéroport,مطار | ايروبور | matar | mtar,a_valider_locuteur,ar_afi; conv_afi; tarc
+autoroute,proximite,autoroute | route,highway,طريق سيارة (non vu dans textes AFI) | الطريق السيارة (non vu dans textes AFI),طريق | ثنية | كيّاس,tri9 | thneya,,أوتوروت | otorout | autoroute | thniya | thnia | kayes | kiyes,atteste_corpus_public,ar_afi; tarc; tsac
+gare,proximite,gare | chemin de fer,railway station,محطة القطار (non vu dans textes AFI) | محطة السكة الحديدية (non vu dans textes AFI),قار,,gare,لاقار | ترينو | lagar | la gare | train | trinou,a_valider_locuteur,ar_afi; tsac; tunizi
+electricite,commodite,électricité,electricity,كهرباء | الكهرباء,كهرباء,,,ضو | الضو | ستاغ | dhaw | dhaou | edhaw | dou | kahraba | steg,a_valider_locuteur,ar_afi; tarc; tsac
+eau,commodite,eau,water,ماء | الماء الصالح للشرب,ماء,ma | me,,الماء | صوناد | elma | sonede,atteste_corpus_public,ar_afi; conv_afi; tarc; tsac; tunizi
+gaz,commodite,gaz naturel,natural gas,الغاز الطبيعي | غاز,غاز,gaz,gaz,القاز | 9az | ghaz,atteste_corpus_public,ar_afi; tarc
+prix,prix,prix | coût | tarif,price,سعر | ثمن | أسعار | كلفة,سوم | قداش | بقداش,soum | 9adech | 9addech | 9adeh | b9adech | kadech | 9adach,prix,السوم | essoum | som,atteste_corpus_public,ar_afi; conv_afi; tarc; tsac; tunizi
+cher,prix,cher,expensive,غال (non vu dans textes AFI) | مرتفع,غالي,ghali | 8ali,cher,شاعل | chee3el | cha3el,atteste_corpus_public,ar_afi; tarc; tsac; tunizi
+pas_cher,prix,pas cher | bon marché,cheap,رخيص (non vu dans textes AFI) | منخفض,رخيص | بلاش,r5is | blech | blesh,,rkhis | r5iss,atteste_corpus_public,ar_afi; tarc; tsac; tunizi
+argent,prix,argent | budget | dinars,money,مال | ميزانية | دينار,فلوس | دينار | مليون | ملاين,flous | dinar | malyoun | mlayen | flouss,budget | dinar | dt | mdt,floss | melyoun,atteste_corpus_public,ar_afi; tarc; tsac; tunizi
+payer,prix,payer | paiement,pay,دفع | تسديد | خلاص,,,,نخلّص | خلاص | نخلص | n5alles | nkhalles | 5las | khlas | 5alles,a_valider_locuteur,ar_afi; tarc; tsac
+credit,prix,crédit | prêt | banque,loan,قرض | بنك,قرض,,,كريدي | بنكة | credit | kredi | banka | 9ardh,a_valider_locuteur,ar_afi; tarc; tsac
+subvention,incitation,subvention | prime | aide,grant,منحة | دعم | حوافز | امتيازات,منحة | دعم,minha | subvention,subvention,سوبفونسيون | min7a | men7a | da3m,atteste_corpus_public,ar_afi; conv_afi; tunizi
+avantages,incitation,avantages | incitations,incentives,امتيازات | حوافز | تشجيعات,امتيازات,avantage,avantage,ميزات | imtiyazat,a_valider_locuteur,ar_afi; conv_afi
+papiers,procedure,papiers | documents | dossier,documents,وثائق | ملف | مستندات,أوراق,lwra9,,وراق | الوراق | دوسي | ملف | wra9 | elwra9 | awra9 | dossier | dosi | malaf,atteste_donnees_afi,ar_afi; conv_afi; tarc; tsac
+procedure,procedure,procédure | démarches | étapes,procedure,إجراءات | الإجراءات | مراحل,إجراءات | خطوات,procedure,procédure,بروسيدور | ijra2at | ejra2at | 5atwat,atteste_donnees_afi,ar_afi; conv_afi
+acheter,procedure,acheter | acquérir | acquisition,buy,اقتناء | شراء | يقتني (non vu dans textes AFI),نشري | شري,nechri,acquisition,نشرى | nichri | nachri | chri | echri,atteste_corpus_public,ar_afi; conv_afi; tarc
+louer,procedure,louer | location,rent,كراء | إيجار,كراء,,,نكري | كرا | nekri | nikri | kra | kre,a_valider_locuteur,ar_afi
+demande,procedure,demande | dossier de demande,application,مطلب | طلب,مطلب,demande,demande,ديموند | matlab | talab,atteste_donnees_afi,ar_afi; conv_afi; tarc
+contrat,procedure,contrat | acte de vente,contract,عقد | عقد البيع,عقد,,,كونترا | kontra | contrat | 3a9d,atteste_corpus_public,ar_afi; tarc; tsac
+autorisation,procedure,autorisation | permis,permit,رخصة | ترخيص,رخصة,,,بيرمي | ro5sa | rokhsa | permis,a_valider_locuteur,ar_afi
+cahier_des_charges,procedure,cahier des charges,specifications,كراس الشروط | كراس شروط,كراس الشروط,,,كاييي دي شارج | kras echourout | cahier de charge,a_valider_locuteur,ar_afi
+encheres,procedure,vente aux enchères | enchère,auction,بتة عمومية (non vu dans textes AFI) | البتة العمومية (non vu dans textes AFI) | مزاد,بتّة | بتة,,enchères,دلالة | batta | betta | dlala | enchere,a_valider_locuteur,ar_afi; tarc
+delai,procedure,délai | combien de temps | quand,how long / when,آجال | مدة | متى,وقتاش | وقت,wa9tech | wa9tach | wa9t,,قداش من وقت | 9adech mel wa9t,atteste_corpus_public,ar_afi; tarc; tsac; tunizi
+plastique,secteur,plastique | chimie,plastics,بلاستيك | صناعات كيميائية (non vu dans textes AFI),,plastique,plastique,بلاستيك | بلاستيكة | plastic | blastik,a_valider_locuteur,ar_afi; conv_afi; tsac; tunizi
+textile,secteur,textile | confection,textile,نسيج | ملابس,نسيج,,,خياطة | تريكو | 5iyata | khiyata | triko | textile,a_valider_locuteur,ar_afi; tarc
+agroalimentaire,secteur,agroalimentaire,food industry,الصناعات الغذائية | صناعات غذائية (non vu dans textes AFI),ماكلة,mekla,agroalimentaire,مواد غذائية | makla | agro,atteste_corpus_public,ar_afi; tarc; tsac
+poisson,secteur,poisson | sardine,fish,سمك | سردين (non vu dans textes AFI),حوت | سردين,7out | hout | sardine,poisson | sardine,سردينة | sardina,atteste_donnees_afi,ar_afi; cdc_afi; tarc; tsac
+bois,secteur,bois | menuiserie,wood,خشب | نجارة,حطب | نجارة,,bois,خشب | منويزري | 5achab | khachab | 7tab | nejara | menuiserie,atteste_corpus_public,ar_afi; tsac
+emballage,secteur,emballage,packaging,تعليب | تغليف,تعليب,emballage,emballage,أومبالاج | ta3lib | ombalaj,a_valider_locuteur,ar_afi; conv_afi
+emplois,projet,emplois | ouvriers | employés,jobs,مواطن شغل | عمال | يد عاملة,عملة | خدمة,3amla | 5edma | khedma,,خدامة | 5adema | khadema,atteste_corpus_public,ar_afi; tarc; tsac; tunizi
+vouloir,intention,je veux | je voudrais,I want,أريد (non vu dans textes AFI) | أرغب (non vu dans textes AFI),نحب | نحبّ | حبيت,nheb | n7eb | n7ib | 7abit | 7abbit,je veux,nhib | n7ebb | 7bit,atteste_donnees_afi,cdc_afi; conv_afi; tarc; tsac; tunizi
+chercher,intention,je cherche | trouver,I look for,أبحث عن (non vu dans textes AFI),نلوّج | نلوج | نلقى,nlawej | nal9a,je cherche,nlowej | nel9a | nlaw9,atteste_corpus_public,tarc; tsac
+faire,intention,faire | lancer,to do / start,أقوم ب (non vu dans textes AFI) | أنجز | إنشاء,نعمل | نحل | نبدا,na3mel | nebda,faire | lancer,n3amel | n7el | nabda,atteste_donnees_afi,ar_afi; conv_afi; tarc; tsac; tunizi
+construire,intention,construire | bâtir,build,بناء | أبني (non vu dans textes AFI),بني,,,نبني | nebni | nabni | bni,atteste_corpus_public,ar_afi; tsac
+prendre,intention,prendre | obtenir | avoir,get,الحصول على,,na5ou,avoir,ناخو | ناخذ | نخذ | nakhou | na5ith | n5ou | nekhou,atteste_donnees_afi,ar_afi; conv_afi; tarc; tsac
+falloir,intention,il faut | nécessaire,need / must,يجب | يلزم | ضروري,لازم | لازمين | يلزم,lazem | lazmin | lezem | yelzem,,lezmin,atteste_donnees_afi,ar_afi; conv_afi; tarc; tsac; tunizi
+avoir,intention,j'ai,I have,لدي,عندي,3andi | andi,j'ai,3ndi,atteste_donnees_afi,ar_afi; cdc_afi; tarc; tsac; tunizi
+quoi,question,quoi | quel | qu'est-ce que,what,ما | ماذا | ما هي (non vu dans textes AFI),شنوّة | شنوة | شنية | آش,chnowa | chnoua | chnouwa | chnia | chniya | ach | shniya,quoi,شنيا | chnowwa,atteste_donnees_afi,ar_afi; conv_afi; tarc; tsac; tunizi
+comment,question,comment,how,كيف,كيفاش | كيفاه,kifech | kifach | kifeh,comment,kifah | kifesh,atteste_donnees_afi,ar_afi; conv_afi; tarc; tsac; tunizi
+combien,question,combien,how much / many,كم,قداش | قدّاش | بقداش,9adech | 9addech | 9adeh | 9adach | kadech | b9adech,,,atteste_corpus_public,ar_afi; tarc; tsac; tunizi
+ou,question,où,where,أين (non vu dans textes AFI),وين | فين,win | wen | fin,où,wein,atteste_corpus_public,ar_afi; tarc; tsac; tunizi
+il_y_a,question,il y a | est-ce qu'il y a,is there,هل يوجد (non vu dans textes AFI) | يوجد,فمّا | فما | ثمة,famma | fama,,ثمّا | fame | thamma | tham,atteste_corpus_public,ar_afi; tarc; tsac; tunizi
+pour,liaison,pour | afin de,to / in order to,لكي (non vu dans textes AFI) | من أجل,باش | بش,bech | bch | bach | besh | bich,pour,,atteste_donnees_afi,ar_afi; conv_afi; tarc; tsac; tunizi
+de_possession,liaison,de (appartenance),of,الخاص ب (non vu dans textes AFI),متاع | متع | متاعي,mta3 | mte3 | mt3 | mta3i | mte3i,de,,atteste_donnees_afi,conv_afi; tarc; tsac; tunizi
+dans,liaison,dans | à | en,in,في,في | ف,fi | f | fel | fil,à | dans,,atteste_corpus_public,ar_afi; cdc_afi; conv_afi; tarc; tsac; tunizi
+beaucoup,liaison,beaucoup | très,a lot,كثير | جدا,برشا | برشة | ياسر,barcha | barsha | yesser | yasser | baaarcha | yecer,beaucoup,,atteste_corpus_public,ar_afi; tarc; tsac; tunizi
+petit_grand,liaison,petit | grand,small / big,صغير | كبير,صغير | كبير,sghir | kbir | kbira | sghira,grand,s8ir,atteste_corpus_public,ar_afi; tarc; tsac; tunizi
+maintenant,liaison,maintenant,now,الآن,توا | توّا,tawa | taw | tawwa,,,atteste_corpus_public,ar_afi; tarc; tsac; tunizi
+salut,politesse,bonjour | salut,hello,السلام عليكم (non vu dans textes AFI) | مرحبا,سلام,slt | salam | ahla | slm | salem,bonjour | slt | cc,عسلامة | أهلا | 3aslema | aslema | ahlan,atteste_donnees_afi,ar_afi; conv_afi; tarc; tsac; tunizi
+merci,politesse,merci,thank you,شكرا,عيشك | مرسي | بارك الله فيك,merci | merciii,merci,يعيشك | y3aychek | 3aychek | ya3tik saha | mercii | barkallah,atteste_corpus_public,ar_afi; conv_afi; tarc; tsac; tunizi
+svp,politesse,s'il vous plaît,please,من فضلك (non vu dans textes AFI) | رجاء,بالله | ربي يخليك | عيشك,bellehi | brabi | rabi y5alik,,3aychek,atteste_corpus_public,ar_afi; tarc; tsac; tunizi
+oui_non,politesse,oui | non,yes / no,نعم | لا,إيه | أي | لا,ey | eyh | eyy | le | la,oui | non | ok,لالا | lala,atteste_corpus_public,ar_afi; conv_afi; tarc; tsac; tunizi

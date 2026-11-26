@@ -1,0 +1,33 @@
+﻿id,question,origine,langue_attendue,concepts_attendus,passages_attendus
+R1,"slt, nheb na3mel usine mta3 plastique fi Sousse, kifech nebda?",conversation_afi (id 257),tn,vouloir;faire;usine;plastique;comment,regex:Sousse|plastique|chimi
+R2,chnowa lwra9 lazmin bech na5ou ma9sem sina3i?,conversation_afi (id 261),tn,quoi;papiers;falloir;prendre;terrain,"ids:p000012,p000015,p000080,p000014,p000085,p000011,p000013"
+R3,n7eb terrain f Sfax,cahier_officiel p.7,tn,vouloir;terrain,regex:Sfax
+R4,3andi projet sardine,cahier_officiel p.7,tn,avoir;projet;poisson,regex:poisson|sardine|pêche|agroalimentaire
+R5,عندي مشروع سردين,cahier_officiel p.7,tn,avoir;projet;poisson,regex:poisson|sardine|pêche|agroalimentaire
+R6,9at3a,cahier_officiel p.8,tn,terrain,
+H1,"mosna3 9rib l port, b9adech, w fi 9adech wa9t ?",doc_equipe (hypothese de Fida),tn,usine;proche;port;combien;delai,regex:Port
+F1,Procédure d'acquisition ?,conversation_afi (id 6),fr,procedure;acheter,"ids:p000014,p000011,p000013,p000010,p000085"
+F2,je cherche un lot dans zone subventionnée,conversation_afi (id 226),fr,chercher;terrain;zone_industrielle,regex:développement régional|subvention|prime
+F3,إجراءات الاقتناء؟,conversation_afi (id 3),ar,procedure;acheter,"ids:p000085,p000014,p000011,p000013"
+F4,أسعار المقسم؟,conversation_afi (id 119),ar,prix;terrain,regex:prix|DT/m|سعر|أسعار|ثمن
+F5,Available zones?,conversation_afi (id 264),en,,
+F6,comment avoir l'attestation des suvention regional,conversation_afi (id 251),fr,comment;subvention,regex:subvention|prime
+C1,9adech soum el metre fi zone Sfax?,ecrite_par_claude_a_relire,tn,combien;prix;surface,regex:Sfax
+C2,famma 9at3a mawjouda 9rib mel port?,ecrite_par_claude_a_relire,tn,il_y_a;terrain;disponible;proche;port,regex:Port
+C3,"n7eb nechri ma9sem fi Bizerte, chnowa lwra9?",ecrite_par_claude_a_relire,tn,vouloir;acheter;terrain;quoi;papiers,"ids:p000012,p000015,p000080,p000014"
+C4,kifech na3mel demande bech na5ou terrain?,ecrite_par_claude_a_relire,tn,comment;faire;demande;prendre;terrain,"ids:p000014,p000011,p000013,p000010,p000080,p007515,p007516,p007517,p007518,p007519,p007520"
+C5,famma min7a ken na3mel machrou3 fi Kasserine?,ecrite_par_claude_a_relire,tn,il_y_a;subvention;faire;projet,regex:subvention|prime|développement régional
+C6,wa9tech nal9a el contrat?,ecrite_par_claude_a_relire,tn,delai;chercher;contrat,"ids:p000018,p000014,p000020"
+C7,kifech nechri fi el batta mta3 AFI?,ecrite_par_claude_a_relire,tn,comment;acheter;encheres,"ids:p000022,p000023"
+C8,"3andi machrou3 mta3 5iyata, win nal9a blasa?",ecrite_par_claude_a_relire,tn,avoir;projet;textile;ou;chercher;gouvernorat,regex:[Tt]extile|habillement
+C9,lazem nebni fi 9adech mel wa9t ba3d ma na5ou el ma9sem?,ecrite_par_claude_a_relire,tn,falloir;construire;combien;delai;prendre;terrain,"ids:p000081,p000082"
+C10,"n7eb credit mel banka, kifech na5ou attestation?",ecrite_par_claude_a_relire,tn,vouloir;credit;comment;prendre,ids:p000017
+C11,شنوة الوراق اللازمين باش ناخو مقسم صناعي؟,ecrite_par_claude_a_relire,tn,quoi;papiers;falloir;prendre;terrain,"ids:p000012,p000015,p000080,p000014,p000085"
+C12,قداش السوم متاع المتر في جندوبة؟,ecrite_par_claude_a_relire,tn,combien;prix;surface,regex:Jendouba|جندوبة
+C13,فما قطعة أرض قريبة من المطار؟,ecrite_par_claude_a_relire,tn,il_y_a;terrain;proche;aeroport,regex:Aéroport|aéroport|مطار
+C14,كيفاش نعمل باش نشري مقسم؟,ecrite_par_claude_a_relire,tn,comment;faire;acheter;terrain,"ids:p000014,p000011,p000013,p000010,p000085"
+C15,نحب نعمل معمل متاع بلاستيك في سوسة,ecrite_par_claude_a_relire,tn,vouloir;faire;usine;plastique,regex:Sousse|سوسة|plastique|chimi
+C16,"3aslema, n7eb na3ref chnowa el avantages fi zone de developpement regional",ecrite_par_claude_a_relire,tn,salut;vouloir;quoi;avantages;zone_industrielle,regex:développement régional|prime|avantage
+C17,fama lot disponible fi Gabes?,ecrite_par_claude_a_relire,tn,il_y_a;terrain;disponible,regex:Gab
+C18,barcha flous el terrain? n7eb 7aja r5isa,ecrite_par_claude_a_relire,tn,beaucoup;argent;terrain;vouloir;pas_cher,regex:prix|DT/m
+C19,el ma wel dhaw mawjoudin fil zone?,ecrite_par_claude_a_relire,tn,eau;electricite;disponible;zone_industrielle,regex:[ÉE]lectricit|[Ee]au potable|réseau

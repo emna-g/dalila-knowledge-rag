@@ -1,0 +1,8152 @@
+{
+ "meta": {
+  "titre": "Lexique tunisien de Dalila (darija + arabizi), domaine foncier industriel",
+  "genere_par": "outils/construire_lexique.py",
+  "sources": {
+   "conv_afi": "dalila_final/7_conversations_ancien_bot/conversations_anonymisees.json (214 questions reelles)",
+   "cdc_afi": "Cahier des charges — Hackathon AGENTIC Agent IA AFI (Dalila).pdf (exemples cites p.7, 8, 18, 20)",
+   "ar_afi": "dalila_final/6_pret_pour_le_llm/passages.jsonl, passages en arabe (sites officiels AFI/APII/TIA/FIPA)",
+   "tarc": "TArC, Tunisian Arabish Corpus, github.com/eligugliotta/tarc, CC BY-NC-SA 4.0 (transcription en lettres arabes semi-automatique)",
+   "tunizi": "TUNIZI, github.com/chaymafourati/TUNIZI-Sentiment-Analysis-Tunisian-Arabizi-Dataset (iCompass)",
+   "tsac": "TSAC, github.com/fbougares/TSAC, LGPL-3.0"
+  },
+  "statuts": {
+   "vu_conversations_afi": "la forme apparait dans une vraie question d'un visiteur de Dalila",
+   "vu_cahier_des_charges_afi": "la forme est citee dans le cahier des charges officiel",
+   "vu_textes_afi": "la forme apparait dans les textes arabes de l'AFI (arabe standard)",
+   "vu_textes_afi_seulement": "mot arabe vu dans les textes officiels, rien ne prouve qu'il soit dialectal",
+   "vu_corpus_public": "la forme apparait au moins 3 fois dans TArC, TUNIZI ou TSAC (vrais textes tunisiens)",
+   "rare_corpus_public_a_valider": "vue 1 ou 2 fois seulement dans les corpus publics : a faire valider",
+   "a_valider_locuteur": "connaissance generale, vue dans aucune source : a faire valider par un locuteur tunisien"
+  },
+  "regle_arabizi": "3 = ع, 7 = ح, 9 = ق (cahier des charges p.20) ; autres chiffres : voir correspondance_arabizi.csv"
+ },
+ "concepts": [
+  {
+   "id": "terrain",
+   "categorie": "foncier",
+   "francais": [
+    "terrain",
+    "lot",
+    "parcelle"
+   ],
+   "anglais": "plot",
+   "arabe_standard": [
+    {
+     "forme": "قطعة أرض",
+     "preuves": {
+      "ar_afi": 9,
+      "conv_afi": 2
+     },
+     "statut": "vu_conversations_afi",
+     "exemple": "اجراءات الاقتناء ايداع مطلب اقتناء قطعة ارض ومطلب تاكيد اقتناء قطعة ارض بمكتب الضبط المركزي او باحدى النيابات او التمثيليات الجهوية للوكالة ايداع مطلب بالولاية "
+    },
+    {
+     "forme": "مقسم",
+     "preuves": {
+      "ar_afi": 133,
+      "conv_afi": 2
+     },
+     "statut": "vu_conversations_afi",
+     "exemple": "الفصل 2 تاسعا جديد يتم اسقاط الحق بمقتضى قرار من الوزير المكلف بالصناعة باقتراح من الوكالة العقارية الصناعية وذلك بعد سماع المخالف وانذاره بواسطة عدل منفذ في اج"
+    },
+    {
+     "forme": "أرض",
+     "preuves": {
+      "ar_afi": 84,
+      "conv_afi": 2,
+      "cdc_afi": "page 8"
+     },
+     "statut": "vu_conversations_afi",
+     "exemple": "اجراءات الاقتناء ايداع مطلب اقتناء قطعة ارض ومطلب تاكيد اقتناء قطعة ارض بمكتب الضبط المركزي او باحدى النيابات او التمثيليات الجهوية للوكالة ايداع مطلب بالولاية "
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "قطعة",
+     "preuves": {
+      "conv_afi": 2,
+      "ar_afi": 17
+     },
+     "statut": "vu_conversations_afi",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": "1 ايداع مطلب اقتناء قطعة ارض ومطلب تاكيد اقتناء قطعة ارض بمكتب الضبط المركزي او باحدى النيابات او التمثيليات الجهوية للوكالة 2 ايداع مطلب بالولاية مرجع النظر ال"
+    },
+    {
+     "forme": "أرض",
+     "preuves": {
+      "conv_afi": 2,
+      "tsac": 13,
+      "ar_afi": 84,
+      "cdc_afi": "page 8",
+      "tarc": 2
+     },
+     "statut": "vu_conversations_afi",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": "1 ايداع مطلب اقتناء قطعة ارض ومطلب تاكيد اقتناء قطعة ارض بمكتب الضبط المركزي او باحدى النيابات او التمثيليات الجهوية للوكالة 2 ايداع مطلب بالولاية مرجع النظر ال"
+    },
+    {
+     "forme": "مقسم",
+     "preuves": {
+      "conv_afi": 2,
+      "ar_afi": 133
+     },
+     "statut": "vu_conversations_afi",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": "اسعار المقسم"
+    },
+    {
+     "forme": "تيران",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "9at3a",
+     "preuves": {
+      "cdc_afi": "page 8"
+     },
+     "statut": "vu_cahier_des_charges_afi",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "9it3a",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "9a6a3a",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "ard",
+     "preuves": {
+      "tarc": 2
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "origine": "propose",
+     "ambigu": true,
+     "exemple": "al 3ro9 f al ras tekhdem ki al ma 3adch barcha w tesma3 ard al safiline al mrid fi blaset al fan lazmo kol mera ne3tih jor3a tetzere9 ki al"
+    },
+    {
+     "forme": "2ard",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "ardh",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "ma9sem",
+     "preuves": {
+      "conv_afi": 1
+     },
+     "statut": "vu_conversations_afi",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "chnowa lwra9 lazmin bech na5ou ma9sem sina3i"
+    },
+    {
+     "forme": "mo9sem",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "m9asem",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "tiran",
+     "preuves": {
+      "tsac": 1
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "ras bsal ras el7am kima t7ebbou semmiyouh ama ytir tiran 3ala halokza elli jebtou raj3oulna nawfel"
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "terrain",
+     "preuves": {
+      "conv_afi": 7,
+      "cdc_afi": "page 7"
+     },
+     "statut": "vu_conversations_afi"
+    },
+    {
+     "forme": "terain",
+     "preuves": {
+      "conv_afi": 1
+     },
+     "statut": "vu_conversations_afi"
+    },
+    {
+     "forme": "lot",
+     "preuves": {
+      "conv_afi": 28
+     },
+     "statut": "vu_conversations_afi"
+    },
+    {
+     "forme": "lote",
+     "preuves": {},
+     "statut": "a_valider_locuteur"
+    }
+   ],
+   "statut": "atteste_donnees_afi",
+   "msa_atteste_afi": true
+  },
+  {
+   "id": "zone_industrielle",
+   "categorie": "foncier",
+   "francais": [
+    "zone industrielle",
+    "zone"
+   ],
+   "anglais": "industrial zone",
+   "arabe_standard": [
+    {
+     "forme": "منطقة صناعية",
+     "preuves": {
+      "ar_afi": 36
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "المناطق المهيية تهدف الوكالة العقارية الصناعية الى ضمان التنمية المستدامة و تشجيع على تطوير الاستثمار و تهيية الفضاءات الصناعية ومنذ احداثها سنة 1974 انجزت الوك"
+    },
+    {
+     "forme": "المنطقة الصناعية",
+     "preuves": {
+      "ar_afi": 164
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "6 شهادة نهاية الاشغال مسلمة من قبل مصالح البلدية مرجع النظر المنطقة الصناعية بلدية المكان 7 وصل خلاص معاليم مجمع الصيانة والتصرف مجمع الصيانة والتصرف تسليم نسخة"
+    },
+    {
+     "forme": "المناطق الصناعية",
+     "preuves": {
+      "ar_afi": 227,
+      "conv_afi": 1
+     },
+     "statut": "vu_conversations_afi",
+     "exemple": "اجراءات الاقتناء ايداع مطلب اقتناء قطعة ارض ومطلب تاكيد اقتناء قطعة ارض بمكتب الضبط المركزي او باحدى النيابات او التمثيليات الجهوية للوكالة ايداع مطلب بالولاية "
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "منطقة صناعية",
+     "preuves": {
+      "ar_afi": 36
+     },
+     "statut": "vu_textes_afi_seulement",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    },
+    {
+     "forme": "زون",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "mante9a sina3ia",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "manti9a sina3iya",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "zone industriel",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "zon",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": true,
+     "exemple": ""
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "zone",
+     "preuves": {
+      "conv_afi": 12
+     },
+     "statut": "vu_conversations_afi"
+    },
+    {
+     "forme": "zone industrielle",
+     "preuves": {},
+     "statut": "a_valider_locuteur"
+    },
+    {
+     "forme": "zon",
+     "preuves": {},
+     "statut": "a_valider_locuteur"
+    }
+   ],
+   "statut": "a_valider_locuteur",
+   "msa_atteste_afi": true
+  },
+  {
+   "id": "usine",
+   "categorie": "projet",
+   "francais": [
+    "usine",
+    "fabrique"
+   ],
+   "anglais": "factory",
+   "arabe_standard": [
+    {
+     "forme": "مصنع",
+     "preuves": {
+      "ar_afi": 24
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "الاستثمار في المستقبل ماركوارت تفتتح مصنعا جديدا في تونس مصنع السيارات المتطور في الفجة في الفجة توفير 1 500 فرصة عمل بحلول نهاية العقد بدء انتاج لوحات التحكم ل"
+    },
+    {
+     "forme": "وحدة صناعية",
+     "preuves": {
+      "ar_afi": 6
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "منذ احداثها سنة 1973 انجزت الوكالة العقارية الصناعية حوالي 115 منطقة صناعية على مساحة تفوق 3000 هكتار موزعة على مناطق الشريط الساحلي و مناطق التنمية الجهوية و ا"
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "معمل",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    },
+    {
+     "forme": "مصنع",
+     "preuves": {
+      "tsac": 1,
+      "ar_afi": 24
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": "التواضع المصنع محرزية الغبيدي"
+    },
+    {
+     "forme": "فابريكة",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    },
+    {
+     "forme": "يزين",
+     "preuves": {
+      "tsac": 1
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": "شوف الحجاب قداش يزين البنية"
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "ma3mel",
+     "preuves": {
+      "tsac": 1
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "ehsen ma3mel"
+    },
+    {
+     "forme": "masna3",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "mosna3",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "fabrika",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "usine",
+     "preuves": {
+      "conv_afi": 1
+     },
+     "statut": "vu_conversations_afi",
+     "origine": "propose",
+     "ambigu": true,
+     "exemple": "slt nheb na3mel usine mta3 plastique fi sousse kifech nebda"
+    },
+    {
+     "forme": "yzine",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "usine",
+     "preuves": {
+      "conv_afi": 1
+     },
+     "statut": "vu_conversations_afi"
+    },
+    {
+     "forme": "fabrique",
+     "preuves": {},
+     "statut": "a_valider_locuteur"
+    }
+   ],
+   "statut": "a_valider_locuteur",
+   "msa_atteste_afi": true
+  },
+  {
+   "id": "depot",
+   "categorie": "projet",
+   "francais": [
+    "dépôt",
+    "entrepôt"
+   ],
+   "anglais": "warehouse",
+   "arabe_standard": [
+    {
+     "forme": "مستودع",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "exemple": ""
+    },
+    {
+     "forme": "مخزن",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "exemple": ""
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "مخزن",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    },
+    {
+     "forme": "ديبو",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    },
+    {
+     "forme": "حانوت",
+     "preuves": {
+      "tsac": 1,
+      "tarc": 1
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": "اتفه انسانة ريتهاا و تقول ممثلة منين جك الموهبة تفهاااا و ساخيفة ت حمقاء و زيد عفشة و متصلحش فنانة تمشي تحل كيما قلت هي حانوت كسكروتات موش تعلمت كلمتن بسوري ولا"
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "ma5zen",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "makhzen",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "dipo",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "depot",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": true,
+     "exemple": ""
+    },
+    {
+     "forme": "7anout",
+     "preuves": {
+      "tarc": 1
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "klemi elmoushtama3 nes la3waj w nes rhout nes li ta3mel dharba wetji fi 9a3 el 7anout nes li tafrah kif tmout thez lel mahelek"
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "dépôt",
+     "preuves": {},
+     "statut": "a_valider_locuteur"
+    },
+    {
+     "forme": "depot",
+     "preuves": {},
+     "statut": "a_valider_locuteur"
+    }
+   ],
+   "statut": "a_valider_locuteur",
+   "msa_atteste_afi": false
+  },
+  {
+   "id": "industriel",
+   "categorie": "projet",
+   "francais": [
+    "industriel"
+   ],
+   "anglais": "industrial",
+   "arabe_standard": [
+    {
+     "forme": "صناعي",
+     "preuves": {
+      "ar_afi": 176
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "الفصل 2 خامسا يسقط حق باعثي المشاريع في قطاعات الصناعات المعملية والصناعات التقليدية والحرف الصغرى والخدمات في الاراضي المهياة والمقتناة في احدى الحالات التالية"
+    },
+    {
+     "forme": "صناعية",
+     "preuves": {
+      "ar_afi": 1586,
+      "conv_afi": 2
+     },
+     "statut": "vu_conversations_afi",
+     "exemple": "اجراءات الاقتناء ايداع مطلب اقتناء قطعة ارض ومطلب تاكيد اقتناء قطعة ارض بمكتب الضبط المركزي او باحدى النيابات او التمثيليات الجهوية للوكالة ايداع مطلب بالولاية "
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "صناعي",
+     "preuves": {
+      "ar_afi": 176
+     },
+     "statut": "vu_textes_afi_seulement",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    },
+    {
+     "forme": "صناعية",
+     "preuves": {
+      "conv_afi": 2,
+      "ar_afi": 1586
+     },
+     "statut": "vu_conversations_afi",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": "1 ايداع مطلب اقتناء قطعة ارض ومطلب تاكيد اقتناء قطعة ارض بمكتب الضبط المركزي او باحدى النيابات او التمثيليات الجهوية للوكالة 2 ايداع مطلب بالولاية مرجع النظر ال"
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "sina3i",
+     "preuves": {
+      "conv_afi": 1
+     },
+     "statut": "vu_conversations_afi",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "chnowa lwra9 lazmin bech na5ou ma9sem sina3i"
+    },
+    {
+     "forme": "sna3i",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "sina3iya",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "sna3ia",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "industriel",
+     "preuves": {},
+     "statut": "a_valider_locuteur"
+    }
+   ],
+   "statut": "atteste_donnees_afi",
+   "msa_atteste_afi": true
+  },
+  {
+   "id": "projet",
+   "categorie": "projet",
+   "francais": [
+    "projet"
+   ],
+   "anglais": "project",
+   "arabe_standard": [
+    {
+     "forme": "مشروع",
+     "preuves": {
+      "ar_afi": 394,
+      "cdc_afi": "page 7"
+     },
+     "statut": "vu_cahier_des_charges_afi",
+     "exemple": "المناطق المهيية تهدف الوكالة العقارية الصناعية الى ضمان التنمية المستدامة و تشجيع على تطوير الاستثمار و تهيية الفضاءات الصناعية ومنذ احداثها سنة 1974 انجزت الوك"
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "مشروع",
+     "preuves": {
+      "ar_afi": 394,
+      "cdc_afi": "page 7",
+      "tarc": 1
+     },
+     "statut": "vu_cahier_des_charges_afi",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    },
+    {
+     "forme": "بروجي",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "machrou3",
+     "preuves": {
+      "tarc": 1,
+      "tsac": 2
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "hhh akda7 3lihem aa rami w taw na3mou machrou3 hhh"
+    },
+    {
+     "forme": "mashrou3",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "mechrou3",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "projet",
+     "preuves": {
+      "conv_afi": 17,
+      "cdc_afi": "page 7"
+     },
+     "statut": "vu_conversations_afi",
+     "origine": "propose",
+     "ambigu": true,
+     "exemple": "je veux faire un projet de fabrication des cadres en bois a bizert j ai comme budget 100000dt et je cherche un peiti lot"
+    },
+    {
+     "forme": "proji",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "projet",
+     "preuves": {
+      "conv_afi": 17,
+      "cdc_afi": "page 7"
+     },
+     "statut": "vu_conversations_afi"
+    },
+    {
+     "forme": "projer",
+     "preuves": {},
+     "statut": "a_valider_locuteur"
+    }
+   ],
+   "statut": "atteste_donnees_afi",
+   "msa_atteste_afi": true
+  },
+  {
+   "id": "surface",
+   "categorie": "lot",
+   "francais": [
+    "superficie",
+    "surface",
+    "m²"
+   ],
+   "anglais": "area",
+   "arabe_standard": [
+    {
+     "forme": "مساحة",
+     "preuves": {
+      "ar_afi": 208
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "تضع الوكالة العقارية الصناعية على ذمة الباعثين الصناعيين الخارطة الرقمية التفاعلية التي تمكن من التعرف على جميع المقاسم الصناعية المعروضة للبيع بكافة المناطق ال"
+    },
+    {
+     "forme": "متر مربع",
+     "preuves": {
+      "ar_afi": 17
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "اخبار التاثير المباشر على الاستثمار مرحبا بكم في صفحة الاخبار الخاصة ب fipa tunisia مصدرك للمعلومات المتخصصة يمكنك قسم الاخبار من مواكبة اخر التطورات في بيية ال"
+    },
+    {
+     "forme": "هكتار",
+     "preuves": {
+      "ar_afi": 23
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "المناطق المهيية تهدف الوكالة العقارية الصناعية الى ضمان التنمية المستدامة و تشجيع على تطوير الاستثمار و تهيية الفضاءات الصناعية ومنذ احداثها سنة 1974 انجزت الوك"
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "مساحة",
+     "preuves": {
+      "ar_afi": 208
+     },
+     "statut": "vu_textes_afi_seulement",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    },
+    {
+     "forme": "متر",
+     "preuves": {
+      "ar_afi": 25
+     },
+     "statut": "vu_textes_afi_seulement",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    },
+    {
+     "forme": "ميترو",
+     "preuves": {
+      "tsac": 1,
+      "tarc": 3
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [
+      "mitrou"
+     ],
+     "exemple": "باز عندو ولدو يرخف على هذاك يشوفلو في عذر ولاونو العذر عندو خارج ميترو ههههههههه ياكلاااااب"
+    },
+    {
+     "forme": "هكتار",
+     "preuves": {
+      "ar_afi": 23
+     },
+     "statut": "vu_textes_afi_seulement",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "mse7a",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "masa7a",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "mitro",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "metre",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": true,
+     "exemple": ""
+    },
+    {
+     "forme": "m2",
+     "preuves": {
+      "conv_afi": 13
+     },
+     "statut": "vu_conversations_afi",
+     "origine": "propose",
+     "ambigu": true,
+     "exemple": "je veux lot de 2000 m2 dans nord de tunisie"
+    },
+    {
+     "forme": "hectar",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": true,
+     "exemple": ""
+    },
+    {
+     "forme": "mitrou",
+     "preuves": {
+      "tarc": 3
+     },
+     "statut": "vu_corpus_public",
+     "origine": "ajoute_depuis_tarc",
+     "ambigu": false,
+     "exemple": "habit netla3 3mal 10 mitrou lteli w9eft fel kayes nzel 3al w jey yejri"
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "m2",
+     "preuves": {
+      "conv_afi": 13
+     },
+     "statut": "vu_conversations_afi"
+    },
+    {
+     "forme": "mètre",
+     "preuves": {},
+     "statut": "a_valider_locuteur"
+    },
+    {
+     "forme": "hectare",
+     "preuves": {},
+     "statut": "a_valider_locuteur"
+    }
+   ],
+   "statut": "atteste_corpus_public",
+   "msa_atteste_afi": true
+  },
+  {
+   "id": "disponible",
+   "categorie": "lot",
+   "francais": [
+    "disponible",
+    "libre"
+   ],
+   "anglais": "available",
+   "arabe_standard": [
+    {
+     "forme": "متاح",
+     "preuves": {
+      "ar_afi": 2
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "4 التراخيص الادارية الضرورية المتعلقة بالنشاط المزمع انجازه iii مرحلة الخلاص 1 ثمن المقسم الصناعي 2 معلوم تحرير عقد البيع 3 معلوم التحديد الطوبوغرافي 4 المصادقة"
+    },
+    {
+     "forme": "متوفر",
+     "preuves": {
+      "ar_afi": 3
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "مشاركة الهيية التونسية للاستثمار في فعاليات الصالون الدولي للاستثمار الفلاحي والتكنولوجيا من 28 الى 31 اكتوبر 2026 شاركت الهيية التونسية للاستثمار في فعاليات ال"
+    },
+    {
+     "forme": "شاغر",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "exemple": ""
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "موجود",
+     "preuves": {
+      "tsac": 6,
+      "ar_afi": 1,
+      "tarc": 13
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [
+      "mawjoud"
+     ],
+     "exemple": "انت معلم واحنا منك نتعلم نسكت وانت موجود هههه كلامك حكم يا معلم"
+    },
+    {
+     "forme": "فمّا",
+     "preuves": {
+      "tsac": 27,
+      "ar_afi": 7
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": "ممثلة متالقة و شخصية كبيرة من احسن ما عندنا في تونس فما ابداع في اعمالها و هذاك هو النجاح الحقيقي ربي معك و جيهة"
+    },
+    {
+     "forme": "فما",
+     "preuves": {
+      "tsac": 27,
+      "ar_afi": 7
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": "ممثلة متالقة و شخصية كبيرة من احسن ما عندنا في تونس فما ابداع في اعمالها و هذاك هو النجاح الحقيقي ربي معك و جيهة"
+    },
+    {
+     "forme": "فاضي",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "mawjoud",
+     "preuves": {
+      "tarc": 10,
+      "tsac": 4
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "mawjoud haka fel din ti rahi sonna sonnnnnnnnnnnna ti sayabtou el fourouth w kabachtou fi"
+    },
+    {
+     "forme": "mawjouda",
+     "preuves": {
+      "tarc": 2,
+      "tunizi": 1,
+      "tsac": 3
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "chaouachi mawjouda barcha la7keya nmaw ili maygedech rou7ou m3a wa7da fi 3omrou tarthach bih ydawerha bnet s8ar fil 3mor atheka 5ater ibkol basata ysad9ou kol c"
+    },
+    {
+     "forme": "famma",
+     "preuves": {
+      "tarc": 11,
+      "tunizi": 4,
+      "tsac": 5
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "shih klamek mais famma halat ma ynajjamchi wallah"
+    },
+    {
+     "forme": "fama",
+     "preuves": {
+      "tarc": 24,
+      "tunizi": 22,
+      "tsac": 13
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "yeser 7loua en fin fama haja tetesma3 f tounes 7achetna b khedma kima haka bravooo"
+    },
+    {
+     "forme": "fame",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "fadhi",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "disponible",
+     "preuves": {
+      "conv_afi": 3
+     },
+     "statut": "vu_conversations_afi"
+    },
+    {
+     "forme": "dispo",
+     "preuves": {},
+     "statut": "a_valider_locuteur"
+    }
+   ],
+   "statut": "atteste_corpus_public",
+   "msa_atteste_afi": true
+  },
+  {
+   "id": "gouvernorat",
+   "categorie": "lieu",
+   "francais": [
+    "gouvernorat",
+    "région"
+   ],
+   "anglais": "governorate",
+   "arabe_standard": [
+    {
+     "forme": "ولاية",
+     "preuves": {
+      "ar_afi": 290,
+      "conv_afi": 2
+     },
+     "statut": "vu_conversations_afi",
+     "exemple": "اجراءات الاقتناء ايداع مطلب اقتناء قطعة ارض ومطلب تاكيد اقتناء قطعة ارض بمكتب الضبط المركزي او باحدى النيابات او التمثيليات الجهوية للوكالة ايداع مطلب بالولاية "
+    },
+    {
+     "forme": "معتمدية",
+     "preuves": {
+      "ar_afi": 1
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "وتغير وصف الاراضي التابعة لملك الدولة للغابات والملك العمومي للمياه وملك العمومي البحري وتهيية والتعمير الاراضي الكاينة خارج المناطق المغطاة بامثلة تهيية والمخص"
+    },
+    {
+     "forme": "جهة",
+     "preuves": {
+      "ar_afi": 29
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "المناطق المهيية تهدف الوكالة العقارية الصناعية الى ضمان التنمية المستدامة و تشجيع على تطوير الاستثمار و تهيية الفضاءات الصناعية ومنذ احداثها سنة 1974 انجزت الوك"
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "ولاية",
+     "preuves": {
+      "conv_afi": 2,
+      "tsac": 1,
+      "ar_afi": 290,
+      "tarc": 1
+     },
+     "statut": "vu_conversations_afi",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": "1 ايداع مطلب اقتناء قطعة ارض ومطلب تاكيد اقتناء قطعة ارض بمكتب الضبط المركزي او باحدى النيابات او التمثيليات الجهوية للوكالة 2 ايداع مطلب بالولاية مرجع النظر ال"
+    },
+    {
+     "forme": "جهة",
+     "preuves": {
+      "tsac": 3,
+      "ar_afi": 29
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": "مية الكسوري كرهتني في البرنامج قبل ما تتكلم نعرفها اش باش تقول ليس لها مهنية صحفية دايما تميل لجهة واحدة مثال الاعلامي المتخلف شنيا خدمتها الحقيقية اكيد كانت فا"
+    },
+    {
+     "forme": "بلاصة",
+     "preuves": {
+      "tsac": 2,
+      "tarc": 13
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [
+      "blasa",
+      "blassa"
+     ],
+     "exemple": "عندي برشا ما تفرجتش في حصة راقية كيما الليلة برافووو انا بلاصة امين نعتزل بعد حصة كيما هاذي"
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "wileya",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "wleya",
+     "preuves": {
+      "tunizi": 3
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "ma njewebch 3al wleya"
+    },
+    {
+     "forme": "wlaya",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "jiha",
+     "preuves": {
+      "tarc": 1
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "origine": "propose",
+     "ambigu": true,
+     "exemple": "jnab mawjoud fi byrsa jiha mta3 jema3 win fama 9ahwa feha 9bar mta3 weli"
+    },
+    {
+     "forme": "blasa",
+     "preuves": {
+      "tarc": 7,
+      "tunizi": 2
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "tnajem tfalem fi tunis khater nes zwewla trah ija falem fi france wala nfi blasa mta3 nes tefhmelha"
+    },
+    {
+     "forme": "blassa",
+     "preuves": {
+      "tarc": 4,
+      "tunizi": 2
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "ena nod5l nhel l video bech na3ml commentaire akhw yaaa rabiii mamsetha chnia lokza hethi bara a9ra wala chouf san3a w 5ali blassa l 4irk yesr masta w majet cha"
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "gouvernorat",
+     "preuves": {
+      "conv_afi": 1
+     },
+     "statut": "vu_conversations_afi"
+    },
+    {
+     "forme": "région",
+     "preuves": {},
+     "statut": "a_valider_locuteur"
+    }
+   ],
+   "statut": "atteste_donnees_afi",
+   "msa_atteste_afi": true
+  },
+  {
+   "id": "nord_sud",
+   "categorie": "lieu",
+   "francais": [
+    "nord",
+    "sud",
+    "sahel"
+   ],
+   "anglais": "north / south",
+   "arabe_standard": [
+    {
+     "forme": "الشمال",
+     "preuves": {
+      "ar_afi": 16
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "الشباك الموحد لوكالة النهوض بالصناعة و التجديد متحصل على شهادة المطابقة للمواصفة القياسية الدولية الايزو 9001 صيغة 2008 سنة 2007 باجة ونابل وقفصة وقابس سنة 2008"
+    },
+    {
+     "forme": "الجنوب",
+     "preuves": {
+      "ar_afi": 8
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "تقع منطقة بنزرت في اقصى شمال تونس وتشكل مع ضواحي كاب بلانك اكثر النقاط تقدما في افريقيا مستفيدة من موقعها الاستراتيجي في وسط البحر الابيض المتوسط يبلغ عدد سكان "
+    },
+    {
+     "forme": "الساحل",
+     "preuves": {
+      "ar_afi": 8
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "تقع ولاية سوسة على طول الساحل المشمس في منطقة الساحل التونسي وتمتد ولاية سوسة بشكل مهيب على طول 75 كم من ساحل البحر الابيض المتوسط وتحدها محافظات نابل شمالا وزغ"
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "الشمال",
+     "preuves": {
+      "ar_afi": 16
+     },
+     "statut": "vu_textes_afi_seulement",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    },
+    {
+     "forme": "الجنوب",
+     "preuves": {
+      "tsac": 7,
+      "ar_afi": 8
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": "على خاطر ولد الجنوب وعلى خاطر تلقايي يعجبني"
+    },
+    {
+     "forme": "الساحل",
+     "preuves": {
+      "tsac": 1,
+      "ar_afi": 8,
+      "tarc": 7
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [
+      "essa7el"
+     ],
+     "exemple": "برى مخيب هل المنظر وع ليك والساحل و محاسن"
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "chmel",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "ejjnoub",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "janoub",
+     "preuves": {
+      "tarc": 1,
+      "tsac": 1
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "le 3ad manoghltouch le 9afzin le welou mahom feytinna ken fel 5maj wel fsed el 3asma m5allta men koll blasa mechamel lel janoub wkoll blasa fi tounes fiha el be"
+    },
+    {
+     "forme": "sa7el",
+     "preuves": {
+      "tarc": 2
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "men wa9tech a7na fa sa7el"
+    },
+    {
+     "forme": "sahel",
+     "preuves": {
+      "tarc": 2
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "origine": "propose",
+     "ambigu": true,
+     "exemple": "rabi sahel"
+    },
+    {
+     "forme": "essa7el",
+     "preuves": {
+      "tarc": 5
+     },
+     "statut": "vu_corpus_public",
+     "origine": "ajoute_depuis_tarc",
+     "ambigu": false,
+     "exemple": "behi ya sidi m5abbi384 si entouma yelzemkom derss fil jografia thaher fikom me3adech ta3rfou essa7el mnin yemchi lin youssel"
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "nord",
+     "preuves": {
+      "conv_afi": 1,
+      "tunizi": 2
+     },
+     "statut": "vu_conversations_afi"
+    },
+    {
+     "forme": "sud",
+     "preuves": {
+      "conv_afi": 1,
+      "tunizi": 1
+     },
+     "statut": "vu_conversations_afi"
+    },
+    {
+     "forme": "sahel",
+     "preuves": {
+      "tarc": 2
+     },
+     "statut": "rare_corpus_public_a_valider"
+    }
+   ],
+   "statut": "atteste_corpus_public",
+   "msa_atteste_afi": true
+  },
+  {
+   "id": "proche",
+   "categorie": "proximite",
+   "francais": [
+    "près de",
+    "proche",
+    "à côté"
+   ],
+   "anglais": "near",
+   "arabe_standard": [
+    {
+     "forme": "قريب من",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "exemple": ""
+    },
+    {
+     "forme": "بالقرب من",
+     "preuves": {
+      "ar_afi": 5
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "الاستثمار في المستقبل ماركوارت تفتتح مصنعا جديدا في تونس مصنع السيارات المتطور في الفجة في الفجة توفير 1 500 فرصة عمل بحلول نهاية العقد بدء انتاج لوحات التحكم ل"
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "قريب",
+     "preuves": {
+      "tsac": 12,
+      "ar_afi": 5,
+      "tarc": 6
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [
+      "9rib"
+     ],
+     "exemple": "احلى جعفور احلي تلقايية و احلي ضحكة ديما متميز و قريب للقلب"
+    },
+    {
+     "forme": "بحذا",
+     "preuves": {
+      "tsac": 3,
+      "tarc": 5
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [
+      "bahtha"
+     ],
+     "exemple": "امسط مخلوق في دنيا قعد كان يتشاخص على زوالي كيف يبدا بحذا صلاح مصباح يبدا يسلك فاها معاه"
+    },
+    {
+     "forme": "حذا",
+     "preuves": {
+      "tsac": 3
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": "امسط مخلوق في دنيا قعد كان يتشاخص على زوالي كيف يبدا بحذا صلاح مصباح يبدا يسلك فاها معاه"
+    },
+    {
+     "forme": "قدام",
+     "preuves": {
+      "tsac": 25,
+      "tarc": 12
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [
+      "9oddem",
+      "9odem"
+     ],
+     "exemple": "مرى مثقفة و كيف تتكلم عندها متقول في روحها وسكوتها قدام تهكم النكرة وليد يدل على انو مستواها ارقى ببرشة"
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "9rib",
+     "preuves": {
+      "tarc": 6,
+      "tunizi": 9,
+      "tsac": 2
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "penalty lekhraniya taa hagui contre nigeria l gardien 9rib yboussou ya zebi nek khraj y7awes"
+    },
+    {
+     "forme": "krib",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "9rayeb",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "b7dha",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "7dha",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "9odem",
+     "preuves": {
+      "tarc": 3,
+      "tunizi": 3,
+      "tsac": 3
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "brabi yeziw mek jahl 9alou 9at3oha w raychoha yekhi mra w rajl m3arsin ma3andhomch l7a9 ywariw hobhom lness w 9odem zgharhom wela chnowa t7eb rajl yched yfacha5"
+    },
+    {
+     "forme": "bahtha",
+     "preuves": {
+      "tarc": 3
+     },
+     "statut": "vu_corpus_public",
+     "origine": "ajoute_depuis_tarc",
+     "ambigu": false,
+     "exemple": "rkechna bahtha m5abbi1419 3andou hanout fel mathef madli elli ysamiwha 9esstha w errasmi esmha serwel"
+    },
+    {
+     "forme": "9oddem",
+     "preuves": {
+      "tarc": 4
+     },
+     "statut": "vu_corpus_public",
+     "origine": "ajoute_depuis_tarc",
+     "ambigu": false,
+     "exemple": "tsakkrou kayyess walla 9antra ta7r9ou chwayya 3jeli ta3mel wa9fa i7tijajiya 9oddem el majless etta2ssisi walla fel 9asba walla fel"
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "près",
+     "preuves": {
+      "conv_afi": 2
+     },
+     "statut": "vu_conversations_afi"
+    },
+    {
+     "forme": "à côté",
+     "preuves": {
+      "conv_afi": 2
+     },
+     "statut": "vu_conversations_afi"
+    }
+   ],
+   "statut": "atteste_corpus_public",
+   "msa_atteste_afi": true
+  },
+  {
+   "id": "loin",
+   "categorie": "proximite",
+   "francais": [
+    "loin"
+   ],
+   "anglais": "far",
+   "arabe_standard": [
+    {
+     "forme": "بعيد",
+     "preuves": {
+      "ar_afi": 4
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "2 تغيير صبغة الاراضي من فلاحية الى صناعية 3 اقتناء الاراضي 4 تهيية المناطق الصناعية بمجرد الحصول على الارض تشرع الوكالة في تهيية المناطق الصناعية من خلال اجراء "
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "بعيد",
+     "preuves": {
+      "tsac": 8,
+      "ar_afi": 4,
+      "tarc": 4
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": "الكل يحبك و سيبق يحبك يا اميرة كلنا نحبك عيون تبتسم و تنظر الى بعيد داالك البعيد سيقترب و يسعد حياتك رغم كل حال الله يسعدك و ينجحك في حياتك"
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "b3id",
+     "preuves": {
+      "tarc": 2,
+      "tunizi": 3
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "c la chanson pra fa ra e de mon amour je t aime abdou tu es mon ca ur netmana l mout tedini w nta b3id 3liya rabi yajma3ni bik alh ysam7ek min 5alitni nta howa "
+    },
+    {
+     "forme": "b3ida",
+     "preuves": {
+      "tunizi": 1,
+      "tsac": 1
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "bien sa r tounis bled malheureusement mazlet b3ida"
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "loin",
+     "preuves": {
+      "tsac": 1
+     },
+     "statut": "rare_corpus_public_a_valider"
+    }
+   ],
+   "statut": "atteste_corpus_public",
+   "msa_atteste_afi": true
+  },
+  {
+   "id": "port",
+   "categorie": "proximite",
+   "francais": [
+    "port"
+   ],
+   "anglais": "port",
+   "arabe_standard": [
+    {
+     "forme": "ميناء",
+     "preuves": {
+      "ar_afi": 4
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "انغمس في بيية استثمارية مواتية حيث تخلق البنية التحتية الاساسية التي لا تشوبها شايبة الظروف المثالية لنجاح ريادة الاعمال مع وصول الكهرباء والوصول الى مياه الشرب"
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "مرسى",
+     "preuves": {
+      "tarc": 1
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    },
+    {
+     "forme": "بور",
+     "preuves": {
+      "tsac": 1
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": "يا شكيب المبرر متاعك تافه تقدر بن علي كرجل عادي و صاحب غريزه الي هي عاديه جدا لدي كل الرجال لكن لو تعرف ما فعل بن علي لالبلاد ستخجل من البور التافه الذي تعطيه و"
+    },
+    {
+     "forme": "ميناء",
+     "preuves": {
+      "ar_afi": 4
+     },
+     "statut": "vu_textes_afi_seulement",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "marsa",
+     "preuves": {
+      "tarc": 2
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "fi marsa tunis"
+    },
+    {
+     "forme": "por",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": true,
+     "exemple": ""
+    },
+    {
+     "forme": "port",
+     "preuves": {
+      "conv_afi": 1
+     },
+     "statut": "vu_conversations_afi",
+     "origine": "propose",
+     "ambigu": true,
+     "exemple": "exist des teerain a octe de gare ou port"
+    },
+    {
+     "forme": "mina",
+     "preuves": {
+      "tsac": 1
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "origine": "propose",
+     "ambigu": true,
+     "exemple": "inchallah bettawfi9 walmazid mina annje7"
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "port",
+     "preuves": {
+      "conv_afi": 1
+     },
+     "statut": "vu_conversations_afi"
+    }
+   ],
+   "statut": "a_valider_locuteur",
+   "msa_atteste_afi": true
+  },
+  {
+   "id": "aeroport",
+   "categorie": "proximite",
+   "francais": [
+    "aéroport"
+   ],
+   "anglais": "airport",
+   "arabe_standard": [
+    {
+     "forme": "مطار",
+     "preuves": {
+      "ar_afi": 3
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "انغمس في بيية استثمارية مواتية حيث تخلق البنية التحتية الاساسية التي لا تشوبها شايبة الظروف المثالية لنجاح ريادة الاعمال مع وصول الكهرباء والوصول الى مياه الشرب"
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "مطار",
+     "preuves": {
+      "ar_afi": 3,
+      "tarc": 1
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    },
+    {
+     "forme": "ايروبور",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "matar",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "mtar",
+     "preuves": {
+      "tarc": 1
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "fe jbal bel bhim ejjbal lkol yorbtou el bhima fi chojra w ykamlou be tabda eddenya mtar barcha"
+    },
+    {
+     "forme": "aeroport",
+     "preuves": {
+      "conv_afi": 1
+     },
+     "statut": "vu_conversations_afi",
+     "origine": "propose",
+     "ambigu": true,
+     "exemple": "je cherche une zones pres aeroport"
+    },
+    {
+     "forme": "airport",
+     "preuves": {
+      "conv_afi": 1
+     },
+     "statut": "vu_conversations_afi",
+     "origine": "propose",
+     "ambigu": true,
+     "exemple": "un l terrain pres de airport"
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "aéroport",
+     "preuves": {
+      "conv_afi": 1
+     },
+     "statut": "vu_conversations_afi"
+    },
+    {
+     "forme": "airoport",
+     "preuves": {},
+     "statut": "a_valider_locuteur"
+    }
+   ],
+   "statut": "a_valider_locuteur",
+   "msa_atteste_afi": true
+  },
+  {
+   "id": "autoroute",
+   "categorie": "proximite",
+   "francais": [
+    "autoroute",
+    "route"
+   ],
+   "anglais": "highway",
+   "arabe_standard": [
+    {
+     "forme": "طريق سيارة",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "exemple": ""
+    },
+    {
+     "forme": "الطريق السيارة",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "exemple": ""
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "أوتوروت",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    },
+    {
+     "forme": "طريق",
+     "preuves": {
+      "tsac": 6,
+      "ar_afi": 102,
+      "tarc": 6
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [
+      "tri9"
+     ],
+     "exemple": "خطوة اولى في الطريق الصحيح"
+    },
+    {
+     "forme": "ثنية",
+     "preuves": {
+      "tarc": 7
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [
+      "thneya"
+     ],
+     "exemple": ""
+    },
+    {
+     "forme": "كيّاس",
+     "preuves": {
+      "tsac": 1,
+      "tarc": 3
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": "يا عباد ربي افهمو راهم كلاب قرودة مسخين واله كي يغسلوهم بالجفال لاينظافو المسخين الخماج الى براء بوليس يبزق عليه ويتجنبو هوما كلاب متراهمش في الشارع في القهاوي "
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "otorout",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "autoroute",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": true,
+     "exemple": ""
+    },
+    {
+     "forme": "tri9",
+     "preuves": {
+      "tarc": 5
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "leblasa ja3fer tri9 rawed bahdha jame3 el theni"
+    },
+    {
+     "forme": "thniya",
+     "preuves": {
+      "tarc": 1
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "t3alem se3a rabi ba3d ahkilli al enti le tejri al ani meli bdit meli bdit ntir moush ki tahana li m2aysaa wa9t el 7arf 7adher mareskit fi thniya mkaysa"
+    },
+    {
+     "forme": "thnia",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "kayes",
+     "preuves": {
+      "tarc": 2
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "habit netla3 3mal 10 mitrou lteli w9eft fel kayes nzel 3al w jey yejri"
+    },
+    {
+     "forme": "kiyes",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "thneya",
+     "preuves": {
+      "tarc": 3
+     },
+     "statut": "vu_corpus_public",
+     "origine": "ajoute_depuis_tarc",
+     "ambigu": false,
+     "exemple": "nejriw thneya zedna 5thina el 5obz es5oun 5arej men tabountou lkina anas w bilel yestanew fina"
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "autoroute",
+     "preuves": {},
+     "statut": "a_valider_locuteur"
+    }
+   ],
+   "statut": "atteste_corpus_public",
+   "msa_atteste_afi": false
+  },
+  {
+   "id": "gare",
+   "categorie": "proximite",
+   "francais": [
+    "gare",
+    "chemin de fer"
+   ],
+   "anglais": "railway station",
+   "arabe_standard": [
+    {
+     "forme": "محطة القطار",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "exemple": ""
+    },
+    {
+     "forme": "محطة السكة الحديدية",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "exemple": ""
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "لاقار",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    },
+    {
+     "forme": "ترينو",
+     "preuves": {
+      "tsac": 1
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": "يا شلاكة يا شكيب بجاه ربي اسكت بجاه ربي برى لوح روحك تحت عجلة ترينو ممسطك يا سخطة يا شلاكة x000d"
+    },
+    {
+     "forme": "قار",
+     "preuves": {
+      "ar_afi": 25
+     },
+     "statut": "vu_textes_afi_seulement",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "lagar",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "la gare",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": true,
+     "exemple": ""
+    },
+    {
+     "forme": "train",
+     "preuves": {
+      "tunizi": 1
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "origine": "propose",
+     "ambigu": true,
+     "exemple": "na3mboukom woubou nahtha woubou sibsi woubou tounis mte3kom cha3b mnayik fetkom train l 7athara"
+    },
+    {
+     "forme": "trinou",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "gare",
+     "preuves": {
+      "conv_afi": 1
+     },
+     "statut": "vu_conversations_afi"
+    }
+   ],
+   "statut": "a_valider_locuteur",
+   "msa_atteste_afi": false
+  },
+  {
+   "id": "electricite",
+   "categorie": "commodite",
+   "francais": [
+    "électricité"
+   ],
+   "anglais": "electricity",
+   "arabe_standard": [
+    {
+     "forme": "كهرباء",
+     "preuves": {
+      "ar_afi": 36
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "تشجيعات و حوافز الاستثمار في مناطق التنمية الجهوية اختر الاستثمار الذكي اختر ان تبدا مشروعك باقل التكاليف واكثر الدعم تضع الدولة التونسية بين يديك فرصة استثنايي"
+    },
+    {
+     "forme": "الكهرباء",
+     "preuves": {
+      "ar_afi": 26
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "تشجيعات و حوافز الاستثمار في مناطق التنمية الجهوية اختر الاستثمار الذكي اختر ان تبدا مشروعك باقل التكاليف واكثر الدعم تضع الدولة التونسية بين يديك فرصة استثنايي"
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "ضو",
+     "preuves": {
+      "tsac": 1,
+      "tarc": 1
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": "بففففف تو ها التافهة هاذي تحكو عليها انشاء الله ضو ياكلكم وياكلها"
+    },
+    {
+     "forme": "الضو",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    },
+    {
+     "forme": "كهرباء",
+     "preuves": {
+      "ar_afi": 36
+     },
+     "statut": "vu_textes_afi_seulement",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    },
+    {
+     "forme": "ستاغ",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "dhaw",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "dhaou",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "edhaw",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "dou",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": true,
+     "exemple": ""
+    },
+    {
+     "forme": "kahraba",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "steg",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": true,
+     "exemple": ""
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "électricité",
+     "preuves": {},
+     "statut": "a_valider_locuteur"
+    },
+    {
+     "forme": "steg",
+     "preuves": {},
+     "statut": "a_valider_locuteur"
+    }
+   ],
+   "statut": "a_valider_locuteur",
+   "msa_atteste_afi": true
+  },
+  {
+   "id": "eau",
+   "categorie": "commodite",
+   "francais": [
+    "eau"
+   ],
+   "anglais": "water",
+   "arabe_standard": [
+    {
+     "forme": "ماء",
+     "preuves": {
+      "ar_afi": 34
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "المناطق المبرمجة قامت الوكالة ببرمجة تهيية مجموعة من المناطق الصناعية على مساحة 1334 هكتار تتوزع كالتالي 3 مناطق صناعية على مساحة 73 هك بتونس الكبرى 9 مناطق صنا"
+    },
+    {
+     "forme": "الماء الصالح للشرب",
+     "preuves": {
+      "ar_afi": 3
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "الاستلام النهايي لاشغال تركيز شبكة الهاتف القار بالمنطقة الصناعية ببني خلاد من ولاية نابل 21 هك اعداد ملحق عدد 01 لصفقة انجاز اشغال تكملة تهيية المنطقة الصناعية"
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "ماء",
+     "preuves": {
+      "tsac": 7,
+      "ar_afi": 34
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": "حسان من الجزاير هناك مثل يقول الشيب والعيب اغسل بماء زمزم وادخل في الاسلام يا عدو اله تفووووو"
+    },
+    {
+     "forme": "الماء",
+     "preuves": {
+      "tsac": 2,
+      "ar_afi": 29
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": "انا شخصيا متفرجتش فيه و قناه الحوار التونسي ولات مهزلة و شي احشم و مواضيعها تافهة و الله اسكروه و شوية و هدا من شكل معروف ازح فيق على روحك تعب امك و بوك طيحتو ف"
+    },
+    {
+     "forme": "صوناد",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "ma",
+     "preuves": {
+      "tarc": 162,
+      "tunizi": 113,
+      "tsac": 108
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": true,
+     "exemple": "maryouma je t adore 7ab ihantlik mais bravo t forte bravo ma belle"
+    },
+    {
+     "forme": "me",
+     "preuves": {
+      "conv_afi": 1,
+      "tarc": 51,
+      "tunizi": 22,
+      "tsac": 23
+     },
+     "statut": "vu_conversations_afi",
+     "origine": "propose",
+     "ambigu": true,
+     "exemple": "pouvez vous me creer un compe dans cette platforme"
+    },
+    {
+     "forme": "elma",
+     "preuves": {
+      "tarc": 1
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "bara fil matare i7ebou a3la wa7ed iseb elma ki tatle3 koul tayara"
+    },
+    {
+     "forme": "sonede",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": true,
+     "exemple": ""
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "eau",
+     "preuves": {},
+     "statut": "a_valider_locuteur"
+    },
+    {
+     "forme": "sonede",
+     "preuves": {},
+     "statut": "a_valider_locuteur"
+    }
+   ],
+   "statut": "atteste_corpus_public",
+   "msa_atteste_afi": true
+  },
+  {
+   "id": "gaz",
+   "categorie": "commodite",
+   "francais": [
+    "gaz naturel"
+   ],
+   "anglais": "natural gas",
+   "arabe_standard": [
+    {
+     "forme": "الغاز الطبيعي",
+     "preuves": {
+      "ar_afi": 9
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "الانشطة الخاضعة لاحكام المجلة الجديدة الصناعات الاستخراجية استخراج خامات المعادن وغيرها استخراج الفحم الحجري استخراج اللينيت استخراج النفط الخام استخراج الغاز ا"
+    },
+    {
+     "forme": "غاز",
+     "preuves": {
+      "ar_afi": 36
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "الاستثمارات اللامادية الملحق عدد 4 تمثل 50 من كلفة الاستثمارات اللامادية المصادق عليها مع سقف بخمسماية 500 الف دينار بما في ذلك منحة الدراسات المحدد سقفها بعشري"
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "غاز",
+     "preuves": {
+      "ar_afi": 36,
+      "tarc": 4
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [
+      "gaz"
+     ],
+     "exemple": ""
+    },
+    {
+     "forme": "القاز",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "gaz",
+     "preuves": {
+      "tarc": 4
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": true,
+     "exemple": "wba3d 7ell gaz wraja3ou yet9lei taw yebdew k3ibet elbrik yatl3ou elfou9"
+    },
+    {
+     "forme": "9az",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "ghaz",
+     "preuves": {
+      "tarc": 1
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "rap ya3mel l m3adch tweli tconsomih f fiha al ghaz w nwamer li tkawen fih f"
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "gaz",
+     "preuves": {
+      "tarc": 4
+     },
+     "statut": "vu_corpus_public"
+    }
+   ],
+   "statut": "atteste_corpus_public",
+   "msa_atteste_afi": true
+  },
+  {
+   "id": "prix",
+   "categorie": "prix",
+   "francais": [
+    "prix",
+    "coût",
+    "tarif"
+   ],
+   "anglais": "price",
+   "arabe_standard": [
+    {
+     "forme": "سعر",
+     "preuves": {
+      "ar_afi": 38
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "اكثر من منطقة مضيافة في تونس اكثر من منطقة مضيافة في تونس اكتشف ارض الفرص الاقتصادية المزدهرة والنمو المستدام تجذب تونس المستثمرين من جميع انحاء العالم بفضل موق"
+    },
+    {
+     "forme": "ثمن",
+     "preuves": {
+      "ar_afi": 49
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "الفصل 2 رابعا يضبط مجلس ادارة الوكالة العقارية الصناعية ثمن بيع او كراء الاراضي والمقاسم المهياة والمباني المنجزة ويحدد الشروط المتعلقة بالبيع او الكراء مع اخذ "
+    },
+    {
+     "forme": "أسعار",
+     "preuves": {
+      "ar_afi": 56,
+      "conv_afi": 2
+     },
+     "statut": "vu_conversations_afi",
+     "exemple": "تضع الوكالة العقارية الصناعية على ذمة الباعثين الصناعيين الخارطة الرقمية التفاعلية التي تمكن من التعرف على جميع المقاسم الصناعية المعروضة للبيع بكافة المناطق ال"
+    },
+    {
+     "forme": "كلفة",
+     "preuves": {
+      "ar_afi": 92
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "الاستقبال التشجيعات و الحوافز الاطار القانوني الجديد للاستثمار في تونس الاطار القانوني الجديد للاستثمار في تونس القانون عدد 71 لسنة 2016 مورخ في 30 سبتمبر 2016 "
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "سوم",
+     "preuves": {
+      "tsac": 1,
+      "tarc": 4
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": "يا نوفل يا ثعلوب يا نوفل يا ورتاني يا بياع السردينة بسوم المناني hhhhhhhhhhhh"
+    },
+    {
+     "forme": "السوم",
+     "preuves": {
+      "tarc": 1
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    },
+    {
+     "forme": "قداش",
+     "preuves": {
+      "tsac": 58,
+      "tarc": 17
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [
+      "9adech"
+     ],
+     "exemple": "ممثل قداش يعجبني و يضحكني برافوا"
+    },
+    {
+     "forme": "بقداش",
+     "preuves": {
+      "tarc": 6
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [
+      "b9adech"
+     ],
+     "exemple": ""
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "soum",
+     "preuves": {
+      "tarc": 3,
+      "tsac": 1
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "na7kou nit3arfou w nchi5ou w nitfehmou al kifech w fin w wa9tech w tafasil ilkol likbira w isghira w wa9tha barka najam na3tik soum"
+    },
+    {
+     "forme": "essoum",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "som",
+     "preuves": {
+      "tarc": 1
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "origine": "propose",
+     "ambigu": true,
+     "exemple": "3la khatro ghali w som al rkhos khater wa9t li t3aber kolha twali tnaber ta3ref rohak najah wa9t li tsebek lekbabel"
+    },
+    {
+     "forme": "9adech",
+     "preuves": {
+      "tarc": 8,
+      "tunizi": 4,
+      "tsac": 28
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "bizarre 9adech tchebeh el mikael jackson dhaherli c est le meme chirurgien qui les a operes hhhh"
+    },
+    {
+     "forme": "9addech",
+     "preuves": {
+      "tarc": 2,
+      "tunizi": 3,
+      "tsac": 3
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "bravo mosalsel mch 3adi ena wallah tabba3tou 3l you tube w kammaltou l bare7 mch normal 9addech fih mn variation d emotions w 9addech fih mn recherches 3la deta"
+    },
+    {
+     "forme": "9adeh",
+     "preuves": {
+      "tarc": 9,
+      "tunizi": 5,
+      "tsac": 10
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "vraiment marjeelha 9adeh habitha wallah behya barchaa nes ghalta feha"
+    },
+    {
+     "forme": "b9adech",
+     "preuves": {
+      "tarc": 3
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "b9adech"
+    },
+    {
+     "forme": "kadech",
+     "preuves": {
+      "tarc": 1,
+      "tunizi": 1,
+      "tsac": 6
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "ya zah kadech tla3na dhalmineha il dabegha we nawfel kifech yitsakbine we yitrahdine sadakni ya nawfel ken tbatil il tv khirlik rak masset we zid il mochkil ili"
+    },
+    {
+     "forme": "9adach",
+     "preuves": {
+      "tarc": 2,
+      "tunizi": 2,
+      "tsac": 1
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "9adach"
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "prix",
+     "preuves": {
+      "conv_afi": 10,
+      "tunizi": 1
+     },
+     "statut": "vu_conversations_afi"
+    }
+   ],
+   "statut": "atteste_corpus_public",
+   "msa_atteste_afi": true
+  },
+  {
+   "id": "cher",
+   "categorie": "prix",
+   "francais": [
+    "cher"
+   ],
+   "anglais": "expensive",
+   "arabe_standard": [
+    {
+     "forme": "غال",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "exemple": ""
+    },
+    {
+     "forme": "مرتفع",
+     "preuves": {
+      "ar_afi": 3
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "من المتوقع ان تستمر الاسواق الاسيوية الناشية الاخرى بما في ذلك الهند وبعض دول جنوب شرق اسيا في التفوق في الاداء في عام 2023 ولكن بمعدل نمو ابطا من العام السابق "
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "غالي",
+     "preuves": {
+      "tsac": 9,
+      "ar_afi": 1,
+      "tarc": 6
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [
+      "ghali"
+     ],
+     "exemple": "معلم و ولد بلاد يا غالي"
+    },
+    {
+     "forme": "شاعل",
+     "preuves": {
+      "tarc": 1
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "ghali",
+     "preuves": {
+      "tarc": 3,
+      "tunizi": 1,
+      "tsac": 1
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "bayrem ya sahbi ya ghali vive la tunisie"
+    },
+    {
+     "forme": "8ali",
+     "preuves": {
+      "tarc": 2,
+      "tsac": 1
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "tetkalam 3a rojla yal 8ali"
+    },
+    {
+     "forme": "chee3el",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "cha3el",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "cher",
+     "preuves": {
+      "tarc": 1,
+      "tunizi": 2
+     },
+     "statut": "vu_corpus_public"
+    }
+   ],
+   "statut": "atteste_corpus_public",
+   "msa_atteste_afi": true
+  },
+  {
+   "id": "pas_cher",
+   "categorie": "prix",
+   "francais": [
+    "pas cher",
+    "bon marché"
+   ],
+   "anglais": "cheap",
+   "arabe_standard": [
+    {
+     "forme": "رخيص",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "exemple": ""
+    },
+    {
+     "forme": "منخفض",
+     "preuves": {
+      "ar_afi": 21
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "تعتبر ساعات العمل المنجزة خارج ساعات العمل الاسبوعية العادية ساعات عمل اضافية بالرجوع الى الراتب الاساسي للساعة الذي تمت زيادته وفقا للمعدلات التالية ووفقا لقطا"
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "رخيص",
+     "preuves": {
+      "tsac": 20
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": "زايد الرخيص يبقى طول عمرو رخيص"
+    },
+    {
+     "forme": "بلاش",
+     "preuves": {
+      "tsac": 8,
+      "tarc": 16
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [
+      "blech",
+      "blesh"
+     ],
+     "exemple": "يعتي الصحة للوزير والقاضي هذه الحرية واللي بلاش في تونسنا اليوم"
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "r5is",
+     "preuves": {
+      "tunizi": 2,
+      "tsac": 2
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "smeti housem hahahha tsa5af makk lahass asma3ni n9olik haja manhebsh nahbet l mostawe lmarjber ti mak til9ak tra mnin da ja ena mtayha mn ruhyy w nahki makkk w "
+    },
+    {
+     "forme": "rkhis",
+     "preuves": {
+      "tsac": 1
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "malla tahhan w rkhis na3mbouh"
+    },
+    {
+     "forme": "r5iss",
+     "preuves": {
+      "tsac": 1
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "ti chbik wallit chleka ya maset ya r5iss saye be3et rou7ek el iran wel chi3a ya bouhali"
+    },
+    {
+     "forme": "blech",
+     "preuves": {
+      "tarc": 11,
+      "tunizi": 8,
+      "tsac": 6
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "ay yay saba9nekom 3 blech"
+    },
+    {
+     "forme": "blesh",
+     "preuves": {
+      "tarc": 3
+     },
+     "statut": "vu_corpus_public",
+     "origine": "ajoute_depuis_tarc",
+     "ambigu": false,
+     "exemple": "moush lou8et el9illa nik limeshhom fehmin nkharjek mel 7ila ndakhlek fel 7irtin nkatbek 3al 9ola ismek fih martin nebet wahdi blesh mela ema mkhrajtish 3adin"
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "pas cher",
+     "preuves": {},
+     "statut": "a_valider_locuteur"
+    }
+   ],
+   "statut": "atteste_corpus_public",
+   "msa_atteste_afi": true
+  },
+  {
+   "id": "argent",
+   "categorie": "prix",
+   "francais": [
+    "argent",
+    "budget",
+    "dinars"
+   ],
+   "anglais": "money",
+   "arabe_standard": [
+    {
+     "forme": "مال",
+     "preuves": {
+      "ar_afi": 118
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "يته المرجعية والمواطنين الفساد هو كل عمل يتضمن سوء استخدام السلطة او النفوذ او الوظيفة لتحقيق مصلحة خاصة مادية او معنوية ذاتية لنفسه او غيره الارتشاء هو التماس "
+    },
+    {
+     "forme": "ميزانية",
+     "preuves": {
+      "ar_afi": 82
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "الاستقبال وكالة النهوض بالصناعة والتجديد ميزانية وكالة النهوض بالصناعة والتجديد ميزانية وكالة النهوض بالصناعة والتجديد ميزانية وكالة النهوض بالصناعة والتجديد لس"
+    },
+    {
+     "forme": "دينار",
+     "preuves": {
+      "ar_afi": 257
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "الفصل 2 اولا جديد تم تنقيحه بمقتضى المرسوم عدد 68 لسنة 2022 المورخ في 19 اكتوبر 2022 المتعلق بضبط احكام خاصة بتحسين نجاعة المشاريع العمومية والخاصة وتضبط شروط و"
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "فلوس",
+     "preuves": {
+      "tsac": 18,
+      "tarc": 18
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [
+      "flous",
+      "flouss"
+     ],
+     "exemple": "قناة قوية و تمتعت باعلى نسبة مشاهدة في تونس تصنع في فلوس بطريقة بسيطة اعلانات و برامج و مسابقات تنشيط جيد في الاعلام الالكتروني باختصار قناة الحوار التونسي تمثا"
+    },
+    {
+     "forme": "دينار",
+     "preuves": {
+      "tsac": 2,
+      "ar_afi": 257,
+      "tarc": 10
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [
+      "dinar"
+     ],
+     "exemple": "برنامج تافه و ضيوف تافهين و مواضيع تافهة لا تشغل التونسيين في خبزهم اليومي في غلاء المعيشة و فشل الحكومة و انشقاق الحزب الحاكم و سقوط الدينار التونسي و تفشي ضاه"
+    },
+    {
+     "forme": "مليون",
+     "preuves": {
+      "tsac": 4,
+      "ar_afi": 158,
+      "tarc": 1
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": "انا ارفع القبعة احتراما لهذا الاب الفاضل المجاهد مليون تحية لك ايها الاب العظيم"
+    },
+    {
+     "forme": "ملاين",
+     "preuves": {
+      "tsac": 1,
+      "tarc": 3
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [
+      "mlayen"
+     ],
+     "exemple": "10 ملاين تونسي ضد المثلية تي شبيكم تكرهو في رواحكم راكم تعملو هكا باش الناس تتفرج و تربحو الاشهار تي راكم تافهين كرهتو الشعب في روحوا حللتو الشراب و الزنا و الل"
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "flous",
+     "preuves": {
+      "tarc": 8,
+      "tunizi": 17,
+      "tsac": 3
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "bel flous wela blech si b flous gedech"
+    },
+    {
+     "forme": "floss",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "dinar",
+     "preuves": {
+      "tarc": 9,
+      "tunizi": 1
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "bravo a ce monsieur est samir corrempu par ce systa me mafieux honte a toi animateur bou dinar"
+    },
+    {
+     "forme": "malyoun",
+     "preuves": {
+      "tunizi": 5
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "samara zaweli w tlansa 50 malyoun vu wentouma o93dou naykou"
+    },
+    {
+     "forme": "melyoun",
+     "preuves": {
+      "tarc": 1
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "le5dem me femmech ou j3ale bil melyoun"
+    },
+    {
+     "forme": "mlayen",
+     "preuves": {
+      "tarc": 3,
+      "tunizi": 1,
+      "tsac": 1
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "kelam sahil we fahim yefhim n tikthbou kithba we trsad9ouha n10 mlayen hhhhhhh"
+    },
+    {
+     "forme": "flouss",
+     "preuves": {
+      "tarc": 6,
+      "tunizi": 3,
+      "tsac": 2
+     },
+     "statut": "vu_corpus_public",
+     "origine": "ajoute_depuis_tarc",
+     "ambigu": false,
+     "exemple": "il ont cra a il 9a7ba a toi mouch monstre fhemti tawa sanfara chkoun 9sad kif 9al chkoun ily tala3 l9a7ba dabe8 ye7ki 3al 3amlou menek cha5sseyet l 9o7b ethika "
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "budget",
+     "preuves": {
+      "conv_afi": 1
+     },
+     "statut": "vu_conversations_afi"
+    },
+    {
+     "forme": "dinar",
+     "preuves": {
+      "tarc": 9,
+      "tunizi": 1
+     },
+     "statut": "vu_corpus_public"
+    },
+    {
+     "forme": "dt",
+     "preuves": {
+      "conv_afi": 2,
+      "tarc": 19,
+      "tunizi": 2
+     },
+     "statut": "vu_conversations_afi"
+    },
+    {
+     "forme": "mdt",
+     "preuves": {
+      "conv_afi": 4,
+      "tarc": 1
+     },
+     "statut": "vu_conversations_afi"
+    }
+   ],
+   "statut": "atteste_corpus_public",
+   "msa_atteste_afi": true
+  },
+  {
+   "id": "payer",
+   "categorie": "prix",
+   "francais": [
+    "payer",
+    "paiement"
+   ],
+   "anglais": "pay",
+   "arabe_standard": [
+    {
+     "forme": "دفع",
+     "preuves": {
+      "ar_afi": 52
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "4 فتح عملية البيع فتح عملية البيع بالمزاد في جلسة علنية وبحضور عدل التنفيذ والباعثين الصناعيين المعنيين بعملية البيع 5 محضر البيع اعداد وامضاء محضر البيع من قبل"
+    },
+    {
+     "forme": "تسديد",
+     "preuves": {
+      "ar_afi": 4
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "لتلبية حاجيات نشاطاتها يمكن للموسسات المقيمة الحصول بكل حرية على قروض بالعملات الاجنبية من غير المقيمين في حدود 10 ملايين دينار لكل سنة مدنية بالنسبة لموسسات ال"
+    },
+    {
+     "forme": "خلاص",
+     "preuves": {
+      "ar_afi": 113
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "الفصل 2 تاسعا جديد يتم اسقاط الحق بمقتضى قرار من الوزير المكلف بالصناعة باقتراح من الوكالة العقارية الصناعية وذلك بعد سماع المخالف وانذاره بواسطة عدل منفذ في اج"
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "نخلّص",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    },
+    {
+     "forme": "خلاص",
+     "preuves": {
+      "tsac": 1,
+      "ar_afi": 113,
+      "tarc": 1
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": "ميعجبنيش خلاص معمري مريت كيفوا حكومة كلها غلطة"
+    },
+    {
+     "forme": "نخلص",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "n5alles",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "nkhalles",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "5las",
+     "preuves": {
+      "tarc": 1
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "ti mani 9otlik aya 7amdella ala 5las lou7al"
+    },
+    {
+     "forme": "khlas",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "5alles",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "payer",
+     "preuves": {},
+     "statut": "a_valider_locuteur"
+    }
+   ],
+   "statut": "a_valider_locuteur",
+   "msa_atteste_afi": true
+  },
+  {
+   "id": "credit",
+   "categorie": "prix",
+   "francais": [
+    "crédit",
+    "prêt",
+    "banque"
+   ],
+   "anglais": "loan",
+   "arabe_standard": [
+    {
+     "forme": "قرض",
+     "preuves": {
+      "ar_afi": 15
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "2 تعمير الاستمارة وفق الانموذج الموضوع على ذمة طالب الخدمة طالب الخدمة 3 نسخة مطابقة للاصل من عقد بيع مسجل طالب الخدمة 4 نسخة قانونية من الموافقة المبديية للموس"
+    },
+    {
+     "forme": "بنك",
+     "preuves": {
+      "ar_afi": 52
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "فضاءات للمخيمات وفضاءات للكرفانات او لعربات الترفيه اصناف الايواء الاخرى مطاعم متخصصة في الاكلة السريعة خدمات ممونو اطعمة تريتور اي صانعو الاكلات في المناسبات خ"
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "كريدي",
+     "preuves": {
+      "tsac": 1,
+      "tarc": 1
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": "احمد الاندلسي يقريك يا بهيمة و الملهط تدافع على الميبون و لو كان موش كرني الكريدي ما تدخلش التلفزة"
+    },
+    {
+     "forme": "بنكة",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    },
+    {
+     "forme": "قرض",
+     "preuves": {
+      "ar_afi": 15
+     },
+     "statut": "vu_textes_afi_seulement",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "credit",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": true,
+     "exemple": ""
+    },
+    {
+     "forme": "kredi",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "banka",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "9ardh",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "crédit",
+     "preuves": {},
+     "statut": "a_valider_locuteur"
+    },
+    {
+     "forme": "banque",
+     "preuves": {
+      "tunizi": 1
+     },
+     "statut": "rare_corpus_public_a_valider"
+    }
+   ],
+   "statut": "a_valider_locuteur",
+   "msa_atteste_afi": true
+  },
+  {
+   "id": "subvention",
+   "categorie": "incitation",
+   "francais": [
+    "subvention",
+    "prime",
+    "aide"
+   ],
+   "anglais": "grant",
+   "arabe_standard": [
+    {
+     "forme": "منحة",
+     "preuves": {
+      "ar_afi": 91
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "تشجيعات و حوافز الاستثمار في مناطق التنمية الجهوية اختر الاستثمار الذكي اختر ان تبدا مشروعك باقل التكاليف واكثر الدعم تضع الدولة التونسية بين يديك فرصة استثنايي"
+    },
+    {
+     "forme": "دعم",
+     "preuves": {
+      "ar_afi": 123
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "رويتنا رسالتنا قيمنا رويتنا ان تصبح الوكالة العقارية الصناعية رايدة في تهيية المناطق الصناعية عبر تقديم حلول مبتكرة ومستدامة لتعزيز النمو الاقتصادي ودعم التنمية"
+    },
+    {
+     "forme": "حوافز",
+     "preuves": {
+      "ar_afi": 171
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "شركاونا وكالة النهوض بالاستثمار الخارجي وكالة النهوض بالاستثمار الخارجي fipa tunisia هي هيية عمومية تاسست عام 1995 تحت اشراف وزارة التنمية والاستثمار والتعاون ا"
+    },
+    {
+     "forme": "امتيازات",
+     "preuves": {
+      "ar_afi": 156
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "خدماتنا التفويت في المقاسم الصناعية بمناطق التنمية الجهوية شروط التفويت 1 ايداع مطلب اقتناء قطعة ارض ومطلب تاكيد اقتناء قطعة ارض بمكتب الضبط المركزي او باحدى ال"
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "منحة",
+     "preuves": {
+      "ar_afi": 91
+     },
+     "statut": "vu_textes_afi_seulement",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    },
+    {
+     "forme": "دعم",
+     "preuves": {
+      "ar_afi": 123
+     },
+     "statut": "vu_textes_afi_seulement",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    },
+    {
+     "forme": "سوبفونسيون",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "min7a",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "men7a",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "minha",
+     "preuves": {
+      "tunizi": 5
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "tfoe 3leek ya keddeba takhreh twansa marra wahda masria hebbet tet sauwer m3aaja we tounsia harbit minha qaltilha ma3endeech waqt min waqtha kratha"
+    },
+    {
+     "forme": "da3m",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "subvention",
+     "preuves": {
+      "conv_afi": 3
+     },
+     "statut": "vu_conversations_afi",
+     "origine": "propose",
+     "ambigu": true,
+     "exemple": "je veux terain subvention 65"
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "subvention",
+     "preuves": {
+      "conv_afi": 3
+     },
+     "statut": "vu_conversations_afi"
+    },
+    {
+     "forme": "prime",
+     "preuves": {
+      "tunizi": 1
+     },
+     "statut": "rare_corpus_public_a_valider"
+    }
+   ],
+   "statut": "atteste_corpus_public",
+   "msa_atteste_afi": true
+  },
+  {
+   "id": "avantages",
+   "categorie": "incitation",
+   "francais": [
+    "avantages",
+    "incitations"
+   ],
+   "anglais": "incentives",
+   "arabe_standard": [
+    {
+     "forme": "امتيازات",
+     "preuves": {
+      "ar_afi": 156
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "خدماتنا التفويت في المقاسم الصناعية بمناطق التنمية الجهوية شروط التفويت 1 ايداع مطلب اقتناء قطعة ارض ومطلب تاكيد اقتناء قطعة ارض بمكتب الضبط المركزي او باحدى ال"
+    },
+    {
+     "forme": "حوافز",
+     "preuves": {
+      "ar_afi": 171
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "شركاونا وكالة النهوض بالاستثمار الخارجي وكالة النهوض بالاستثمار الخارجي fipa tunisia هي هيية عمومية تاسست عام 1995 تحت اشراف وزارة التنمية والاستثمار والتعاون ا"
+    },
+    {
+     "forme": "تشجيعات",
+     "preuves": {
+      "ar_afi": 9
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "تشجيعات و حوافز الاستثمار في مناطق التنمية الجهوية اختر الاستثمار الذكي اختر ان تبدا مشروعك باقل التكاليف واكثر الدعم تضع الدولة التونسية بين يديك فرصة استثنايي"
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "امتيازات",
+     "preuves": {
+      "ar_afi": 156
+     },
+     "statut": "vu_textes_afi_seulement",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    },
+    {
+     "forme": "ميزات",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "imtiyazat",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "avantage",
+     "preuves": {
+      "conv_afi": 1
+     },
+     "statut": "vu_conversations_afi",
+     "origine": "propose",
+     "ambigu": true,
+     "exemple": "les avantage"
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "avantages",
+     "preuves": {},
+     "statut": "a_valider_locuteur"
+    },
+    {
+     "forme": "avantage",
+     "preuves": {
+      "conv_afi": 1
+     },
+     "statut": "vu_conversations_afi"
+    }
+   ],
+   "statut": "a_valider_locuteur",
+   "msa_atteste_afi": true
+  },
+  {
+   "id": "papiers",
+   "categorie": "procedure",
+   "francais": [
+    "papiers",
+    "documents",
+    "dossier"
+   ],
+   "anglais": "documents",
+   "arabe_standard": [
+    {
+     "forme": "وثائق",
+     "preuves": {
+      "ar_afi": 287
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "النفاذ الى المعلومة الاتصال بالمكلف بالنفاذ الى المعلومة الاسم واللقب السيدة ليلى عوني حرم شباح منصب كاهية مدير التوثيق و الارشيف الهاتف 71124218 فاكس 71124266 "
+    },
+    {
+     "forme": "ملف",
+     "preuves": {
+      "ar_afi": 319
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "المناطق المبرمجة قامت الوكالة ببرمجة تهيية مجموعة من المناطق الصناعية على مساحة 1334 هكتار تتوزع كالتالي 3 مناطق صناعية على مساحة 73 هك بتونس الكبرى 9 مناطق صنا"
+    },
+    {
+     "forme": "مستندات",
+     "preuves": {
+      "ar_afi": 5
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "دليل الهوية البصرية دليل الهوية البصرية لانشاء مستند يرجى الرجوع الى دليل الهوية البصرية الدليل البصري اللوغو logotype يرجى احترام الدليل البصري عند استخدام الش"
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "وراق",
+     "preuves": {
+      "tarc": 1
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    },
+    {
+     "forme": "الوراق",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    },
+    {
+     "forme": "أوراق",
+     "preuves": {
+      "ar_afi": 11
+     },
+     "statut": "vu_textes_afi_seulement",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    },
+    {
+     "forme": "دوسي",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    },
+    {
+     "forme": "ملف",
+     "preuves": {
+      "tsac": 1,
+      "ar_afi": 319,
+      "tarc": 1
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": "بربي يا سمير يزينا من استضافة تجار الدين لان الدين لله وصافي سعيد هذا يزينا منه جيبلنا المعطلين عن العمل ان تتجراء افتح ملف المتمتعين بالعفو التشريعي العام وانت"
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "wra9",
+     "preuves": {
+      "tarc": 1
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "jebtha b dra3i moch kifhom jayebha b al tak7if li lase9 b al bza9 yti7 kima wra9 al khrif rappeurek kan ma yga7efch raho ltawa mtayech wahdi n7areb fi jaych moc"
+    },
+    {
+     "forme": "lwra9",
+     "preuves": {
+      "conv_afi": 1
+     },
+     "statut": "vu_conversations_afi",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "chnowa lwra9 lazmin bech na5ou ma9sem sina3i"
+    },
+    {
+     "forme": "elwra9",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "awra9",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "dossier",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": true,
+     "exemple": ""
+    },
+    {
+     "forme": "dosi",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "malaf",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "papiers",
+     "preuves": {},
+     "statut": "a_valider_locuteur"
+    },
+    {
+     "forme": "dossier",
+     "preuves": {},
+     "statut": "a_valider_locuteur"
+    },
+    {
+     "forme": "documents",
+     "preuves": {},
+     "statut": "a_valider_locuteur"
+    }
+   ],
+   "statut": "atteste_donnees_afi",
+   "msa_atteste_afi": true
+  },
+  {
+   "id": "procedure",
+   "categorie": "procedure",
+   "francais": [
+    "procédure",
+    "démarches",
+    "étapes"
+   ],
+   "anglais": "procedure",
+   "arabe_standard": [
+    {
+     "forme": "إجراءات",
+     "preuves": {
+      "ar_afi": 381,
+      "conv_afi": 9
+     },
+     "statut": "vu_conversations_afi",
+     "exemple": "اجراءات الاقتناء ايداع مطلب اقتناء قطعة ارض ومطلب تاكيد اقتناء قطعة ارض بمكتب الضبط المركزي او باحدى النيابات او التمثيليات الجهوية للوكالة ايداع مطلب بالولاية "
+    },
+    {
+     "forme": "الإجراءات",
+     "preuves": {
+      "ar_afi": 163
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "الفصل 2 تاسعا جديد يتم اسقاط الحق بمقتضى قرار من الوزير المكلف بالصناعة باقتراح من الوكالة العقارية الصناعية وذلك بعد سماع المخالف وانذاره بواسطة عدل منفذ في اج"
+    },
+    {
+     "forme": "مراحل",
+     "preuves": {
+      "ar_afi": 41
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "5 اعداد الكتب التوضيحي او النهايي عند تحرير عقد البيع يقع التنصيص باحدى فصوله على التزام الطرفين بالتوقيع على كتب توضيحي لفرز المقسم المباع برسم مستقل وذلك لاتم"
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "إجراءات",
+     "preuves": {
+      "conv_afi": 9,
+      "ar_afi": 381
+     },
+     "statut": "vu_conversations_afi",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": "اجراءات الاقتناء"
+    },
+    {
+     "forme": "خطوات",
+     "preuves": {
+      "ar_afi": 3
+     },
+     "statut": "vu_textes_afi_seulement",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    },
+    {
+     "forme": "بروسيدور",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "ijra2at",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "ejra2at",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "5atwat",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "procedure",
+     "preuves": {
+      "conv_afi": 19
+     },
+     "statut": "vu_conversations_afi",
+     "origine": "propose",
+     "ambigu": true,
+     "exemple": "procedure d acquisition"
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "procédure",
+     "preuves": {
+      "conv_afi": 19
+     },
+     "statut": "vu_conversations_afi"
+    },
+    {
+     "forme": "démarches",
+     "preuves": {},
+     "statut": "a_valider_locuteur"
+    }
+   ],
+   "statut": "atteste_donnees_afi",
+   "msa_atteste_afi": true
+  },
+  {
+   "id": "acheter",
+   "categorie": "procedure",
+   "francais": [
+    "acheter",
+    "acquérir",
+    "acquisition"
+   ],
+   "anglais": "buy",
+   "arabe_standard": [
+    {
+     "forme": "اقتناء",
+     "preuves": {
+      "ar_afi": 114,
+      "conv_afi": 11
+     },
+     "statut": "vu_conversations_afi",
+     "exemple": "اجراءات الاقتناء ايداع مطلب اقتناء قطعة ارض ومطلب تاكيد اقتناء قطعة ارض بمكتب الضبط المركزي او باحدى النيابات او التمثيليات الجهوية للوكالة ايداع مطلب بالولاية "
+    },
+    {
+     "forme": "شراء",
+     "preuves": {
+      "ar_afi": 55
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "الفصل 2 رابعا يضبط مجلس ادارة الوكالة العقارية الصناعية ثمن بيع او كراء الاراضي والمقاسم المهياة والمباني المنجزة ويحدد الشروط المتعلقة بالبيع او الكراء مع اخذ "
+    },
+    {
+     "forme": "يقتني",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "exemple": ""
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "نشري",
+     "preuves": {
+      "tarc": 3
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [
+      "nechri"
+     ],
+     "exemple": ""
+    },
+    {
+     "forme": "شري",
+     "preuves": {
+      "ar_afi": 1
+     },
+     "statut": "vu_textes_afi_seulement",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    },
+    {
+     "forme": "نشرى",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "nechri",
+     "preuves": {
+      "tarc": 3
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "kont nechri fil ma9routh 7abbit nechri zlebya ye55i l9itha me te3jebech"
+    },
+    {
+     "forme": "nichri",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "nachri",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "chri",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "echri",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "acheter",
+     "preuves": {},
+     "statut": "a_valider_locuteur"
+    },
+    {
+     "forme": "acquisition",
+     "preuves": {
+      "conv_afi": 19
+     },
+     "statut": "vu_conversations_afi"
+    }
+   ],
+   "statut": "atteste_corpus_public",
+   "msa_atteste_afi": true
+  },
+  {
+   "id": "louer",
+   "categorie": "procedure",
+   "francais": [
+    "louer",
+    "location"
+   ],
+   "anglais": "rent",
+   "arabe_standard": [
+    {
+     "forme": "كراء",
+     "preuves": {
+      "ar_afi": 41
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "الفصل 2 تتمثل مهام الوكالة العقارية الصناعية في 1 اجراء الدراسات المتعلقة بتشخيص مواقع المناطق الصناعية وتهييتها وتجهيزها لباعثي المشاريع في قطاعات الصناعات الم"
+    },
+    {
+     "forme": "إيجار",
+     "preuves": {
+      "ar_afi": 16
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "في اجل لا يتجاوز الثلاث سنوات الوثايق المطلوبة 1 مطلب معلل طالب الخدمة 2 تعمير الاستمارة وفق الانموذج الموضوع على ذمة طالب الخدمة طالب الخدمة 3 نسخة مطابقة للاص"
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "نكري",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    },
+    {
+     "forme": "كرا",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    },
+    {
+     "forme": "كراء",
+     "preuves": {
+      "ar_afi": 41
+     },
+     "statut": "vu_textes_afi_seulement",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "nekri",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "nikri",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "kra",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": true,
+     "exemple": ""
+    },
+    {
+     "forme": "kre",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": true,
+     "exemple": ""
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "location",
+     "preuves": {},
+     "statut": "a_valider_locuteur"
+    },
+    {
+     "forme": "louer",
+     "preuves": {},
+     "statut": "a_valider_locuteur"
+    }
+   ],
+   "statut": "a_valider_locuteur",
+   "msa_atteste_afi": true
+  },
+  {
+   "id": "demande",
+   "categorie": "procedure",
+   "francais": [
+    "demande",
+    "dossier de demande"
+   ],
+   "anglais": "application",
+   "arabe_standard": [
+    {
+     "forme": "مطلب",
+     "preuves": {
+      "ar_afi": 208,
+      "conv_afi": 3
+     },
+     "statut": "vu_conversations_afi",
+     "exemple": "اجراءات الاقتناء ايداع مطلب اقتناء قطعة ارض ومطلب تاكيد اقتناء قطعة ارض بمكتب الضبط المركزي او باحدى النيابات او التمثيليات الجهوية للوكالة ايداع مطلب بالولاية "
+    },
+    {
+     "forme": "طلب",
+     "preuves": {
+      "ar_afi": 170
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "المناطق المبرمجة قامت الوكالة ببرمجة تهيية مجموعة من المناطق الصناعية على مساحة 1334 هكتار تتوزع كالتالي 3 مناطق صناعية على مساحة 73 هك بتونس الكبرى 9 مناطق صنا"
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "مطلب",
+     "preuves": {
+      "conv_afi": 3,
+      "ar_afi": 208
+     },
+     "statut": "vu_conversations_afi",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": "1 ايداع مطلب اقتناء قطعة ارض ومطلب تاكيد اقتناء قطعة ارض بمكتب الضبط المركزي او باحدى النيابات او التمثيليات الجهوية للوكالة 2 ايداع مطلب بالولاية مرجع النظر ال"
+    },
+    {
+     "forme": "ديموند",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "matlab",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": true,
+     "exemple": ""
+    },
+    {
+     "forme": "talab",
+     "preuves": {
+      "tarc": 1
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "origine": "propose",
+     "ambigu": true,
+     "exemple": "5abbezz anna8ou wa nadharan li kathrat al talab al mouta bzeyed 3ala el 5obezz lembasses wou el tabouna wou el"
+    },
+    {
+     "forme": "demande",
+     "preuves": {
+      "conv_afi": 3
+     },
+     "statut": "vu_conversations_afi",
+     "origine": "propose",
+     "ambigu": true,
+     "exemple": "je veux cree projet creation articles en bois dans des zons subventions et je veux faire une demande zone doit etre a cote dun airopot"
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "demande",
+     "preuves": {
+      "conv_afi": 3
+     },
+     "statut": "vu_conversations_afi"
+    }
+   ],
+   "statut": "atteste_donnees_afi",
+   "msa_atteste_afi": true
+  },
+  {
+   "id": "contrat",
+   "categorie": "procedure",
+   "francais": [
+    "contrat",
+    "acte de vente"
+   ],
+   "anglais": "contract",
+   "arabe_standard": [
+    {
+     "forme": "عقد",
+     "preuves": {
+      "ar_afi": 152
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "الفصل 2 خامسا يسقط حق باعثي المشاريع في قطاعات الصناعات المعملية والصناعات التقليدية والحرف الصغرى والخدمات في الاراضي المهياة والمقتناة في احدى الحالات التالية"
+    },
+    {
+     "forme": "عقد البيع",
+     "preuves": {
+      "ar_afi": 31
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "الفصل 2 خامسا يسقط حق باعثي المشاريع في قطاعات الصناعات المعملية والصناعات التقليدية والحرف الصغرى والخدمات في الاراضي المهياة والمقتناة في احدى الحالات التالية"
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "كونترا",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    },
+    {
+     "forme": "عقد",
+     "preuves": {
+      "tsac": 1,
+      "ar_afi": 152,
+      "tarc": 2
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": "ملا مرقة متع عقد هههههههه وانا الي ضحكني قالك ايران ورا ايقافي وبعد خافو سيبوني عيشو صدام حسين p p"
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "kontra",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "contrat",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": true,
+     "exemple": ""
+    },
+    {
+     "forme": "3a9d",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "contrat",
+     "preuves": {},
+     "statut": "a_valider_locuteur"
+    }
+   ],
+   "statut": "atteste_corpus_public",
+   "msa_atteste_afi": true
+  },
+  {
+   "id": "autorisation",
+   "categorie": "procedure",
+   "francais": [
+    "autorisation",
+    "permis"
+   ],
+   "anglais": "permit",
+   "arabe_standard": [
+    {
+     "forme": "رخصة",
+     "preuves": {
+      "ar_afi": 7
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "الاتجاهات العالمية للاستثمار خلال الاشهر السبعة الاولى من سنة 2023 وقد قدم هذا المحور السيد glenn barklie من موسسة global data الاصلاحات المعتمدة لتحسين مناخ ال"
+    },
+    {
+     "forme": "ترخيص",
+     "preuves": {
+      "ar_afi": 52
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "في اجل لا يتجاوز الثلاث سنوات الوثايق المطلوبة 1 مطلب معلل طالب الخدمة 2 تعمير الاستمارة وفق الانموذج الموضوع على ذمة طالب الخدمة طالب الخدمة 3 نسخة مطابقة للاص"
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "رخصة",
+     "preuves": {
+      "ar_afi": 7
+     },
+     "statut": "vu_textes_afi_seulement",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    },
+    {
+     "forme": "بيرمي",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "ro5sa",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "rokhsa",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "permis",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": true,
+     "exemple": ""
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "autorisation",
+     "preuves": {},
+     "statut": "a_valider_locuteur"
+    },
+    {
+     "forme": "permis",
+     "preuves": {},
+     "statut": "a_valider_locuteur"
+    }
+   ],
+   "statut": "a_valider_locuteur",
+   "msa_atteste_afi": true
+  },
+  {
+   "id": "cahier_des_charges",
+   "categorie": "procedure",
+   "francais": [
+    "cahier des charges"
+   ],
+   "anglais": "specifications",
+   "arabe_standard": [
+    {
+     "forme": "كراس الشروط",
+     "preuves": {
+      "ar_afi": 40
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "الفصل 2 خامسا يسقط حق باعثي المشاريع في قطاعات الصناعات المعملية والصناعات التقليدية والحرف الصغرى والخدمات في الاراضي المهياة والمقتناة في احدى الحالات التالية"
+    },
+    {
+     "forme": "كراس شروط",
+     "preuves": {
+      "ar_afi": 20
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "2 تعمير الاستمارة وفق الانموذج الموضوع على ذمة طالب الخدمة طالب الخدمة 3 نسخة مطابقة للاصل من عقد بيع او كتب توضيحي مسجل طالب الخدمة 4 مضمون من السجل التجاري ال"
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "كراس الشروط",
+     "preuves": {
+      "ar_afi": 40
+     },
+     "statut": "vu_textes_afi_seulement",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    },
+    {
+     "forme": "كاييي دي شارج",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "kras echourout",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "cahier de charge",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "cahier des charges",
+     "preuves": {},
+     "statut": "a_valider_locuteur"
+    },
+    {
+     "forme": "cahier de charge",
+     "preuves": {},
+     "statut": "a_valider_locuteur"
+    }
+   ],
+   "statut": "a_valider_locuteur",
+   "msa_atteste_afi": true
+  },
+  {
+   "id": "encheres",
+   "categorie": "procedure",
+   "francais": [
+    "vente aux enchères",
+    "enchère"
+   ],
+   "anglais": "auction",
+   "arabe_standard": [
+    {
+     "forme": "بتة عمومية",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "exemple": ""
+    },
+    {
+     "forme": "البتة العمومية",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "exemple": ""
+    },
+    {
+     "forme": "مزاد",
+     "preuves": {
+      "ar_afi": 30
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "الفصل 2 تاسعا جديد يتم اسقاط الحق بمقتضى قرار من الوزير المكلف بالصناعة باقتراح من الوكالة العقارية الصناعية وذلك بعد سماع المخالف وانذاره بواسطة عدل منفذ في اج"
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "بتّة",
+     "preuves": {
+      "ar_afi": 3
+     },
+     "statut": "vu_textes_afi_seulement",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    },
+    {
+     "forme": "بتة",
+     "preuves": {
+      "ar_afi": 3
+     },
+     "statut": "vu_textes_afi_seulement",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    },
+    {
+     "forme": "دلالة",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "batta",
+     "preuves": {
+      "tarc": 1
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "aklek menine ya batta"
+    },
+    {
+     "forme": "betta",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "dlala",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "enchere",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": true,
+     "exemple": ""
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "enchère",
+     "preuves": {},
+     "statut": "a_valider_locuteur"
+    },
+    {
+     "forme": "enchères",
+     "preuves": {
+      "conv_afi": 1
+     },
+     "statut": "vu_conversations_afi"
+    }
+   ],
+   "statut": "a_valider_locuteur",
+   "msa_atteste_afi": true
+  },
+  {
+   "id": "delai",
+   "categorie": "procedure",
+   "francais": [
+    "délai",
+    "combien de temps",
+    "quand"
+   ],
+   "anglais": "how long / when",
+   "arabe_standard": [
+    {
+     "forme": "آجال",
+     "preuves": {
+      "ar_afi": 82
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "الفصل 2 تلغى عبارة قطاعات الصناعة او الصناعات التقليدية او المهن الصغرى او الخدمات الواردة بالفصل 2 اثنا عشر من هذا القانون وتعوض بعبارة قطاعات الصناعات المعملي"
+    },
+    {
+     "forme": "مدة",
+     "preuves": {
+      "ar_afi": 97
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "الفصل 2 خامسا يسقط حق باعثي المشاريع في قطاعات الصناعات المعملية والصناعات التقليدية والحرف الصغرى والخدمات في الاراضي المهياة والمقتناة في احدى الحالات التالية"
+    },
+    {
+     "forme": "متى",
+     "preuves": {
+      "ar_afi": 1
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "صفحة 1032 الرايد الرسمي للجمهورية التونسية 29 مارس 2016 عدد 26 الفصل 26 لا تنطبق الاستثناءات المنصوص عليها بالفصل 24 من هذا القانون على المعلومات الضرورية بغاية"
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "وقتاش",
+     "preuves": {
+      "tsac": 4,
+      "tarc": 7
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [
+      "wa9tech"
+     ],
+     "exemple": "تعرف وقتاش تظهر وتعرف اش تحكي وما عندهاش التجغجيغ كيف برشا ممثلين"
+    },
+    {
+     "forme": "قداش من وقت",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    },
+    {
+     "forme": "وقت",
+     "preuves": {
+      "tsac": 34,
+      "ar_afi": 22,
+      "tarc": 34
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [
+      "wa9t"
+     ],
+     "exemple": "مشالله عل هم الله عط هم الوقت الط ب و حفضهم و بعد عل هم الحسد واولاد الحرام"
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "wa9tech",
+     "preuves": {
+      "tarc": 5,
+      "tunizi": 3,
+      "tsac": 1
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "partie 2 wa9tech"
+    },
+    {
+     "forme": "wa9tach",
+     "preuves": {
+      "tunizi": 1,
+      "tsac": 2
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "w ana wa9tach 3arsi"
+    },
+    {
+     "forme": "9adech mel wa9t",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "wa9t",
+     "preuves": {
+      "tarc": 30,
+      "tunizi": 7,
+      "tsac": 2
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "fi wa9t ha 3"
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "délai",
+     "preuves": {},
+     "statut": "a_valider_locuteur"
+    }
+   ],
+   "statut": "atteste_corpus_public",
+   "msa_atteste_afi": true
+  },
+  {
+   "id": "plastique",
+   "categorie": "secteur",
+   "francais": [
+    "plastique",
+    "chimie"
+   ],
+   "anglais": "plastics",
+   "arabe_standard": [
+    {
+     "forme": "بلاستيك",
+     "preuves": {
+      "ar_afi": 8
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "تخضع الارباح المتاتية من عمليات التصدير للضريبة على الشركات بنسبة 10 2 القطاعات المجددة القطاعات ذات الاولوية والمنظومة الاقتصادية في الصناعة والخدمات 1 القطاعا"
+    },
+    {
+     "forme": "صناعات كيميائية",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "exemple": ""
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "بلاستيك",
+     "preuves": {
+      "tsac": 1,
+      "ar_afi": 8
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": "يا ميمتي كان يسيبوني عليها بشلاكة بلاستيك 44"
+    },
+    {
+     "forme": "بلاستيكة",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "plastique",
+     "preuves": {
+      "conv_afi": 1,
+      "tsac": 1
+     },
+     "statut": "vu_conversations_afi",
+     "origine": "propose",
+     "ambigu": true,
+     "exemple": "slt nheb na3mel usine mta3 plastique fi sousse kifech nebda"
+    },
+    {
+     "forme": "plastic",
+     "preuves": {
+      "tunizi": 1
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "origine": "propose",
+     "ambigu": true,
+     "exemple": "ah la la meskina dabbagha kan da missioni men chroniqueuse ahsen nmais est ce qu elle m a coutera nce genre de chroniqueuses est devenu une mode a talage de pla"
+    },
+    {
+     "forme": "blastik",
+     "preuves": {
+      "tunizi": 1
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "zab 3lik 118 min contre metloui ngomes 2 min dkhal dazhoulkoum nfi blastik ni7chim 3maltou il 3ar"
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "plastique",
+     "preuves": {
+      "conv_afi": 1,
+      "tsac": 1
+     },
+     "statut": "vu_conversations_afi"
+    }
+   ],
+   "statut": "a_valider_locuteur",
+   "msa_atteste_afi": true
+  },
+  {
+   "id": "textile",
+   "categorie": "secteur",
+   "francais": [
+    "textile",
+    "confection"
+   ],
+   "anglais": "textile",
+   "arabe_standard": [
+    {
+     "forme": "نسيج",
+     "preuves": {
+      "ar_afi": 70
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "مهام الوكالة العقارية الصناعية يتمثل نشاط الوكالة العقارية الصناعية في تهيية المناطق الصناعية من خلال توفير كل الضروريات لانتصاب المشاريع الصناعية من بنية تحتية"
+    },
+    {
+     "forme": "ملابس",
+     "preuves": {
+      "ar_afi": 82
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "تخضع الارباح المتاتية من عمليات التصدير للضريبة على الشركات بنسبة 10 2 القطاعات المجددة القطاعات ذات الاولوية والمنظومة الاقتصادية في الصناعة والخدمات 1 القطاعا"
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "خياطة",
+     "preuves": {
+      "ar_afi": 1,
+      "tarc": 1
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    },
+    {
+     "forme": "تريكو",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    },
+    {
+     "forme": "نسيج",
+     "preuves": {
+      "ar_afi": 70
+     },
+     "statut": "vu_textes_afi_seulement",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "5iyata",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "khiyata",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "triko",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": true,
+     "exemple": ""
+    },
+    {
+     "forme": "textile",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": true,
+     "exemple": ""
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "textile",
+     "preuves": {},
+     "statut": "a_valider_locuteur"
+    },
+    {
+     "forme": "confection",
+     "preuves": {},
+     "statut": "a_valider_locuteur"
+    }
+   ],
+   "statut": "a_valider_locuteur",
+   "msa_atteste_afi": true
+  },
+  {
+   "id": "agroalimentaire",
+   "categorie": "secteur",
+   "francais": [
+    "agroalimentaire"
+   ],
+   "anglais": "food industry",
+   "arabe_standard": [
+    {
+     "forme": "الصناعات الغذائية",
+     "preuves": {
+      "ar_afi": 30
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "الاستقبال احداث الموسسات الشباك الموحد تسليم شهادات ايداع التصاريح بمشاريع الاستثمار تسليم شهادات ايداع التصاريح بمشاريع الاستثمار الانشطة المخولة الصناعات المع"
+    },
+    {
+     "forme": "صناعات غذائية",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "exemple": ""
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "ماكلة",
+     "preuves": {
+      "tsac": 1,
+      "tarc": 5
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [
+      "mekla"
+     ],
+     "exemple": "بري يكب سعدها و سعد الي جابها في التلفزة هاذي كان جات بنتي و لا اختي راني كليتها ماكلة بين سنيا لا تحشم ولا تجعر وينوا والديها تبارك الله التربية والاخلاق ملا ك"
+    },
+    {
+     "forme": "مواد غذائية",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "mekla",
+     "preuves": {
+      "tarc": 4
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "mezelt machritech ama 3andi w l mekla betbi3ti na9thi bel chhar 3andi lay9adar ysir"
+    },
+    {
+     "forme": "makla",
+     "preuves": {
+      "tarc": 2
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "a3ref lin kerchou tnaf5et ya5i mcha letbib 3ada 3ala rou7ou ya5i el tbib 9alou yelzmek etbattel el makla li modda la te9elou 3ala 6 choll ya rabbi setta ch8orr"
+    },
+    {
+     "forme": "agro",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": true,
+     "exemple": ""
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "agroalimentaire",
+     "preuves": {
+      "conv_afi": 1
+     },
+     "statut": "vu_conversations_afi"
+    },
+    {
+     "forme": "agro",
+     "preuves": {},
+     "statut": "a_valider_locuteur"
+    }
+   ],
+   "statut": "atteste_corpus_public",
+   "msa_atteste_afi": true
+  },
+  {
+   "id": "poisson",
+   "categorie": "secteur",
+   "francais": [
+    "poisson",
+    "sardine"
+   ],
+   "anglais": "fish",
+   "arabe_standard": [
+    {
+     "forme": "سمك",
+     "preuves": {
+      "ar_afi": 4
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "الصناعات المعملية قطاع الصناعات الفلاحية والغذايية قطاع صناعات مواد البناء والخزف والبلور قطاع الصناعات الميكانيكية والمعدنية والكهربايية قطاع الصناعات الكيمياو"
+    },
+    {
+     "forme": "سردين",
+     "preuves": {
+      "cdc_afi": "page 7"
+     },
+     "statut": "vu_cahier_des_charges_afi",
+     "exemple": ""
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "حوت",
+     "preuves": {
+      "tsac": 6,
+      "tarc": 8
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [
+      "7out"
+     ],
+     "exemple": "وجيهة بالحوت عليك و على جماعة حمام الانف"
+    },
+    {
+     "forme": "سردينة",
+     "preuves": {
+      "tsac": 1,
+      "tarc": 1
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": "يا نوفل يا ثعلوب يا نوفل يا ورتاني يا بياع السردينة بسوم المناني hhhhhhhhhhhh"
+    },
+    {
+     "forme": "سردين",
+     "preuves": {
+      "cdc_afi": "page 7"
+     },
+     "statut": "vu_cahier_des_charges_afi",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "7out",
+     "preuves": {
+      "tarc": 6,
+      "tsac": 2
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "kolha 7out jekel 7out ou 9lil eljehd jimout fi"
+    },
+    {
+     "forme": "hout",
+     "preuves": {
+      "tarc": 3
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "w kol mourab3at hout fih chwaya louz abyedh w matzidou chay"
+    },
+    {
+     "forme": "sardina",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "sardine",
+     "preuves": {
+      "cdc_afi": "page 7"
+     },
+     "statut": "vu_cahier_des_charges_afi",
+     "origine": "propose",
+     "ambigu": true,
+     "exemple": ""
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "poisson",
+     "preuves": {
+      "conv_afi": 6
+     },
+     "statut": "vu_conversations_afi"
+    },
+    {
+     "forme": "sardine",
+     "preuves": {
+      "cdc_afi": "page 7"
+     },
+     "statut": "vu_cahier_des_charges_afi"
+    }
+   ],
+   "statut": "atteste_donnees_afi",
+   "msa_atteste_afi": true
+  },
+  {
+   "id": "bois",
+   "categorie": "secteur",
+   "francais": [
+    "bois",
+    "menuiserie"
+   ],
+   "anglais": "wood",
+   "arabe_standard": [
+    {
+     "forme": "خشب",
+     "preuves": {
+      "ar_afi": 23
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "صنع الاطعمة والاطباق الجاهزة صنع اغذية ملايمة للاطفال واغذية للحمية صنع منتجات غذايية اخرى غ م س صنع اغذية حيوانات المزرعة صنع اغذية الحيوانات المنزلية انتاج ال"
+    },
+    {
+     "forme": "نجارة",
+     "preuves": {
+      "ar_afi": 5
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "صنع الاطعمة والاطباق الجاهزة صنع اغذية ملايمة للاطفال واغذية للحمية صنع منتجات غذايية اخرى غ م س صنع اغذية حيوانات المزرعة صنع اغذية الحيوانات المنزلية انتاج ال"
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "خشب",
+     "preuves": {
+      "tsac": 1,
+      "ar_afi": 23
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": "خشب جهنم"
+    },
+    {
+     "forme": "حطب",
+     "preuves": {
+      "tsac": 3
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": "ناجي جلول ضهر راجل لو يمسك وزارة العدل نجم نظفها حتى شوي و ما تنظفش ناس حطب جهنم العدل اساس العمران هاكم ريتو اللجان الشعبيه متاع القذافي و القضاء معاهم وينه لي"
+    },
+    {
+     "forme": "نجارة",
+     "preuves": {
+      "ar_afi": 5
+     },
+     "statut": "vu_textes_afi_seulement",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    },
+    {
+     "forme": "منويزري",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "5achab",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "khachab",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "7tab",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "nejara",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "menuiserie",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "bois",
+     "preuves": {
+      "conv_afi": 8
+     },
+     "statut": "vu_conversations_afi"
+    },
+    {
+     "forme": "menuiserie",
+     "preuves": {},
+     "statut": "a_valider_locuteur"
+    }
+   ],
+   "statut": "atteste_corpus_public",
+   "msa_atteste_afi": true
+  },
+  {
+   "id": "emballage",
+   "categorie": "secteur",
+   "francais": [
+    "emballage"
+   ],
+   "anglais": "packaging",
+   "arabe_standard": [
+    {
+     "forme": "تعليب",
+     "preuves": {
+      "ar_afi": 4
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "الصناعات المعملية قطاع الصناعات الفلاحية والغذايية قطاع صناعات مواد البناء والخزف والبلور قطاع الصناعات الميكانيكية والمعدنية والكهربايية قطاع الصناعات الكيمياو"
+    },
+    {
+     "forme": "تغليف",
+     "preuves": {
+      "ar_afi": 15
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "اصلاح وصيانة الطايرات والمركبات الفضايية اصلاح وصيانة وسايل نقل اخرى اصلاح معدات اخرى تركيب الات ومعدات صناعية انتاج وتوزيع الكهرباء والغاز والبخار والهواء المك"
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "تعليب",
+     "preuves": {
+      "ar_afi": 4
+     },
+     "statut": "vu_textes_afi_seulement",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    },
+    {
+     "forme": "أومبالاج",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "ta3lib",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "emballage",
+     "preuves": {
+      "conv_afi": 4
+     },
+     "statut": "vu_conversations_afi",
+     "origine": "propose",
+     "ambigu": true,
+     "exemple": "je veux lancer un projet emballage de poisson"
+    },
+    {
+     "forme": "ombalaj",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "emballage",
+     "preuves": {
+      "conv_afi": 4
+     },
+     "statut": "vu_conversations_afi"
+    }
+   ],
+   "statut": "a_valider_locuteur",
+   "msa_atteste_afi": true
+  },
+  {
+   "id": "emplois",
+   "categorie": "projet",
+   "francais": [
+    "emplois",
+    "ouvriers",
+    "employés"
+   ],
+   "anglais": "jobs",
+   "arabe_standard": [
+    {
+     "forme": "مواطن شغل",
+     "preuves": {
+      "ar_afi": 8
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "عملا باحكام الفصل 16 من الامر عدد 389 لسنة 2017 المورخ في 9 مارس 2017 والمنقح والمتمم بالامر عدد 182 لسنة 2024 المتعلق بمنح الحوافز المالية لفايدة الاستثمارات ا"
+    },
+    {
+     "forme": "عمال",
+     "preuves": {
+      "ar_afi": 14
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "خدمات الحلاقة والتجميل النقل وكالات الاسفار السياحية الفلاحة والصيد البحري وتربية الاحياء المايية المهن الحرة الخدمات شبه الطبية والصيدليات ومخابر التحاليل الطب"
+    },
+    {
+     "forme": "يد عاملة",
+     "preuves": {
+      "ar_afi": 1
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "تستقر شركة فيستون في تونس منذ ما يقرب من عقدين وتوظف فيها بالفعل 560 موظفا وما يميز فرعها التونسي هو المستوى العالي لموهلات القوى العاملة فيه حيث يشكل المديرون "
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "خدامة",
+     "preuves": {
+      "tsac": 1,
+      "tarc": 1
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": "ضامرة و خفيفة و الشلابق خدامة ههههههههههههههه"
+    },
+    {
+     "forme": "عملة",
+     "preuves": {
+      "tsac": 2,
+      "ar_afi": 22,
+      "tarc": 2
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": "والله عملة عار يامسخ ياخمج انتانسان مريض بري دوي خير و كان معجبكش كلامي اشكي ماما"
+    },
+    {
+     "forme": "خدمة",
+     "preuves": {
+      "tsac": 18,
+      "ar_afi": 88,
+      "tarc": 7
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [
+      "5edma"
+     ],
+     "exemple": "سيتكوم يااااسر حلو خدمة مزيانة"
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "5adema",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "khadema",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "3amla",
+     "preuves": {
+      "tarc": 2,
+      "tunizi": 6,
+      "tsac": 3
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "wallahi rabi yehdik ya naoufel mella 3amla 3maletha wakahaw"
+    },
+    {
+     "forme": "5edma",
+     "preuves": {
+      "tarc": 4,
+      "tunizi": 13,
+      "tsac": 3
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "video t9oul ma3moul bedhema lel ghneya 5edma 3alameya"
+    },
+    {
+     "forme": "khedma",
+     "preuves": {
+      "tunizi": 9
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "khedma tayaraa barcha parole wtamthil wghna enfin l9ina mouzika tet7as"
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "employés",
+     "preuves": {},
+     "statut": "a_valider_locuteur"
+    },
+    {
+     "forme": "ouvriers",
+     "preuves": {},
+     "statut": "a_valider_locuteur"
+    }
+   ],
+   "statut": "atteste_corpus_public",
+   "msa_atteste_afi": true
+  },
+  {
+   "id": "vouloir",
+   "categorie": "intention",
+   "francais": [
+    "je veux",
+    "je voudrais"
+   ],
+   "anglais": "I want",
+   "arabe_standard": [
+    {
+     "forme": "أريد",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "exemple": ""
+    },
+    {
+     "forme": "أرغب",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "exemple": ""
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "نحب",
+     "preuves": {
+      "tsac": 28,
+      "tarc": 25
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [
+      "n7eb",
+      "nheb",
+      "n7ib"
+     ],
+     "exemple": "من احسن الممثلين بالكوميديا نحب نقول برافوووو و انشاء الله معاك ربي يا جعفور 3 3"
+    },
+    {
+     "forme": "نحبّ",
+     "preuves": {
+      "tsac": 28,
+      "tarc": 25
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [
+      "n7eb",
+      "nheb",
+      "n7ib"
+     ],
+     "exemple": "من احسن الممثلين بالكوميديا نحب نقول برافوووو و انشاء الله معاك ربي يا جعفور 3 3"
+    },
+    {
+     "forme": "حبيت",
+     "preuves": {
+      "tsac": 4,
+      "tarc": 9
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [
+      "7abbit",
+      "7abit"
+     ],
+     "exemple": "حبيت الاغنيه من ميوس مع ان مش فاهمتهااا بس غنتها اتهببل"
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "nheb",
+     "preuves": {
+      "conv_afi": 1,
+      "tarc": 5,
+      "tunizi": 4,
+      "tsac": 3
+     },
+     "statut": "vu_conversations_afi",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "slt nheb na3mel usine mta3 plastique fi sousse kifech nebda"
+    },
+    {
+     "forme": "n7eb",
+     "preuves": {
+      "tarc": 11,
+      "tunizi": 6,
+      "tsac": 15,
+      "cdc_afi": "page 7"
+     },
+     "statut": "vu_cahier_des_charges_afi",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "ena n7eb nkoun m3ekom fel 7emal kifech netasel bikom"
+    },
+    {
+     "forme": "n7ib",
+     "preuves": {
+      "tarc": 3,
+      "tunizi": 1
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "ana michamal win n7ib mana w5iratna 9ammi7na wich3irna achkoun ijawibni nifdih brou7i"
+    },
+    {
+     "forme": "nhib",
+     "preuves": {
+      "tunizi": 1
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "nhib naaref haja bark yekhy l stand up hedha idha7ik i mwahed chak fi ro7ou pffff n msata amsat mil msata min ghadi"
+    },
+    {
+     "forme": "n7ebb",
+     "preuves": {
+      "tarc": 1
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "n7ebb nefhem asrar lkawn wmouch ben natgha ki far3awn"
+    },
+    {
+     "forme": "7abit",
+     "preuves": {
+      "tarc": 3,
+      "tunizi": 3
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "j attendais romthan awards min 20 romthan kif wfew lmousalselslet lkol 7abit nchouf chkoun meilleur acteur w chkoun meilleur feuilleton nouba top top numb one s"
+    },
+    {
+     "forme": "7bit",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "7abbit",
+     "preuves": {
+      "tarc": 3
+     },
+     "statut": "vu_corpus_public",
+     "origine": "ajoute_depuis_tarc",
+     "ambigu": false,
+     "exemple": "kont nechri fil ma9routh 7abbit nechri zlebya ye55i l9itha me te3jebech"
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "je veux",
+     "preuves": {
+      "conv_afi": 20
+     },
+     "statut": "vu_conversations_afi"
+    }
+   ],
+   "statut": "atteste_donnees_afi",
+   "msa_atteste_afi": false
+  },
+  {
+   "id": "chercher",
+   "categorie": "intention",
+   "francais": [
+    "je cherche",
+    "trouver"
+   ],
+   "anglais": "I look for",
+   "arabe_standard": [
+    {
+     "forme": "أبحث عن",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "exemple": ""
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "نلوّج",
+     "preuves": {
+      "tarc": 4
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [
+      "nlawej"
+     ],
+     "exemple": ""
+    },
+    {
+     "forme": "نلوج",
+     "preuves": {
+      "tarc": 4
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [
+      "nlawej"
+     ],
+     "exemple": ""
+    },
+    {
+     "forme": "نلقى",
+     "preuves": {
+      "tsac": 2,
+      "tarc": 8
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [
+      "nal9a"
+     ],
+     "exemple": "تعجبني هاجر زعما نلقى وحد كيفها تعيش معايا في الجزاير"
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "nlawej",
+     "preuves": {
+      "tarc": 4
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "zedt kharrejthon wetwithom wemchit k3adt koddem nlawej 3la"
+    },
+    {
+     "forme": "nlowej",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "nal9a",
+     "preuves": {
+      "tarc": 6
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "lbere7 9omt mnoum nal9a rou7i n9oul allah late7rem wliyya m dherriya manajmtch ntfakr bech 7lemt ema 9omt nal9a rou7i n9oul fl kelma hedhi ghadhtni 7alti"
+    },
+    {
+     "forme": "nel9a",
+     "preuves": {
+      "tarc": 1
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "nel9a rouhi dima hzina w wahdi mandich hatta nes thezli el w ta9ef uaaya"
+    },
+    {
+     "forme": "nlaw9",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "je cherche",
+     "preuves": {
+      "conv_afi": 9
+     },
+     "statut": "vu_conversations_afi"
+    }
+   ],
+   "statut": "atteste_corpus_public",
+   "msa_atteste_afi": false
+  },
+  {
+   "id": "faire",
+   "categorie": "intention",
+   "francais": [
+    "faire",
+    "lancer"
+   ],
+   "anglais": "to do / start",
+   "arabe_standard": [
+    {
+     "forme": "أقوم ب",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "exemple": ""
+    },
+    {
+     "forme": "أنجز",
+     "preuves": {
+      "ar_afi": 2
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "انعقاد اللجنة الوطنية المكلفة بالنظر في مطالب الانتفاع بالحوافز المحدثة لدى الهيية التونسية للاستثمار 4 نوفمبر 2026 مشاركة الهيية التونسية للاستثمار في فعاليات "
+    },
+    {
+     "forme": "إنشاء",
+     "preuves": {
+      "ar_afi": 52
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "2 تغيير صبغة الاراضي من فلاحية الى صناعية 3 اقتناء الاراضي 4 تهيية المناطق الصناعية بمجرد الحصول على الارض تشرع الوكالة في تهيية المناطق الصناعية من خلال اجراء "
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "نعمل",
+     "preuves": {
+      "tsac": 4,
+      "tarc": 11
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [
+      "na3mel"
+     ],
+     "exemple": "يلزمني نعمل جام على كل تعليق سب هالمسخ والا نكتب كتاب كامل سبان وشتيمة"
+    },
+    {
+     "forme": "نحل",
+     "preuves": {
+      "tsac": 1,
+      "tarc": 2
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": "برجوليا عسل عسل عسل النحل انشالله انساء تونس كيفها"
+    },
+    {
+     "forme": "نبدا",
+     "preuves": {
+      "tsac": 2,
+      "tarc": 4
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [
+      "nebda"
+     ],
+     "exemple": "انا عجبتني برشا لرشا خاطر حقيقة و واقعنا التونسي برافو كي نبدا نتفرج نشيخ خاطر نحس روحي نتفرج في حقيقة مش في مسلسل"
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "na3mel",
+     "preuves": {
+      "conv_afi": 1,
+      "tarc": 6,
+      "tsac": 2
+     },
+     "statut": "vu_conversations_afi",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "slt nheb na3mel usine mta3 plastique fi sousse kifech nebda"
+    },
+    {
+     "forme": "n3amel",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "n7el",
+     "preuves": {
+      "tarc": 1
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "w na5u w na3mel w n7el kol"
+    },
+    {
+     "forme": "nebda",
+     "preuves": {
+      "conv_afi": 1,
+      "tarc": 4,
+      "tunizi": 1
+     },
+     "statut": "vu_conversations_afi",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "slt nheb na3mel usine mta3 plastique fi sousse kifech nebda"
+    },
+    {
+     "forme": "nabda",
+     "preuves": {
+      "tarc": 1
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "3o9da fikom tet7ayer ki nabda nahkilkom dh7akt ala tamthilkom 7atem tamathilkom majra mkhakh nghayer kima w9eft ala ta7lilkom makhieb s7abkom tofla ma97eb 97abk"
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "faire",
+     "preuves": {
+      "conv_afi": 6,
+      "tunizi": 1
+     },
+     "statut": "vu_conversations_afi"
+    },
+    {
+     "forme": "lancer",
+     "preuves": {
+      "conv_afi": 7
+     },
+     "statut": "vu_conversations_afi"
+    }
+   ],
+   "statut": "atteste_donnees_afi",
+   "msa_atteste_afi": true
+  },
+  {
+   "id": "construire",
+   "categorie": "intention",
+   "francais": [
+    "construire",
+    "bâtir"
+   ],
+   "anglais": "build",
+   "arabe_standard": [
+    {
+     "forme": "بناء",
+     "preuves": {
+      "ar_afi": 137
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "الفصل 2 خامسا يسقط حق باعثي المشاريع في قطاعات الصناعات المعملية والصناعات التقليدية والحرف الصغرى والخدمات في الاراضي المهياة والمقتناة في احدى الحالات التالية"
+    },
+    {
+     "forme": "أبني",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "exemple": ""
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "نبني",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    },
+    {
+     "forme": "بني",
+     "preuves": {
+      "tsac": 3,
+      "ar_afi": 11
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": "احلى جعفور انشاء الله تكون قدوة لبرشا ممثلين و انشاء الله من حسن الى احسن و احلى تحية مني و من اهالي معتمدية بني خلاد الى جعفور ربي يكثر منك الناس"
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "nebni",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "nabni",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "bni",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "construire",
+     "preuves": {},
+     "statut": "a_valider_locuteur"
+    }
+   ],
+   "statut": "atteste_corpus_public",
+   "msa_atteste_afi": true
+  },
+  {
+   "id": "prendre",
+   "categorie": "intention",
+   "francais": [
+    "prendre",
+    "obtenir",
+    "avoir"
+   ],
+   "anglais": "get",
+   "arabe_standard": [
+    {
+     "forme": "الحصول على",
+     "preuves": {
+      "ar_afi": 85
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "2 تغيير صبغة الاراضي من فلاحية الى صناعية 3 اقتناء الاراضي 4 تهيية المناطق الصناعية بمجرد الحصول على الارض تشرع الوكالة في تهيية المناطق الصناعية من خلال اجراء "
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "ناخو",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    },
+    {
+     "forme": "ناخذ",
+     "preuves": {
+      "tsac": 1
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": "الحق في البرنامج كل مره اجيب لنا غريبه نحن دوله مسلمه لازم ناخذ موقف ضد هاته القناة قناة العار والكفر استغفر الله استغفر الله استغفر الله"
+    },
+    {
+     "forme": "نخذ",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "na5ou",
+     "preuves": {
+      "conv_afi": 1
+     },
+     "statut": "vu_conversations_afi",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "chnowa lwra9 lazmin bech na5ou ma9sem sina3i"
+    },
+    {
+     "forme": "nakhou",
+     "preuves": {
+      "tarc": 1
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "vitamine fel boregdane newya nakhou rabby yar7amna b ra7emtou"
+    },
+    {
+     "forme": "na5ith",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "n5ou",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "nekhou",
+     "preuves": {
+      "tarc": 1
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "3omrek matreni bin shera3 wakhtawih shtar mokhi tesh mawloud bih thi9a la na3ti le nekhou janbi 7ashti bih tayer ble jwenah 7awel besh takhrali fih"
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "avoir",
+     "preuves": {
+      "conv_afi": 2
+     },
+     "statut": "vu_conversations_afi"
+    }
+   ],
+   "statut": "atteste_donnees_afi",
+   "msa_atteste_afi": true
+  },
+  {
+   "id": "falloir",
+   "categorie": "intention",
+   "francais": [
+    "il faut",
+    "nécessaire"
+   ],
+   "anglais": "need / must",
+   "arabe_standard": [
+    {
+     "forme": "يجب",
+     "preuves": {
+      "ar_afi": 52
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "الفصل 2 رابعا يضبط مجلس ادارة الوكالة العقارية الصناعية ثمن بيع او كراء الاراضي والمقاسم المهياة والمباني المنجزة ويحدد الشروط المتعلقة بالبيع او الكراء مع اخذ "
+    },
+    {
+     "forme": "يلزم",
+     "preuves": {
+      "ar_afi": 2
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "احترام روسايه دون سعي لاسترضايهم لكسب اي معاملة تفضيلية الامتثال لتعليمات رييسه المباشر وتنفيذها فاذا كانت تلك التعليمات مخالفة بداهة للقانون فعلى العون اعلام ر"
+    },
+    {
+     "forme": "ضروري",
+     "preuves": {
+      "ar_afi": 6
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "البنية التحتية المزدهرة اكتشف كيف تستثمر تونس في البنية التحتية الحديثة لدعم نمو الاعمال التجارية من المسلم به ان تونس توفر ظروفا جيدة جدا لاقامة الانشطة الصناع"
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "لازم",
+     "preuves": {
+      "tsac": 25,
+      "ar_afi": 6,
+      "tarc": 32
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [
+      "lazem",
+      "lezem"
+     ],
+     "exemple": "انا عجبتني برشا و مازالت مبتدية لازم نشجعوهاا ربي معااك محلاك"
+    },
+    {
+     "forme": "لازمين",
+     "preuves": {
+      "ar_afi": 1
+     },
+     "statut": "vu_textes_afi_seulement",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    },
+    {
+     "forme": "يلزم",
+     "preuves": {
+      "tsac": 6,
+      "ar_afi": 2,
+      "tarc": 2
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": "وجيهة هي المراة التونسية من الممثلات القلايل في تونس الي تلعب الدور كيما يلزم ضحكتني برشة في العفشة مون امور نستناها في مسرحية اخرى من هذا المستوى"
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "lazem",
+     "preuves": {
+      "tarc": 14,
+      "tunizi": 2,
+      "tsac": 4
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "bilahi hal modiin bou dourou eli ejibilna fil komaj hadouma ech koun hathom fil edaara de 1 et de 2 hal hahira hady hiya jasousa moktra ou malhat ekbira lazem t"
+    },
+    {
+     "forme": "lazmin",
+     "preuves": {
+      "conv_afi": 1
+     },
+     "statut": "vu_conversations_afi",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "chnowa lwra9 lazmin bech na5ou ma9sem sina3i"
+    },
+    {
+     "forme": "lezem",
+     "preuves": {
+      "tarc": 14,
+      "tunizi": 2,
+      "tsac": 5
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "chbii zok omkom me tkhalou had chey5 lezem ta3tyou raykom me ta3jbekch me tetfarjech fiha"
+    },
+    {
+     "forme": "lezmin",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "yelzem",
+     "preuves": {
+      "tarc": 1,
+      "tunizi": 2,
+      "tsac": 1
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "ena sahihit aela wathika w yelzem twenssa kol yssahoho w yelzemna nekfo maehom"
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "il faut",
+     "preuves": {
+      "tunizi": 2
+     },
+     "statut": "rare_corpus_public_a_valider"
+    }
+   ],
+   "statut": "atteste_donnees_afi",
+   "msa_atteste_afi": true
+  },
+  {
+   "id": "avoir",
+   "categorie": "intention",
+   "francais": [
+    "j'ai"
+   ],
+   "anglais": "I have",
+   "arabe_standard": [
+    {
+     "forme": "لدي",
+     "preuves": {
+      "ar_afi": 1
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "التقرير السنوي لنشاط الوكالة العقارية الصناعية لسنة 2021 110 ا اكا انشطة مختلفة الكتابة القارة للجنة الصفقات لقد قامت الكتابة القارة للجنة الصفقات خلال سنة 2021"
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "عندي",
+     "preuves": {
+      "tsac": 30,
+      "cdc_afi": "page 7",
+      "tarc": 41
+     },
+     "statut": "vu_cahier_des_charges_afi",
+     "arabizi_vus_dans_tarc": [
+      "3andi",
+      "andi"
+     ],
+     "exemple": "افضل ممثلة عندي و انشالله بالتوفيق d"
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "3andi",
+     "preuves": {
+      "tarc": 27,
+      "tunizi": 3,
+      "tsac": 6,
+      "cdc_afi": "page 7"
+     },
+     "statut": "vu_cahier_des_charges_afi",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "3andi se3a w eni nasma3 fel ghneya wn3awed chapeau bas lel klem"
+    },
+    {
+     "forme": "andi",
+     "preuves": {
+      "tarc": 7,
+      "tunizi": 1,
+      "tsac": 1
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": true,
+     "exemple": "kharjet tasher we mkhaliya s7abha fiddar ntalifouni msaker jim3a kemla w shabi ikalmou fia nili tekhdem andi tnou9ezz w matnajamch t7elelha il beb n s7abek fida"
+    },
+    {
+     "forme": "3ndi",
+     "preuves": {
+      "tunizi": 1,
+      "tsac": 1
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "3ndi sou2el mariem 9adeh 3morha"
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "j'ai",
+     "preuves": {
+      "conv_afi": 2,
+      "tunizi": 3
+     },
+     "statut": "vu_conversations_afi"
+    }
+   ],
+   "statut": "atteste_donnees_afi",
+   "msa_atteste_afi": true
+  },
+  {
+   "id": "quoi",
+   "categorie": "question",
+   "francais": [
+    "quoi",
+    "quel",
+    "qu'est-ce que"
+   ],
+   "anglais": "what",
+   "arabe_standard": [
+    {
+     "forme": "ما",
+     "preuves": {
+      "ar_afi": 308
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "الاطار القانوني للوكالة القانون عدد 37 لسنة 1991 المورخ في 8 جوان 1991 والمتعلق باحداث الوكالة العقارية الصناعية الفصل 1 احدثت موسسة عمومية ذات صبغة صناعية وتجا"
+    },
+    {
+     "forme": "ماذا",
+     "preuves": {
+      "ar_afi": 4
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "الحوافز المتعلقة باقتناء الاراضي الصناعية في مناطق التنمية الجهوية الحوافز المتعلقة باشغال البنية التحتية تعد المنحة المخصصة لاشغال البنية التحتية من بين اكثر ا"
+    },
+    {
+     "forme": "ما هي",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "exemple": ""
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "شنوّة",
+     "preuves": {
+      "tsac": 7,
+      "tarc": 23
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [
+      "chnowa",
+      "chnouwa",
+      "chnoua"
+     ],
+     "exemple": "انسان يعرف شنوة يقول بصراحة يعتيه الصحة"
+    },
+    {
+     "forme": "شنوة",
+     "preuves": {
+      "tsac": 7,
+      "tarc": 23
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [
+      "chnowa",
+      "chnouwa",
+      "chnoua"
+     ],
+     "exemple": "انسان يعرف شنوة يقول بصراحة يعتيه الصحة"
+    },
+    {
+     "forme": "شنية",
+     "preuves": {
+      "tsac": 12,
+      "tarc": 14
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [
+      "shniya",
+      "chnia"
+     ],
+     "exemple": "بية ماشية وتصغار تبارك الله عليها زعمة شنية السر"
+    },
+    {
+     "forme": "شنيا",
+     "preuves": {
+      "tsac": 2
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": "يعرف شنيا يحكي"
+    },
+    {
+     "forme": "آش",
+     "preuves": {
+      "tsac": 232,
+      "ar_afi": 3,
+      "tarc": 31
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [
+      "ach",
+      "ech"
+     ],
+     "exemple": "انسان مثقف و واعي و يعرف اش اقول برا وا و ربي معاه"
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "chnowa",
+     "preuves": {
+      "conv_afi": 1,
+      "tarc": 12,
+      "tunizi": 11,
+      "tsac": 3
+     },
+     "statut": "vu_conversations_afi",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "chnowa lwra9 lazmin bech na5ou ma9sem sina3i"
+    },
+    {
+     "forme": "chnoua",
+     "preuves": {
+      "tarc": 4,
+      "tunizi": 2,
+      "tsac": 2
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "ena melli choftha awel me dhohret fel tv wel nes lkoll y attakiw feha mais kont dima n7ess li heya au fond tofla 7nina w malgre lebes 3leha mais bent baballah m"
+    },
+    {
+     "forme": "chnouwa",
+     "preuves": {
+      "tarc": 6,
+      "tunizi": 3,
+      "tsac": 2
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "chnouwa barnamejkom"
+    },
+    {
+     "forme": "chnia",
+     "preuves": {
+      "tarc": 4,
+      "tunizi": 1
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "ena nod5l nhel l video bech na3ml commentaire akhw yaaa rabiii mamsetha chnia lokza hethi bara a9ra wala chouf san3a w 5ali blassa l 4irk yesr masta w majet cha"
+    },
+    {
+     "forme": "chniya",
+     "preuves": {
+      "tarc": 2,
+      "tunizi": 1,
+      "tsac": 5
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "chniya hedha hamdullah jeb rabbi majech ra2iss"
+    },
+    {
+     "forme": "ach",
+     "preuves": {
+      "tarc": 16,
+      "tunizi": 7,
+      "tsac": 7
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": true,
+     "exemple": "9oulouha ma ach tahki bil francais"
+    },
+    {
+     "forme": "chnowwa",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "shniya",
+     "preuves": {
+      "tarc": 5,
+      "tunizi": 1
+     },
+     "statut": "vu_corpus_public",
+     "origine": "ajoute_depuis_tarc",
+     "ambigu": false,
+     "exemple": "shniya hethy zid"
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "quoi",
+     "preuves": {
+      "tunizi": 4,
+      "tsac": 1
+     },
+     "statut": "vu_corpus_public"
+    }
+   ],
+   "statut": "atteste_donnees_afi",
+   "msa_atteste_afi": true
+  },
+  {
+   "id": "comment",
+   "categorie": "question",
+   "francais": [
+    "comment"
+   ],
+   "anglais": "how",
+   "arabe_standard": [
+    {
+     "forme": "كيف",
+     "preuves": {
+      "ar_afi": 15
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "الاستقبال احداث الموسسات التصريح بمشروع استثمار عن بعد التصريع بمشروع استثمار عن بعد مطبوعة التصريح بمشروع في الصناعة مطبوعة التصريح بمشروع في الخدمات فوايد شها"
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "كيفاش",
+     "preuves": {
+      "tsac": 21,
+      "tarc": 20
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [
+      "kifech"
+     ],
+     "exemple": "الحمد لله يا ربي هاذي الحلقة تعدت خفيفة و تحفونة منغير الهرج متاع السياسيين يعطيكم الصحة ما فقتش بالوقت كيفاش تعداا"
+    },
+    {
+     "forme": "كيفاه",
+     "preuves": {
+      "tsac": 8,
+      "tarc": 18
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [
+      "kifeh"
+     ],
+     "exemple": "مثقفا و عرفت كيفاه تجاوب برافوووو"
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "kifech",
+     "preuves": {
+      "conv_afi": 1,
+      "tarc": 17,
+      "tunizi": 17,
+      "tsac": 11
+     },
+     "statut": "vu_conversations_afi",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "slt nheb na3mel usine mta3 plastique fi sousse kifech nebda"
+    },
+    {
+     "forme": "kifach",
+     "preuves": {
+      "tarc": 1,
+      "tsac": 2
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "al yensa fisa3 khatro rabi ya3lem tawa kifach rani chad al anti saket w ana n7areb f al dawla li khdatlek bayek"
+    },
+    {
+     "forme": "kifeh",
+     "preuves": {
+      "tarc": 17,
+      "tunizi": 6,
+      "tsac": 4
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "sandra bruel kol oehed o kifeh yheb yahki shyh tounseya mais elle veut s exprimer en francais ty lwehed saat mayarech ywasel haja bloughtou khali ya heya li aay"
+    },
+    {
+     "forme": "kifah",
+     "preuves": {
+      "tsac": 2
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "maset laset majet chayyy rak manich 3aref kifah ydha7ek fel 3bed"
+    },
+    {
+     "forme": "kifesh",
+     "preuves": {
+      "tarc": 2
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "5dhit 3liya fekra khayba ija nzid nkhayebhelek ana kif ma ana w moushni 9ader besh netbadel man7ebesh netmadel manloumeksh kifesh zebi tbadel kif zebi n3adel ma"
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "comment",
+     "preuves": {
+      "conv_afi": 2,
+      "tunizi": 1,
+      "tsac": 4
+     },
+     "statut": "vu_conversations_afi"
+    }
+   ],
+   "statut": "atteste_donnees_afi",
+   "msa_atteste_afi": true
+  },
+  {
+   "id": "combien",
+   "categorie": "question",
+   "francais": [
+    "combien"
+   ],
+   "anglais": "how much / many",
+   "arabe_standard": [
+    {
+     "forme": "كم",
+     "preuves": {
+      "ar_afi": 31
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "الاستقبال احداث الموسسات التصريح بمشروع استثمار عن بعد التصريع بمشروع استثمار عن بعد مطبوعة التصريح بمشروع في الصناعة مطبوعة التصريح بمشروع في الخدمات فوايد شها"
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "قداش",
+     "preuves": {
+      "tsac": 58,
+      "tarc": 17
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [
+      "9adech"
+     ],
+     "exemple": "ممثل قداش يعجبني و يضحكني برافوا"
+    },
+    {
+     "forme": "قدّاش",
+     "preuves": {
+      "tsac": 58,
+      "tarc": 17
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [
+      "9adech"
+     ],
+     "exemple": "ممثل قداش يعجبني و يضحكني برافوا"
+    },
+    {
+     "forme": "بقداش",
+     "preuves": {
+      "tarc": 6
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [
+      "b9adech"
+     ],
+     "exemple": ""
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "9adech",
+     "preuves": {
+      "tarc": 8,
+      "tunizi": 4,
+      "tsac": 28
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "bizarre 9adech tchebeh el mikael jackson dhaherli c est le meme chirurgien qui les a operes hhhh"
+    },
+    {
+     "forme": "9addech",
+     "preuves": {
+      "tarc": 2,
+      "tunizi": 3,
+      "tsac": 3
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "bravo mosalsel mch 3adi ena wallah tabba3tou 3l you tube w kammaltou l bare7 mch normal 9addech fih mn variation d emotions w 9addech fih mn recherches 3la deta"
+    },
+    {
+     "forme": "9adeh",
+     "preuves": {
+      "tarc": 9,
+      "tunizi": 5,
+      "tsac": 10
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "vraiment marjeelha 9adeh habitha wallah behya barchaa nes ghalta feha"
+    },
+    {
+     "forme": "9adach",
+     "preuves": {
+      "tarc": 2,
+      "tunizi": 2,
+      "tsac": 1
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "9adach"
+    },
+    {
+     "forme": "kadech",
+     "preuves": {
+      "tarc": 1,
+      "tunizi": 1,
+      "tsac": 6
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "ya zah kadech tla3na dhalmineha il dabegha we nawfel kifech yitsakbine we yitrahdine sadakni ya nawfel ken tbatil il tv khirlik rak masset we zid il mochkil ili"
+    },
+    {
+     "forme": "b9adech",
+     "preuves": {
+      "tarc": 3
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "b9adech"
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "combien",
+     "preuves": {},
+     "statut": "a_valider_locuteur"
+    }
+   ],
+   "statut": "atteste_corpus_public",
+   "msa_atteste_afi": true
+  },
+  {
+   "id": "ou",
+   "categorie": "question",
+   "francais": [
+    "où"
+   ],
+   "anglais": "where",
+   "arabe_standard": [
+    {
+     "forme": "أين",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "exemple": ""
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "وين",
+     "preuves": {
+      "tsac": 28,
+      "tarc": 38
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [
+      "win"
+     ],
+     "exemple": "صوتها و احساسها يهبلووو مشالله عليها ميسا الماجري قليل وين نلقاو احساس و صوت كيف صوتها نشالله نشوفوها نحمة كبيرة"
+    },
+    {
+     "forme": "فين",
+     "preuves": {
+      "tsac": 5,
+      "ar_afi": 2,
+      "tarc": 4
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [
+      "fin"
+     ],
+     "exemple": "فين تحطها تقد روحها"
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "win",
+     "preuves": {
+      "tarc": 36,
+      "tunizi": 22,
+      "tsac": 15
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": true,
+     "exemple": "oh rou3a abd lahmid bouchna9 wlah rzana w 5edma mzyena quelqu un 3arf win y7ot sa9ih"
+    },
+    {
+     "forme": "wein",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "wen",
+     "preuves": {
+      "tarc": 1,
+      "tunizi": 4
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "chmd5lik feha w tnjm t9on 9reb rabi alu5er wen trf nti"
+    },
+    {
+     "forme": "fin",
+     "preuves": {
+      "tarc": 5,
+      "tunizi": 2,
+      "tsac": 5
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": true,
+     "exemple": "yeser 7loua en fin fama haja tetesma3 f tounes 7achetna b khedma kima haka bravooo"
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "où",
+     "preuves": {
+      "conv_afi": 1,
+      "tarc": 125,
+      "tunizi": 61,
+      "tsac": 112
+     },
+     "statut": "vu_conversations_afi"
+    }
+   ],
+   "statut": "atteste_corpus_public",
+   "msa_atteste_afi": false
+  },
+  {
+   "id": "il_y_a",
+   "categorie": "question",
+   "francais": [
+    "il y a",
+    "est-ce qu'il y a"
+   ],
+   "anglais": "is there",
+   "arabe_standard": [
+    {
+     "forme": "هل يوجد",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "exemple": ""
+    },
+    {
+     "forme": "يوجد",
+     "preuves": {
+      "ar_afi": 21
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "المناطق المبرمجة قامت الوكالة ببرمجة تهيية مجموعة من المناطق الصناعية على مساحة 1334 هكتار تتوزع كالتالي 3 مناطق صناعية على مساحة 73 هك بتونس الكبرى 9 مناطق صنا"
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "فمّا",
+     "preuves": {
+      "tsac": 27,
+      "ar_afi": 7
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": "ممثلة متالقة و شخصية كبيرة من احسن ما عندنا في تونس فما ابداع في اعمالها و هذاك هو النجاح الحقيقي ربي معك و جيهة"
+    },
+    {
+     "forme": "فما",
+     "preuves": {
+      "tsac": 27,
+      "ar_afi": 7
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": "ممثلة متالقة و شخصية كبيرة من احسن ما عندنا في تونس فما ابداع في اعمالها و هذاك هو النجاح الحقيقي ربي معك و جيهة"
+    },
+    {
+     "forme": "ثمّا",
+     "preuves": {
+      "tsac": 1
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": "يا منافق ثما صراع في نداء تونس احكو عليه شويا و جيب زقزوق ولى ولد الباحي يا قواد"
+    },
+    {
+     "forme": "ثمة",
+     "preuves": {
+      "tsac": 3,
+      "tarc": 1
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": "برافو سي ناجي كلامك صحيح باين ثمة قضاة يساندو الارهابيين"
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "famma",
+     "preuves": {
+      "tarc": 11,
+      "tunizi": 4,
+      "tsac": 5
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "shih klamek mais famma halat ma ynajjamchi wallah"
+    },
+    {
+     "forme": "fama",
+     "preuves": {
+      "tarc": 24,
+      "tunizi": 22,
+      "tsac": 13
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "yeser 7loua en fin fama haja tetesma3 f tounes 7achetna b khedma kima haka bravooo"
+    },
+    {
+     "forme": "fame",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "thamma",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "tham",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": true,
+     "exemple": ""
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "il y a",
+     "preuves": {
+      "tunizi": 1
+     },
+     "statut": "rare_corpus_public_a_valider"
+    }
+   ],
+   "statut": "atteste_corpus_public",
+   "msa_atteste_afi": true
+  },
+  {
+   "id": "pour",
+   "categorie": "liaison",
+   "francais": [
+    "pour",
+    "afin de"
+   ],
+   "anglais": "to / in order to",
+   "arabe_standard": [
+    {
+     "forme": "لكي",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "exemple": ""
+    },
+    {
+     "forme": "من أجل",
+     "preuves": {
+      "ar_afi": 25
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "رويتنا رسالتنا قيمنا رويتنا ان تصبح الوكالة العقارية الصناعية رايدة في تهيية المناطق الصناعية عبر تقديم حلول مبتكرة ومستدامة لتعزيز النمو الاقتصادي ودعم التنمية"
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "باش",
+     "preuves": {
+      "tsac": 147,
+      "ar_afi": 1,
+      "tarc": 168
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [
+      "bech",
+      "bch",
+      "besh",
+      "bach",
+      "bich"
+     ],
+     "exemple": "برافوا لناجي جلول انك وطني باتم معنى الكلمة موش كيما الي يمدوا وجوههم باش يبيضوا الارهاب"
+    },
+    {
+     "forme": "بش",
+     "preuves": {
+      "tsac": 36
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": "بصرحة كلام صحيح علي خاطر عمرنا ما بش نقدموا بي دون مصلحة وربي مع تونس"
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "bech",
+     "preuves": {
+      "conv_afi": 1,
+      "tarc": 110,
+      "tunizi": 61,
+      "tsac": 37
+     },
+     "statut": "vu_conversations_afi",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "chnowa lwra9 lazmin bech na5ou ma9sem sina3i"
+    },
+    {
+     "forme": "bch",
+     "preuves": {
+      "tarc": 25,
+      "tunizi": 31,
+      "tsac": 7
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "chkoun bch yetfarej 3lih ghodwaa hhhhh"
+    },
+    {
+     "forme": "bach",
+     "preuves": {
+      "tarc": 10,
+      "tunizi": 3,
+      "tsac": 2
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "bil3akes ness lkol bach tzid t7ebik 5aterou ya7ki fi s7i7 houwa yast3aref kan bi rohou whouwa 3ta rayou c tt w9alkoum omourhoum nsa ya3ni kol wa7ed yt7aseb 3la "
+    },
+    {
+     "forme": "besh",
+     "preuves": {
+      "tarc": 12,
+      "tunizi": 3
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "ena 3andi 2 ans carert besh ma3adesh nrweh la fi bateau wlatayar tounssia"
+    },
+    {
+     "forme": "bich",
+     "preuves": {
+      "tarc": 10,
+      "tunizi": 1,
+      "tsac": 1
+     },
+     "statut": "vu_corpus_public",
+     "origine": "ajoute_depuis_tarc",
+     "ambigu": false,
+     "exemple": "elila tirimti elila tirimti u bich nitsater fog 5ariti ah chumi ah chumi"
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "pour",
+     "preuves": {
+      "conv_afi": 2,
+      "tunizi": 19,
+      "tsac": 4
+     },
+     "statut": "vu_conversations_afi"
+    }
+   ],
+   "statut": "atteste_donnees_afi",
+   "msa_atteste_afi": true
+  },
+  {
+   "id": "de_possession",
+   "categorie": "liaison",
+   "francais": [
+    "de (appartenance)"
+   ],
+   "anglais": "of",
+   "arabe_standard": [
+    {
+     "forme": "الخاص ب",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "exemple": ""
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "متاع",
+     "preuves": {
+      "tsac": 62,
+      "tarc": 62
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [
+      "mta3",
+      "mte3"
+     ],
+     "exemple": "اسمو على جسموا دنيا اخرى دنيا متاع ضحك ملا مبروكه و لميس و صبري و ملا خف عند البرنس ضحكه عالميه"
+    },
+    {
+     "forme": "متع",
+     "preuves": {
+      "tsac": 24
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": "جعفور اذاكا لمعلم و خاصة ضماروا لحلوا وانا نحبوا برشا وزيد برنامج متع يد وحدة تحفون وجغفور ميش كيف برشا عباد هو يحب اعانة الناس برجلية برافوااا برافوااا"
+    },
+    {
+     "forme": "متاعي",
+     "preuves": {
+      "tarc": 5
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [
+      "mte3i"
+     ],
+     "exemple": ""
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "mta3",
+     "preuves": {
+      "conv_afi": 1,
+      "tarc": 41,
+      "tunizi": 25,
+      "tsac": 27
+     },
+     "statut": "vu_conversations_afi",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "slt nheb na3mel usine mta3 plastique fi sousse kifech nebda"
+    },
+    {
+     "forme": "mte3",
+     "preuves": {
+      "tarc": 17,
+      "tunizi": 8,
+      "tsac": 19
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "bravo mosalsel mch 3adi ena wallah tabba3tou 3l you tube w kammaltou l bare7 mch normal 9addech fih mn variation d emotions w 9addech fih mn recherches 3la deta"
+    },
+    {
+     "forme": "mt3",
+     "preuves": {
+      "tunizi": 7,
+      "tsac": 2
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "m7leha il tofla mt3 il clip tbaki hhhhh y a jmaa chkoun idabarli noumrouha"
+    },
+    {
+     "forme": "mta3i",
+     "preuves": {
+      "tarc": 2,
+      "tunizi": 1
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "a7la bassam od5lo chine mta3i wa3mlo aboni ismo fares b tekaya tal9aw anachid taw ani na3mlilikom w mr6"
+    },
+    {
+     "forme": "mte3i",
+     "preuves": {
+      "tarc": 3,
+      "tunizi": 2
+     },
+     "statut": "vu_corpus_public",
+     "origine": "ajoute_depuis_tarc",
+     "ambigu": false,
+     "exemple": "eli 3ejbetou el commentaires ya3mel abonnee fi chaine mte3i"
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "de",
+     "preuves": {
+      "conv_afi": 50,
+      "tarc": 1,
+      "tunizi": 68,
+      "tsac": 8
+     },
+     "statut": "vu_conversations_afi"
+    }
+   ],
+   "statut": "atteste_donnees_afi",
+   "msa_atteste_afi": false
+  },
+  {
+   "id": "dans",
+   "categorie": "liaison",
+   "francais": [
+    "dans",
+    "à",
+    "en"
+   ],
+   "anglais": "in",
+   "arabe_standard": [
+    {
+     "forme": "في",
+     "preuves": {
+      "ar_afi": 4233
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "المناطق المهيية تهدف الوكالة العقارية الصناعية الى ضمان التنمية المستدامة و تشجيع على تطوير الاستثمار و تهيية الفضاءات الصناعية ومنذ احداثها سنة 1974 انجزت الوك"
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "في",
+     "preuves": {
+      "tsac": 1689,
+      "ar_afi": 4233,
+      "tarc": 501
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [
+      "fi",
+      "fe",
+      "f"
+     ],
+     "exemple": "امراة انيقة و سلسة في خطابها و ذكية و متواضعة"
+    },
+    {
+     "forme": "ف",
+     "preuves": {
+      "tsac": 6,
+      "ar_afi": 115,
+      "tarc": 42
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [
+      "f"
+     ],
+     "exemple": "اعلن الحرب و اعمل مجهودك che guivara الفن الشعبي التونسي اكبر رمز الفشل ف الدنيا هو انت"
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "fi",
+     "preuves": {
+      "conv_afi": 1,
+      "tarc": 419,
+      "tunizi": 310,
+      "tsac": 447
+     },
+     "statut": "vu_conversations_afi",
+     "origine": "propose",
+     "ambigu": true,
+     "exemple": "slt nheb na3mel usine mta3 plastique fi sousse kifech nebda"
+    },
+    {
+     "forme": "f",
+     "preuves": {
+      "tarc": 77,
+      "tunizi": 69,
+      "tsac": 63,
+      "cdc_afi": "page 7"
+     },
+     "statut": "vu_cahier_des_charges_afi",
+     "origine": "propose",
+     "ambigu": true,
+     "exemple": "nasmaeha f nhaar b 8 marat naaaaez zuz kamlu haka aaaman"
+    },
+    {
+     "forme": "fel",
+     "preuves": {
+      "tarc": 84,
+      "tunizi": 41,
+      "tsac": 30
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": true,
+     "exemple": "ena melli choftha awel me dhohret fel tv wel nes lkoll y attakiw feha mais kont dima n7ess li heya au fond tofla 7nina w malgre lebes 3leha mais bent baballah m"
+    },
+    {
+     "forme": "fil",
+     "preuves": {
+      "tarc": 67,
+      "tunizi": 51,
+      "tsac": 59
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": true,
+     "exemple": "ana fil ghorba w sout el athan ahla haja 3ijbitni saha likom ou allah yarahmou sbou3i"
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "à",
+     "preuves": {
+      "conv_afi": 31,
+      "tarc": 14,
+      "tunizi": 107,
+      "tsac": 71
+     },
+     "statut": "vu_conversations_afi"
+    },
+    {
+     "forme": "dans",
+     "preuves": {
+      "conv_afi": 15,
+      "tunizi": 7
+     },
+     "statut": "vu_conversations_afi"
+    }
+   ],
+   "statut": "atteste_corpus_public",
+   "msa_atteste_afi": true
+  },
+  {
+   "id": "beaucoup",
+   "categorie": "liaison",
+   "francais": [
+    "beaucoup",
+    "très"
+   ],
+   "anglais": "a lot",
+   "arabe_standard": [
+    {
+     "forme": "كثير",
+     "preuves": {
+      "ar_afi": 5
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "من المتوقع ان تستمر الاسواق الاسيوية الناشية الاخرى بما في ذلك الهند وبعض دول جنوب شرق اسيا في التفوق في الاداء في عام 2023 ولكن بمعدل نمو ابطا من العام السابق "
+    },
+    {
+     "forme": "جدا",
+     "preuves": {
+      "ar_afi": 5
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "البنية التحتية المزدهرة اكتشف كيف تستثمر تونس في البنية التحتية الحديثة لدعم نمو الاعمال التجارية من المسلم به ان تونس توفر ظروفا جيدة جدا لاقامة الانشطة الصناع"
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "برشا",
+     "preuves": {
+      "tsac": 236,
+      "tarc": 93
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [
+      "barcha",
+      "barsha",
+      "baaarcha"
+     ],
+     "exemple": "جعفور معادش منك برشا في ها البلاد"
+    },
+    {
+     "forme": "برشة",
+     "preuves": {
+      "tsac": 71
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": "وجيهة هي المراة التونسية من الممثلات القلايل في تونس الي تلعب الدور كيما يلزم ضحكتني برشة في العفشة مون امور نستناها في مسرحية اخرى من هذا المستوى"
+    },
+    {
+     "forme": "ياسر",
+     "preuves": {
+      "tsac": 170,
+      "tarc": 21
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [
+      "yesser",
+      "yecer"
+     ],
+     "exemple": "برافو وليد التونسي ياسر كلامك عجبني والله بردتلي على قلبي يعتيك الصحة"
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "barcha",
+     "preuves": {
+      "tarc": 70,
+      "tunizi": 66,
+      "tsac": 410
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "el mra hedhi bech inla5asha fi kelma ne9sa 5ebra ou 3morha mabetet ji3ana ama 3la neyatha barcha hetheka elli ye3jebni feha yeser cute elli fi 9albha 3la lsenha"
+    },
+    {
+     "forme": "barsha",
+     "preuves": {
+      "tarc": 14,
+      "tunizi": 7,
+      "tsac": 1
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "7louya barsha bravo 3"
+    },
+    {
+     "forme": "yesser",
+     "preuves": {
+      "tarc": 8,
+      "tunizi": 18,
+      "tsac": 53
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "yesser thkeya fanena fi ettaswi9 el klem fan w jamel w thke w taswi9"
+    },
+    {
+     "forme": "yasser",
+     "preuves": {
+      "tarc": 1,
+      "tunizi": 7,
+      "tsac": 20
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "bravo bendirman ghnaya yasser hloua"
+    },
+    {
+     "forme": "baaarcha",
+     "preuves": {
+      "tarc": 3,
+      "tunizi": 1,
+      "tsac": 4
+     },
+     "statut": "vu_corpus_public",
+     "origine": "ajoute_depuis_tarc",
+     "ambigu": false,
+     "exemple": "enti ra fa rence 3and baaarcha nsee chbini mafibelich"
+    },
+    {
+     "forme": "yecer",
+     "preuves": {
+      "tarc": 7,
+      "tunizi": 3,
+      "tsac": 3
+     },
+     "statut": "vu_corpus_public",
+     "origine": "ajoute_depuis_tarc",
+     "ambigu": false,
+     "exemple": "yecer hloua"
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "beaucoup",
+     "preuves": {
+      "tunizi": 3,
+      "tsac": 1
+     },
+     "statut": "vu_corpus_public"
+    }
+   ],
+   "statut": "atteste_corpus_public",
+   "msa_atteste_afi": true
+  },
+  {
+   "id": "petit_grand",
+   "categorie": "liaison",
+   "francais": [
+    "petit",
+    "grand"
+   ],
+   "anglais": "small / big",
+   "arabe_standard": [
+    {
+     "forme": "صغير",
+     "preuves": {
+      "ar_afi": 1
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "اعدادات ملفات تعريف الارتباط مرحبا بكم على http investintunisia tn ولتحسين تجربتك على الانترنت نستخدم تقنيات مثل ملفات تعريف الارتباط لجمع وتخزين المعلومات حول "
+    },
+    {
+     "forme": "كبير",
+     "preuves": {
+      "ar_afi": 31
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "الحوافز المتعلقة باقتناء الاراضي الصناعية في مناطق التنمية الجهوية الحوافز المتعلقة باشغال البنية التحتية تعد المنحة المخصصة لاشغال البنية التحتية من بين اكثر ا"
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "صغير",
+     "preuves": {
+      "tsac": 10,
+      "ar_afi": 1,
+      "tarc": 11
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [
+      "sghir"
+     ],
+     "exemple": "ملي صغير نعرفها هكا متكبرش يا خي هههه"
+    },
+    {
+     "forme": "كبير",
+     "preuves": {
+      "tsac": 88,
+      "ar_afi": 31,
+      "tarc": 10
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [
+      "kbir"
+     ],
+     "exemple": "لامين النهدي ممثل كبير"
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "sghir",
+     "preuves": {
+      "tarc": 7,
+      "tunizi": 1
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "aleh l insen ki yotja3 mybkich le kbir le sghir ki el galb yotja3 yebki ibn adem"
+    },
+    {
+     "forme": "s8ir",
+     "preuves": {
+      "tsac": 1
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "ena s8ir 3ejbni"
+    },
+    {
+     "forme": "kbir",
+     "preuves": {
+      "tarc": 6,
+      "tunizi": 8,
+      "tsac": 28
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "pro inty dhaher fik tfol behy w ma7lek motrobi ama nans7ik b7aja min o5t il 5oha ki wa7ed tal9ah ya3mil fil 3ib 9oul rabi yihdih wakahaw kolna 3bad w no8ltou 5a"
+    },
+    {
+     "forme": "kbira",
+     "preuves": {
+      "tarc": 12,
+      "tunizi": 4,
+      "tsac": 22
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "kbira wala mich kbira thebel machaallah 3liha khir min wahda fi el tlatinette al hak youkal"
+    },
+    {
+     "forme": "sghira",
+     "preuves": {
+      "tarc": 7
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "w jadti mel om tbajal wled wledha 3lina w ta9ra 7sebhom fi kol chay ken a7na le meli sghira men ghir ma noch3or tla3t n7eb dar jadti mel bou akthar w tghidhni j"
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "petit",
+     "preuves": {
+      "tunizi": 2
+     },
+     "statut": "rare_corpus_public_a_valider"
+    },
+    {
+     "forme": "grand",
+     "preuves": {
+      "conv_afi": 2,
+      "tunizi": 3,
+      "tsac": 9
+     },
+     "statut": "vu_conversations_afi"
+    }
+   ],
+   "statut": "atteste_corpus_public",
+   "msa_atteste_afi": true
+  },
+  {
+   "id": "maintenant",
+   "categorie": "liaison",
+   "francais": [
+    "maintenant"
+   ],
+   "anglais": "now",
+   "arabe_standard": [
+    {
+     "forme": "الآن",
+     "preuves": {
+      "ar_afi": 10
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "الشريط الوسيط و الداخلي 27 صدر امر الانتزاع والان بصدد تحيين الدراسات الفنية 10 الخبطة 2 تطاوين الشريط الوسيط و الداخلي 28 انتهت الدراسات سنة 2010 15 القلعة 2 ق"
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "توا",
+     "preuves": {
+      "tsac": 45,
+      "tarc": 52
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [
+      "tawa"
+     ],
+     "exemple": "امين اقوى ما عنا توا عسل الدنيا نقطة و ارجع للسطر من غير نقاش"
+    },
+    {
+     "forme": "توّا",
+     "preuves": {
+      "tsac": 45,
+      "tarc": 52
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [
+      "tawa"
+     ],
+     "exemple": "امين اقوى ما عنا توا عسل الدنيا نقطة و ارجع للسطر من غير نقاش"
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "tawa",
+     "preuves": {
+      "tarc": 47,
+      "tunizi": 34,
+      "tsac": 22
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "hhhhhhhh tawa slimen may najamech ibadel chemise fi darou mechi yofrek feha howa w dadou"
+    },
+    {
+     "forme": "taw",
+     "preuves": {
+      "tarc": 29,
+      "tunizi": 25,
+      "tsac": 26
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": true,
+     "exemple": "taw mech el tigani ga y3adi 3an sliman"
+    },
+    {
+     "forme": "tawwa",
+     "preuves": {
+      "tarc": 2,
+      "tunizi": 1,
+      "tsac": 2
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "dama3t wallah tawwa atihom flous w 9hab"
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "maintenant",
+     "preuves": {},
+     "statut": "a_valider_locuteur"
+    }
+   ],
+   "statut": "atteste_corpus_public",
+   "msa_atteste_afi": true
+  },
+  {
+   "id": "salut",
+   "categorie": "politesse",
+   "francais": [
+    "bonjour",
+    "salut"
+   ],
+   "anglais": "hello",
+   "arabe_standard": [
+    {
+     "forme": "السلام عليكم",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "exemple": ""
+    },
+    {
+     "forme": "مرحبا",
+     "preuves": {
+      "ar_afi": 21
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "سياسة الجودة لعلامة مرحبا تعهدات الوكالة تجاه المستثمرين الصناعيين في مجال جودة الاستقبال تتعهد الوكالة العقارية الصناعية بما يلي 1 تيسير نفاذكم الى فضاءات الاس"
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "عسلامة",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    },
+    {
+     "forme": "سلام",
+     "preuves": {
+      "tsac": 19,
+      "tarc": 23
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [
+      "slm",
+      "salem",
+      "salam"
+     ],
+     "exemple": "خير من هاك الماسط متاع سلام مسيو"
+    },
+    {
+     "forme": "أهلا",
+     "preuves": {
+      "tsac": 1
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": "فله جزايرية اهلا و سهلا فيك في تونس و انشاالله ديما اتزورنا"
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "3aslema",
+     "preuves": {
+      "tarc": 2
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "bjeh rabi 3aslema"
+    },
+    {
+     "forme": "aslema",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "slt",
+     "preuves": {
+      "conv_afi": 1
+     },
+     "statut": "vu_conversations_afi",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "slt nheb na3mel usine mta3 plastique fi sousse kifech nebda"
+    },
+    {
+     "forme": "salam",
+     "preuves": {
+      "tarc": 3,
+      "tunizi": 4,
+      "tsac": 2
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "hammouda ana jazayria horra men wilayat setif madinati ra i3a jidane ta9a3 fi wassat char9 aljazayer manti9at setif tossama al hidhab al 3olya tab3od wilayati 3"
+    },
+    {
+     "forme": "ahla",
+     "preuves": {
+      "tarc": 5,
+      "tunizi": 10,
+      "tsac": 30
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "ana fil ghorba w sout el athan ahla haja 3ijbitni saha likom ou allah yarahmou sbou3i"
+    },
+    {
+     "forme": "ahlan",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "slm",
+     "preuves": {
+      "tarc": 10,
+      "tunizi": 2,
+      "tsac": 1
+     },
+     "statut": "vu_corpus_public",
+     "origine": "ajoute_depuis_tarc",
+     "ambigu": false,
+     "exemple": "mskin slm mr"
+    },
+    {
+     "forme": "salem",
+     "preuves": {
+      "tarc": 11,
+      "tunizi": 5,
+      "tsac": 6
+     },
+     "statut": "vu_corpus_public",
+     "origine": "ajoute_depuis_tarc",
+     "ambigu": false,
+     "exemple": "salem mr et bahlouch"
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "bonjour",
+     "preuves": {
+      "conv_afi": 20,
+      "tsac": 1
+     },
+     "statut": "vu_conversations_afi"
+    },
+    {
+     "forme": "slt",
+     "preuves": {
+      "conv_afi": 1
+     },
+     "statut": "vu_conversations_afi"
+    },
+    {
+     "forme": "salut",
+     "preuves": {},
+     "statut": "a_valider_locuteur"
+    },
+    {
+     "forme": "cc",
+     "preuves": {
+      "conv_afi": 1
+     },
+     "statut": "vu_conversations_afi"
+    }
+   ],
+   "statut": "atteste_donnees_afi",
+   "msa_atteste_afi": true
+  },
+  {
+   "id": "merci",
+   "categorie": "politesse",
+   "francais": [
+    "merci"
+   ],
+   "anglais": "thank you",
+   "arabe_standard": [
+    {
+     "forme": "شكرا",
+     "preuves": {
+      "ar_afi": 3
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "جميع المستخدمين مسوولون عن تصرفاتهم على http investintunisia tn يرجى التاكد من الامتثال لجميع القوانين المعمول بها وقوانين حقوق النشر ابلغ فريق الاشراف لدينا عن"
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "يعيشك",
+     "preuves": {
+      "tarc": 1
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    },
+    {
+     "forme": "عيشك",
+     "preuves": {
+      "tarc": 3
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    },
+    {
+     "forme": "مرسي",
+     "preuves": {
+      "tarc": 23
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [
+      "merci",
+      "merciii"
+     ],
+     "exemple": ""
+    },
+    {
+     "forme": "بارك الله فيك",
+     "preuves": {
+      "tsac": 5
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": "بارك الله فيك والطاقم الذي معك"
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "y3aychek",
+     "preuves": {
+      "tarc": 1
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "9al achnouwa bled el allef woujeh wou wejeh wou 9fa bled el thawoura el 3arra biya wou bik y3aychek wou falastine hiya zeada 3arrabiyet el bou3ziz wou el bou"
+    },
+    {
+     "forme": "3aychek",
+     "preuves": {
+      "tunizi": 1
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "3aychek hata a7na nhebkoum"
+    },
+    {
+     "forme": "ya3tik saha",
+     "preuves": {
+      "tsac": 1
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "hhhhhhh ya3tik saha"
+    },
+    {
+     "forme": "merci",
+     "preuves": {
+      "conv_afi": 1,
+      "tarc": 18,
+      "tunizi": 19,
+      "tsac": 10
+     },
+     "statut": "vu_conversations_afi",
+     "origine": "propose",
+     "ambigu": true,
+     "exemple": "bonjour merci de def definir l afi"
+    },
+    {
+     "forme": "mercii",
+     "preuves": {
+      "tunizi": 1
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "origine": "propose",
+     "ambigu": true,
+     "exemple": "raw3aaaaaaaaaaa raw3aaaaaaaaa raw3aaaaaaaaa vraiment mravooooo momathlin raw3a ikhraj rawa3a w kalimattttt ta9simhom binatkom raw3a bravoooo mercii li 3amal ra9"
+    },
+    {
+     "forme": "barkallah",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": ""
+    },
+    {
+     "forme": "merciii",
+     "preuves": {
+      "tarc": 3
+     },
+     "statut": "vu_corpus_public",
+     "origine": "ajoute_depuis_tarc",
+     "ambigu": false,
+     "exemple": "merciii ena 9ali na9es 15 kg kn lzem 20 hhhhhh ye5i i7asen ml howa"
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "merci",
+     "preuves": {
+      "conv_afi": 1,
+      "tarc": 18,
+      "tunizi": 19,
+      "tsac": 10
+     },
+     "statut": "vu_conversations_afi"
+    }
+   ],
+   "statut": "atteste_corpus_public",
+   "msa_atteste_afi": true
+  },
+  {
+   "id": "svp",
+   "categorie": "politesse",
+   "francais": [
+    "s'il vous plaît"
+   ],
+   "anglais": "please",
+   "arabe_standard": [
+    {
+     "forme": "من فضلك",
+     "preuves": {},
+     "statut": "a_valider_locuteur",
+     "exemple": ""
+    },
+    {
+     "forme": "رجاء",
+     "preuves": {
+      "ar_afi": 2
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "دليل اجراءات احداث الموسسات والتصرف ف الامتيازات لوكالة الهوض بالصناعة والتجديد الزيارة الميدانية الملف الى الادارة المركزية الادارة اثناء تقييم الجبودة لايتم ا"
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "بالله",
+     "preuves": {
+      "tsac": 69,
+      "ar_afi": 1,
+      "tarc": 9
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": "انا عحبتني لرشا اما بالله كريم يخلس على كل شلبوق"
+    },
+    {
+     "forme": "ربي يخليك",
+     "preuves": {
+      "tsac": 4
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": "مادام نحترمك ياسر مالا وهرة و كاريزما قداش بش تكون المراة التونسية ماثرة لو كانوا الكل كيفك ربي يخليك"
+    },
+    {
+     "forme": "عيشك",
+     "preuves": {
+      "tarc": 3
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "bellehi",
+     "preuves": {
+      "tarc": 1,
+      "tunizi": 6,
+      "tsac": 5
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "bellehi kifeh 3rafet"
+    },
+    {
+     "forme": "brabi",
+     "preuves": {
+      "tarc": 12,
+      "tunizi": 21,
+      "tsac": 36
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "kapanga prod ti tefhemm 7aja heki brabi"
+    },
+    {
+     "forme": "rabi y5alik",
+     "preuves": {
+      "tsac": 3
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "aham 7aja enno maytsana3ch 3la tbi3to habaltna brouj hhh rabi y5alik ja3four"
+    },
+    {
+     "forme": "3aychek",
+     "preuves": {
+      "tunizi": 1
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "3aychek hata a7na nhebkoum"
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "svp",
+     "preuves": {
+      "tunizi": 1,
+      "tsac": 1
+     },
+     "statut": "rare_corpus_public_a_valider"
+    },
+    {
+     "forme": "stp",
+     "preuves": {},
+     "statut": "a_valider_locuteur"
+    }
+   ],
+   "statut": "atteste_corpus_public",
+   "msa_atteste_afi": true
+  },
+  {
+   "id": "oui_non",
+   "categorie": "politesse",
+   "francais": [
+    "oui",
+    "non"
+   ],
+   "anglais": "yes / no",
+   "arabe_standard": [
+    {
+     "forme": "نعم",
+     "preuves": {
+      "ar_afi": 1
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "4 جانفي 2018 وفي وتصدير الخدمات فى مجال البعث العقاري الاجال 2222021 2002 2002 1 ظ 22 موشرات قيس الاداء 0 0 5200 5200 000 ا 5 نعم التفسيرات البرنامج الوكالة للف"
+    },
+    {
+     "forme": "لا",
+     "preuves": {
+      "ar_afi": 285
+     },
+     "statut": "vu_textes_afi",
+     "exemple": "الفصل 2 تاسعا جديد يتم اسقاط الحق بمقتضى قرار من الوزير المكلف بالصناعة باقتراح من الوكالة العقارية الصناعية وذلك بعد سماع المخالف وانذاره بواسطة عدل منفذ في اج"
+    }
+   ],
+   "tunisien_arabe": [
+    {
+     "forme": "إيه",
+     "preuves": {
+      "tsac": 6,
+      "tarc": 2
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": "حسين الجزيري كتسمعو في 2012 و تسمعو في 2016 تتعلم منو المعنى الحقيقي للنفاق السياسي ايه نعم نفاق سياسي نفاق مفضوح"
+    },
+    {
+     "forme": "أي",
+     "preuves": {
+      "tsac": 47,
+      "ar_afi": 107,
+      "tarc": 47
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [
+      "aya",
+      "ey",
+      "ay",
+      "eyy"
+     ],
+     "exemple": "صدقني يا شيخ المحاماة تواتيك خير مالسياسة فك عليك منهاولسانك تباركالله عليه لي يغلبك بوه باي"
+    },
+    {
+     "forme": "لا",
+     "preuves": {
+      "tsac": 688,
+      "ar_afi": 285,
+      "tarc": 122
+     },
+     "statut": "vu_corpus_public",
+     "arabizi_vus_dans_tarc": [
+      "la",
+      "le",
+      "lel"
+     ],
+     "exemple": "جعفر يحب بلادو ويعمل في الخير يعاون في الناس والحكومة لا علاقة تسرق في الشعب وتشري في الكوش للباجي"
+    },
+    {
+     "forme": "لالا",
+     "preuves": {
+      "ar_afi": 7,
+      "tarc": 2
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "arabizi_vus_dans_tarc": [],
+     "exemple": ""
+    }
+   ],
+   "arabizi": [
+    {
+     "forme": "ey",
+     "preuves": {
+      "tarc": 12,
+      "tunizi": 6,
+      "tsac": 3
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": true,
+     "exemple": "inconnu ey ama no9sod ma3loumet cha5sia w da9i9a hatheka 3lech staghrabt ama je sais li houma ya3rfou kol chay ama hetha hatta 3ayletha ma ya3rfouch lahkeya"
+    },
+    {
+     "forme": "eyh",
+     "preuves": {
+      "tarc": 1,
+      "tunizi": 1,
+      "tsac": 1
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "eyh khouya ontjou khali wehed yansa kal ham mtaa cho9ou do9ou wel boteya w bezg ellif"
+    },
+    {
+     "forme": "eyy",
+     "preuves": {
+      "tarc": 4,
+      "tunizi": 1
+     },
+     "statut": "vu_corpus_public",
+     "origine": "propose",
+     "ambigu": false,
+     "exemple": "eyy wenti t9oul sii lelli akther mennk niveaux tbib wella mouhandes wella ostedh jemi3i wella dharbettek edda3wa jme3et edde5ilia mordha tal9ah m3alla9 chalta w"
+    },
+    {
+     "forme": "le",
+     "preuves": {
+      "conv_afi": 3,
+      "tarc": 68,
+      "tunizi": 55,
+      "tsac": 61
+     },
+     "statut": "vu_conversations_afi",
+     "origine": "propose",
+     "ambigu": true,
+     "exemple": "le pdg de l afi"
+    },
+    {
+     "forme": "la",
+     "preuves": {
+      "conv_afi": 5,
+      "tarc": 61,
+      "tunizi": 104,
+      "tsac": 103
+     },
+     "statut": "vu_conversations_afi",
+     "origine": "propose",
+     "ambigu": true,
+     "exemple": "qui est le president de la tunisie"
+    },
+    {
+     "forme": "lala",
+     "preuves": {
+      "tunizi": 2
+     },
+     "statut": "rare_corpus_public_a_valider",
+     "origine": "propose",
+     "ambigu": true,
+     "exemple": "chfeyefha kima taa hmarna lala moch hmarna bhimna lala moch bhimna hacha bhimna ala fikra ana lagerien wallahi choftha khouft kabeltha mara f boite tatmanyek al"
+    }
+   ],
+   "francais_melange": [
+    {
+     "forme": "oui",
+     "preuves": {
+      "conv_afi": 1,
+      "tunizi": 14,
+      "tsac": 37
+     },
+     "statut": "vu_conversations_afi"
+    },
+    {
+     "forme": "non",
+     "preuves": {
+      "conv_afi": 1,
+      "tunizi": 7,
+      "tsac": 1
+     },
+     "statut": "vu_conversations_afi"
+    },
+    {
+     "forme": "ok",
+     "preuves": {
+      "tarc": 6,
+      "tunizi": 9,
+      "tsac": 5
+     },
+     "statut": "vu_corpus_public"
+    }
+   ],
+   "statut": "atteste_corpus_public",
+   "msa_atteste_afi": true
+  }
+ ]
+}

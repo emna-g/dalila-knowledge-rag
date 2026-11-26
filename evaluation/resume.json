@@ -1,0 +1,10 @@
+{
+ "questions": 30,
+ "dont_tunisiennes": 25,
+ "trouve_dans_les_5_premiers": {
+  "sens_seul_sans_lexique": "12/30 (tunisien : 9/25)",
+  "sens_seul_avec_lexique": "12/30 (tunisien : 9/25)",
+  "hybride_filtres_sans_lexique": "17/30 (tunisien : 13/25)",
+  "hybride_filtres_avec_lexique": "20/30 (tunisien : 16/25)"
+ }
+}

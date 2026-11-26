@@ -1,0 +1,122 @@
+{
+ "triplets": 19468,
+ "synonymes": 164,
+ "formes_a_valider": 200,
+ "raisonneur_owlrl": {
+  "triplets_apres_inference": 37380,
+  "individus_incoherents": [],
+  "erreurs": [],
+  "coherent": true
+ },
+ "requetes_sparql": {
+  "Lieu : zones du gouvernorat de Sousse": {
+   "nb_resultats": 5,
+   "exemple": [
+    [
+     "https://dalila.afi.nat.tn/donnees/zone/930606"
+    ],
+    [
+     "https://dalila.afi.nat.tn/donnees/zone/930920"
+    ],
+    [
+     "https://dalila.afi.nat.tn/donnees/zone/930601"
+    ]
+   ]
+  },
+  "Lot : lots de la zone 930900 (Sejnane)": {
+   "nb_resultats": 1,
+   "exemple": [
+    [
+     "67"
+    ]
+   ]
+  },
+  "Secteur : organisme compétent pour la pêche": {
+   "nb_resultats": 1,
+   "exemple": [
+    [
+     "https://dalila.afi.nat.tn/donnees/organisme/APIA"
+    ]
+   ]
+  },
+  "Commodité : zones à moins de 10 km d'un port": {
+   "nb_resultats": 3,
+   "exemple": [
+    [
+     "https://dalila.afi.nat.tn/donnees/zone/88888",
+     "0.0"
+    ],
+    [
+     "https://dalila.afi.nat.tn/donnees/zone/930601",
+     "5.0"
+    ],
+    [
+     "https://dalila.afi.nat.tn/donnees/zone/930602",
+     "5.0"
+    ]
+   ]
+  },
+  "Démarche : fiches de l'acquisition": {
+   "nb_resultats": 6,
+   "exemple": [
+    [
+     "12"
+    ],
+    [
+     "13"
+    ],
+    [
+     "14"
+    ]
+   ]
+  },
+  "Incitation : zones de développement régional": {
+   "nb_resultats": 1,
+   "exemple": [
+    [
+     "31"
+    ]
+   ]
+  },
+  "Organisme : organismes connus": {
+   "nb_resultats": 8,
+   "exemple": [
+    [
+     "https://dalila.afi.nat.tn/donnees/organisme/ANPE"
+    ],
+    [
+     "https://dalila.afi.nat.tn/donnees/organisme/FIPA"
+    ],
+    [
+     "https://dalila.afi.nat.tn/donnees/organisme/INS"
+    ]
+   ]
+  },
+  "Projet : la famille existe": {
+   "nb_resultats": 1,
+   "exemple": [
+    [
+     "https://dalila.afi.nat.tn/donnees/projet/exemple_type"
+    ]
+   ]
+  },
+  "Service AFI : service pour un prêt bancaire (hypothèque)": {
+   "nb_resultats": 1,
+   "exemple": [
+    [
+     "https://dalila.afi.nat.tn/donnees/service/attestation_insertion_hypotheque",
+     "19"
+    ]
+   ]
+  },
+  "BF17 : « 9at3a », « أرض », « plot » et « terrain » mènent au même concept": {
+   "nb_resultats": 1,
+   "exemple": [
+    [
+     "https://dalila.afi.nat.tn/ontologie#Lot"
+    ]
+   ]
+  }
+ },
+ "toutes_les_familles_repondent": true
+}

@@ -1,0 +1,38 @@
+=== chnowa lwra9 lazmin bech na5ou ma9sem sina3i?
+1. LEXIQUE  tunisien : True | requête : chnowa lwra9 lazmin bech na5ou ma9sem sina3i? || papiers وثائق terrain قطعة أرض industriel صناعي
+2. GRAPHE   concepts reconnus : ['Demarche', 'Lot']
+3. CHIFFRES (SQLite) :
+   (aucun lieu dans la question : Dalila demande dans quel gouvernorat chercher)
+4. PASSAGES (ChromaDB + mots-clés) :
+   [site_officiel] AFI : خدماتنا <https://www.afi.nat.tn/%d8%ae%d8%af%d9%85%d8%a7%d8%aa%d9%86%d8%a7/>
+   [site_officiel] AFI : خدماتنا <https://www.afi.nat.tn/%d8%ae%d8%af%d9%85%d8%a7%d8%aa%d9%86%d8%a7/>
+   [reponse_validee_afi] Quelles zones industrielles sont programmées par l'AFI dans  <base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)>
+   [reponse_validee_afi] إجراءات الاقتناء؟ <base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)>
+   [reponse_validee_afi] Quelles zones industrielles sont programmées par l'AFI dans  <base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)>
+=== n7eb terrain f Sfax
+1. LEXIQUE  tunisien : True | requête : n7eb terrain f Sfax ||
+2. GRAPHE   concepts reconnus : ['20', 'Lot']
+3. CHIFFRES (SQLite) :
+   lot 12 - MENZEL CHEKIR (Sfax) : 2398 m², 38.0 DT/m², disponible
+   lot 15 - MENZEL CHEKIR (Sfax) : 2909 m², 38.0 DT/m², disponible
+4. PASSAGES (ChromaDB + mots-clés) :
+   [rapport] Rapport sur les investissements étrangers 2025 (FIPA) <https://investintunisia.tn/wp-content/uploads/2026/06/Rapport_IDE2025->
+   [site_officiel] APII : Gouvernorat de Sfax <https://www.tunisieindustrie.nat.tn/fr/doc.asp?docid=602&mcat=13&mrub=>
+   [fiche_zone] Zone MENZEL CHEKIR <carte publique afi.e-industrie.gov.tn (lue le 2026-11-25); base AFI af>
+   [reponse_validee_afi] Quelles sont les données industrielles du gouvernorat de Sfa <base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)>
+   [cahier_des_charges] Cahier des charges CHOUTRANA 2004 <https://www.afi.nat.tn/wp-content/uploads/2023/12/CC-Chotrana-2004_com>
+=== famma 9at3a mawjouda 9rib mel port?
+1. LEXIQUE  tunisien : True | requête : famma 9at3a mawjouda 9rib mel port? || disponible متاح terrain قطعة أرض près de بالقرب من
+2. GRAPHE   concepts reconnus : ['Lot', 'port']
+3. CHIFFRES (SQLite) :
+   Gabes I & II & III : port Gabes à 0.0 km
+   SOUSSE I : port Sousse à 5.0 km
+   SOUSSE II : port Sousse à 5.0 km
+   THYNA : port Sfax à 14.0 km
+   ARIANA AEROPORT : port La Goulette à 17.0 km
+4. PASSAGES (ChromaDB + mots-clés) :
+   [formulaire] Demande d'acquisition d'un lot (AFI, AR) <https://www.afi.nat.tn/wp-content/uploads/2024/05/مطلب-إقتناء-بالعربية>
+   [cahier_des_charges] Cahier des charges GABES 2005 <https://www.afi.nat.tn/wp-content/uploads/2023/12/CC-Gabes-2005.pdf>
+   [cahier_des_charges] Cahier des charges GABES 2005 <https://www.afi.nat.tn/wp-content/uploads/2023/12/CC-Gabes-2005.pdf>
+   [reponse_validee_afi] إجراءات الاقتناء؟ <base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)>
+   [reponse_validee_afi] Comment contacter l'Agence Foncière Industrielle (AFI) ? <base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)>

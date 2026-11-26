@@ -1,0 +1,9 @@
+﻿chiffre_arabizi,lettre_arabe_la_plus_frequente,part,autres_lettres_vues,nb_exemples_alignes,fiabilite,source
+2,ء,95%,ة(2),43,faible (peu d'exemples),"TArC (+ cahier des charges p.20 pour 3, 7, 9)"
+3,ع,98%,ة(11) م(3) ف(2),1563,bonne,"TArC (+ cahier des charges p.20 pour 3, 7, 9)"
+4,غ,75%,ض(1) ظ(1),8,faible (peu d'exemples),"TArC (+ cahier des charges p.20 pour 3, 7, 9)"
+5,خ,96%,ة(9) غ(3) ر(1),399,bonne,"TArC (+ cahier des charges p.20 pour 3, 7, 9)"
+6,س,100%,,1,faible (peu d'exemples),"TArC (+ cahier des charges p.20 pour 3, 7, 9)"
+7,ح,95%,د(16) ل(8) م(7),1077,bonne,"TArC (+ cahier des charges p.20 pour 3, 7, 9)"
+8,ه,45%,غ(24) ح(4) ق(2),56,bonne,"TArC (+ cahier des charges p.20 pour 3, 7, 9)"
+9,ق,94%,ة(15) ف(7) ى(7),832,bonne,"TArC (+ cahier des charges p.20 pour 3, 7, 9)"

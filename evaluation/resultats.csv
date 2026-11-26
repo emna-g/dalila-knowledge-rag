@@ -1,0 +1,31 @@
+﻿id,question,origine,langue,sens_seul_sans_lexique,sens_seul_avec_lexique,hybride_filtres_sans_lexique,hybride_filtres_avec_lexique,top1
+R1,"slt, nheb na3mel usine mta3 plastique fi Sousse, kifech nebda?",conversation_afi (id 257),tn,True,True,True,True,p001110 [site_officiel] APII : Gouvernorat de Sousse
+R2,chnowa lwra9 lazmin bech na5ou ma9sem sina3i?,conversation_afi (id 261),tn,False,False,False,True,p000524 [site_officiel] AFI : خدماتنا
+R3,n7eb terrain f Sfax,cahier_officiel p.7,tn,True,True,True,True,p008124 [rapport] Rapport sur les investissements étrangers 2025 (FIPA)
+R4,3andi projet sardine,cahier_officiel p.7,tn,False,False,False,False,p000753 [site_officiel] APII : Idées de projet
+R5,عندي مشروع سردين,cahier_officiel p.7,tn,False,False,False,False,p001228 [site_officiel] APII : هياكل دعم ومساعدة المؤسسات
+H1,"mosna3 9rib l port, b9adech, w fi 9adech wa9t ?",doc_equipe (hypothese de Fida),tn,True,True,True,True,p009050 [fiche_zone] Zone GHEZALA
+F1,Procédure d'acquisition ?,conversation_afi (id 6),fr,False,False,True,True,p002714 [cahier_des_charges] Cahier des charges GROMBALIA 1980
+F2,je cherche un lot dans zone subventionnée,conversation_afi (id 226),fr,True,True,True,True,p000012 [reponse_validee_afi] Quels documents fournir pour acheter un lot dans une zone de
+F3,إجراءات الاقتناء؟,conversation_afi (id 3),ar,True,True,True,True,p000085 [reponse_validee_afi] إجراءات الاقتناء؟
+F4,أسعار المقسم؟,conversation_afi (id 119),ar,False,False,True,True,p000526 [site_officiel] AFI : خدماتنا
+F6,comment avoir l'attestation des suvention regional,conversation_afi (id 251),fr,True,True,False,False,p007763 [guide] Manuel des procédures 2016 (APII)
+C1,9adech soum el metre fi zone Sfax?,ecrite_par_claude_a_relire,tn,True,True,True,True,p002395 [site_officiel] TIA : تكاليف تنافسية
+C2,famma 9at3a mawjouda 9rib mel port?,ecrite_par_claude_a_relire,tn,False,True,True,True,"p007521 [formulaire] Demande d'acquisition d'un lot (AFI, AR)"
+C3,"n7eb nechri ma9sem fi Bizerte, chnowa lwra9?",ecrite_par_claude_a_relire,tn,False,False,False,True,p001016 [site_officiel] APII : Gouvernorat de Bizerte
+C4,kifech na3mel demande bech na5ou terrain?,ecrite_par_claude_a_relire,tn,False,False,True,True,"p007518 [formulaire] Demande d'acquisition d'un lot (AFI, FR)"
+C5,famma min7a ken na3mel machrou3 fi Kasserine?,ecrite_par_claude_a_relire,tn,False,False,False,False,p004681 [cahier_des_charges] Cahier des charges KASSERINE 1 2011
+C6,wa9tech nal9a el contrat?,ecrite_par_claude_a_relire,tn,False,False,False,True,p006499 [cahier_des_charges] Cahier des charges SILIANA I 2016
+C7,kifech nechri fi el batta mta3 AFI?,ecrite_par_claude_a_relire,tn,False,False,False,False,p000031 [reponse_validee_afi] Quelles zones industrielles sont programmées par l'AFI dans 
+C8,"3andi machrou3 mta3 5iyata, win nal9a blasa?",ecrite_par_claude_a_relire,tn,False,False,False,False,p000631 [site_officiel] AFI : CC.ZI.El Irtiyeh.Jendouba
+C9,lazem nebni fi 9adech mel wa9t ba3d ma na5ou el ma9sem?,ecrite_par_claude_a_relire,tn,False,False,False,False,p000085 [reponse_validee_afi] إجراءات الاقتناء؟
+C10,"n7eb credit mel banka, kifech na5ou attestation?",ecrite_par_claude_a_relire,tn,False,False,True,True,p000792 [site_officiel] APII : Guichet Unique - Autres types de prestations
+C11,شنوة الوراق اللازمين باش ناخو مقسم صناعي؟,ecrite_par_claude_a_relire,tn,False,False,False,True,p000524 [site_officiel] AFI : خدماتنا
+C12,قداش السوم متاع المتر في جندوبة؟,ecrite_par_claude_a_relire,tn,True,True,True,True,"p007522 [formulaire] Demande d'acquisition d'un lot (AFI, AR)"
+C13,فما قطعة أرض قريبة من المطار؟,ecrite_par_claude_a_relire,tn,True,False,True,False,p000085 [reponse_validee_afi] إجراءات الاقتناء؟
+C14,كيفاش نعمل باش نشري مقسم؟,ecrite_par_claude_a_relire,tn,False,False,False,True,p000085 [reponse_validee_afi] إجراءات الاقتناء؟
+C15,نحب نعمل معمل متاع بلاستيك في سوسة,ecrite_par_claude_a_relire,tn,True,True,True,True,p000487 [site_officiel] AFI : Zones aménagées
+C16,"3aslema, n7eb na3ref chnowa el avantages fi zone de developpement regional",ecrite_par_claude_a_relire,tn,True,True,True,True,p000671 [site_officiel] APII : FAQ - Questions Fréquemment Posées
+C17,fama lot disponible fi Gabes?,ecrite_par_claude_a_relire,tn,True,True,True,True,p009036 [fiche_zone] Zone Gabes I & II & III
+C18,barcha flous el terrain? n7eb 7aja r5isa,ecrite_par_claude_a_relire,tn,False,False,True,False,p000031 [reponse_validee_afi] Quelles zones industrielles sont programmées par l'AFI dans 
+C19,el ma wel dhaw mawjoudin fil zone?,ecrite_par_claude_a_relire,tn,False,False,False,False,p000630 [site_officiel] AFI : CC.ZI.El Irtiyeh.Jendouba
