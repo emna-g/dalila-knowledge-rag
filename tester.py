@@ -129,7 +129,11 @@ def analyser(question):
         src = urllib.parse.unquote(x["source_url"] or "")
         lien = f'<a href="{e(src)}">{e(src)}</a>' if src.startswith("http") else e(src)
         ocr = ' <span class="tag ocr">lu sur un scan : vérifier les chiffres sur le PDF</span>' if x["texte_ocr"] else ""
-        txt = " ".join(x["texte"].split())[:600]
+        txt = " ".join(x["texte"].split())
+        titre = " ".join((x["titre"] or "").split())
+        if titre and txt.startswith(titre):  # les réponses de l'AFI répètent leur question au début : on l'enlève
+            txt = txt[len(titre):].strip()
+        txt = txt[:600]
         cls = ' class="ar"' if sum(ch >= "؀" and ch <= "ۿ" for ch in txt) > len(txt) / 3 else ""
         b.append(f'<div class="carte"><b>{i}. {e(x["titre"])}</b><br><span class="tag">{e(TYPES.get(x["type"], x["type"]))}'
                  f'</span>{ocr}<p{cls}>{e(txt)}…</p><span class="note">Source : {lien}</span></div>')
