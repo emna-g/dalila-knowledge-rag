@@ -175,11 +175,15 @@ class Agent:
                     elif c["nom"] in OUTILS_CACHES:
                         res = {"erreur": f"outil inconnu : {c['nom']}"}
                     else:
+                        modele_args = dict(c["arguments"])
                         res, c["arguments"] = appeler_avec_lieu(c["nom"], c["arguments"], message)
+                        if modele_args != c["arguments"]:
+                            c["arguments_modele"] = modele_args  # lieu inconnu remplacé : gardé pour l'apprentissage
                     if cle not in deja and c["nom"] != "hors_sujet":
                         resultats.append((c["nom"], res))
                     deja[cle] = res
                     journal.append({"etape": etape, "outil": c["nom"], "arguments": c["arguments"],
+                                    "arguments_modele": c.get("arguments_modele"),
                                     "erreur": res.get("erreur"), "duree_s": round(time.time() - t, 2),
                                     "duree_modele_s": r["duree_s"]})
                     contenu = vue(c["nom"], res)

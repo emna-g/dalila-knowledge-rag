@@ -116,11 +116,12 @@ def chatbot(q: Question):
         r = {"reponse": REPLI.get(lang[:2], REPLI["fr"]), "source": "repli", "outils": [], "duree_s": 0.0,
              "erreur": type(ex).__name__}
     texte = masquer((q.message or "").strip()[:500])
-    outils = [{"outil": o["outil"], "arguments": o.get("arguments")} for o in r["outils"]]
+    outils = [{"outil": o["outil"], "arguments": o.get("arguments"), **({"arguments_modele": o["arguments_modele"]}
+              if o.get("arguments_modele") else {})} for o in r["outils"]]  # lieu inconnu : pour l'apprentissage
     log_id = _ecrire("INSERT INTO agent_turns (session_id, texte_anonymise, langue, outils, garde_faits, latence_ms, "
-                     "source) VALUES (%s, %s, %s, %s, %s, %s, %s)", q.session_id, texte, lang,
+                     "source, reponse) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)", q.session_id, texte, lang,
                      json.dumps(outils, ensure_ascii=False), "ancre" if r["source"] == "dalila" else "repli",
-                     int(r["duree_s"] * 1000), r["source"])
+                     int(r["duree_s"] * 1000), r["source"], masquer(r.get("texte_modele") or "")[:4000] or None)
     if r["source"] == "repli" and texte:
         _ecrire("INSERT INTO agent_needs (texte_anonymise, langue, raison) VALUES (%s, %s, %s)",
                 texte, lang, (r.get("erreur") or "repli")[:60])

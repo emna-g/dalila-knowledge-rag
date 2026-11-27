@@ -20,7 +20,7 @@ dalila/                 le service (paquet Python)
 ├─ langue/              langue, arabizi, reformulation (+ lexique tunisien) à faire
 ├─ voix/                voix vers texte, texte vers voix                    fait (Whisper small, Piper)
 ├─ sources/             URL configurées, lecture hebdomadaire, état         fait
-├─ apprentissage/       boucle d'apprentissage contrôlée                    à faire
+├─ apprentissage/       liste pour l'AFI, exemples vérifiés, noms de lieux  fait (voir son README)
 ├─ administration/      supervision, connaissances, réglages, droits        à faire
 ├─ moteurs/             modèles locaux (langage Ollama)                     fait pour le langage
 ├─ connaissances/       construction de la base (MariaDB, vecteurs, graphe) existant

@@ -19,16 +19,16 @@ Légende : **Fait** (vérifié), **Partiel** (une partie existe ou n'est pas mes
 | BF9 | Activer ou couper micro et lecture | Obligatoire | `frontend` | À faire |
 | BF10 | Enchaîner plusieurs actions (agent à outils) | Souhaité | `dalila/harnais`, `dalila/traitement` | Fait (agent à outils : `dalila/harnais/agent.py`) |
 | BF11 | Préparer une demande d'acquisition, sans dépôt sans confirmation | Souhaité | `dalila/traitement`, `dalila/harnais` | À faire |
-| BF12 | Lister pour l'AFI les questions en dialecte mal comprises | Souhaité | `dalila/apprentissage`, `dalila/administration` | À faire (table `agent_needs` créée) |
+| BF12 | Lister pour l'AFI les questions en dialecte mal comprises | Souhaité | `dalila/apprentissage`, `dalila/administration` | Fait côté service : `python -m dalila.apprentissage.besoins` (questions en repli ou notées « pas utile », par fréquence et langue, export CSV) ; écran : interface d'administration |
 | BF13 | Conversation vocale continue | Souhaité | `dalila/voix`, `frontend` | À faire |
 | BF14 | Lire les URL de la configuration, répondre avec le lien de la source | Obligatoire | `dalila/sources` | Partiel (corpus des sites officiels lu une fois ; lecture par configuration à faire) |
 | BF15 | État de chaque URL (lecture, échec, relance), PDF compris | Souhaité | `dalila/sources`, `dalila/administration` | À faire (table `agent_source_status` créée) |
 | BF16 | Ontologie OWL/RDF, 9 familles, 8 langues | Obligatoire | `ontology/`, `dalila/connaissances` | Fait pour les familles (SHACL conforme, OWL RL sans erreur, une requête par famille) ; libellés de/tr/dz/ly à relire |
 | BF17 | Comprendre par le sens, pas seulement par mots-clés | Obligatoire | `dalila/semantique`, `dalila/traitement/graphe.py` | Partiel (recherche par le sens : BGE-M3 choisi, voir decisions.md ; outil `relier_concepts` sur le graphe ; correspondance des activités par le sens à faire) |
-| BF18 | Apprendre des questions mal comprises, fréquentes, mal notées | Obligatoire | `dalila/apprentissage` | À faire |
-| BF19 | Contrôler automatiquement puis publier ce qui est appris | Obligatoire | `dalila/apprentissage` | À faire (contrôles SHACL / OWL / requêtes déjà en place dans construire_abox) |
+| BF18 | Apprendre des questions mal comprises, fréquentes, mal notées | Obligatoire | `dalila/apprentissage` | Partiel : conversations réussies -> exemples vérifiés pour le prochain ajustement (`exporter.py`) ; noms de lieux appris en direct (`lieux_appris.py`) ; synonymes du graphe à faire |
+| BF19 | Contrôler automatiquement puis publier ce qui est appris | Obligatoire | `dalila/apprentissage` | Partiel : contrôles automatiques puis publication pour les noms de lieux (nom libre, noms officiels inchangés, tests des outils) ; SHACL pour le graphe à brancher |
 | BF20 | Raisonner sur le graphe pour conseiller | Souhaité | `dalila/semantique` | Partiel (requête de test BF20 : pêche → APIA, port) |
-| BF21 | Journal de l'apprentissage et annulation a posteriori | Obligatoire | `dalila/apprentissage`, `dalila/administration` | À faire (graphes nommés `appris/<id>` prévus) |
+| BF21 | Journal de l'apprentissage et annulation a posteriori | Obligatoire | `dalila/apprentissage`, `dalila/administration` | Partiel : journal (`agent_learning_journal`) et annulation en ligne de commande (`--annuler`) ; écran d'administration à faire |
 | BF22 | Guider vers le bon service par des questions à choix | Obligatoire | `dalila/harnais`, `dalila/traitement` | Fait (outil `demarche` et lieux à proposer : balises `[[CHOIX]]`) |
 | BF23 | Conditions, pièces, frais, lieu de dépôt, lien de chacun des 8 services | Obligatoire | `dalila/traitement`, base de connaissances | Fait (outil `demarche` : les 8 services, réponses validées de l'AFI, lien, contact) |
 | BF24 | Service non couvert : contact AFI, besoin enregistré | Obligatoire | `dalila/harnais` | Fait (repli avec contact ; question gardée dans `agent_needs` par l'API) |
@@ -51,10 +51,10 @@ Légende : **Fait** (vérifié), **Partiel** (une partie existe ou n'est pas mes
 | BNF12 | Licence et coût de chaque modèle déclarés | liste complète | `docs/` | Fait (docs/decisions.md, « Modèles, licences et coûts ») |
 | BNF13 | Mêmes zones et chiffres dans les 8 langues | 100 % | `dalila/harnais`, `eval/` | À faire |
 | BNF14 | Seules les URL configurées ; page = donnée, jamais instruction | page piégée sans effet | `dalila/sources`, `dalila/harnais` | À faire |
-| BNF15 | Chaque ajout daté, sourcé, contrôlé ; versions | retour arrière | `dalila/apprentissage` | Partiel (graphe précédent gardé à chaque construction) |
+| BNF15 | Chaque ajout daté, sourcé, contrôlé ; versions | retour arrière | `dalila/apprentissage` | Partiel : chaque nom appris est daté, rattaché à ses conversations et à ses contrôles, annulable ; versions du graphe déjà gardées |
 | BNF16 | Questions anonymisées avant apprentissage | aucun nom, téléphone, CIN, RNE | `dalila/harnais`, `dalila/apprentissage` | Partiel (jeu de test anonymisé ; filtre automatique à faire) |
-| BNF17 | Gain d'apprentissage mesuré avant / après, par langue | hausse | `eval/` | À faire |
-| BNF18 | Jamais apprendre un prix, une disponibilité, une condition d'un visiteur ; plusieurs conversations | aucun ajout sans source | `dalila/apprentissage` | À faire |
+| BNF17 | Gain d'apprentissage mesuré avant / après, par langue | hausse | `eval/` | Partiel : chaque ajustement est mesuré sur le même banc d'essai avant adoption ; mesure par langue limitée par le jeu de test (surtout français) |
+| BNF18 | Jamais apprendre un prix, une disponibilité, une condition d'un visiteur ; plusieurs conversations | aucun ajout sans source | `dalila/apprentissage` | Fait pour les noms de lieux : au moins 2 conversations distinctes ; un nom avec des chiffres est refusé ; seulement « ce nom désigne ce lieu » |
 | BNF19 | OWL 2, RDF, SPARQL 1.1, libellés avec langue, export Turtle | export sans erreur | `ontology/`, `dalila/connaissances` | Fait (export TriG/Turtle, SHACL, OWL RL, requêtes de test) |
 
 ## Livrables

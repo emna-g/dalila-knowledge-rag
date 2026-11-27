@@ -461,11 +461,17 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--enseignant", action="store_true")
     ap.add_argument("--graine", type=int, default=7)
+    ap.add_argument("--reel", action="store_true", help="ajoute les conversations réussies exportées "
+                                                         "(dalila.apprentissage.exporter -> reel.jsonl)")
     a = ap.parse_args()
     rnd = random.Random(a.graine)
     exemples = ex_lots(rnd) + ex_zones(rnd) + ex_fiches(rnd) + ex_projets(rnd) + ex_hors_sujet()
     if a.enseignant:
         exemples += ex_enseignant()
+    if a.reel and (SORTIE / "reel.jsonl").exists():
+        reels = [json.loads(l) for l in open(SORTIE / "reel.jsonl", encoding="utf-8")]
+        print(len(reels), "exemples tirés de vraies conversations")
+        exemples += reels
     exemples = _sans_fuite(exemples)
     rnd.shuffle(exemples)
     SORTIE.mkdir(parents=True, exist_ok=True)

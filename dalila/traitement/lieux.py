@@ -63,17 +63,39 @@ def _norm(t):
     return " ".join("".join(c if c.isalnum() else " " for c in t).split())
 
 
-@lru_cache(maxsize=1)
+def _appris():
+    """Noms appris des conversations (dalila/apprentissage), actifs seulement : {(type, id): [noms]} et une version qui
+    change à chaque publication ou annulation. Table absente (base pas encore migrée) : rien."""
+    try:
+        lignes = q("SELECT alias, type, cible_id, modifie_le FROM agent_appris_lieux WHERE actif = 1")
+        version = q("SELECT COUNT(*) n, MAX(modifie_le) m FROM agent_appris_lieux")[0]
+    except Exception:  # noqa: BLE001
+        return {}, None
+    par = {}
+    for l in lignes:
+        par.setdefault((l["type"], str(l["cible_id"])), []).append(l["alias"])
+    return par, (version["n"], str(version["m"]))
+
+
 def _candidats():
+    appris, version = _appris()
+    return _candidats_version(version, tuple(sorted((k, tuple(v)) for k, v in appris.items())))
+
+
+@lru_cache(maxsize=2)
+def _candidats_version(version, appris):
+    appris = dict(appris)
     gouv = {r["code"]: r for r in q("SELECT code, nom_fr, nom_ar FROM dalila_gouvernorats")}
     par_nom = {_norm(g["nom_fr"]): c for c, g in gouv.items()}
     out = []
     for z in q("SELECT zone_id, nom_fr, nom_ar, gouvernorat_code FROM v_pub_zones"):
         noms = [z["nom_fr"], z["nom_ar"]] + [a["alias"] for a in q(
             "SELECT alias FROM dalila_zone_alias WHERE zone_id = %s", z["zone_id"])]
+        noms += list(appris.get(("zone", str(z["zone_id"])), ()))
         out.append(("zone", z["zone_id"], z["nom_fr"], [z["gouvernorat_code"]], noms))
     for c, g in gouv.items():
-        out.append(("gouvernorat", str(c), g["nom_fr"], [c], [g["nom_fr"], g["nom_ar"]]))
+        out.append(("gouvernorat", str(c), g["nom_fr"], [c],
+                    [g["nom_fr"], g["nom_ar"], *appris.get(("gouvernorat", str(c)), ())]))
     with open(RACINE / "db" / "reference" / "regions.csv", encoding="utf-8") as fh:
         for r in csv.DictReader(fh):
             codes = [par_nom[_norm(n)] for n in r["gouvernorats"].split(";")]
