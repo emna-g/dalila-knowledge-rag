@@ -1,0 +1,2 @@
+lot_id,etape_afi,raison,source
+7204,1,"disponible dans la base (export afi.sql), mais absent de la carte actuelle de l'AFI",carte publique actuelle de l'AFI carte.afi.nat.tn (relevée le 2026-11-26)

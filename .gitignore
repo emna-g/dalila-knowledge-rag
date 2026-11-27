@@ -1,14 +1,13 @@
-# Bibliothèques et modèle (lourds, réinstallables)
-libs/
+# Environnement et modèles (lourds, réinstallables)
+.venv/
 modeles/
-tmp/
 
-# Données (sur le Drive de l'équipe) et fichiers générés
+# Données hors git (Drive de l'équipe) : afi.sql, corpus préparé
 donnees/
-base/
-index_chroma/
-*.sqlite
+*.sql.gz
 *.zip
+# Corpus bruts du lexique (TArC, TUNIZI, TSAC : licences propres, lexique_tunisien.zip du Drive)
+dalila/langue/lexique/sources/
 
 # Python
 __pycache__/
@@ -18,11 +17,13 @@ __pycache__/
 # Secrets
 .env
 *.key
+
+# Sorties générées
 resultat.html
-
-.venv/
-
-# Graphe généré (reconstruit par backend.ingest.construire_abox)
+eval/reports/
 ontology/store/
+ontology/store.new/
+ontology/store.prev/
 ontology/abox/dalila.trig
-resultat.html
+ontology/abox/dalila.new.trig
+ontology/abox/rapport_graphe.json

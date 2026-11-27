@@ -1,0 +1,14437 @@
+{
+"source": "ancienne carte publique afi.e-industrie.gov.tn, relevée le 2026-11-25 (fusion)",
+"zones": {
+"88888": {
+"nom_fr": "Gabes I & II & III",
+"nom_ar": "قابس",
+"surface_totale_m2": 5361466,
+"surface_amenagee_m2": 4179900,
+"prix_m2_dt": 50,
+"distances": {
+"autoroute": {
+"nom": "A1",
+"km": 5,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"gazoduc": {
+"nom": "GP1",
+"km": 1,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"gare": {
+"nom": "Gabes",
+"km": 0,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"aeroport": {
+"nom": "Gabes Matmata",
+"km": 25,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"port": {
+"nom": "Gabes",
+"km": 0,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+}
+}
+},
+"9302051": {
+"nom_fr": "BIR EL KASSAA 2",
+"nom_ar": "بئر القصعة 2",
+"surface_totale_m2": null,
+"surface_amenagee_m2": null,
+"prix_m2_dt": 100,
+"distances": {}
+},
+"930211": {
+"nom_fr": "Oueslatia",
+"nom_ar": "وسلاتية",
+"surface_totale_m2": 141675,
+"surface_amenagee_m2": 71301,
+"prix_m2_dt": 45,
+"distances": {
+"autoroute": {
+"nom": "A1",
+"km": 103,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"gazoduc": {
+"nom": "GP3",
+"km": 35,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"gare": {
+"nom": "Sousse  Ezzouhor(Marchandise)",
+"km": 115,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"aeroport": {
+"nom": "Enfidha",
+"km": 125,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"port": {
+"nom": "Sousse",
+"km": 123,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+}
+}
+},
+"930301": {
+"nom_fr": "ARIANA AEROPORT",
+"nom_ar": "أريانة المطار",
+"surface_totale_m2": 913532,
+"surface_amenagee_m2": 786333,
+"prix_m2_dt": 100,
+"distances": {
+"autoroute": {
+"nom": "A1",
+"km": 2,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"gazoduc": {
+"nom": "GP8",
+"km": 2,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"gare": {
+"nom": "Tunis",
+"km": 7,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"aeroport": {
+"nom": "Tunis Carthage",
+"km": 3,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"port": {
+"nom": "La Goulette",
+"km": 17,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+}
+}
+},
+"930302": {
+"nom_fr": "KALAAT EL ANDALOUS",
+"nom_ar": "قلعة الاندلس",
+"surface_totale_m2": 95000,
+"surface_amenagee_m2": 76884,
+"prix_m2_dt": 50,
+"distances": {
+"autoroute": {
+"nom": "A1",
+"km": 12,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"gazoduc": {
+"nom": "GP8",
+"km": 3,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"gare": {
+"nom": "Tunis",
+"km": 39,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"aeroport": {
+"nom": "Tunis Carthage",
+"km": 35,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"port": {
+"nom": "La Goulette",
+"km": 42,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+}
+}
+},
+"930303": {
+"nom_fr": "CHOUTRANA",
+"nom_ar": "شطرانة",
+"surface_totale_m2": 585000,
+"surface_amenagee_m2": 412967,
+"prix_m2_dt": 100,
+"distances": {
+"autoroute": {
+"nom": "A1",
+"km": 4,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"gazoduc": {
+"nom": "GP8",
+"km": 4,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"gare": {
+"nom": "Tunis",
+"km": 13,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"aeroport": {
+"nom": "Tunis Carthage",
+"km": 9,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"port": {
+"nom": "La Goulette",
+"km": 19,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+}
+}
+},
+"930403": {
+"nom_fr": "EL AGBA",
+"nom_ar": "العقبة",
+"surface_totale_m2": 1107796,
+"surface_amenagee_m2": 443024,
+"prix_m2_dt": 100,
+"distances": {
+"autoroute": {
+"nom": "A1, A3",
+"km": 15,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"gazoduc": {
+"nom": "GP5",
+"km": 0,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"gare": {
+"nom": "Manouba",
+"km": 5,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"aeroport": {
+"nom": "Tunis Carthage",
+"km": 16,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"port": {
+"nom": "La Goulette",
+"km": 25,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+}
+}
+},
+"930508": {
+"nom_fr": "Sidi Achour Borj El Amri",
+"nom_ar": "سيدي عاشور برج العامري",
+"surface_totale_m2": 187100,
+"surface_amenagee_m2": 122147,
+"prix_m2_dt": 120,
+"distances": {
+"autoroute": {
+"nom": "A3",
+"km": 8,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"gazoduc": {
+"nom": "GP5",
+"km": 1,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"gare": {
+"nom": "Manouba",
+"km": 24,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"aeroport": {
+"nom": "Tunis Carthage",
+"km": 37,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"port": {
+"nom": "La Goulette",
+"km": 43,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+}
+}
+},
+"930601": {
+"nom_fr": "SOUSSE I",
+"nom_ar": "سوسة 1",
+"surface_totale_m2": 490000,
+"surface_amenagee_m2": 407354,
+"prix_m2_dt": null,
+"distances": {
+"autoroute": {
+"nom": "A1",
+"km": 16,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"gazoduc": {
+"nom": "GP 1",
+"km": 5,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"gare": {
+"nom": "Sousse  Ezzouhor(Marchandise) _ Métro Sahel (Transport Public)",
+"km": 10,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"aeroport": {
+"nom": "Monastir",
+"km": 12,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"port": {
+"nom": "Sousse",
+"km": 5,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+}
+}
+},
+"930602": {
+"nom_fr": "SOUSSE II",
+"nom_ar": "سوسة 2",
+"surface_totale_m2": 540072,
+"surface_amenagee_m2": 425716,
+"prix_m2_dt": 100,
+"distances": {
+"autoroute": {
+"nom": "A1",
+"km": 16,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"gazoduc": {
+"nom": "GP 1",
+"km": 5,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"gare": {
+"nom": "Sousse  Ezzouhor(Marchandise) _ Métro Sahel (Transport Public)",
+"km": 10,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"aeroport": {
+"nom": "Monastir",
+"km": 12,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"port": {
+"nom": "Sousse",
+"km": 5,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+}
+}
+},
+"930606": {
+"nom_fr": "BOUFICHA",
+"nom_ar": "بوفيشة",
+"surface_totale_m2": 303616,
+"surface_amenagee_m2": 133763,
+"prix_m2_dt": 100,
+"distances": {
+"autoroute": {
+"nom": "A1",
+"km": 2,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"gazoduc": {
+"nom": "GP 1",
+"km": 0,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"gare": {
+"nom": "Bouficha",
+"km": 2,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"aeroport": {
+"nom": "Enfidha",
+"km": 28,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"port": {
+"nom": "Sousse",
+"km": 62,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+}
+}
+},
+"930607": {
+"nom_fr": "ENFIDHA 2",
+"nom_ar": "النفيضة 2",
+"surface_totale_m2": 375000,
+"surface_amenagee_m2": 286904,
+"prix_m2_dt": 100,
+"distances": {
+"aeroport": {
+"nom": "Enfidha",
+"km": 68,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"port": {
+"nom": "Sousse",
+"km": 40,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"gare": {
+"nom": "Enfidha",
+"km": 2,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"autoroute": {
+"nom": "A1",
+"km": 2,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"gazoduc": {
+"nom": "GP 1",
+"km": 1,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+}
+}
+},
+"930704": {
+"nom_fr": "JAMMEL",
+"nom_ar": "جمال",
+"surface_totale_m2": 100000,
+"surface_amenagee_m2": 72969,
+"prix_m2_dt": 70,
+"distances": {
+"autoroute": {
+"nom": "A1",
+"km": 20,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"gazoduc": {
+"nom": "GP 1",
+"km": 20,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"gare": {
+"nom": "Jammal",
+"km": 2,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"aeroport": {
+"nom": "Monastir",
+"km": 20,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"port": {
+"nom": "Sousse",
+"km": 28,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+}
+}
+},
+"930900": {
+"nom_fr": "sejnane",
+"nom_ar": "سجنان",
+"surface_totale_m2": 150000,
+"surface_amenagee_m2": 294369,
+"prix_m2_dt": 32,
+"distances": {
+"aeroport": {
+"nom": "Tunis Carthage",
+"km": 113,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"port": {
+"nom": "Bizerte",
+"km": 75,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"gare": {
+"nom": "Sejnene",
+"km": 2,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"autoroute": {
+"nom": "A4",
+"km": 80,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"gazoduc": {
+"nom": "GP7",
+"km": 2,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+}
+}
+},
+"930902": {
+"nom_fr": "GHEZALA",
+"nom_ar": "غزالة",
+"surface_totale_m2": 100000,
+"surface_amenagee_m2": 72568,
+"prix_m2_dt": 32,
+"distances": {
+"autoroute": {
+"nom": "A4",
+"km": 23,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"gazoduc": {
+"nom": "GP11",
+"km": 2,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"gare": {
+"nom": "Menzel Bourguiba",
+"km": 0,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"aeroport": {
+"nom": "Tunis Carthage",
+"km": 64,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"port": {
+"nom": "Bizerte",
+"km": 23,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+}
+}
+},
+"930915": {
+"nom_fr": "MAHDIA Rte BOUMERDES",
+"nom_ar": "المهدية طريق بومرداس",
+"surface_totale_m2": 176846,
+"surface_amenagee_m2": 103416,
+"prix_m2_dt": 35,
+"distances": {
+"autoroute": {
+"nom": "A1",
+"km": 37,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"gazoduc": {
+"nom": "GP 1",
+"km": 37,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"gare": {
+"nom": "Mahdia",
+"km": 6,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"aeroport": {
+"nom": "Monastir",
+"km": 42,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"port": {
+"nom": "Sousse",
+"km": 55,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+}
+}
+},
+"930918": {
+"nom_fr": "Utique",
+"nom_ar": "أوتيك",
+"surface_totale_m2": 511863,
+"surface_amenagee_m2": 216236,
+"prix_m2_dt": 70,
+"distances": {
+"aeroport": {
+"nom": "Tunis Carthage",
+"km": 37,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"port": {
+"nom": "Bizerte",
+"km": 45,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"gare": {
+"nom": "Bizerte",
+"km": 45,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"autoroute": {
+"nom": "A4",
+"km": 1,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"gazoduc": {
+"nom": "GP8",
+"km": 0,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+}
+}
+},
+"930920": {
+"nom_fr": "Bouficha 2",
+"nom_ar": "بوفيشة 2",
+"surface_totale_m2": null,
+"surface_amenagee_m2": 77496,
+"prix_m2_dt": 100,
+"distances": {
+"aeroport": {
+"nom": "Enfidha",
+"km": 90,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"port": {
+"nom": "Sousse",
+"km": 62,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"gare": {
+"nom": "Bouficha",
+"km": 22,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"autoroute": {
+"nom": "A1",
+"km": 2,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"gazoduc": {
+"nom": "GP 1",
+"km": 0,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+}
+}
+},
+"931005": {
+"nom_fr": "EL HANCHA",
+"nom_ar": "الحنشة",
+"surface_totale_m2": 121197,
+"surface_amenagee_m2": 104288,
+"prix_m2_dt": 38,
+"distances": {
+"autoroute": {
+"nom": "A1",
+"km": 4,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"gazoduc": {
+"nom": "RN 1",
+"km": 0,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"gare": {
+"nom": "Hencha",
+"km": 1,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"aeroport": {
+"nom": "Thyna",
+"km": 44,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"port": {
+"nom": "Sfax",
+"km": 48,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+}
+}
+},
+"931006": {
+"nom_fr": "THYNA",
+"nom_ar": "طينة",
+"surface_totale_m2": 423147,
+"surface_amenagee_m2": 315427,
+"prix_m2_dt": 100,
+"distances": {
+"autoroute": {
+"nom": "A1",
+"km": 22,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"gazoduc": {
+"nom": "RN 1",
+"km": 0,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"gare": {
+"nom": "Sfax",
+"km": 4,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"aeroport": {
+"nom": "Thyna",
+"km": 8,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"port": {
+"nom": "Sfax",
+"km": 14,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+}
+}
+},
+"931009": {
+"nom_fr": "EL MAHRES",
+"nom_ar": "المحرس القسط الأول",
+"surface_totale_m2": 213568,
+"surface_amenagee_m2": 73612,
+"prix_m2_dt": 35,
+"distances": {
+"aeroport": {
+"nom": "Thyna",
+"km": 41,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"port": {
+"nom": "Sfax",
+"km": 40,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"gare": {
+"nom": "Mahres",
+"km": 4.5,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"autoroute": {
+"nom": "A1",
+"km": 14,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"gazoduc": {
+"nom": "GP 1",
+"km": 0,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+}
+}
+},
+"931011": {
+"nom_fr": "MENZEL CHEKIR",
+"nom_ar": "منزل شاكر",
+"surface_totale_m2": 157909,
+"surface_amenagee_m2": 139553,
+"prix_m2_dt": 38,
+"distances": {
+"aeroport": {
+"nom": "Thyna",
+"km": 41,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"port": {
+"nom": "Sfax",
+"km": 44,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"gare": {
+"nom": "Sfax",
+"km": 42,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"autoroute": {
+"nom": "A1",
+"km": 37,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"gazoduc": {
+"nom": "GP 1",
+"km": 40,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+}
+}
+},
+"931100": {
+"nom_fr": "Tataouine el khabta",
+"nom_ar": "الخبطة تطاوين",
+"surface_totale_m2": 139550,
+"surface_amenagee_m2": 70429,
+"prix_m2_dt": 32,
+"distances": {
+"aeroport": {
+"nom": "Djerba",
+"km": 120,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"port": {
+"nom": "Gabes",
+"km": 100,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"gare": {
+"nom": "Gabes",
+"km": 120,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"autoroute": {
+"nom": "A1",
+"km": 45,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"gazoduc": {
+"nom": "GP19",
+"km": 2,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+}
+}
+},
+"931103": {
+"nom_fr": "Tejra Mednine",
+"nom_ar": "تاجرة مدنين القسط الأول",
+"surface_totale_m2": 282500,
+"surface_amenagee_m2": 70443,
+"prix_m2_dt": 32,
+"distances": {
+"aeroport": {
+"nom": "Djerba",
+"km": 75,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"port": {
+"nom": "Gabes",
+"km": 65,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"gare": {
+"nom": "Gabes",
+"km": 75,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"autoroute": {
+"nom": "A1",
+"km": 5,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"gazoduc": {
+"nom": "GP1",
+"km": 0,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+}
+}
+},
+"931203": {
+"nom_fr": "ZRIBA 2",
+"nom_ar": "الزريبة 2",
+"surface_totale_m2": 80000,
+"surface_amenagee_m2": 179046,
+"prix_m2_dt": 60,
+"distances": {
+"autoroute": {
+"nom": "A1",
+"km": 20,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"gazoduc": {
+"nom": "GP3",
+"km": 43,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"gare": {
+"nom": "Bir Mchergua",
+"km": 35,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"aeroport": {
+"nom": "Tunis Carthage",
+"km": 75,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"port": {
+"nom": "La Goulette",
+"km": 75,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+}
+}
+},
+"931206": {
+"nom_fr": "Zriba 4",
+"nom_ar": "الزريبة 4",
+"surface_totale_m2": 900015,
+"surface_amenagee_m2": 317675,
+"prix_m2_dt": 60,
+"distances": {
+"aeroport": {
+"nom": "Tunis Carthage",
+"km": 75,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"port": {
+"nom": "La Goulette",
+"km": 75,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"gare": {
+"nom": "Bir Mchergua",
+"km": 35,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"autoroute": {
+"nom": "A1",
+"km": 20,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"gazoduc": {
+"nom": "GP3",
+"km": 43,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+}
+}
+},
+"931208": {
+"nom_fr": "Beni khalled Sidi Ettoumi",
+"nom_ar": "بني خلاد سيدي التومي",
+"surface_totale_m2": 210770,
+"surface_amenagee_m2": 146373,
+"prix_m2_dt": 100,
+"distances": {
+"aeroport": {
+"nom": "Tunis Cartage",
+"km": 40,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"port": {
+"nom": "La Goulette",
+"km": 35,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"gare": {
+"nom": "Grombalia",
+"km": 18,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"autoroute": {
+"nom": "A1",
+"km": 17,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"gazoduc": {
+"nom": "GP 1",
+"km": 12,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+}
+}
+},
+"931300": {
+"nom_fr": "KASSERINE 2",
+"nom_ar": "القصرين 2",
+"surface_totale_m2": null,
+"surface_amenagee_m2": 180000,
+"prix_m2_dt": 32,
+"distances": {
+"aeroport": {
+"nom": "Thyna",
+"km": 200,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"port": {
+"nom": "Sfax",
+"km": 204,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"gare": {
+"nom": "Kasserine",
+"km": 3,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"autoroute": {
+"nom": "A1",
+"km": 191,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"gazoduc": {
+"nom": "GP13",
+"km": 1,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+}
+}
+},
+"931301": {
+"nom_fr": "KASSERINE 1",
+"nom_ar": "القصرين 1",
+"surface_totale_m2": 137847,
+"surface_amenagee_m2": 109709,
+"prix_m2_dt": 32,
+"distances": {
+"aeroport": {
+"nom": "Thyna",
+"km": 200,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"port": {
+"nom": "Sfax",
+"km": 204,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"gare": {
+"nom": "Kasserine",
+"km": 3,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"autoroute": {
+"nom": "A1",
+"km": 191,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"gazoduc": {
+"nom": "GP13",
+"km": 1,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+}
+}
+},
+"931402": {
+"nom_fr": "KAIROUAN II",
+"nom_ar": "القيروان 2",
+"surface_totale_m2": 262574,
+"surface_amenagee_m2": 205528,
+"prix_m2_dt": 32,
+"distances": {
+"autoroute": {
+"nom": "A1",
+"km": 50,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"gazoduc": {
+"nom": "GP2",
+"km": 1,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"gare": {
+"nom": "Sousse  Ezzouhor(Marchandise)",
+"km": 50,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"aeroport": {
+"nom": "Enfidha",
+"km": 60,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"port": {
+"nom": "Sousse",
+"km": 50,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+}
+}
+},
+"931403": {
+"nom_fr": "HAJEB LAAYOUN",
+"nom_ar": "حاجب العيون",
+"surface_totale_m2": 102352,
+"surface_amenagee_m2": 79202,
+"prix_m2_dt": 20,
+"distances": {
+"aeroport": {
+"nom": "Enfidha",
+"km": 127,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"port": {
+"nom": "Sousse",
+"km": 127,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"gare": {
+"nom": "Enfidha",
+"km": 127,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"autoroute": {
+"nom": "A1",
+"km": 127,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"gazoduc": {
+"nom": "GP3",
+"km": 4,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+}
+}
+},
+"931500": {
+"nom_fr": "Jendouba El IRTIYEH",
+"nom_ar": "جندوبة الإرتياح",
+"surface_totale_m2": 305479,
+"surface_amenagee_m2": 245960,
+"prix_m2_dt": 32,
+"distances": {
+"aeroport": {
+"nom": "Tunis Carthage",
+"km": 79,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"port": {
+"nom": "La Goulette",
+"km": 164,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"gare": {
+"nom": "Jendouba",
+"km": 149,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"autoroute": {
+"nom": "A3",
+"km": 26,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"gazoduc": {
+"nom": "GP6",
+"km": 20,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+}
+}
+},
+"931501": {
+"nom_fr": "JENDOUBA",
+"nom_ar": "جندوبة",
+"surface_totale_m2": 100000,
+"surface_amenagee_m2": 88192,
+"prix_m2_dt": 50,
+"distances": {
+"aeroport": {
+"nom": "Tunis Carthage",
+"km": 85,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"port": {
+"nom": "La Goulette",
+"km": 170,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"gare": {
+"nom": "Jendouba",
+"km": 161,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"autoroute": {
+"nom": "A3",
+"km": 31,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"gazoduc": {
+"nom": "GP6",
+"km": 0,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+}
+}
+},
+"9315043": {
+"nom_fr": "TABARKA 2",
+"nom_ar": "طبرقة 2",
+"surface_totale_m2": 135892,
+"surface_amenagee_m2": 108569,
+"prix_m2_dt": 50,
+"distances": {
+"aeroport": {
+"nom": "Tunis Carthage",
+"km": 17,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"port": {
+"nom": "La Goulette",
+"km": 194,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"gare": {
+"nom": "Jendouba",
+"km": 188,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"autoroute": {
+"nom": "A3",
+"km": 81,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"gazoduc": {
+"nom": "GP7",
+"km": 0,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+}
+}
+},
+"931606": {
+"nom_fr": "GOUBELAT",
+"nom_ar": "قبلاط",
+"surface_totale_m2": 123413,
+"surface_amenagee_m2": 94167,
+"prix_m2_dt": 50,
+"distances": {
+"autoroute": {
+"nom": "A3",
+"km": 15,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"gazoduc": {
+"nom": "GP5",
+"km": 15,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"gare": {
+"nom": "Mjez Elbeb",
+"km": 28,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"aeroport": {
+"nom": "Tunis Carthage",
+"km": 70,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"port": {
+"nom": "La Goulette",
+"km": 81,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+}
+}
+},
+"931704": {
+"nom_fr": "GAAFOUR",
+"nom_ar": "قعفور",
+"surface_totale_m2": 104426,
+"surface_amenagee_m2": 87593,
+"prix_m2_dt": 20,
+"distances": {
+"aeroport": {
+"nom": "Tunis Carthage",
+"km": 118,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"port": {
+"nom": "La Goulette",
+"km": 129,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"gare": {
+"nom": "Gaafour",
+"km": 1.5,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"autoroute": {
+"nom": "A1",
+"km": 64,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"gazoduc": {
+"nom": "GP5",
+"km": 20,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+}
+}
+},
+"931705": {
+"nom_fr": "MAKTHER",
+"nom_ar": "مكثر",
+"surface_totale_m2": 40000,
+"surface_amenagee_m2": 28037,
+"prix_m2_dt": 32,
+"distances": {
+"aeroport": {
+"nom": "Tunis Carthage",
+"km": 171,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"port": {
+"nom": "La Goulette",
+"km": 172,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"gare": {
+"nom": "Gaafour",
+"km": 83,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"autoroute": {
+"nom": "A1",
+"km": 126,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"gazoduc": {
+"nom": "GP4",
+"km": 0.5,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+}
+}
+},
+"931706": {
+"nom_fr": "Bouarada II",
+"nom_ar": "بوعرادة 2",
+"surface_totale_m2": 224968,
+"surface_amenagee_m2": 69755,
+"prix_m2_dt": 35,
+"distances": {
+"aeroport": {
+"nom": "Tunis Carthage",
+"km": 94,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"port": {
+"nom": "La Goulette",
+"km": 97,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"gare": {
+"nom": "Bouarada",
+"km": 3.5,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"autoroute": {
+"nom": "A1",
+"km": 38,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"gazoduc": {
+"nom": "GP4",
+"km": 17,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+}
+}
+},
+"931803": {
+"nom_fr": "El Krib",
+"nom_ar": "الكريب",
+"surface_totale_m2": 100200,
+"surface_amenagee_m2": 67356,
+"prix_m2_dt": 32,
+"distances": {
+"aeroport": {
+"nom": "Tunis Carthage",
+"km": 134,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"port": {
+"nom": "La Goulette",
+"km": 140,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"gare": {
+"nom": "El Krib",
+"km": 16,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"autoroute": {
+"nom": "A1",
+"km": 70,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"gazoduc": {
+"nom": "GP5",
+"km": 7,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+}
+}
+},
+"931804": {
+"nom_fr": "El Kef Extension",
+"nom_ar": "الكاف توسعة",
+"surface_totale_m2": 100385,
+"surface_amenagee_m2": 75592,
+"prix_m2_dt": 118,
+"distances": {
+"autoroute": {
+"nom": "A3",
+"km": 83,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"gazoduc": {
+"nom": "GP5",
+"km": 0,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"gare": {
+"nom": "El Kef",
+"km": 32,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"aeroport": {
+"nom": "Tunis Carthage",
+"km": 173,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"port": {
+"nom": "La Goulette",
+"km": 179,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+}
+}
+},
+"9318300": {
+"nom_fr": "El Kef Oued Errmal",
+"nom_ar": "واد الرمل الكاف",
+"surface_totale_m2": 120000,
+"surface_amenagee_m2": 77301,
+"prix_m2_dt": 32,
+"distances": {
+"aeroport": {
+"nom": "Tunis Carthage",
+"km": 183,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"port": {
+"nom": "La Goulette",
+"km": 189,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"gare": {
+"nom": "El Kef",
+"km": 31,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"autoroute": {
+"nom": "A3",
+"km": 86,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"gazoduc": {
+"nom": "GP5",
+"km": 0,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+}
+}
+},
+"931897": {
+"nom_fr": "Jelma Sidi Bouzid",
+"nom_ar": "جلمة سيدي بوزيد",
+"surface_totale_m2": 150000,
+"surface_amenagee_m2": 106274,
+"prix_m2_dt": 45,
+"distances": {
+"autoroute": {
+"nom": "A1",
+"km": 138,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"gazoduc": {
+"nom": "RN3",
+"km": 0,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"gare": {
+"nom": "Maknassy",
+"km": 83,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"aeroport": {
+"nom": "Thyna",
+"km": 156,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"port": {
+"nom": "Sfax",
+"km": 160,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+}
+}
+},
+"931899": {
+"nom_fr": "OM Laatham Sidi Bouzid",
+"nom_ar": "أم العضام سيدي بوزيد",
+"surface_totale_m2": 500000,
+"surface_amenagee_m2": 390215,
+"prix_m2_dt": 60,
+"distances": {
+"autoroute": {
+"nom": "A1",
+"km": 130,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"gazoduc": {
+"nom": "RN13",
+"km": 2,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"gare": {
+"nom": "Maknassy",
+"km": 75,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"aeroport": {
+"nom": "Thyna",
+"km": 148,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"port": {
+"nom": "Sfax",
+"km": 152,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+}
+}
+},
+"931900": {
+"nom_fr": "LASSOUDA",
+"nom_ar": "لسودة القسط الأول",
+"surface_totale_m2": 201000,
+"surface_amenagee_m2": 70172,
+"prix_m2_dt": 32,
+"distances": {
+"aeroport": {
+"nom": "Thyna",
+"km": 129,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"port": {
+"nom": "Sfax",
+"km": 133,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"gare": {
+"nom": "Maknassy",
+"km": 64,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"autoroute": {
+"nom": "A1",
+"km": 109,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"gazoduc": {
+"nom": "GP13",
+"km": 0,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+}
+}
+},
+"932108": {
+"nom_fr": "Sbitla",
+"nom_ar": "سبيطلة",
+"surface_totale_m2": 50000,
+"surface_amenagee_m2": 29871,
+"prix_m2_dt": 32,
+"distances": {
+"aeroport": {
+"nom": "Thyna",
+"km": 167,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"port": {
+"nom": "Sfax",
+"km": 161,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"gare": {
+"nom": "Sbeitla",
+"km": 3,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"autoroute": {
+"nom": "A1",
+"km": 148,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"gazoduc": {
+"nom": "GP13",
+"km": 1,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+}
+}
+},
+"932109": {
+"nom_fr": "Beja Bouteffaha",
+"nom_ar": "باجة بوتفاحة",
+"surface_totale_m2": 289044,
+"surface_amenagee_m2": 244581,
+"prix_m2_dt": 38,
+"distances": {
+"autoroute": {
+"nom": "A3",
+"km": 6,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"gazoduc": {
+"nom": "GP6",
+"km": 0,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"gare": {
+"nom": "Beja",
+"km": 2,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"aeroport": {
+"nom": "Tabarka",
+"km": 63,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"port": {
+"nom": "La Goulette",
+"km": 122,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+}
+}
+},
+"932112": {
+"nom_fr": "Korba",
+"nom_ar": "قربة",
+"surface_totale_m2": 63330,
+"surface_amenagee_m2": 48912,
+"prix_m2_dt": 70,
+"distances": {
+"aeroport": {
+"nom": "Tunis Cartage",
+"km": 84,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"port": {
+"nom": "La Goulette",
+"km": 85,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"gare": {
+"nom": "Grombalia",
+"km": 35,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"autoroute": {
+"nom": "A1",
+"km": 37,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"gazoduc": {
+"nom": "GP 1",
+"km": 35,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+}
+}
+},
+"932114": {
+"nom_fr": "Tozeur Kastilia",
+"nom_ar": "توزر كستيليا",
+"surface_totale_m2": 200000,
+"surface_amenagee_m2": 151844,
+"prix_m2_dt": 35,
+"distances": {
+"aeroport": {
+"nom": "Tozeur",
+"km": 5,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"port": {
+"nom": "Gabes",
+"km": 200,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"gare": {
+"nom": "Gabes",
+"km": 3,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"autoroute": {
+"nom": "A1",
+"km": 200,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"gazoduc": {
+"nom": "GP3",
+"km": 5,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+}
+}
+},
+"932117": {
+"nom_fr": "EL Golaa",
+"nom_ar": "القلعة قبلي",
+"surface_totale_m2": 372403,
+"surface_amenagee_m2": 278565,
+"prix_m2_dt": 32,
+"distances": {
+"aeroport": {
+"nom": "Tozeur",
+"km": 100,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"port": {
+"nom": "Gabes",
+"km": 150,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"gare": {
+"nom": "Gafsa",
+"km": 150,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"autoroute": {
+"nom": "A1",
+"km": 150,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+},
+"gazoduc": {
+"nom": "GP16",
+"km": 29,
+"source": "carte publique afi.e-industrie.gov.tn (lue le 2026-11-25)"
+}
+}
+},
+"932119": {
+"nom_fr": "Ras El Morj Monastir",
+"nom_ar": "راس المرج المنستير",
+"surface_totale_m2": 397260,
+"surface_amenagee_m2": 397260,
+"prix_m2_dt": 90,
+"distances": {
+"autoroute": {
+"nom": "A1",
+"km": 11,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"gazoduc": {
+"nom": "GP 1",
+"km": 0,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"gare": {
+"nom": "Kerker",
+"km": 11,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"aeroport": {
+"nom": "Monastir",
+"km": 45,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"port": {
+"nom": "Sousse",
+"km": 35,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+}
+}
+},
+"932128": {
+"nom_fr": "Hstaftimi",
+"nom_ar": "إسطفتيمي",
+"surface_totale_m2": 1000000,
+"surface_amenagee_m2": 800732,
+"prix_m2_dt": null,
+"distances": {
+"autoroute": {
+"nom": "A1",
+"km": 140,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"gazoduc": {
+"nom": "GP16",
+"km": 0,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"gare": {
+"nom": "Gabes",
+"km": 115,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"aeroport": {
+"nom": "Tozeur",
+"km": 90,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"port": {
+"nom": "Gabes",
+"km": 120,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+}
+}
+},
+"932132": {
+"nom_fr": "Sbikha 2",
+"nom_ar": "السبيخة 2",
+"surface_totale_m2": 999703,
+"surface_amenagee_m2": 815191,
+"prix_m2_dt": 80,
+"distances": {
+"autoroute": {
+"nom": "A1",
+"km": 45,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"gazoduc": {
+"nom": "GP2",
+"km": 0,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"gare": {
+"nom": "Enfidha",
+"km": 45,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"aeroport": {
+"nom": "Enfidha",
+"km": 45,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+},
+"port": {
+"nom": "Sousse",
+"km": 65,
+"source": "base AFI afi.sql (export du 2026-11-13, fournie par les organisateurs)"
+}
+}
+}
+},
+"lots": {
+"3": {
+"etape": 3,
+"surface_m2": 334330
+},
+"4": {
+"etape": 3,
+"surface_m2": 24070
+},
+"5": {
+"etape": 3,
+"surface_m2": 79500
+},
+"6": {
+"etape": 3,
+"surface_m2": 272850
+},
+"7": {
+"etape": 3,
+"surface_m2": 1986
+},
+"8": {
+"etape": 0,
+"surface_m2": 3900
+},
+"9": {
+"etape": 3,
+"surface_m2": 21484
+},
+"10": {
+"etape": 3,
+"surface_m2": 11397
+},
+"11": {
+"etape": 0,
+"surface_m2": 1994
+},
+"12": {
+"etape": 3,
+"surface_m2": 20055
+},
+"13": {
+"etape": 3,
+"surface_m2": 158475
+},
+"14": {
+"etape": 3,
+"surface_m2": 3355
+},
+"15": {
+"etape": 3,
+"surface_m2": 5592
+},
+"21": {
+"etape": 5,
+"surface_m2": 365
+},
+"22": {
+"etape": 3,
+"surface_m2": 2826
+},
+"23": {
+"etape": 3,
+"surface_m2": 1290
+},
+"24": {
+"etape": 3,
+"surface_m2": 4255
+},
+"25": {
+"etape": 3,
+"surface_m2": 2635
+},
+"32": {
+"etape": 3,
+"surface_m2": 2679
+},
+"35": {
+"etape": 3,
+"surface_m2": 2374
+},
+"37": {
+"etape": 3,
+"surface_m2": 2589
+},
+"40": {
+"etape": 3,
+"surface_m2": 8992
+},
+"46": {
+"etape": 4,
+"surface_m2": 2488
+},
+"48": {
+"etape": 3,
+"surface_m2": 19370
+},
+"54": {
+"etape": 3,
+"surface_m2": 29500
+},
+"55": {
+"etape": 3,
+"surface_m2": 26880
+},
+"56": {
+"etape": 3,
+"surface_m2": 2554
+},
+"59": {
+"etape": 3,
+"surface_m2": 3018
+},
+"60": {
+"etape": 3,
+"surface_m2": 1570
+},
+"63": {
+"etape": 3,
+"surface_m2": 2643
+},
+"65": {
+"etape": 3,
+"surface_m2": 3351
+},
+"66": {
+"etape": 3,
+"surface_m2": 71912
+},
+"67": {
+"etape": 3,
+"surface_m2": 1826
+},
+"68": {
+"etape": 3,
+"surface_m2": 1919
+},
+"69": {
+"etape": 3,
+"surface_m2": 2036
+},
+"70": {
+"etape": 3,
+"surface_m2": 2158
+},
+"71": {
+"etape": 3,
+"surface_m2": 2280
+},
+"72": {
+"etape": 3,
+"surface_m2": 2395
+},
+"77": {
+"etape": 5,
+"surface_m2": 1178
+},
+"78": {
+"etape": 5,
+"surface_m2": 1178
+},
+"79": {
+"etape": 5,
+"surface_m2": 1178
+},
+"80": {
+"etape": 5,
+"surface_m2": 1022
+},
+"84": {
+"etape": 3,
+"surface_m2": 2090
+},
+"86": {
+"etape": 3,
+"surface_m2": 2475
+},
+"88": {
+"etape": 0,
+"surface_m2": 7013
+},
+"91": {
+"etape": 3,
+"surface_m2": 3650
+},
+"93": {
+"etape": 3,
+"surface_m2": 28500
+},
+"96": {
+"etape": 3,
+"surface_m2": 18053
+},
+"97": {
+"etape": 3,
+"surface_m2": 8300
+},
+"100": {
+"etape": 3,
+"surface_m2": 5289
+},
+"101": {
+"etape": 0,
+"surface_m2": 18711
+},
+"110": {
+"etape": 4,
+"surface_m2": 350
+},
+"112": {
+"etape": 3,
+"surface_m2": 2991
+},
+"113": {
+"etape": 3,
+"surface_m2": 1500
+},
+"118": {
+"etape": 3,
+"surface_m2": 2590
+},
+"119": {
+"etape": 3,
+"surface_m2": 148
+},
+"124": {
+"etape": 3,
+"surface_m2": 390
+},
+"125": {
+"etape": 3,
+"surface_m2": 1543
+},
+"126": {
+"etape": 3,
+"surface_m2": 1735
+},
+"128": {
+"etape": 3,
+"surface_m2": 1086
+},
+"131": {
+"etape": 3,
+"surface_m2": 1618
+},
+"132": {
+"etape": 3,
+"surface_m2": 1588
+},
+"134": {
+"etape": 3,
+"surface_m2": 2332
+},
+"137": {
+"etape": 3,
+"surface_m2": 1447
+},
+"139": {
+"etape": 3,
+"surface_m2": 11500
+},
+"141": {
+"etape": 3,
+"surface_m2": 3062
+},
+"143": {
+"etape": 3,
+"surface_m2": 8266
+},
+"145": {
+"etape": 3,
+"surface_m2": 2580
+},
+"146": {
+"etape": 3,
+"surface_m2": 2580
+},
+"148": {
+"etape": 3,
+"surface_m2": 2923
+},
+"157": {
+"etape": 5,
+"surface_m2": 363
+},
+"160": {
+"etape": 3,
+"surface_m2": 1345
+},
+"164": {
+"etape": 3,
+"surface_m2": 6780
+},
+"166": {
+"etape": 3,
+"surface_m2": 3078
+},
+"174": {
+"etape": 5,
+"surface_m2": 434
+},
+"178": {
+"etape": 3,
+"surface_m2": 66260
+},
+"183": {
+"etape": 3,
+"surface_m2": 1486
+},
+"184": {
+"etape": 3,
+"surface_m2": 1525
+},
+"186": {
+"etape": 3,
+"surface_m2": 2000
+},
+"187": {
+"etape": 3,
+"surface_m2": 150
+},
+"194": {
+"etape": 3,
+"surface_m2": 2475
+},
+"205": {
+"etape": 3,
+"surface_m2": 10020
+},
+"206": {
+"etape": 3,
+"surface_m2": 2500
+},
+"211": {
+"etape": 3,
+"surface_m2": 309
+},
+"212": {
+"etape": 3,
+"surface_m2": 3024
+},
+"213": {
+"etape": 0,
+"surface_m2": 2024
+},
+"214": {
+"etape": 0,
+"surface_m2": 1600
+},
+"215": {
+"etape": 0,
+"surface_m2": 1600
+},
+"216": {
+"etape": 3,
+"surface_m2": 5417
+},
+"218": {
+"etape": 3,
+"surface_m2": 612
+},
+"219": {
+"etape": 4,
+"surface_m2": 9230
+},
+"220": {
+"etape": 4,
+"surface_m2": 6106
+},
+"221": {
+"etape": 4,
+"surface_m2": 5438
+},
+"222": {
+"etape": 4,
+"surface_m2": 5419
+},
+"223": {
+"etape": 3,
+"surface_m2": 9373
+},
+"224": {
+"etape": 3,
+"surface_m2": 2923
+},
+"237": {
+"etape": 3,
+"surface_m2": 200
+},
+"238": {
+"etape": 3,
+"surface_m2": 2800
+},
+"239": {
+"etape": 3,
+"surface_m2": 3000
+},
+"240": {
+"etape": 3,
+"surface_m2": 2625
+},
+"244": {
+"etape": 3,
+"surface_m2": 2090
+},
+"247": {
+"etape": 3,
+"surface_m2": 2121
+},
+"248": {
+"etape": 3,
+"surface_m2": 2322
+},
+"249": {
+"etape": 3,
+"surface_m2": 2284
+},
+"250": {
+"etape": 3,
+"surface_m2": 2193
+},
+"251": {
+"etape": 3,
+"surface_m2": 4594
+},
+"252": {
+"etape": 3,
+"surface_m2": 4629
+},
+"253": {
+"etape": 3,
+"surface_m2": 4740
+},
+"254": {
+"etape": 3,
+"surface_m2": 4966
+},
+"255": {
+"etape": 3,
+"surface_m2": 3190
+},
+"256": {
+"etape": 3,
+"surface_m2": 3036
+},
+"257": {
+"etape": 3,
+"surface_m2": 3180
+},
+"258": {
+"etape": 3,
+"surface_m2": 3291
+},
+"259": {
+"etape": 3,
+"surface_m2": 1619
+},
+"260": {
+"etape": 3,
+"surface_m2": 1957
+},
+"261": {
+"etape": 1,
+"surface_m2": 1823
+},
+"262": {
+"etape": 2,
+"surface_m2": 2444
+},
+"263": {
+"etape": 2,
+"surface_m2": 3694
+},
+"265": {
+"etape": 3,
+"surface_m2": 4500
+},
+"266": {
+"etape": 3,
+"surface_m2": 5025
+},
+"267": {
+"etape": 3,
+"surface_m2": 41056
+},
+"269": {
+"etape": 3,
+"surface_m2": 2560
+},
+"271": {
+"etape": 3,
+"surface_m2": 232
+},
+"273": {
+"etape": 3,
+"surface_m2": 6135
+},
+"275": {
+"etape": 3,
+"surface_m2": 3000
+},
+"276": {
+"etape": 3,
+"surface_m2": 3000
+},
+"277": {
+"etape": 3,
+"surface_m2": 4490
+},
+"279": {
+"etape": 3,
+"surface_m2": 2765
+},
+"281": {
+"etape": 3,
+"surface_m2": 1554
+},
+"282": {
+"etape": 3,
+"surface_m2": 1000
+},
+"284": {
+"etape": 0,
+"surface_m2": 2187
+},
+"285": {
+"etape": 3,
+"surface_m2": 2689
+},
+"286": {
+"etape": 3,
+"surface_m2": 1904
+},
+"289": {
+"etape": 3,
+"surface_m2": 6526
+},
+"290": {
+"etape": 3,
+"surface_m2": 1601
+},
+"293": {
+"etape": 3,
+"surface_m2": 3911
+},
+"294": {
+"etape": 3,
+"surface_m2": 3681
+},
+"295": {
+"etape": 3,
+"surface_m2": 3529
+},
+"296": {
+"etape": 3,
+"surface_m2": 1840
+},
+"297": {
+"etape": 3,
+"surface_m2": 2955
+},
+"301": {
+"etape": 3,
+"surface_m2": 1934
+},
+"302": {
+"etape": 4,
+"surface_m2": 2125
+},
+"303": {
+"etape": 3,
+"surface_m2": 359
+},
+"306": {
+"etape": 3,
+"surface_m2": 6225
+},
+"308": {
+"etape": 3,
+"surface_m2": 521
+},
+"309": {
+"etape": 3,
+"surface_m2": 1410
+},
+"322": {
+"etape": 3,
+"surface_m2": 3176
+},
+"331": {
+"etape": 3,
+"surface_m2": 5100
+},
+"336": {
+"etape": 3,
+"surface_m2": 2300
+},
+"338": {
+"etape": 3,
+"surface_m2": 4166
+},
+"343": {
+"etape": 3,
+"surface_m2": 4834
+},
+"344": {
+"etape": 3,
+"surface_m2": 3732
+},
+"345": {
+"etape": 3,
+"surface_m2": 3632
+},
+"353": {
+"etape": 3,
+"surface_m2": 2576
+},
+"354": {
+"etape": 3,
+"surface_m2": 1949
+},
+"359": {
+"etape": 3,
+"surface_m2": 11040
+},
+"367": {
+"etape": 3,
+"surface_m2": 182
+},
+"369": {
+"etape": 3,
+"surface_m2": 10050
+},
+"380": {
+"etape": 3,
+"surface_m2": 1685
+},
+"381": {
+"etape": 3,
+"surface_m2": 150
+},
+"384": {
+"etape": 3,
+"surface_m2": 2956
+},
+"392": {
+"etape": 3,
+"surface_m2": 7307
+},
+"393": {
+"etape": 0,
+"surface_m2": 3377
+},
+"394": {
+"etape": 5,
+"surface_m2": 343
+},
+"396": {
+"etape": 3,
+"surface_m2": 3983
+},
+"397": {
+"etape": 3,
+"surface_m2": 2837
+},
+"399": {
+"etape": 3,
+"surface_m2": 20333
+},
+"400": {
+"etape": 3,
+"surface_m2": 3578
+},
+"402": {
+"etape": 3,
+"surface_m2": 2425
+},
+"403": {
+"etape": 3,
+"surface_m2": 4310
+},
+"404": {
+"etape": 3,
+"surface_m2": 10458
+},
+"406": {
+"etape": 3,
+"surface_m2": 2872
+},
+"408": {
+"etape": 3,
+"surface_m2": 6000
+},
+"409": {
+"etape": 3,
+"surface_m2": 3242
+},
+"416": {
+"etape": 3,
+"surface_m2": 2650
+},
+"419": {
+"etape": 3,
+"surface_m2": 5090
+},
+"420": {
+"etape": 3,
+"surface_m2": 1812
+},
+"425": {
+"etape": 3,
+"surface_m2": 2706
+},
+"426": {
+"etape": 3,
+"surface_m2": 2870
+},
+"427": {
+"etape": 3,
+"surface_m2": 2870
+},
+"428": {
+"etape": 3,
+"surface_m2": 2870
+},
+"429": {
+"etape": 3,
+"surface_m2": 1060
+},
+"435": {
+"etape": 3,
+"surface_m2": 1758
+},
+"438": {
+"etape": 3,
+"surface_m2": 3361
+},
+"439": {
+"etape": 3,
+"surface_m2": 2973
+},
+"440": {
+"etape": 3,
+"surface_m2": 8662
+},
+"448": {
+"etape": 3,
+"surface_m2": 2515
+},
+"449": {
+"etape": 3,
+"surface_m2": 203
+},
+"450": {
+"etape": 3,
+"surface_m2": 2451
+},
+"451": {
+"etape": 3,
+"surface_m2": 2479
+},
+"452": {
+"etape": 3,
+"surface_m2": 150
+},
+"453": {
+"etape": 3,
+"surface_m2": 150
+},
+"454": {
+"etape": 3,
+"surface_m2": 200
+},
+"456": {
+"etape": 3,
+"surface_m2": 5400
+},
+"457": {
+"etape": 0,
+"surface_m2": 6440
+},
+"458": {
+"etape": 3,
+"surface_m2": 3038
+},
+"464": {
+"etape": 3,
+"surface_m2": 5056
+},
+"470": {
+"etape": 3,
+"surface_m2": 8750
+},
+"474": {
+"etape": 3,
+"surface_m2": 6880
+},
+"475": {
+"etape": 3,
+"surface_m2": 27930
+},
+"476": {
+"etape": 3,
+"surface_m2": 2040
+},
+"477": {
+"etape": 3,
+"surface_m2": 6689
+},
+"478": {
+"etape": 3,
+"surface_m2": 210
+},
+"482": {
+"etape": 3,
+"surface_m2": 816
+},
+"487": {
+"etape": 3,
+"surface_m2": 2892
+},
+"488": {
+"etape": 3,
+"surface_m2": 2000
+},
+"489": {
+"etape": 3,
+"surface_m2": 2140
+},
+"500": {
+"etape": 3,
+"surface_m2": 5825
+},
+"501": {
+"etape": 3,
+"surface_m2": 5410
+},
+"502": {
+"etape": 5,
+"surface_m2": 505
+},
+"508": {
+"etape": 3,
+"surface_m2": 1760
+},
+"509": {
+"etape": 3,
+"surface_m2": 2580
+},
+"515": {
+"etape": 3,
+"surface_m2": 200
+},
+"516": {
+"etape": 3,
+"surface_m2": 200
+},
+"517": {
+"etape": 3,
+"surface_m2": 200
+},
+"518": {
+"etape": 3,
+"surface_m2": 4731
+},
+"531": {
+"etape": 3,
+"surface_m2": 500
+},
+"532": {
+"etape": 3,
+"surface_m2": 9321
+},
+"533": {
+"etape": 3,
+"surface_m2": 2962
+},
+"537": {
+"etape": 3,
+"surface_m2": 295
+},
+"538": {
+"etape": 3,
+"surface_m2": 3661
+},
+"541": {
+"etape": 3,
+"surface_m2": 2637
+},
+"544": {
+"etape": 3,
+"surface_m2": 1622
+},
+"553": {
+"etape": 3,
+"surface_m2": 7300
+},
+"560": {
+"etape": 3,
+"surface_m2": 6880
+},
+"561": {
+"etape": 3,
+"surface_m2": 5805
+},
+"562": {
+"etape": 3,
+"surface_m2": 2719
+},
+"564": {
+"etape": 3,
+"surface_m2": 1334
+},
+"565": {
+"etape": 3,
+"surface_m2": 100
+},
+"566": {
+"etape": 3,
+"surface_m2": 100
+},
+"571": {
+"etape": 3,
+"surface_m2": 2085
+},
+"573": {
+"etape": 3,
+"surface_m2": 195
+},
+"574": {
+"etape": 3,
+"surface_m2": 195
+},
+"585": {
+"etape": 3,
+"surface_m2": 3493
+},
+"589": {
+"etape": 3,
+"surface_m2": 1442
+},
+"591": {
+"etape": 3,
+"surface_m2": 2905
+},
+"592": {
+"etape": 3,
+"surface_m2": 7753
+},
+"596": {
+"etape": 3,
+"surface_m2": 376
+},
+"597": {
+"etape": 3,
+"surface_m2": 2185
+},
+"602": {
+"etape": 3,
+"surface_m2": 3137
+},
+"610": {
+"etape": 3,
+"surface_m2": 4000
+},
+"616": {
+"etape": 3,
+"surface_m2": 8270
+},
+"619": {
+"etape": 3,
+"surface_m2": 2800
+},
+"622": {
+"etape": 3,
+"surface_m2": 1204
+},
+"625": {
+"etape": 3,
+"surface_m2": 62595
+},
+"627": {
+"etape": 3,
+"surface_m2": 100
+},
+"628": {
+"etape": 3,
+"surface_m2": 7045
+},
+"629": {
+"etape": 3,
+"surface_m2": 7858
+},
+"631": {
+"etape": 3,
+"surface_m2": 2303
+},
+"661": {
+"etape": 3,
+"surface_m2": 5200
+},
+"664": {
+"etape": 0,
+"surface_m2": 4504
+},
+"665": {
+"etape": 0,
+"surface_m2": 5077
+},
+"666": {
+"etape": 3,
+"surface_m2": 2363
+},
+"670": {
+"etape": 3,
+"surface_m2": 3968
+},
+"674": {
+"etape": 3,
+"surface_m2": 2968
+},
+"675": {
+"etape": 3,
+"surface_m2": 1925
+},
+"677": {
+"etape": 0,
+"surface_m2": 3830
+},
+"679": {
+"etape": 3,
+"surface_m2": 12171
+},
+"680": {
+"etape": 3,
+"surface_m2": 1001
+},
+"682": {
+"etape": 3,
+"surface_m2": 3179
+},
+"686": {
+"etape": 5,
+"surface_m2": 1130
+},
+"687": {
+"etape": 5,
+"surface_m2": 1130
+},
+"689": {
+"etape": 3,
+"surface_m2": 11500
+},
+"703": {
+"etape": 3,
+"surface_m2": 3353
+},
+"705": {
+"etape": 3,
+"surface_m2": 1000
+},
+"706": {
+"etape": 3,
+"surface_m2": 500
+},
+"707": {
+"etape": 3,
+"surface_m2": 1500
+},
+"708": {
+"etape": 3,
+"surface_m2": 1500
+},
+"710": {
+"etape": 3,
+"surface_m2": 521
+},
+"712": {
+"etape": 3,
+"surface_m2": 5718
+},
+"718": {
+"etape": 3,
+"surface_m2": 2418
+},
+"723": {
+"etape": 3,
+"surface_m2": 4413
+},
+"727": {
+"etape": 3,
+"surface_m2": 2503
+},
+"728": {
+"etape": 3,
+"surface_m2": 2504
+},
+"729": {
+"etape": 3,
+"surface_m2": 2389
+},
+"730": {
+"etape": 3,
+"surface_m2": 130
+},
+"732": {
+"etape": 3,
+"surface_m2": 6785
+},
+"735": {
+"etape": 3,
+"surface_m2": 4528
+},
+"740": {
+"etape": 3,
+"surface_m2": 11781
+},
+"741": {
+"etape": 3,
+"surface_m2": 11780
+},
+"743": {
+"etape": 3,
+"surface_m2": 2350
+},
+"745": {
+"etape": 3,
+"surface_m2": 1631
+},
+"746": {
+"etape": 3,
+"surface_m2": 2817
+},
+"747": {
+"etape": 3,
+"surface_m2": 1805
+},
+"749": {
+"etape": 3,
+"surface_m2": 13140
+},
+"754": {
+"etape": 3,
+"surface_m2": 1600
+},
+"762": {
+"etape": 3,
+"surface_m2": 2814
+},
+"764": {
+"etape": 3,
+"surface_m2": 3351
+},
+"766": {
+"etape": 3,
+"surface_m2": 1789
+},
+"768": {
+"etape": 3,
+"surface_m2": 2306
+},
+"771": {
+"etape": 5,
+"surface_m2": 863
+},
+"776": {
+"etape": 3,
+"surface_m2": 4635
+},
+"777": {
+"etape": 3,
+"surface_m2": 634
+},
+"778": {
+"etape": 3,
+"surface_m2": 2100
+},
+"779": {
+"etape": 3,
+"surface_m2": 1233
+},
+"783": {
+"etape": 3,
+"surface_m2": 590
+},
+"786": {
+"etape": 3,
+"surface_m2": 3675
+},
+"787": {
+"etape": 3,
+"surface_m2": 2165
+},
+"789": {
+"etape": 3,
+"surface_m2": 4531
+},
+"796": {
+"etape": 3,
+"surface_m2": 3438
+},
+"797": {
+"etape": 3,
+"surface_m2": 3391
+},
+"798": {
+"etape": 3,
+"surface_m2": 3482
+},
+"799": {
+"etape": 3,
+"surface_m2": 3500
+},
+"800": {
+"etape": 3,
+"surface_m2": 3500
+},
+"801": {
+"etape": 3,
+"surface_m2": 2375
+},
+"802": {
+"etape": 3,
+"surface_m2": 2450
+},
+"803": {
+"etape": 3,
+"surface_m2": 2821
+},
+"804": {
+"etape": 3,
+"surface_m2": 2706
+},
+"808": {
+"etape": 3,
+"surface_m2": 3215
+},
+"809": {
+"etape": 3,
+"surface_m2": 3165
+},
+"810": {
+"etape": 3,
+"surface_m2": 3224
+},
+"811": {
+"etape": 3,
+"surface_m2": 3483
+},
+"812": {
+"etape": 3,
+"surface_m2": 3482
+},
+"830": {
+"etape": 3,
+"surface_m2": 18600
+},
+"831": {
+"etape": 3,
+"surface_m2": 1888
+},
+"843": {
+"etape": 3,
+"surface_m2": 2385
+},
+"845": {
+"etape": 3,
+"surface_m2": 500
+},
+"850": {
+"etape": 3,
+"surface_m2": 345
+},
+"851": {
+"etape": 3,
+"surface_m2": 4573
+},
+"852": {
+"etape": 3,
+"surface_m2": 2620
+},
+"856": {
+"etape": 3,
+"surface_m2": 1970
+},
+"857": {
+"etape": 3,
+"surface_m2": 2105
+},
+"867": {
+"etape": 3,
+"surface_m2": 1063
+},
+"870": {
+"etape": 3,
+"surface_m2": 2637
+},
+"888": {
+"etape": 3,
+"surface_m2": 4017
+},
+"889": {
+"etape": 3,
+"surface_m2": 7165
+},
+"895": {
+"etape": 3,
+"surface_m2": 2197
+},
+"897": {
+"etape": 3,
+"surface_m2": 2451
+},
+"898": {
+"etape": 3,
+"surface_m2": 4924
+},
+"899": {
+"etape": 3,
+"surface_m2": 150
+},
+"900": {
+"etape": 3,
+"surface_m2": 52065
+},
+"901": {
+"etape": 3,
+"surface_m2": 52065
+},
+"904": {
+"etape": 3,
+"surface_m2": 2510
+},
+"913": {
+"etape": 3,
+"surface_m2": 1005
+},
+"917": {
+"etape": 3,
+"surface_m2": 2212
+},
+"918": {
+"etape": 3,
+"surface_m2": 1528
+},
+"920": {
+"etape": 3,
+"surface_m2": 4620
+},
+"921": {
+"etape": 5,
+"surface_m2": 422
+},
+"925": {
+"etape": 3,
+"surface_m2": 2665
+},
+"926": {
+"etape": 3,
+"surface_m2": 16090
+},
+"927": {
+"etape": 3,
+"surface_m2": 84019
+},
+"935": {
+"etape": 0,
+"surface_m2": 471
+},
+"946": {
+"etape": 3,
+"surface_m2": 5519
+},
+"948": {
+"etape": 3,
+"surface_m2": 2500
+},
+"951": {
+"etape": 5,
+"surface_m2": 430
+},
+"952": {
+"etape": 3,
+"surface_m2": 1342
+},
+"953": {
+"etape": 3,
+"surface_m2": 8000
+},
+"954": {
+"etape": 3,
+"surface_m2": 15960
+},
+"957": {
+"etape": 3,
+"surface_m2": 2319
+},
+"958": {
+"etape": 4,
+"surface_m2": 230
+},
+"965": {
+"etape": 3,
+"surface_m2": 1103
+},
+"966": {
+"etape": 3,
+"surface_m2": 2202
+},
+"967": {
+"etape": 3,
+"surface_m2": 521
+},
+"969": {
+"etape": 3,
+"surface_m2": 5739
+},
+"970": {
+"etape": 3,
+"surface_m2": 3697
+},
+"974": {
+"etape": 3,
+"surface_m2": 6880
+},
+"975": {
+"etape": 3,
+"surface_m2": 6880
+},
+"978": {
+"etape": 3,
+"surface_m2": 1944
+},
+"981": {
+"etape": 3,
+"surface_m2": 2260
+},
+"986": {
+"etape": 3,
+"surface_m2": 1000
+},
+"987": {
+"etape": 3,
+"surface_m2": 320
+},
+"990": {
+"etape": 3,
+"surface_m2": 7000
+},
+"991": {
+"etape": 3,
+"surface_m2": 2110
+},
+"993": {
+"etape": 3,
+"surface_m2": 30939
+},
+"994": {
+"etape": 4,
+"surface_m2": 2000
+},
+"995": {
+"etape": 3,
+"surface_m2": 7290
+},
+"997": {
+"etape": 3,
+"surface_m2": 2136
+},
+"1003": {
+"etape": 3,
+"surface_m2": 2400
+},
+"1004": {
+"etape": 3,
+"surface_m2": 2400
+},
+"1007": {
+"etape": 3,
+"surface_m2": 11657
+},
+"1009": {
+"etape": 3,
+"surface_m2": 1833
+},
+"1011": {
+"etape": 3,
+"surface_m2": 4012
+},
+"1015": {
+"etape": 3,
+"surface_m2": 4885
+},
+"1016": {
+"etape": 3,
+"surface_m2": 224
+},
+"1017": {
+"etape": 3,
+"surface_m2": 3098
+},
+"1022": {
+"etape": 3,
+"surface_m2": 1500
+},
+"1025": {
+"etape": 3,
+"surface_m2": 2708
+},
+"1026": {
+"etape": 3,
+"surface_m2": 2742
+},
+"1039": {
+"etape": 3,
+"surface_m2": 150
+},
+"1040": {
+"etape": 3,
+"surface_m2": 14760
+},
+"1041": {
+"etape": 3,
+"surface_m2": 15092
+},
+"1044": {
+"etape": 3,
+"surface_m2": 2906
+},
+"1045": {
+"etape": 3,
+"surface_m2": 725
+},
+"1046": {
+"etape": 3,
+"surface_m2": 6245
+},
+"1051": {
+"etape": 3,
+"surface_m2": 1013
+},
+"1052": {
+"etape": 3,
+"surface_m2": 1063
+},
+"1053": {
+"etape": 3,
+"surface_m2": 2075
+},
+"1054": {
+"etape": 3,
+"surface_m2": 9616
+},
+"1055": {
+"etape": 3,
+"surface_m2": 2787
+},
+"1062": {
+"etape": 3,
+"surface_m2": 4110
+},
+"1063": {
+"etape": 5,
+"surface_m2": 874
+},
+"1064": {
+"etape": 5,
+"surface_m2": 370
+},
+"1066": {
+"etape": 5,
+"surface_m2": 1264
+},
+"1067": {
+"etape": 5,
+"surface_m2": 1264
+},
+"1071": {
+"etape": 3,
+"surface_m2": 5020
+},
+"1072": {
+"etape": 3,
+"surface_m2": 311
+},
+"1073": {
+"etape": 3,
+"surface_m2": 3385
+},
+"1078": {
+"etape": 3,
+"surface_m2": 2712
+},
+"1079": {
+"etape": 3,
+"surface_m2": 2427
+},
+"1080": {
+"etape": 3,
+"surface_m2": 3021
+},
+"1081": {
+"etape": 3,
+"surface_m2": 5934
+},
+"1083": {
+"etape": 4,
+"surface_m2": 3673
+},
+"1084": {
+"etape": 3,
+"surface_m2": 150
+},
+"1085": {
+"etape": 3,
+"surface_m2": 1504
+},
+"1093": {
+"etape": 3,
+"surface_m2": 4785
+},
+"1094": {
+"etape": 3,
+"surface_m2": 2950
+},
+"1095": {
+"etape": 3,
+"surface_m2": 6644
+},
+"1097": {
+"etape": 3,
+"surface_m2": 2444
+},
+"1098": {
+"etape": 3,
+"surface_m2": 2700
+},
+"1099": {
+"etape": 3,
+"surface_m2": 1417
+},
+"1100": {
+"etape": 5,
+"surface_m2": 485
+},
+"1101": {
+"etape": 3,
+"surface_m2": 2303
+},
+"1102": {
+"etape": 3,
+"surface_m2": 2606
+},
+"1108": {
+"etape": 3,
+"surface_m2": 3486
+},
+"1109": {
+"etape": 3,
+"surface_m2": 470
+},
+"1113": {
+"etape": 3,
+"surface_m2": 8594
+},
+"1114": {
+"etape": 4,
+"surface_m2": 1500
+},
+"1115": {
+"etape": 3,
+"surface_m2": 5281
+},
+"1116": {
+"etape": 3,
+"surface_m2": 3813
+},
+"1120": {
+"etape": 3,
+"surface_m2": 1041
+},
+"1148": {
+"etape": 3,
+"surface_m2": 1785
+},
+"1151": {
+"etape": 3,
+"surface_m2": 284
+},
+"1152": {
+"etape": 3,
+"surface_m2": 192
+},
+"1154": {
+"etape": 3,
+"surface_m2": 1000
+},
+"1155": {
+"etape": 3,
+"surface_m2": 1680
+},
+"1162": {
+"etape": 3,
+"surface_m2": 3366
+},
+"1166": {
+"etape": 3,
+"surface_m2": 2486
+},
+"1167": {
+"etape": 4,
+"surface_m2": 2580
+},
+"1168": {
+"etape": 4,
+"surface_m2": 2580
+},
+"1171": {
+"etape": 3,
+"surface_m2": 2568
+},
+"1176": {
+"etape": 3,
+"surface_m2": 2756
+},
+"1177": {
+"etape": 3,
+"surface_m2": 2790
+},
+"1178": {
+"etape": 3,
+"surface_m2": 2823
+},
+"1179": {
+"etape": 3,
+"surface_m2": 2857
+},
+"1180": {
+"etape": 3,
+"surface_m2": 2890
+},
+"1181": {
+"etape": 3,
+"surface_m2": 934
+},
+"1183": {
+"etape": 3,
+"surface_m2": 31440
+},
+"1184": {
+"etape": 3,
+"surface_m2": 2056
+},
+"1186": {
+"etape": 3,
+"surface_m2": 2673
+},
+"1196": {
+"etape": 3,
+"surface_m2": 2153
+},
+"1197": {
+"etape": 3,
+"surface_m2": 2500
+},
+"1199": {
+"etape": 3,
+"surface_m2": 4433
+},
+"1204": {
+"etape": 3,
+"surface_m2": 2615
+},
+"1205": {
+"etape": 3,
+"surface_m2": 4921
+},
+"1208": {
+"etape": 3,
+"surface_m2": 1819
+},
+"1209": {
+"etape": 3,
+"surface_m2": 3449
+},
+"1210": {
+"etape": 3,
+"surface_m2": 3312
+},
+"1211": {
+"etape": 3,
+"surface_m2": 1082
+},
+"1219": {
+"etape": 3,
+"surface_m2": 4211
+},
+"1221": {
+"etape": 3,
+"surface_m2": 19546
+},
+"1226": {
+"etape": 3,
+"surface_m2": 14796
+},
+"1228": {
+"etape": 3,
+"surface_m2": 2500
+},
+"1229": {
+"etape": 3,
+"surface_m2": 3756
+},
+"1230": {
+"etape": 3,
+"surface_m2": 3759
+},
+"1232": {
+"etape": 4,
+"surface_m2": 2061
+},
+"1233": {
+"etape": 3,
+"surface_m2": 150
+},
+"1235": {
+"etape": 3,
+"surface_m2": 1364
+},
+"1236": {
+"etape": 3,
+"surface_m2": 4238
+},
+"1251": {
+"etape": 3,
+"surface_m2": 1500
+},
+"1253": {
+"etape": 5,
+"surface_m2": 341
+},
+"1254": {
+"etape": 5,
+"surface_m2": 434
+},
+"1255": {
+"etape": 3,
+"surface_m2": 9265
+},
+"1258": {
+"etape": 3,
+"surface_m2": 2797
+},
+"1261": {
+"etape": 5,
+"surface_m2": 445
+},
+"1262": {
+"etape": 3,
+"surface_m2": 1351
+},
+"1268": {
+"etape": 3,
+"surface_m2": 4200
+},
+"1269": {
+"etape": 3,
+"surface_m2": 1555
+},
+"1270": {
+"etape": 3,
+"surface_m2": 1556
+},
+"1274": {
+"etape": 3,
+"surface_m2": 13740
+},
+"1275": {
+"etape": 4,
+"surface_m2": 5021
+},
+"1283": {
+"etape": 3,
+"surface_m2": 150
+},
+"1284": {
+"etape": 3,
+"surface_m2": 1969
+},
+"1285": {
+"etape": 3,
+"surface_m2": 150
+},
+"1287": {
+"etape": 3,
+"surface_m2": 237
+},
+"1288": {
+"etape": 3,
+"surface_m2": 270
+},
+"1289": {
+"etape": 3,
+"surface_m2": 1246
+},
+"1290": {
+"etape": 3,
+"surface_m2": 1440
+},
+"1292": {
+"etape": 3,
+"surface_m2": 6793
+},
+"1294": {
+"etape": 3,
+"surface_m2": 11390
+},
+"1304": {
+"etape": 3,
+"surface_m2": 1731
+},
+"1305": {
+"etape": 3,
+"surface_m2": 2099
+},
+"1307": {
+"etape": 3,
+"surface_m2": 2015
+},
+"1312": {
+"etape": 3,
+"surface_m2": 2500
+},
+"1313": {
+"etape": 3,
+"surface_m2": 2500
+},
+"1316": {
+"etape": 3,
+"surface_m2": 3697
+},
+"1318": {
+"etape": 3,
+"surface_m2": 2957
+},
+"1319": {
+"etape": 3,
+"surface_m2": 4239
+},
+"1321": {
+"etape": 3,
+"surface_m2": 3120
+},
+"1329": {
+"etape": 3,
+"surface_m2": 2717
+},
+"1331": {
+"etape": 3,
+"surface_m2": 375
+},
+"1334": {
+"etape": 3,
+"surface_m2": 400
+},
+"1335": {
+"etape": 3,
+"surface_m2": 278
+},
+"1336": {
+"etape": 3,
+"surface_m2": 1051
+},
+"1337": {
+"etape": 3,
+"surface_m2": 3000
+},
+"1338": {
+"etape": 3,
+"surface_m2": 2000
+},
+"1339": {
+"etape": 3,
+"surface_m2": 2370
+},
+"1346": {
+"etape": 5,
+"surface_m2": 3168
+},
+"1349": {
+"etape": 3,
+"surface_m2": 1967
+},
+"1356": {
+"etape": 3,
+"surface_m2": 12676
+},
+"1361": {
+"etape": 3,
+"surface_m2": 150
+},
+"1365": {
+"etape": 3,
+"surface_m2": 73575
+},
+"1366": {
+"etape": 3,
+"surface_m2": 4500
+},
+"1369": {
+"etape": 3,
+"surface_m2": 20769
+},
+"1379": {
+"etape": 3,
+"surface_m2": 1737
+},
+"1380": {
+"etape": 3,
+"surface_m2": 5805
+},
+"1381": {
+"etape": 3,
+"surface_m2": 18468
+},
+"1382": {
+"etape": 3,
+"surface_m2": 371
+},
+"1386": {
+"etape": 3,
+"surface_m2": 4091
+},
+"1388": {
+"etape": 3,
+"surface_m2": 5274
+},
+"1389": {
+"etape": 3,
+"surface_m2": 4670
+},
+"1391": {
+"etape": 3,
+"surface_m2": 2160
+},
+"1392": {
+"etape": 3,
+"surface_m2": 2679
+},
+"1394": {
+"etape": 3,
+"surface_m2": 138
+},
+"1395": {
+"etape": 3,
+"surface_m2": 148
+},
+"1400": {
+"etape": 3,
+"surface_m2": 212
+},
+"1401": {
+"etape": 3,
+"surface_m2": 2085
+},
+"1405": {
+"etape": 3,
+"surface_m2": 2593
+},
+"1406": {
+"etape": 0,
+"surface_m2": 5612
+},
+"1413": {
+"etape": 3,
+"surface_m2": 3703
+},
+"1415": {
+"etape": 3,
+"surface_m2": 1050
+},
+"1419": {
+"etape": 3,
+"surface_m2": 2679
+},
+"1420": {
+"etape": 3,
+"surface_m2": 2175
+},
+"1425": {
+"etape": 3,
+"surface_m2": 15038
+},
+"1426": {
+"etape": 3,
+"surface_m2": 14740
+},
+"1432": {
+"etape": 3,
+"surface_m2": 6481
+},
+"1434": {
+"etape": 5,
+"surface_m2": 429
+},
+"1435": {
+"etape": 3,
+"surface_m2": 3100
+},
+"1436": {
+"etape": 3,
+"surface_m2": 19290
+},
+"1437": {
+"etape": 3,
+"surface_m2": 6510
+},
+"1442": {
+"etape": 3,
+"surface_m2": 19364
+},
+"1445": {
+"etape": 3,
+"surface_m2": 20000
+},
+"1453": {
+"etape": 3,
+"surface_m2": 1553
+},
+"1459": {
+"etape": 3,
+"surface_m2": 1525
+},
+"1461": {
+"etape": 3,
+"surface_m2": 150
+},
+"1470": {
+"etape": 3,
+"surface_m2": 419
+},
+"1475": {
+"etape": 5,
+"surface_m2": 520
+},
+"1476": {
+"etape": 3,
+"surface_m2": 2807
+},
+"1479": {
+"etape": 3,
+"surface_m2": 3689
+},
+"1482": {
+"etape": 3,
+"surface_m2": 2500
+},
+"1483": {
+"etape": 3,
+"surface_m2": 4072
+},
+"1484": {
+"etape": 3,
+"surface_m2": 5530
+},
+"1488": {
+"etape": 3,
+"surface_m2": 2755
+},
+"1489": {
+"etape": 3,
+"surface_m2": 2040
+},
+"1490": {
+"etape": 3,
+"surface_m2": 230
+},
+"1496": {
+"etape": 3,
+"surface_m2": 3829
+},
+"1503": {
+"etape": 5,
+"surface_m2": 384
+},
+"1505": {
+"etape": 3,
+"surface_m2": 4406
+},
+"1506": {
+"etape": 3,
+"surface_m2": 1891
+},
+"1513": {
+"etape": 3,
+"surface_m2": 1600
+},
+"1517": {
+"etape": 3,
+"surface_m2": 9750
+},
+"1519": {
+"etape": 3,
+"surface_m2": 2530
+},
+"1527": {
+"etape": 3,
+"surface_m2": 6127
+},
+"1531": {
+"etape": 3,
+"surface_m2": 23555
+},
+"1542": {
+"etape": 3,
+"surface_m2": 5813
+},
+"1548": {
+"etape": 3,
+"surface_m2": 2348
+},
+"1549": {
+"etape": 3,
+"surface_m2": 1496
+},
+"1554": {
+"etape": 3,
+"surface_m2": 17011
+},
+"1555": {
+"etape": 3,
+"surface_m2": 4040
+},
+"1564": {
+"etape": 3,
+"surface_m2": 4009
+},
+"1568": {
+"etape": 3,
+"surface_m2": 4001
+},
+"1569": {
+"etape": 3,
+"surface_m2": 4174
+},
+"1573": {
+"etape": 3,
+"surface_m2": 1400
+},
+"1579": {
+"etape": 3,
+"surface_m2": 225
+},
+"1580": {
+"etape": 3,
+"surface_m2": 225
+},
+"1581": {
+"etape": 3,
+"surface_m2": 180
+},
+"1583": {
+"etape": 3,
+"surface_m2": 3307
+},
+"1588": {
+"etape": 5,
+"surface_m2": 506
+},
+"1589": {
+"etape": 3,
+"surface_m2": 5514
+},
+"1590": {
+"etape": 3,
+"surface_m2": 5704
+},
+"1591": {
+"etape": 3,
+"surface_m2": 20336
+},
+"1592": {
+"etape": 3,
+"surface_m2": 12978
+},
+"1593": {
+"etape": 3,
+"surface_m2": 12998
+},
+"1594": {
+"etape": 3,
+"surface_m2": 4106
+},
+"1600": {
+"etape": 3,
+"surface_m2": 6237
+},
+"1602": {
+"etape": 3,
+"surface_m2": 7913
+},
+"1603": {
+"etape": 3,
+"surface_m2": 3593
+},
+"1604": {
+"etape": 3,
+"surface_m2": 381
+},
+"1605": {
+"etape": 3,
+"surface_m2": 377
+},
+"1609": {
+"etape": 3,
+"surface_m2": 5200
+},
+"1621": {
+"etape": 3,
+"surface_m2": 1984
+},
+"1622": {
+"etape": 3,
+"surface_m2": 1435
+},
+"1628": {
+"etape": 3,
+"surface_m2": 4144
+},
+"1629": {
+"etape": 3,
+"surface_m2": 4437
+},
+"1630": {
+"etape": 3,
+"surface_m2": 5444
+},
+"1634": {
+"etape": 3,
+"surface_m2": 1584
+},
+"1644": {
+"etape": 3,
+"surface_m2": 6521
+},
+"1645": {
+"etape": 3,
+"surface_m2": 2609
+},
+"1646": {
+"etape": 3,
+"surface_m2": 1420
+},
+"1647": {
+"etape": 3,
+"surface_m2": 2461
+},
+"1648": {
+"etape": 3,
+"surface_m2": 500
+},
+"1649": {
+"etape": 3,
+"surface_m2": 182
+},
+"1650": {
+"etape": 3,
+"surface_m2": 6430
+},
+"1651": {
+"etape": 3,
+"surface_m2": 1502
+},
+"1655": {
+"etape": 3,
+"surface_m2": 10000
+},
+"1656": {
+"etape": 3,
+"surface_m2": 14180
+},
+"1658": {
+"etape": 3,
+"surface_m2": 1237
+},
+"1659": {
+"etape": 3,
+"surface_m2": 2700
+},
+"1662": {
+"etape": 3,
+"surface_m2": 1005
+},
+"1674": {
+"etape": 3,
+"surface_m2": 664
+},
+"1676": {
+"etape": 3,
+"surface_m2": 3515
+},
+"1677": {
+"etape": 3,
+"surface_m2": 2723
+},
+"1678": {
+"etape": 3,
+"surface_m2": 5488
+},
+"1679": {
+"etape": 3,
+"surface_m2": 2886
+},
+"1689": {
+"etape": 3,
+"surface_m2": 3300
+},
+"1693": {
+"etape": 3,
+"surface_m2": 419
+},
+"1694": {
+"etape": 3,
+"surface_m2": 1413
+},
+"1702": {
+"etape": 3,
+"surface_m2": 2690
+},
+"1703": {
+"etape": 5,
+"surface_m2": 1480
+},
+"1706": {
+"etape": 3,
+"surface_m2": 3570
+},
+"1707": {
+"etape": 3,
+"surface_m2": 1515
+},
+"1713": {
+"etape": 3,
+"surface_m2": 3575
+},
+"1714": {
+"etape": 3,
+"surface_m2": 3421
+},
+"1715": {
+"etape": 3,
+"surface_m2": 3405
+},
+"1716": {
+"etape": 3,
+"surface_m2": 100
+},
+"1718": {
+"etape": 3,
+"surface_m2": 1509
+},
+"1733": {
+"etape": 3,
+"surface_m2": 5750
+},
+"1735": {
+"etape": 3,
+"surface_m2": 3585
+},
+"1740": {
+"etape": 3,
+"surface_m2": 1430
+},
+"1741": {
+"etape": 3,
+"surface_m2": 2990
+},
+"1742": {
+"etape": 3,
+"surface_m2": 10000
+},
+"1743": {
+"etape": 3,
+"surface_m2": 8500
+},
+"1744": {
+"etape": 3,
+"surface_m2": 2640
+},
+"1746": {
+"etape": 3,
+"surface_m2": 5000
+},
+"1747": {
+"etape": 3,
+"surface_m2": 3535
+},
+"1752": {
+"etape": 4,
+"surface_m2": 2400
+},
+"1759": {
+"etape": 3,
+"surface_m2": 192
+},
+"1760": {
+"etape": 3,
+"surface_m2": 4613
+},
+"1761": {
+"etape": 3,
+"surface_m2": 3220
+},
+"1762": {
+"etape": 3,
+"surface_m2": 6335
+},
+"1768": {
+"etape": 3,
+"surface_m2": 419
+},
+"1771": {
+"etape": 3,
+"surface_m2": 4115
+},
+"1776": {
+"etape": 3,
+"surface_m2": 7505
+},
+"1783": {
+"etape": 3,
+"surface_m2": 200
+},
+"1784": {
+"etape": 3,
+"surface_m2": 100
+},
+"1792": {
+"etape": 3,
+"surface_m2": 945
+},
+"1798": {
+"etape": 3,
+"surface_m2": 1057
+},
+"1799": {
+"etape": 3,
+"surface_m2": 1237
+},
+"1800": {
+"etape": 3,
+"surface_m2": 1155
+},
+"1801": {
+"etape": 3,
+"surface_m2": 1140
+},
+"1802": {
+"etape": 3,
+"surface_m2": 2820
+},
+"1803": {
+"etape": 3,
+"surface_m2": 2820
+},
+"1804": {
+"etape": 3,
+"surface_m2": 2820
+},
+"1805": {
+"etape": 3,
+"surface_m2": 2820
+},
+"1806": {
+"etape": 3,
+"surface_m2": 2820
+},
+"1807": {
+"etape": 3,
+"surface_m2": 2820
+},
+"1808": {
+"etape": 3,
+"surface_m2": 2820
+},
+"1809": {
+"etape": 3,
+"surface_m2": 4275
+},
+"1810": {
+"etape": 3,
+"surface_m2": 4584
+},
+"1811": {
+"etape": 3,
+"surface_m2": 2354
+},
+"1812": {
+"etape": 3,
+"surface_m2": 2620
+},
+"1813": {
+"etape": 3,
+"surface_m2": 2620
+},
+"1814": {
+"etape": 3,
+"surface_m2": 2800
+},
+"1815": {
+"etape": 3,
+"surface_m2": 2800
+},
+"1816": {
+"etape": 3,
+"surface_m2": 1060
+},
+"1817": {
+"etape": 3,
+"surface_m2": 2169
+},
+"1818": {
+"etape": 3,
+"surface_m2": 1846
+},
+"1833": {
+"etape": 3,
+"surface_m2": 3308
+},
+"1834": {
+"etape": 3,
+"surface_m2": 2491
+},
+"1837": {
+"etape": 3,
+"surface_m2": 534
+},
+"1839": {
+"etape": 3,
+"surface_m2": 3121
+},
+"1840": {
+"etape": 3,
+"surface_m2": 311
+},
+"1847": {
+"etape": 3,
+"surface_m2": 4636
+},
+"1848": {
+"etape": 3,
+"surface_m2": 3532
+},
+"1850": {
+"etape": 3,
+"surface_m2": 3267
+},
+"1855": {
+"etape": 3,
+"surface_m2": 4988
+},
+"1858": {
+"etape": 3,
+"surface_m2": 3687
+},
+"1862": {
+"etape": 3,
+"surface_m2": 419
+},
+"1864": {
+"etape": 3,
+"surface_m2": 2705
+},
+"1865": {
+"etape": 3,
+"surface_m2": 4540
+},
+"1867": {
+"etape": 3,
+"surface_m2": 5788
+},
+"1872": {
+"etape": 3,
+"surface_m2": 138
+},
+"1873": {
+"etape": 3,
+"surface_m2": 130
+},
+"1874": {
+"etape": 3,
+"surface_m2": 193
+},
+"1875": {
+"etape": 3,
+"surface_m2": 1025
+},
+"1876": {
+"etape": 3,
+"surface_m2": 1957
+},
+"1888": {
+"etape": 3,
+"surface_m2": 2590
+},
+"1891": {
+"etape": 3,
+"surface_m2": 4525
+},
+"1892": {
+"etape": 3,
+"surface_m2": 9719
+},
+"1896": {
+"etape": 3,
+"surface_m2": 2732
+},
+"1898": {
+"etape": 3,
+"surface_m2": 44220
+},
+"1902": {
+"etape": 3,
+"surface_m2": 1800
+},
+"1904": {
+"etape": 3,
+"surface_m2": 138
+},
+"1905": {
+"etape": 3,
+"surface_m2": 3321
+},
+"1906": {
+"etape": 3,
+"surface_m2": 3107
+},
+"1910": {
+"etape": 3,
+"surface_m2": 10273
+},
+"1912": {
+"etape": 3,
+"surface_m2": 2091
+},
+"1913": {
+"etape": 3,
+"surface_m2": 2583
+},
+"1914": {
+"etape": 3,
+"surface_m2": 2024
+},
+"1915": {
+"etape": 3,
+"surface_m2": 3999
+},
+"1916": {
+"etape": 3,
+"surface_m2": 4158
+},
+"1918": {
+"etape": 3,
+"surface_m2": 2500
+},
+"1919": {
+"etape": 3,
+"surface_m2": 2519
+},
+"1920": {
+"etape": 3,
+"surface_m2": 2500
+},
+"1921": {
+"etape": 3,
+"surface_m2": 2500
+},
+"1922": {
+"etape": 3,
+"surface_m2": 3540
+},
+"1925": {
+"etape": 3,
+"surface_m2": 6467
+},
+"1936": {
+"etape": 4,
+"surface_m2": 2594
+},
+"1937": {
+"etape": 5,
+"surface_m2": 385
+},
+"1939": {
+"etape": 3,
+"surface_m2": 2166
+},
+"1943": {
+"etape": 3,
+"surface_m2": 2625
+},
+"1944": {
+"etape": 3,
+"surface_m2": 2625
+},
+"1945": {
+"etape": 3,
+"surface_m2": 1347
+},
+"1949": {
+"etape": 3,
+"surface_m2": 3486
+},
+"1950": {
+"etape": 5,
+"surface_m2": 380
+},
+"1951": {
+"etape": 3,
+"surface_m2": 1524
+},
+"1956": {
+"etape": 3,
+"surface_m2": 3657
+},
+"1963": {
+"etape": 3,
+"surface_m2": 2700
+},
+"1969": {
+"etape": 5,
+"surface_m2": 626
+},
+"1970": {
+"etape": 3,
+"surface_m2": 8246
+},
+"1971": {
+"etape": 3,
+"surface_m2": 193
+},
+"1972": {
+"etape": 3,
+"surface_m2": 192
+},
+"1973": {
+"etape": 3,
+"surface_m2": 179
+},
+"1974": {
+"etape": 3,
+"surface_m2": 1332
+},
+"1975": {
+"etape": 3,
+"surface_m2": 16911
+},
+"1979": {
+"etape": 3,
+"surface_m2": 1335
+},
+"1980": {
+"etape": 3,
+"surface_m2": 14698
+},
+"1990": {
+"etape": 3,
+"surface_m2": 3478
+},
+"1991": {
+"etape": 3,
+"surface_m2": 3478
+},
+"1992": {
+"etape": 3,
+"surface_m2": 3480
+},
+"1994": {
+"etape": 3,
+"surface_m2": 3300
+},
+"1996": {
+"etape": 5,
+"surface_m2": 679
+},
+"1997": {
+"etape": 5,
+"surface_m2": 679
+},
+"1999": {
+"etape": 3,
+"surface_m2": 3492
+},
+"2000": {
+"etape": 3,
+"surface_m2": 2292
+},
+"2005": {
+"etape": 3,
+"surface_m2": 2293
+},
+"2008": {
+"etape": 3,
+"surface_m2": 3588
+},
+"2009": {
+"etape": 3,
+"surface_m2": 3142
+},
+"2010": {
+"etape": 3,
+"surface_m2": 3138
+},
+"2017": {
+"etape": 0,
+"surface_m2": 1982
+},
+"2018": {
+"etape": 3,
+"surface_m2": 3345
+},
+"2024": {
+"etape": 3,
+"surface_m2": 340
+},
+"2025": {
+"etape": 3,
+"surface_m2": 1408
+},
+"2028": {
+"etape": 3,
+"surface_m2": 3866
+},
+"2037": {
+"etape": 3,
+"surface_m2": 3126
+},
+"2038": {
+"etape": 3,
+"surface_m2": 7000
+},
+"2039": {
+"etape": 3,
+"surface_m2": 7510
+},
+"2043": {
+"etape": 4,
+"surface_m2": 6880
+},
+"2044": {
+"etape": 3,
+"surface_m2": 6880
+},
+"2045": {
+"etape": 3,
+"surface_m2": 2451
+},
+"2050": {
+"etape": 3,
+"surface_m2": 2963
+},
+"2052": {
+"etape": 3,
+"surface_m2": 3771
+},
+"2053": {
+"etape": 3,
+"surface_m2": 2831
+},
+"2058": {
+"etape": 3,
+"surface_m2": 2120
+},
+"2069": {
+"etape": 3,
+"surface_m2": 2036
+},
+"2073": {
+"etape": 3,
+"surface_m2": 2197
+},
+"2074": {
+"etape": 3,
+"surface_m2": 3275
+},
+"2075": {
+"etape": 3,
+"surface_m2": 209
+},
+"2076": {
+"etape": 3,
+"surface_m2": 217
+},
+"2078": {
+"etape": 3,
+"surface_m2": 50130
+},
+"2087": {
+"etape": 3,
+"surface_m2": 8244
+},
+"2089": {
+"etape": 3,
+"surface_m2": 10462
+},
+"2092": {
+"etape": 3,
+"surface_m2": 3143
+},
+"2094": {
+"etape": 3,
+"surface_m2": 2450
+},
+"2096": {
+"etape": 3,
+"surface_m2": 703
+},
+"2099": {
+"etape": 3,
+"surface_m2": 2403
+},
+"2100": {
+"etape": 3,
+"surface_m2": 2500
+},
+"2101": {
+"etape": 3,
+"surface_m2": 4662
+},
+"2106": {
+"etape": 3,
+"surface_m2": 2341
+},
+"2112": {
+"etape": 3,
+"surface_m2": 2500
+},
+"2113": {
+"etape": 3,
+"surface_m2": 1849
+},
+"2114": {
+"etape": 3,
+"surface_m2": 2128
+},
+"2129": {
+"etape": 3,
+"surface_m2": 4766
+},
+"2130": {
+"etape": 3,
+"surface_m2": 1790
+},
+"2132": {
+"etape": 3,
+"surface_m2": 16248
+},
+"2135": {
+"etape": 3,
+"surface_m2": 2380
+},
+"2137": {
+"etape": 3,
+"surface_m2": 4241
+},
+"2138": {
+"etape": 3,
+"surface_m2": 150
+},
+"2139": {
+"etape": 3,
+"surface_m2": 6645
+},
+"2144": {
+"etape": 3,
+"surface_m2": 1912
+},
+"2146": {
+"etape": 3,
+"surface_m2": 2499
+},
+"2148": {
+"etape": 3,
+"surface_m2": 2150
+},
+"2150": {
+"etape": 3,
+"surface_m2": 3811
+},
+"2154": {
+"etape": 3,
+"surface_m2": 1410
+},
+"2155": {
+"etape": 3,
+"surface_m2": 2835
+},
+"2156": {
+"etape": 3,
+"surface_m2": 2614
+},
+"2157": {
+"etape": 3,
+"surface_m2": 1885
+},
+"2158": {
+"etape": 3,
+"surface_m2": 2408
+},
+"2159": {
+"etape": 3,
+"surface_m2": 2415
+},
+"2160": {
+"etape": 3,
+"surface_m2": 2371
+},
+"2161": {
+"etape": 3,
+"surface_m2": 2084
+},
+"2162": {
+"etape": 3,
+"surface_m2": 6868
+},
+"2172": {
+"etape": 3,
+"surface_m2": 1194
+},
+"2173": {
+"etape": 3,
+"surface_m2": 19690
+},
+"2174": {
+"etape": 3,
+"surface_m2": 15133
+},
+"2175": {
+"etape": 3,
+"surface_m2": 20930
+},
+"2176": {
+"etape": 3,
+"surface_m2": 5406
+},
+"2177": {
+"etape": 3,
+"surface_m2": 3836
+},
+"2181": {
+"etape": 3,
+"surface_m2": 2748
+},
+"2182": {
+"etape": 3,
+"surface_m2": 100
+},
+"2184": {
+"etape": 3,
+"surface_m2": 2000
+},
+"2186": {
+"etape": 3,
+"surface_m2": 1807
+},
+"2189": {
+"etape": 3,
+"surface_m2": 510
+},
+"2194": {
+"etape": 3,
+"surface_m2": 3407
+},
+"2198": {
+"etape": 3,
+"surface_m2": 1203
+},
+"2199": {
+"etape": 3,
+"surface_m2": 10294
+},
+"2200": {
+"etape": 3,
+"surface_m2": 9747
+},
+"2201": {
+"etape": 3,
+"surface_m2": 1214
+},
+"2202": {
+"etape": 3,
+"surface_m2": 500
+},
+"2203": {
+"etape": 3,
+"surface_m2": 4488
+},
+"2211": {
+"etape": 3,
+"surface_m2": 130
+},
+"2212": {
+"etape": 3,
+"surface_m2": 3208
+},
+"2223": {
+"etape": 3,
+"surface_m2": 1270
+},
+"2224": {
+"etape": 3,
+"surface_m2": 1853
+},
+"2226": {
+"etape": 3,
+"surface_m2": 2585
+},
+"2227": {
+"etape": 3,
+"surface_m2": 2763
+},
+"2228": {
+"etape": 3,
+"surface_m2": 5068
+},
+"2231": {
+"etape": 3,
+"surface_m2": 5470
+},
+"2232": {
+"etape": 3,
+"surface_m2": 3646
+},
+"2242": {
+"etape": 3,
+"surface_m2": 3101
+},
+"2243": {
+"etape": 3,
+"surface_m2": 3059
+},
+"2244": {
+"etape": 3,
+"surface_m2": 3430
+},
+"2252": {
+"etape": 3,
+"surface_m2": 231
+},
+"2253": {
+"etape": 3,
+"surface_m2": 919
+},
+"2254": {
+"etape": 3,
+"surface_m2": 919
+},
+"2264": {
+"etape": 3,
+"surface_m2": 21790
+},
+"2270": {
+"etape": 3,
+"surface_m2": 4825
+},
+"2271": {
+"etape": 3,
+"surface_m2": 3325
+},
+"2272": {
+"etape": 3,
+"surface_m2": 4520
+},
+"2273": {
+"etape": 3,
+"surface_m2": 38888
+},
+"2274": {
+"etape": 3,
+"surface_m2": 19445
+},
+"2278": {
+"etape": 3,
+"surface_m2": 3706
+},
+"2282": {
+"etape": 3,
+"surface_m2": 3027
+},
+"2287": {
+"etape": 0,
+"surface_m2": 28000
+},
+"2288": {
+"etape": 3,
+"surface_m2": 1700
+},
+"2289": {
+"etape": 3,
+"surface_m2": 2821
+},
+"2292": {
+"etape": 3,
+"surface_m2": 5051
+},
+"2299": {
+"etape": 3,
+"surface_m2": 3369
+},
+"2302": {
+"etape": 3,
+"surface_m2": 23981
+},
+"2303": {
+"etape": 3,
+"surface_m2": 1025
+},
+"2305": {
+"etape": 3,
+"surface_m2": 419
+},
+"2310": {
+"etape": 3,
+"surface_m2": 100
+},
+"2314": {
+"etape": 3,
+"surface_m2": 2744
+},
+"2325": {
+"etape": 3,
+"surface_m2": 9850
+},
+"2326": {
+"etape": 3,
+"surface_m2": 1215
+},
+"2331": {
+"etape": 3,
+"surface_m2": 30952
+},
+"2336": {
+"etape": 3,
+"surface_m2": 2926
+},
+"2337": {
+"etape": 3,
+"surface_m2": 348
+},
+"2338": {
+"etape": 3,
+"surface_m2": 1601
+},
+"2348": {
+"etape": 3,
+"surface_m2": 500
+},
+"2349": {
+"etape": 3,
+"surface_m2": 2168
+},
+"2351": {
+"etape": 3,
+"surface_m2": 3414
+},
+"2352": {
+"etape": 3,
+"surface_m2": 4800
+},
+"2363": {
+"etape": 3,
+"surface_m2": 4147
+},
+"2366": {
+"etape": 3,
+"surface_m2": 2825
+},
+"2370": {
+"etape": 4,
+"surface_m2": 100
+},
+"2376": {
+"etape": 3,
+"surface_m2": 2679
+},
+"2379": {
+"etape": 3,
+"surface_m2": 2788
+},
+"2387": {
+"etape": 5,
+"surface_m2": 367
+},
+"2389": {
+"etape": 3,
+"surface_m2": 5438
+},
+"2390": {
+"etape": 3,
+"surface_m2": 100
+},
+"2391": {
+"etape": 3,
+"surface_m2": 100
+},
+"2392": {
+"etape": 3,
+"surface_m2": 10509
+},
+"2395": {
+"etape": 3,
+"surface_m2": 2970
+},
+"2402": {
+"etape": 3,
+"surface_m2": 521
+},
+"2403": {
+"etape": 3,
+"surface_m2": 300
+},
+"2408": {
+"etape": 0,
+"surface_m2": 8312
+},
+"2409": {
+"etape": 0,
+"surface_m2": 8312
+},
+"2410": {
+"etape": 3,
+"surface_m2": 203
+},
+"2411": {
+"etape": 4,
+"surface_m2": 1108
+},
+"2415": {
+"etape": 3,
+"surface_m2": 996
+},
+"2422": {
+"etape": 3,
+"surface_m2": 1204
+},
+"2423": {
+"etape": 4,
+"surface_m2": 440
+},
+"2424": {
+"etape": 4,
+"surface_m2": 2660
+},
+"2431": {
+"etape": 3,
+"surface_m2": 3668
+},
+"2432": {
+"etape": 3,
+"surface_m2": 2270
+},
+"2433": {
+"etape": 3,
+"surface_m2": 1959
+},
+"2434": {
+"etape": 3,
+"surface_m2": 2495
+},
+"2435": {
+"etape": 3,
+"surface_m2": 2503
+},
+"2446": {
+"etape": 3,
+"surface_m2": 5754
+},
+"2449": {
+"etape": 3,
+"surface_m2": 2260
+},
+"2452": {
+"etape": 3,
+"surface_m2": 1575
+},
+"2453": {
+"etape": 3,
+"surface_m2": 3045
+},
+"2454": {
+"etape": 3,
+"surface_m2": 3045
+},
+"2455": {
+"etape": 3,
+"surface_m2": 3045
+},
+"2459": {
+"etape": 3,
+"surface_m2": 129
+},
+"2461": {
+"etape": 3,
+"surface_m2": 423
+},
+"2470": {
+"etape": 3,
+"surface_m2": 5609
+},
+"2472": {
+"etape": 4,
+"surface_m2": 2804
+},
+"2473": {
+"etape": 4,
+"surface_m2": 2612
+},
+"2474": {
+"etape": 3,
+"surface_m2": 3164
+},
+"2475": {
+"etape": 3,
+"surface_m2": 1502
+},
+"2476": {
+"etape": 3,
+"surface_m2": 3515
+},
+"2477": {
+"etape": 3,
+"surface_m2": 1695
+},
+"2478": {
+"etape": 3,
+"surface_m2": 2075
+},
+"2479": {
+"etape": 3,
+"surface_m2": 6325
+},
+"2481": {
+"etape": 3,
+"surface_m2": 1541
+},
+"2483": {
+"etape": 3,
+"surface_m2": 3018
+},
+"2486": {
+"etape": 3,
+"surface_m2": 2255
+},
+"2492": {
+"etape": 3,
+"surface_m2": 3297
+},
+"2494": {
+"etape": 3,
+"surface_m2": 1465
+},
+"2500": {
+"etape": 3,
+"surface_m2": 11902
+},
+"2501": {
+"etape": 3,
+"surface_m2": 4449
+},
+"2505": {
+"etape": 3,
+"surface_m2": 2588
+},
+"2506": {
+"etape": 3,
+"surface_m2": 2761
+},
+"2510": {
+"etape": 5,
+"surface_m2": 1323
+},
+"2514": {
+"etape": 3,
+"surface_m2": 2192
+},
+"2515": {
+"etape": 3,
+"surface_m2": 499
+},
+"2523": {
+"etape": 3,
+"surface_m2": 3580
+},
+"2524": {
+"etape": 3,
+"surface_m2": 2597
+},
+"2525": {
+"etape": 3,
+"surface_m2": 2576
+},
+"2527": {
+"etape": 3,
+"surface_m2": 2150
+},
+"2528": {
+"etape": 3,
+"surface_m2": 24969
+},
+"2529": {
+"etape": 3,
+"surface_m2": 2476
+},
+"2534": {
+"etape": 3,
+"surface_m2": 5750
+},
+"2541": {
+"etape": 3,
+"surface_m2": 3369
+},
+"2544": {
+"etape": 3,
+"surface_m2": 2300
+},
+"2554": {
+"etape": 3,
+"surface_m2": 406
+},
+"2556": {
+"etape": 3,
+"surface_m2": 1618
+},
+"2557": {
+"etape": 3,
+"surface_m2": 2205
+},
+"2558": {
+"etape": 3,
+"surface_m2": 2204
+},
+"2559": {
+"etape": 3,
+"surface_m2": 2998
+},
+"2568": {
+"etape": 5,
+"surface_m2": 489
+},
+"2573": {
+"etape": 3,
+"surface_m2": 2620
+},
+"2577": {
+"etape": 3,
+"surface_m2": 1990
+},
+"2582": {
+"etape": 3,
+"surface_m2": 3369
+},
+"2583": {
+"etape": 3,
+"surface_m2": 2607
+},
+"2586": {
+"etape": 3,
+"surface_m2": 2847
+},
+"2587": {
+"etape": 3,
+"surface_m2": 1669
+},
+"2588": {
+"etape": 3,
+"surface_m2": 991
+},
+"2596": {
+"etape": 3,
+"surface_m2": 3707
+},
+"2597": {
+"etape": 3,
+"surface_m2": 3388
+},
+"2600": {
+"etape": 3,
+"surface_m2": 11000
+},
+"2601": {
+"etape": 3,
+"surface_m2": 4027
+},
+"2602": {
+"etape": 3,
+"surface_m2": 1000
+},
+"2605": {
+"etape": 3,
+"surface_m2": 2663
+},
+"2606": {
+"etape": 3,
+"surface_m2": 3925
+},
+"2607": {
+"etape": 3,
+"surface_m2": 4125
+},
+"2608": {
+"etape": 3,
+"surface_m2": 1834
+},
+"2609": {
+"etape": 3,
+"surface_m2": 1362
+},
+"2610": {
+"etape": 3,
+"surface_m2": 1594
+},
+"2611": {
+"etape": 3,
+"surface_m2": 15032
+},
+"2615": {
+"etape": 3,
+"surface_m2": 3024
+},
+"2616": {
+"etape": 3,
+"surface_m2": 4451
+},
+"2625": {
+"etape": 3,
+"surface_m2": 632
+},
+"2629": {
+"etape": 3,
+"surface_m2": 10330
+},
+"2630": {
+"etape": 3,
+"surface_m2": 1100
+},
+"2635": {
+"etape": 3,
+"surface_m2": 1500
+},
+"2636": {
+"etape": 3,
+"surface_m2": 1663
+},
+"2637": {
+"etape": 3,
+"surface_m2": 6128
+},
+"2646": {
+"etape": 3,
+"surface_m2": 1406
+},
+"2648": {
+"etape": 3,
+"surface_m2": 1448
+},
+"2651": {
+"etape": 3,
+"surface_m2": 290
+},
+"2652": {
+"etape": 3,
+"surface_m2": 2750
+},
+"2653": {
+"etape": 3,
+"surface_m2": 2787
+},
+"2659": {
+"etape": 3,
+"surface_m2": 2942
+},
+"2673": {
+"etape": 3,
+"surface_m2": 15190
+},
+"2674": {
+"etape": 3,
+"surface_m2": 16505
+},
+"2676": {
+"etape": 3,
+"surface_m2": 41677
+},
+"2677": {
+"etape": 3,
+"surface_m2": 7010
+},
+"2681": {
+"etape": 3,
+"surface_m2": 1954
+},
+"2684": {
+"etape": 3,
+"surface_m2": 2600
+},
+"2685": {
+"etape": 3,
+"surface_m2": 181
+},
+"2686": {
+"etape": 3,
+"surface_m2": 13455
+},
+"2687": {
+"etape": 3,
+"surface_m2": 1168
+},
+"2689": {
+"etape": 3,
+"surface_m2": 2891
+},
+"2699": {
+"etape": 3,
+"surface_m2": 1593
+},
+"2707": {
+"etape": 3,
+"surface_m2": 1622
+},
+"2708": {
+"etape": 3,
+"surface_m2": 2061
+},
+"2710": {
+"etape": 3,
+"surface_m2": 100
+},
+"2712": {
+"etape": 3,
+"surface_m2": 150
+},
+"2715": {
+"etape": 3,
+"surface_m2": 3155
+},
+"2717": {
+"etape": 3,
+"surface_m2": 20255
+},
+"2718": {
+"etape": 3,
+"surface_m2": 18665
+},
+"2719": {
+"etape": 3,
+"surface_m2": 11415
+},
+"2721": {
+"etape": 3,
+"surface_m2": 3929
+},
+"2722": {
+"etape": 3,
+"surface_m2": 3726
+},
+"2723": {
+"etape": 3,
+"surface_m2": 2800
+},
+"2727": {
+"etape": 3,
+"surface_m2": 3346
+},
+"2728": {
+"etape": 3,
+"surface_m2": 2800
+},
+"2729": {
+"etape": 3,
+"surface_m2": 2700
+},
+"2730": {
+"etape": 3,
+"surface_m2": 2380
+},
+"2731": {
+"etape": 3,
+"surface_m2": 1988
+},
+"2735": {
+"etape": 3,
+"surface_m2": 9198
+},
+"2736": {
+"etape": 3,
+"surface_m2": 2132
+},
+"2737": {
+"etape": 3,
+"surface_m2": 8983
+},
+"2745": {
+"etape": 3,
+"surface_m2": 3000
+},
+"2746": {
+"etape": 3,
+"surface_m2": 3379
+},
+"2747": {
+"etape": 3,
+"surface_m2": 1500
+},
+"2748": {
+"etape": 3,
+"surface_m2": 1962
+},
+"2749": {
+"etape": 3,
+"surface_m2": 2297
+},
+"2760": {
+"etape": 3,
+"surface_m2": 3553
+},
+"2772": {
+"etape": 3,
+"surface_m2": 13935
+},
+"2789": {
+"etape": 3,
+"surface_m2": 521
+},
+"2790": {
+"etape": 3,
+"surface_m2": 312
+},
+"2791": {
+"etape": 3,
+"surface_m2": 311
+},
+"2792": {
+"etape": 3,
+"surface_m2": 14800
+},
+"2793": {
+"etape": 3,
+"surface_m2": 6750
+},
+"2794": {
+"etape": 3,
+"surface_m2": 11780
+},
+"2799": {
+"etape": 3,
+"surface_m2": 11125
+},
+"2800": {
+"etape": 3,
+"surface_m2": 1957
+},
+"2803": {
+"etape": 3,
+"surface_m2": 6084
+},
+"2807": {
+"etape": 3,
+"surface_m2": 1131
+},
+"2808": {
+"etape": 3,
+"surface_m2": 192
+},
+"2819": {
+"etape": 3,
+"surface_m2": 2640
+},
+"2821": {
+"etape": 3,
+"surface_m2": 2390
+},
+"2822": {
+"etape": 3,
+"surface_m2": 4430
+},
+"2825": {
+"etape": 3,
+"surface_m2": 1000
+},
+"2826": {
+"etape": 3,
+"surface_m2": 1564
+},
+"2829": {
+"etape": 3,
+"surface_m2": 2500
+},
+"2830": {
+"etape": 3,
+"surface_m2": 2090
+},
+"2831": {
+"etape": 3,
+"surface_m2": 1724
+},
+"2832": {
+"etape": 3,
+"surface_m2": 1851
+},
+"2835": {
+"etape": 3,
+"surface_m2": 2000
+},
+"2836": {
+"etape": 3,
+"surface_m2": 6937
+},
+"2837": {
+"etape": 3,
+"surface_m2": 1505
+},
+"2838": {
+"etape": 3,
+"surface_m2": 20931
+},
+"2842": {
+"etape": 3,
+"surface_m2": 4830
+},
+"2843": {
+"etape": 3,
+"surface_m2": 409
+},
+"2844": {
+"etape": 3,
+"surface_m2": 1424
+},
+"2851": {
+"etape": 3,
+"surface_m2": 15141
+},
+"2852": {
+"etape": 3,
+"surface_m2": 1078
+},
+"2854": {
+"etape": 3,
+"surface_m2": 9576
+},
+"2855": {
+"etape": 3,
+"surface_m2": 1397
+},
+"2856": {
+"etape": 3,
+"surface_m2": 1000
+},
+"2864": {
+"etape": 3,
+"surface_m2": 10774
+},
+"2865": {
+"etape": 3,
+"surface_m2": 1608
+},
+"2868": {
+"etape": 3,
+"surface_m2": 100
+},
+"2870": {
+"etape": 3,
+"surface_m2": 3008
+},
+"2877": {
+"etape": 3,
+"surface_m2": 331
+},
+"2878": {
+"etape": 3,
+"surface_m2": 100
+},
+"2880": {
+"etape": 3,
+"surface_m2": 904
+},
+"2884": {
+"etape": 3,
+"surface_m2": 9000
+},
+"2887": {
+"etape": 3,
+"surface_m2": 11480
+},
+"2888": {
+"etape": 3,
+"surface_m2": 8720
+},
+"2902": {
+"etape": 3,
+"surface_m2": 322
+},
+"2903": {
+"etape": 3,
+"surface_m2": 200
+},
+"2906": {
+"etape": 3,
+"surface_m2": 1000
+},
+"2907": {
+"etape": 3,
+"surface_m2": 2130
+},
+"2908": {
+"etape": 3,
+"surface_m2": 960
+},
+"2911": {
+"etape": 3,
+"surface_m2": 3155
+},
+"2913": {
+"etape": 3,
+"surface_m2": 1535
+},
+"2916": {
+"etape": 3,
+"surface_m2": 2510
+},
+"2918": {
+"etape": 3,
+"surface_m2": 5462
+},
+"2927": {
+"etape": 3,
+"surface_m2": 3210
+},
+"2928": {
+"etape": 3,
+"surface_m2": 3210
+},
+"2931": {
+"etape": 3,
+"surface_m2": 2256
+},
+"2933": {
+"etape": 3,
+"surface_m2": 6016
+},
+"2936": {
+"etape": 3,
+"surface_m2": 8187
+},
+"2939": {
+"etape": 5,
+"surface_m2": 270
+},
+"2941": {
+"etape": 3,
+"surface_m2": 201
+},
+"2942": {
+"etape": 3,
+"surface_m2": 209
+},
+"2946": {
+"etape": 3,
+"surface_m2": 310
+},
+"2947": {
+"etape": 3,
+"surface_m2": 254
+},
+"2951": {
+"etape": 3,
+"surface_m2": 2570
+},
+"2956": {
+"etape": 3,
+"surface_m2": 3005
+},
+"2959": {
+"etape": 3,
+"surface_m2": 3208
+},
+"2963": {
+"etape": 3,
+"surface_m2": 138
+},
+"2964": {
+"etape": 3,
+"surface_m2": 148
+},
+"2965": {
+"etape": 3,
+"surface_m2": 5010
+},
+"2968": {
+"etape": 3,
+"surface_m2": 9411
+},
+"2970": {
+"etape": 3,
+"surface_m2": 2228
+},
+"2971": {
+"etape": 3,
+"surface_m2": 2280
+},
+"2972": {
+"etape": 3,
+"surface_m2": 3012
+},
+"2973": {
+"etape": 3,
+"surface_m2": 1408
+},
+"2974": {
+"etape": 3,
+"surface_m2": 2901
+},
+"2975": {
+"etape": 3,
+"surface_m2": 2900
+},
+"2982": {
+"etape": 3,
+"surface_m2": 8130
+},
+"2991": {
+"etape": 3,
+"surface_m2": 2330
+},
+"2992": {
+"etape": 3,
+"surface_m2": 7350
+},
+"2993": {
+"etape": 3,
+"surface_m2": 2837
+},
+"2996": {
+"etape": 3,
+"surface_m2": 5623
+},
+"2998": {
+"etape": 3,
+"surface_m2": 2140
+},
+"3008": {
+"etape": 3,
+"surface_m2": 1364
+},
+"3009": {
+"etape": 3,
+"surface_m2": 3209
+},
+"3010": {
+"etape": 5,
+"surface_m2": 803
+},
+"3011": {
+"etape": 4,
+"surface_m2": 418
+},
+"3012": {
+"etape": 3,
+"surface_m2": 2104
+},
+"3018": {
+"etape": 5,
+"surface_m2": 275
+},
+"3020": {
+"etape": 3,
+"surface_m2": 1500
+},
+"3021": {
+"etape": 3,
+"surface_m2": 1500
+},
+"3023": {
+"etape": 3,
+"surface_m2": 911
+},
+"3026": {
+"etape": 3,
+"surface_m2": 2564
+},
+"3027": {
+"etape": 3,
+"surface_m2": 1511
+},
+"3028": {
+"etape": 3,
+"surface_m2": 1511
+},
+"3029": {
+"etape": 3,
+"surface_m2": 1644
+},
+"3032": {
+"etape": 3,
+"surface_m2": 984
+},
+"3033": {
+"etape": 3,
+"surface_m2": 4775
+},
+"3035": {
+"etape": 3,
+"surface_m2": 3587
+},
+"3037": {
+"etape": 3,
+"surface_m2": 12460
+},
+"3038": {
+"etape": 3,
+"surface_m2": 200
+},
+"3039": {
+"etape": 3,
+"surface_m2": 1007
+},
+"3040": {
+"etape": 3,
+"surface_m2": 1240
+},
+"3041": {
+"etape": 3,
+"surface_m2": 100
+},
+"3042": {
+"etape": 3,
+"surface_m2": 979
+},
+"3043": {
+"etape": 5,
+"surface_m2": 979
+},
+"3046": {
+"etape": 3,
+"surface_m2": 1874
+},
+"3053": {
+"etape": 3,
+"surface_m2": 14515
+},
+"3059": {
+"etape": 3,
+"surface_m2": 12328
+},
+"3061": {
+"etape": 3,
+"surface_m2": 5787
+},
+"3062": {
+"etape": 5,
+"surface_m2": 5896
+},
+"3063": {
+"etape": 5,
+"surface_m2": 5994
+},
+"3064": {
+"etape": 5,
+"surface_m2": 6136
+},
+"3065": {
+"etape": 3,
+"surface_m2": 359
+},
+"3071": {
+"etape": 3,
+"surface_m2": 400
+},
+"3074": {
+"etape": 3,
+"surface_m2": 6880
+},
+"3082": {
+"etape": 3,
+"surface_m2": 3994
+},
+"3089": {
+"etape": 3,
+"surface_m2": 2832
+},
+"3090": {
+"etape": 3,
+"surface_m2": 115220
+},
+"3093": {
+"etape": 3,
+"surface_m2": 575
+},
+"3096": {
+"etape": 3,
+"surface_m2": 8548
+},
+"3098": {
+"etape": 3,
+"surface_m2": 1551
+},
+"3102": {
+"etape": 3,
+"surface_m2": 1680
+},
+"3104": {
+"etape": 3,
+"surface_m2": 6689
+},
+"3105": {
+"etape": 3,
+"surface_m2": 7901
+},
+"3109": {
+"etape": 3,
+"surface_m2": 2660
+},
+"3110": {
+"etape": 3,
+"surface_m2": 4371
+},
+"3114": {
+"etape": 3,
+"surface_m2": 521
+},
+"3115": {
+"etape": 3,
+"surface_m2": 11378
+},
+"3116": {
+"etape": 3,
+"surface_m2": 148
+},
+"3118": {
+"etape": 3,
+"surface_m2": 7665
+},
+"3120": {
+"etape": 3,
+"surface_m2": 3972
+},
+"3121": {
+"etape": 3,
+"surface_m2": 2620
+},
+"3124": {
+"etape": 3,
+"surface_m2": 2978
+},
+"3125": {
+"etape": 3,
+"surface_m2": 2965
+},
+"3126": {
+"etape": 3,
+"surface_m2": 2965
+},
+"3127": {
+"etape": 3,
+"surface_m2": 2965
+},
+"3128": {
+"etape": 3,
+"surface_m2": 2965
+},
+"3129": {
+"etape": 3,
+"surface_m2": 2965
+},
+"3130": {
+"etape": 3,
+"surface_m2": 2965
+},
+"3141": {
+"etape": 5,
+"surface_m2": 952
+},
+"3142": {
+"etape": 5,
+"surface_m2": 489
+},
+"3143": {
+"etape": 3,
+"surface_m2": 2100
+},
+"3144": {
+"etape": 3,
+"surface_m2": 4212
+},
+"3146": {
+"etape": 4,
+"surface_m2": 1078
+},
+"3147": {
+"etape": 3,
+"surface_m2": 142150
+},
+"3148": {
+"etape": 3,
+"surface_m2": 140744
+},
+"3149": {
+"etape": 3,
+"surface_m2": 65707
+},
+"3153": {
+"etape": 3,
+"surface_m2": 2317
+},
+"3155": {
+"etape": 3,
+"surface_m2": 687
+},
+"3156": {
+"etape": 3,
+"surface_m2": 2211
+},
+"3157": {
+"etape": 3,
+"surface_m2": 1966
+},
+"3159": {
+"etape": 3,
+"surface_m2": 2881
+},
+"3162": {
+"etape": 3,
+"surface_m2": 5835
+},
+"3163": {
+"etape": 3,
+"surface_m2": 2400
+},
+"3164": {
+"etape": 3,
+"surface_m2": 12280
+},
+"3168": {
+"etape": 3,
+"surface_m2": 361
+},
+"3171": {
+"etape": 3,
+"surface_m2": 311
+},
+"3174": {
+"etape": 3,
+"surface_m2": 1608
+},
+"3176": {
+"etape": 3,
+"surface_m2": 1666
+},
+"3178": {
+"etape": 3,
+"surface_m2": 2668
+},
+"3179": {
+"etape": 3,
+"surface_m2": 6383
+},
+"3191": {
+"etape": 3,
+"surface_m2": 10829
+},
+"3198": {
+"etape": 3,
+"surface_m2": 3040
+},
+"3200": {
+"etape": 3,
+"surface_m2": 3495
+},
+"3207": {
+"etape": 3,
+"surface_m2": 9146
+},
+"3209": {
+"etape": 3,
+"surface_m2": 2000
+},
+"3210": {
+"etape": 3,
+"surface_m2": 2877
+},
+"3215": {
+"etape": 3,
+"surface_m2": 3663
+},
+"3223": {
+"etape": 3,
+"surface_m2": 4961
+},
+"3224": {
+"etape": 3,
+"surface_m2": 5305
+},
+"3226": {
+"etape": 5,
+"surface_m2": 3088
+},
+"3233": {
+"etape": 3,
+"surface_m2": 3844
+},
+"3236": {
+"etape": 3,
+"surface_m2": 2934
+},
+"3243": {
+"etape": 3,
+"surface_m2": 2522
+},
+"3244": {
+"etape": 3,
+"surface_m2": 1930
+},
+"3247": {
+"etape": 3,
+"surface_m2": 349
+},
+"3248": {
+"etape": 3,
+"surface_m2": 1155
+},
+"3250": {
+"etape": 3,
+"surface_m2": 3400
+},
+"3251": {
+"etape": 3,
+"surface_m2": 8270
+},
+"3259": {
+"etape": 3,
+"surface_m2": 240
+},
+"3260": {
+"etape": 3,
+"surface_m2": 24588
+},
+"3265": {
+"etape": 3,
+"surface_m2": 7000
+},
+"3268": {
+"etape": 3,
+"surface_m2": 9444
+},
+"3270": {
+"etape": 3,
+"surface_m2": 2150
+},
+"3272": {
+"etape": 3,
+"surface_m2": 1924
+},
+"3275": {
+"etape": 3,
+"surface_m2": 11722
+},
+"3276": {
+"etape": 3,
+"surface_m2": 2164
+},
+"3277": {
+"etape": 3,
+"surface_m2": 2164
+},
+"3278": {
+"etape": 3,
+"surface_m2": 2206
+},
+"3279": {
+"etape": 3,
+"surface_m2": 1744
+},
+"3286": {
+"etape": 3,
+"surface_m2": 292
+},
+"3292": {
+"etape": 3,
+"surface_m2": 418
+},
+"3294": {
+"etape": 3,
+"surface_m2": 1732
+},
+"3295": {
+"etape": 3,
+"surface_m2": 2394
+},
+"3296": {
+"etape": 3,
+"surface_m2": 2851
+},
+"3305": {
+"etape": 3,
+"surface_m2": 48418
+},
+"3307": {
+"etape": 3,
+"surface_m2": 3989
+},
+"3308": {
+"etape": 3,
+"surface_m2": 1600
+},
+"3310": {
+"etape": 3,
+"surface_m2": 2012
+},
+"3321": {
+"etape": 3,
+"surface_m2": 10359
+},
+"3330": {
+"etape": 3,
+"surface_m2": 42850
+},
+"3337": {
+"etape": 3,
+"surface_m2": 246
+},
+"3341": {
+"etape": 3,
+"surface_m2": 127
+},
+"3346": {
+"etape": 3,
+"surface_m2": 2290
+},
+"3347": {
+"etape": 3,
+"surface_m2": 3877
+},
+"3349": {
+"etape": 3,
+"surface_m2": 2460
+},
+"3352": {
+"etape": 3,
+"surface_m2": 4000
+},
+"3356": {
+"etape": 3,
+"surface_m2": 1500
+},
+"3358": {
+"etape": 3,
+"surface_m2": 1373
+},
+"3361": {
+"etape": 3,
+"surface_m2": 200
+},
+"3363": {
+"etape": 0,
+"surface_m2": 30
+},
+"3365": {
+"etape": 3,
+"surface_m2": 1500
+},
+"3366": {
+"etape": 3,
+"surface_m2": 500
+},
+"3368": {
+"etape": 3,
+"surface_m2": 2495
+},
+"3376": {
+"etape": 3,
+"surface_m2": 3525
+},
+"3382": {
+"etape": 3,
+"surface_m2": 2150
+},
+"3383": {
+"etape": 3,
+"surface_m2": 4281
+},
+"3389": {
+"etape": 3,
+"surface_m2": 1922
+},
+"3390": {
+"etape": 3,
+"surface_m2": 2200
+},
+"3391": {
+"etape": 3,
+"surface_m2": 2991
+},
+"3396": {
+"etape": 4,
+"surface_m2": 1850
+},
+"3402": {
+"etape": 3,
+"surface_m2": 2320
+},
+"3406": {
+"etape": 3,
+"surface_m2": 3000
+},
+"3409": {
+"etape": 3,
+"surface_m2": 3540
+},
+"3411": {
+"etape": 4,
+"surface_m2": 3797
+},
+"3426": {
+"etape": 3,
+"surface_m2": 2789
+},
+"3430": {
+"etape": 3,
+"surface_m2": 4222
+},
+"3431": {
+"etape": 3,
+"surface_m2": 690
+},
+"3432": {
+"etape": 5,
+"surface_m2": 911
+},
+"3433": {
+"etape": 5,
+"surface_m2": 911
+},
+"3435": {
+"etape": 3,
+"surface_m2": 2126
+},
+"3437": {
+"etape": 3,
+"surface_m2": 193
+},
+"3438": {
+"etape": 3,
+"surface_m2": 193
+},
+"3439": {
+"etape": 3,
+"surface_m2": 193
+},
+"3440": {
+"etape": 3,
+"surface_m2": 194
+},
+"3441": {
+"etape": 3,
+"surface_m2": 311
+},
+"3445": {
+"etape": 3,
+"surface_m2": 1620
+},
+"3446": {
+"etape": 3,
+"surface_m2": 2570
+},
+"3449": {
+"etape": 3,
+"surface_m2": 3122
+},
+"3451": {
+"etape": 4,
+"surface_m2": 1731
+},
+"3454": {
+"etape": 3,
+"surface_m2": 1435
+},
+"3459": {
+"etape": 3,
+"surface_m2": 225
+},
+"3460": {
+"etape": 3,
+"surface_m2": 224
+},
+"3468": {
+"etape": 3,
+"surface_m2": 29180
+},
+"3469": {
+"etape": 3,
+"surface_m2": 3780
+},
+"3470": {
+"etape": 3,
+"surface_m2": 3229
+},
+"3475": {
+"etape": 3,
+"surface_m2": 4000
+},
+"3477": {
+"etape": 3,
+"surface_m2": 5640
+},
+"3478": {
+"etape": 3,
+"surface_m2": 3942
+},
+"3479": {
+"etape": 3,
+"surface_m2": 5247
+},
+"3482": {
+"etape": 3,
+"surface_m2": 6880
+},
+"3483": {
+"etape": 3,
+"surface_m2": 150
+},
+"3484": {
+"etape": 3,
+"surface_m2": 1864
+},
+"3487": {
+"etape": 3,
+"surface_m2": 1800
+},
+"3488": {
+"etape": 3,
+"surface_m2": 70910
+},
+"3489": {
+"etape": 4,
+"surface_m2": 3370
+},
+"3490": {
+"etape": 3,
+"surface_m2": 2809
+},
+"3491": {
+"etape": 4,
+"surface_m2": 225
+},
+"3500": {
+"etape": 3,
+"surface_m2": 2272
+},
+"3504": {
+"etape": 3,
+"surface_m2": 15435
+},
+"3508": {
+"etape": 3,
+"surface_m2": 1642
+},
+"3522": {
+"etape": 0,
+"surface_m2": 416
+},
+"3523": {
+"etape": 3,
+"surface_m2": 3641
+},
+"3525": {
+"etape": 3,
+"surface_m2": 4082
+},
+"3526": {
+"etape": 0,
+"surface_m2": 15537
+},
+"3536": {
+"etape": 3,
+"surface_m2": 1290
+},
+"3539": {
+"etape": 3,
+"surface_m2": 581
+},
+"3540": {
+"etape": 3,
+"surface_m2": 16230
+},
+"3545": {
+"etape": 3,
+"surface_m2": 5422
+},
+"3549": {
+"etape": 3,
+"surface_m2": 1500
+},
+"3550": {
+"etape": 3,
+"surface_m2": 5121
+},
+"3551": {
+"etape": 3,
+"surface_m2": 4013
+},
+"3552": {
+"etape": 3,
+"surface_m2": 693
+},
+"3554": {
+"etape": 3,
+"surface_m2": 5000
+},
+"3562": {
+"etape": 3,
+"surface_m2": 8830
+},
+"3565": {
+"etape": 3,
+"surface_m2": 2664
+},
+"3567": {
+"etape": 3,
+"surface_m2": 4786
+},
+"3570": {
+"etape": 3,
+"surface_m2": 2475
+},
+"3573": {
+"etape": 3,
+"surface_m2": 17452
+},
+"3576": {
+"etape": 3,
+"surface_m2": 3000
+},
+"3580": {
+"etape": 3,
+"surface_m2": 3430
+},
+"3585": {
+"etape": 3,
+"surface_m2": 2448
+},
+"3594": {
+"etape": 3,
+"surface_m2": 5936
+},
+"3596": {
+"etape": 3,
+"surface_m2": 2500
+},
+"3604": {
+"etape": 3,
+"surface_m2": 190
+},
+"3609": {
+"etape": 3,
+"surface_m2": 1424
+},
+"3613": {
+"etape": 3,
+"surface_m2": 3100
+},
+"3619": {
+"etape": 3,
+"surface_m2": 2367
+},
+"3623": {
+"etape": 3,
+"surface_m2": 20625
+},
+"3625": {
+"etape": 3,
+"surface_m2": 2629
+},
+"3626": {
+"etape": 3,
+"surface_m2": 2615
+},
+"3627": {
+"etape": 3,
+"surface_m2": 2615
+},
+"3628": {
+"etape": 3,
+"surface_m2": 4040
+},
+"3629": {
+"etape": 3,
+"surface_m2": 2534
+},
+"3633": {
+"etape": 3,
+"surface_m2": 1493
+},
+"3636": {
+"etape": 3,
+"surface_m2": 36000
+},
+"3638": {
+"etape": 3,
+"surface_m2": 192
+},
+"3639": {
+"etape": 3,
+"surface_m2": 193
+},
+"3659": {
+"etape": 5,
+"surface_m2": 2377
+},
+"3660": {
+"etape": 5,
+"surface_m2": 2431
+},
+"3661": {
+"etape": 3,
+"surface_m2": 1603
+},
+"3662": {
+"etape": 1,
+"surface_m2": 1417
+},
+"3666": {
+"etape": 3,
+"surface_m2": 803
+},
+"3667": {
+"etape": 3,
+"surface_m2": 274
+},
+"3669": {
+"etape": 3,
+"surface_m2": 4747
+},
+"3670": {
+"etape": 3,
+"surface_m2": 1010
+},
+"3676": {
+"etape": 3,
+"surface_m2": 2939
+},
+"3684": {
+"etape": 3,
+"surface_m2": 4013
+},
+"3685": {
+"etape": 3,
+"surface_m2": 4013
+},
+"3686": {
+"etape": 3,
+"surface_m2": 4067
+},
+"3687": {
+"etape": 3,
+"surface_m2": 150
+},
+"3690": {
+"etape": 3,
+"surface_m2": 3256
+},
+"3691": {
+"etape": 3,
+"surface_m2": 1783
+},
+"3692": {
+"etape": 3,
+"surface_m2": 1395
+},
+"3693": {
+"etape": 3,
+"surface_m2": 1140
+},
+"3698": {
+"etape": 3,
+"surface_m2": 5050
+},
+"3702": {
+"etape": 3,
+"surface_m2": 521
+},
+"3703": {
+"etape": 3,
+"surface_m2": 2764
+},
+"3706": {
+"etape": 3,
+"surface_m2": 16873
+},
+"3711": {
+"etape": 3,
+"surface_m2": 10701
+},
+"3712": {
+"etape": 3,
+"surface_m2": 4405
+},
+"3714": {
+"etape": 3,
+"surface_m2": 1125
+},
+"3716": {
+"etape": 3,
+"surface_m2": 2712
+},
+"3717": {
+"etape": 3,
+"surface_m2": 2287
+},
+"3718": {
+"etape": 3,
+"surface_m2": 2373
+},
+"3721": {
+"etape": 3,
+"surface_m2": 8023
+},
+"3722": {
+"etape": 3,
+"surface_m2": 2000
+},
+"3723": {
+"etape": 3,
+"surface_m2": 1000
+},
+"3724": {
+"etape": 3,
+"surface_m2": 1000
+},
+"3728": {
+"etape": 3,
+"surface_m2": 5040
+},
+"3729": {
+"etape": 3,
+"surface_m2": 5000
+},
+"3732": {
+"etape": 3,
+"surface_m2": 100
+},
+"3738": {
+"etape": 0,
+"surface_m2": 3543
+},
+"3739": {
+"etape": 0,
+"surface_m2": 3543
+},
+"3740": {
+"etape": 0,
+"surface_m2": 3543
+},
+"3745": {
+"etape": 3,
+"surface_m2": 6336
+},
+"3746": {
+"etape": 3,
+"surface_m2": 6928
+},
+"3754": {
+"etape": 3,
+"surface_m2": 5552
+},
+"3755": {
+"etape": 3,
+"surface_m2": 2646
+},
+"3757": {
+"etape": 3,
+"surface_m2": 16437
+},
+"3758": {
+"etape": 3,
+"surface_m2": 16428
+},
+"3759": {
+"etape": 3,
+"surface_m2": 16421
+},
+"3767": {
+"etape": 3,
+"surface_m2": 8492
+},
+"3770": {
+"etape": 3,
+"surface_m2": 5035
+},
+"3771": {
+"etape": 3,
+"surface_m2": 23483
+},
+"3772": {
+"etape": 3,
+"surface_m2": 1240
+},
+"3773": {
+"etape": 3,
+"surface_m2": 485
+},
+"3774": {
+"etape": 3,
+"surface_m2": 481
+},
+"3775": {
+"etape": 1,
+"surface_m2": 2064
+},
+"3777": {
+"etape": 3,
+"surface_m2": 1606
+},
+"3778": {
+"etape": 3,
+"surface_m2": 1659
+},
+"3779": {
+"etape": 3,
+"surface_m2": 943
+},
+"3780": {
+"etape": 3,
+"surface_m2": 7462
+},
+"3781": {
+"etape": 3,
+"surface_m2": 7591
+},
+"3782": {
+"etape": 3,
+"surface_m2": 2950
+},
+"3783": {
+"etape": 3,
+"surface_m2": 5030
+},
+"3784": {
+"etape": 3,
+"surface_m2": 7709
+},
+"3786": {
+"etape": 3,
+"surface_m2": 2078
+},
+"3787": {
+"etape": 3,
+"surface_m2": 2502
+},
+"3788": {
+"etape": 0,
+"surface_m2": 2300
+},
+"3789": {
+"etape": 0,
+"surface_m2": 3538
+},
+"3790": {
+"etape": 0,
+"surface_m2": 2300
+},
+"3792": {
+"etape": 4,
+"surface_m2": 2894
+},
+"3793": {
+"etape": 3,
+"surface_m2": 6075
+},
+"3794": {
+"etape": 3,
+"surface_m2": 14567
+},
+"3795": {
+"etape": 4,
+"surface_m2": 3329
+},
+"3796": {
+"etape": 4,
+"surface_m2": 3329
+},
+"3797": {
+"etape": 4,
+"surface_m2": 3329
+},
+"3798": {
+"etape": 3,
+"surface_m2": 2237
+},
+"3799": {
+"etape": 3,
+"surface_m2": 426
+},
+"3800": {
+"etape": 3,
+"surface_m2": 446
+},
+"3801": {
+"etape": 3,
+"surface_m2": 75000
+},
+"3802": {
+"etape": 3,
+"surface_m2": 1240
+},
+"3805": {
+"etape": 3,
+"surface_m2": 1986
+},
+"3806": {
+"etape": 3,
+"surface_m2": 24443
+},
+"3807": {
+"etape": 3,
+"surface_m2": 482
+},
+"3808": {
+"etape": 3,
+"surface_m2": 3783
+},
+"3809": {
+"etape": 3,
+"surface_m2": 10955
+},
+"3810": {
+"etape": 3,
+"surface_m2": 2187
+},
+"3811": {
+"etape": 3,
+"surface_m2": 9012
+},
+"3812": {
+"etape": 3,
+"surface_m2": 2503
+},
+"3813": {
+"etape": 3,
+"surface_m2": 3975
+},
+"3814": {
+"etape": 3,
+"surface_m2": 4160
+},
+"3815": {
+"etape": 3,
+"surface_m2": 2455
+},
+"3816": {
+"etape": 3,
+"surface_m2": 2390
+},
+"3817": {
+"etape": 3,
+"surface_m2": 2395
+},
+"3818": {
+"etape": 3,
+"surface_m2": 1063
+},
+"3819": {
+"etape": 3,
+"surface_m2": 2125
+},
+"3838": {
+"etape": 3,
+"surface_m2": 310
+},
+"3839": {
+"etape": 3,
+"surface_m2": 4539
+},
+"3840": {
+"etape": 3,
+"surface_m2": 29475
+},
+"3841": {
+"etape": 4,
+"surface_m2": 2121
+},
+"3842": {
+"etape": 4,
+"surface_m2": 1175
+},
+"3843": {
+"etape": 3,
+"surface_m2": 4775
+},
+"3844": {
+"etape": 3,
+"surface_m2": 3560
+},
+"3845": {
+"etape": 3,
+"surface_m2": 3983
+},
+"3847": {
+"etape": 3,
+"surface_m2": 2725
+},
+"3863": {
+"etape": 5,
+"surface_m2": 481
+},
+"3864": {
+"etape": 3,
+"surface_m2": 18418
+},
+"3866": {
+"etape": 3,
+"surface_m2": 357
+},
+"3870": {
+"etape": 3,
+"surface_m2": 1223
+},
+"3871": {
+"etape": 0,
+"surface_m2": 264
+},
+"3872": {
+"etape": 3,
+"surface_m2": 1635
+},
+"3873": {
+"etape": 3,
+"surface_m2": 2357
+},
+"3874": {
+"etape": 3,
+"surface_m2": 1648
+},
+"3875": {
+"etape": 3,
+"surface_m2": 1646
+},
+"3876": {
+"etape": 3,
+"surface_m2": 6577
+},
+"3877": {
+"etape": 3,
+"surface_m2": 6577
+},
+"3878": {
+"etape": 3,
+"surface_m2": 6577
+},
+"3879": {
+"etape": 3,
+"surface_m2": 6577
+},
+"3880": {
+"etape": 3,
+"surface_m2": 6581
+},
+"3881": {
+"etape": 3,
+"surface_m2": 4323
+},
+"3882": {
+"etape": 3,
+"surface_m2": 4758
+},
+"3883": {
+"etape": 3,
+"surface_m2": 2418
+},
+"3884": {
+"etape": 3,
+"surface_m2": 2200
+},
+"3885": {
+"etape": 3,
+"surface_m2": 2370
+},
+"3886": {
+"etape": 3,
+"surface_m2": 7685
+},
+"3887": {
+"etape": 3,
+"surface_m2": 2278
+},
+"3888": {
+"etape": 3,
+"surface_m2": 2213
+},
+"3889": {
+"etape": 3,
+"surface_m2": 2163
+},
+"3890": {
+"etape": 4,
+"surface_m2": 3881
+},
+"3891": {
+"etape": 4,
+"surface_m2": 2200
+},
+"3893": {
+"etape": 3,
+"surface_m2": 309
+},
+"3895": {
+"etape": 3,
+"surface_m2": 1772
+},
+"3896": {
+"etape": 3,
+"surface_m2": 2061
+},
+"3897": {
+"etape": 3,
+"surface_m2": 2450
+},
+"3898": {
+"etape": 3,
+"surface_m2": 1200
+},
+"3899": {
+"etape": 3,
+"surface_m2": 3053
+},
+"3900": {
+"etape": 3,
+"surface_m2": 1240
+},
+"3901": {
+"etape": 3,
+"surface_m2": 5602
+},
+"3902": {
+"etape": 3,
+"surface_m2": 3620
+},
+"3903": {
+"etape": 3,
+"surface_m2": 6075
+},
+"3904": {
+"etape": 3,
+"surface_m2": 6690
+},
+"3906": {
+"etape": 3,
+"surface_m2": 549
+},
+"3907": {
+"etape": 3,
+"surface_m2": 411
+},
+"3908": {
+"etape": 3,
+"surface_m2": 363
+},
+"3909": {
+"etape": 3,
+"surface_m2": 5455
+},
+"3910": {
+"etape": 3,
+"surface_m2": 2337
+},
+"3911": {
+"etape": 3,
+"surface_m2": 2315
+},
+"3912": {
+"etape": 4,
+"surface_m2": 2120
+},
+"3913": {
+"etape": 3,
+"surface_m2": 1400
+},
+"3914": {
+"etape": 3,
+"surface_m2": 27300
+},
+"3915": {
+"etape": 3,
+"surface_m2": 1347
+},
+"3918": {
+"etape": 3,
+"surface_m2": 2713
+},
+"3919": {
+"etape": 3,
+"surface_m2": 2795
+},
+"3920": {
+"etape": 3,
+"surface_m2": 3570
+},
+"3921": {
+"etape": 3,
+"surface_m2": 2498
+},
+"3922": {
+"etape": 3,
+"surface_m2": 3987
+},
+"3923": {
+"etape": 3,
+"surface_m2": 2477
+},
+"3929": {
+"etape": 3,
+"surface_m2": 12652
+},
+"3930": {
+"etape": 3,
+"surface_m2": 19650
+},
+"3931": {
+"etape": 3,
+"surface_m2": 4640
+},
+"3932": {
+"etape": 3,
+"surface_m2": 5888
+},
+"3933": {
+"etape": 3,
+"surface_m2": 4602
+},
+"3934": {
+"etape": 3,
+"surface_m2": 23886
+},
+"3935": {
+"etape": 3,
+"surface_m2": 2450
+},
+"3936": {
+"etape": 3,
+"surface_m2": 9558
+},
+"3937": {
+"etape": 3,
+"surface_m2": 2258
+},
+"3938": {
+"etape": 4,
+"surface_m2": 499
+},
+"3939": {
+"etape": 3,
+"surface_m2": 2765
+},
+"3940": {
+"etape": 3,
+"surface_m2": 1695
+},
+"3941": {
+"etape": 3,
+"surface_m2": 1625
+},
+"3945": {
+"etape": 4,
+"surface_m2": 3246
+},
+"3946": {
+"etape": 4,
+"surface_m2": 1920
+},
+"3947": {
+"etape": 4,
+"surface_m2": 2325
+},
+"3948": {
+"etape": 4,
+"surface_m2": 2120
+},
+"3949": {
+"etape": 3,
+"surface_m2": 3966
+},
+"3953": {
+"etape": 3,
+"surface_m2": 2615
+},
+"3954": {
+"etape": 3,
+"surface_m2": 2310
+},
+"3955": {
+"etape": 4,
+"surface_m2": 2278
+},
+"3956": {
+"etape": 4,
+"surface_m2": 3881
+},
+"3957": {
+"etape": 4,
+"surface_m2": 2821
+},
+"3958": {
+"etape": 3,
+"surface_m2": 1983
+},
+"3959": {
+"etape": 4,
+"surface_m2": 3245
+},
+"3960": {
+"etape": 4,
+"surface_m2": 2278
+},
+"3961": {
+"etape": 3,
+"surface_m2": 2314
+},
+"3962": {
+"etape": 3,
+"surface_m2": 2337
+},
+"3963": {
+"etape": 3,
+"surface_m2": 1181
+},
+"3964": {
+"etape": 3,
+"surface_m2": 4282
+},
+"3965": {
+"etape": 3,
+"surface_m2": 4353
+},
+"3966": {
+"etape": 0,
+"surface_m2": 42611
+},
+"3967": {
+"etape": 0,
+"surface_m2": 42589
+},
+"3968": {
+"etape": 3,
+"surface_m2": 1240
+},
+"3969": {
+"etape": 3,
+"surface_m2": 1353
+},
+"3970": {
+"etape": 3,
+"surface_m2": 2243
+},
+"3971": {
+"etape": 3,
+"surface_m2": 2420
+},
+"3972": {
+"etape": 3,
+"surface_m2": 2929
+},
+"3973": {
+"etape": 3,
+"surface_m2": 22366
+},
+"3974": {
+"etape": 3,
+"surface_m2": 1174
+},
+"3975": {
+"etape": 3,
+"surface_m2": 1342
+},
+"3976": {
+"etape": 3,
+"surface_m2": 3161
+},
+"3977": {
+"etape": 3,
+"surface_m2": 8133
+},
+"3978": {
+"etape": 3,
+"surface_m2": 30025
+},
+"3979": {
+"etape": 3,
+"surface_m2": 6075
+},
+"3980": {
+"etape": 3,
+"surface_m2": 445
+},
+"3981": {
+"etape": 3,
+"surface_m2": 428
+},
+"3982": {
+"etape": 3,
+"surface_m2": 2786
+},
+"3983": {
+"etape": 3,
+"surface_m2": 3465
+},
+"3984": {
+"etape": 3,
+"surface_m2": 2380
+},
+"3989": {
+"etape": 3,
+"surface_m2": 863
+},
+"3990": {
+"etape": 3,
+"surface_m2": 2500
+},
+"3991": {
+"etape": 3,
+"surface_m2": 2000
+},
+"3992": {
+"etape": 3,
+"surface_m2": 2000
+},
+"3993": {
+"etape": 3,
+"surface_m2": 1850
+},
+"3994": {
+"etape": 3,
+"surface_m2": 1850
+},
+"3995": {
+"etape": 3,
+"surface_m2": 1900
+},
+"3996": {
+"etape": 3,
+"surface_m2": 12342
+},
+"3997": {
+"etape": 3,
+"surface_m2": 4134
+},
+"3998": {
+"etape": 3,
+"surface_m2": 9730
+},
+"3999": {
+"etape": 3,
+"surface_m2": 5974
+},
+"4000": {
+"etape": 3,
+"surface_m2": 2680
+},
+"4001": {
+"etape": 0,
+"surface_m2": 1990
+},
+"4008": {
+"etape": 5,
+"surface_m2": 1314
+},
+"4021": {
+"etape": 3,
+"surface_m2": 5110
+},
+"4024": {
+"etape": 2,
+"surface_m2": 400
+},
+"4027": {
+"etape": 2,
+"surface_m2": 39580
+},
+"4031": {
+"etape": 2,
+"surface_m2": 2662
+},
+"4032": {
+"etape": 2,
+"surface_m2": 920
+},
+"4037": {
+"etape": 2,
+"surface_m2": 66516
+},
+"4038": {
+"etape": 2,
+"surface_m2": 30006
+},
+"4042": {
+"etape": 2,
+"surface_m2": 2840
+},
+"4043": {
+"etape": 2,
+"surface_m2": 2631
+},
+"4044": {
+"etape": 2,
+"surface_m2": 4192
+},
+"4049": {
+"etape": 1,
+"surface_m2": 2104
+},
+"4050": {
+"etape": 1,
+"surface_m2": 2255
+},
+"4051": {
+"etape": 1,
+"surface_m2": 100
+},
+"4053": {
+"etape": 3,
+"surface_m2": 500
+},
+"4054": {
+"etape": 3,
+"surface_m2": 1812
+},
+"4056": {
+"etape": 3,
+"surface_m2": 2126
+},
+"4057": {
+"etape": 2,
+"surface_m2": 3731
+},
+"4058": {
+"etape": 2,
+"surface_m2": 2200
+},
+"4062": {
+"etape": 2,
+"surface_m2": 2700
+},
+"4063": {
+"etape": 2,
+"surface_m2": 2400
+},
+"4064": {
+"etape": 3,
+"surface_m2": 130
+},
+"4065": {
+"etape": 2,
+"surface_m2": 1640
+},
+"4067": {
+"etape": 4,
+"surface_m2": 100
+},
+"4069": {
+"etape": 1,
+"surface_m2": 100
+},
+"4070": {
+"etape": 2,
+"surface_m2": 1561
+},
+"4071": {
+"etape": 1,
+"surface_m2": 100
+},
+"4074": {
+"etape": 2,
+"surface_m2": 2490
+},
+"4075": {
+"etape": 2,
+"surface_m2": 2937
+},
+"4076": {
+"etape": 2,
+"surface_m2": 4784
+},
+"4077": {
+"etape": 2,
+"surface_m2": 3276
+},
+"4078": {
+"etape": 2,
+"surface_m2": 7562
+},
+"4081": {
+"etape": 2,
+"surface_m2": 1063
+},
+"4082": {
+"etape": 3,
+"surface_m2": 45254
+},
+"4083": {
+"etape": 2,
+"surface_m2": 3300
+},
+"4085": {
+"etape": 2,
+"surface_m2": 21900
+},
+"4086": {
+"etape": 2,
+"surface_m2": 9100
+},
+"4087": {
+"etape": 2,
+"surface_m2": 1000
+},
+"4088": {
+"etape": 5,
+"surface_m2": 3697
+},
+"4089": {
+"etape": 2,
+"surface_m2": 1391
+},
+"4090": {
+"etape": 2,
+"surface_m2": 1491
+},
+"4091": {
+"etape": 3,
+"surface_m2": 2625
+},
+"4092": {
+"etape": 1,
+"surface_m2": 2597
+},
+"4093": {
+"etape": 2,
+"surface_m2": 226
+},
+"4094": {
+"etape": 3,
+"surface_m2": 1853
+},
+"4097": {
+"etape": 2,
+"surface_m2": 540
+},
+"4098": {
+"etape": 5,
+"surface_m2": 4000
+},
+"4100": {
+"etape": 0,
+"surface_m2": 1000
+},
+"4112": {
+"etape": 2,
+"surface_m2": 10736
+},
+"4113": {
+"etape": 2,
+"surface_m2": 8845
+},
+"4114": {
+"etape": 3,
+"surface_m2": 130
+},
+"4116": {
+"etape": 2,
+"surface_m2": 25550
+},
+"4118": {
+"etape": 2,
+"surface_m2": 1850
+},
+"4126": {
+"etape": 2,
+"surface_m2": 4500
+},
+"4127": {
+"etape": 1,
+"surface_m2": 2200
+},
+"4129": {
+"etape": 4,
+"surface_m2": 395
+},
+"4130": {
+"etape": 3,
+"surface_m2": 1815
+},
+"4131": {
+"etape": 3,
+"surface_m2": 31756
+},
+"4132": {
+"etape": 3,
+"surface_m2": 2508
+},
+"4134": {
+"etape": 3,
+"surface_m2": 2198
+},
+"4136": {
+"etape": 3,
+"surface_m2": 38630
+},
+"4137": {
+"etape": 3,
+"surface_m2": 5598
+},
+"4138": {
+"etape": 4,
+"surface_m2": 34735
+},
+"4145": {
+"etape": 4,
+"surface_m2": 3092
+},
+"4146": {
+"etape": 3,
+"surface_m2": 1746
+},
+"4148": {
+"etape": 4,
+"surface_m2": 230
+},
+"4149": {
+"etape": 3,
+"surface_m2": 9320
+},
+"4150": {
+"etape": 3,
+"surface_m2": 5830
+},
+"4151": {
+"etape": 3,
+"surface_m2": 5160
+},
+"4152": {
+"etape": 3,
+"surface_m2": 10419
+},
+"4153": {
+"etape": 3,
+"surface_m2": 2451
+},
+"4154": {
+"etape": 3,
+"surface_m2": 2479
+},
+"4155": {
+"etape": 3,
+"surface_m2": 4082
+},
+"4159": {
+"etape": 3,
+"surface_m2": 12100
+},
+"4164": {
+"etape": 3,
+"surface_m2": 7312
+},
+"4166": {
+"etape": 3,
+"surface_m2": 1800
+},
+"4167": {
+"etape": 3,
+"surface_m2": 1687
+},
+"4168": {
+"etape": 3,
+"surface_m2": 1687
+},
+"4171": {
+"etape": 3,
+"surface_m2": 6848
+},
+"4175": {
+"etape": 4,
+"surface_m2": 5100
+},
+"4176": {
+"etape": 3,
+"surface_m2": 1513
+},
+"4177": {
+"etape": 3,
+"surface_m2": 2612
+},
+"4178": {
+"etape": 2,
+"surface_m2": 1616
+},
+"4179": {
+"etape": 2,
+"surface_m2": 1560
+},
+"4188": {
+"etape": 3,
+"surface_m2": 2187
+},
+"4191": {
+"etape": 3,
+"surface_m2": 2175
+},
+"4193": {
+"etape": 3,
+"surface_m2": 18063
+},
+"4202": {
+"etape": 3,
+"surface_m2": 1938
+},
+"4203": {
+"etape": 3,
+"surface_m2": 1790
+},
+"4209": {
+"etape": 3,
+"surface_m2": 3391
+},
+"4210": {
+"etape": 3,
+"surface_m2": 3476
+},
+"4211": {
+"etape": 3,
+"surface_m2": 482
+},
+"4212": {
+"etape": 3,
+"surface_m2": 2445
+},
+"4213": {
+"etape": 3,
+"surface_m2": 6567
+},
+"4214": {
+"etape": 3,
+"surface_m2": 2143
+},
+"4215": {
+"etape": 3,
+"surface_m2": 2040
+},
+"4216": {
+"etape": 3,
+"surface_m2": 2620
+},
+"4217": {
+"etape": 3,
+"surface_m2": 1176
+},
+"4218": {
+"etape": 3,
+"surface_m2": 4112
+},
+"4219": {
+"etape": 4,
+"surface_m2": 1665
+},
+"4220": {
+"etape": 3,
+"surface_m2": 2571
+},
+"4222": {
+"etape": 3,
+"surface_m2": 4708
+},
+"4225": {
+"etape": 3,
+"surface_m2": 2465
+},
+"4226": {
+"etape": 3,
+"surface_m2": 936
+},
+"4229": {
+"etape": 3,
+"surface_m2": 9159
+},
+"4230": {
+"etape": 3,
+"surface_m2": 500
+},
+"4231": {
+"etape": 3,
+"surface_m2": 3176
+},
+"4232": {
+"etape": 3,
+"surface_m2": 3226
+},
+"4233": {
+"etape": 3,
+"surface_m2": 3176
+},
+"4234": {
+"etape": 3,
+"surface_m2": 3226
+},
+"4236": {
+"etape": 4,
+"surface_m2": 428
+},
+"4237": {
+"etape": 4,
+"surface_m2": 1150
+},
+"4238": {
+"etape": 4,
+"surface_m2": 8000
+},
+"4241": {
+"etape": 3,
+"surface_m2": 6076
+},
+"4248": {
+"etape": 3,
+"surface_m2": 3797
+},
+"4249": {
+"etape": 3,
+"surface_m2": 6110
+},
+"4250": {
+"etape": 4,
+"surface_m2": 7660
+},
+"4251": {
+"etape": 3,
+"surface_m2": 1551
+},
+"4253": {
+"etape": 3,
+"surface_m2": 3210
+},
+"4255": {
+"etape": 3,
+"surface_m2": 2851
+},
+"4256": {
+"etape": 3,
+"surface_m2": 471
+},
+"4257": {
+"etape": 3,
+"surface_m2": 1758
+},
+"4263": {
+"etape": 3,
+"surface_m2": 3637
+},
+"4264": {
+"etape": 3,
+"surface_m2": 130
+},
+"4265": {
+"etape": 3,
+"surface_m2": 2530
+},
+"4266": {
+"etape": 3,
+"surface_m2": 2534
+},
+"4268": {
+"etape": 3,
+"surface_m2": 375
+},
+"4269": {
+"etape": 2,
+"surface_m2": 5216
+},
+"4270": {
+"etape": 2,
+"surface_m2": 3937
+},
+"4271": {
+"etape": 2,
+"surface_m2": 4333
+},
+"4273": {
+"etape": 3,
+"surface_m2": 2213
+},
+"4274": {
+"etape": 3,
+"surface_m2": 2240
+},
+"4275": {
+"etape": 3,
+"surface_m2": 2076
+},
+"4278": {
+"etape": 3,
+"surface_m2": 575
+},
+"4280": {
+"etape": 3,
+"surface_m2": 2715
+},
+"4281": {
+"etape": 3,
+"surface_m2": 1010
+},
+"4284": {
+"etape": 3,
+"surface_m2": 3286
+},
+"4286": {
+"etape": 3,
+"surface_m2": 3022
+},
+"4287": {
+"etape": 3,
+"surface_m2": 2921
+},
+"4288": {
+"etape": 3,
+"surface_m2": 14584
+},
+"4293": {
+"etape": 4,
+"surface_m2": 2489
+},
+"4294": {
+"etape": 3,
+"surface_m2": 2690
+},
+"4297": {
+"etape": 3,
+"surface_m2": 500
+},
+"4298": {
+"etape": 4,
+"surface_m2": 4191
+},
+"4299": {
+"etape": 3,
+"surface_m2": 1840
+},
+"4300": {
+"etape": 4,
+"surface_m2": 2518
+},
+"4302": {
+"etape": 4,
+"surface_m2": 422
+},
+"4304": {
+"etape": 3,
+"surface_m2": 2527
+},
+"4306": {
+"etape": 3,
+"surface_m2": 2648
+},
+"4307": {
+"etape": 2,
+"surface_m2": 2648
+},
+"4308": {
+"etape": 3,
+"surface_m2": 2648
+},
+"4309": {
+"etape": 3,
+"surface_m2": 2648
+},
+"4310": {
+"etape": 3,
+"surface_m2": 2648
+},
+"4311": {
+"etape": 3,
+"surface_m2": 2648
+},
+"4312": {
+"etape": 3,
+"surface_m2": 2650
+},
+"4313": {
+"etape": 3,
+"surface_m2": 2648
+},
+"4314": {
+"etape": 3,
+"surface_m2": 2648
+},
+"4323": {
+"etape": 3,
+"surface_m2": 4835
+},
+"4324": {
+"etape": 3,
+"surface_m2": 403
+},
+"4325": {
+"etape": 4,
+"surface_m2": 225
+},
+"4327": {
+"etape": 3,
+"surface_m2": 1534
+},
+"4328": {
+"etape": 3,
+"surface_m2": 1524
+},
+"4329": {
+"etape": 3,
+"surface_m2": 31
+},
+"4331": {
+"etape": 4,
+"surface_m2": 225
+},
+"4332": {
+"etape": 0,
+"surface_m2": 1240
+},
+"4333": {
+"etape": 3,
+"surface_m2": 6567
+},
+"4334": {
+"etape": 3,
+"surface_m2": 3681
+},
+"4336": {
+"etape": 3,
+"surface_m2": 2500
+},
+"4337": {
+"etape": 3,
+"surface_m2": 18418
+},
+"4340": {
+"etape": 3,
+"surface_m2": 4631
+},
+"4342": {
+"etape": 3,
+"surface_m2": 5000
+},
+"4345": {
+"etape": 3,
+"surface_m2": 383
+},
+"4347": {
+"etape": 3,
+"surface_m2": 1156
+},
+"4348": {
+"etape": 3,
+"surface_m2": 2878
+},
+"4351": {
+"etape": 3,
+"surface_m2": 1025
+},
+"4352": {
+"etape": 3,
+"surface_m2": 3394
+},
+"4353": {
+"etape": 4,
+"surface_m2": 147
+},
+"4356": {
+"etape": 3,
+"surface_m2": 12040
+},
+"4357": {
+"etape": 3,
+"surface_m2": 2159
+},
+"4361": {
+"etape": 3,
+"surface_m2": 1505
+},
+"4362": {
+"etape": 3,
+"surface_m2": 7228
+},
+"4363": {
+"etape": 4,
+"surface_m2": 2220
+},
+"4365": {
+"etape": 3,
+"surface_m2": 2213
+},
+"4366": {
+"etape": 3,
+"surface_m2": 2246
+},
+"4368": {
+"etape": 3,
+"surface_m2": 2853
+},
+"4369": {
+"etape": 3,
+"surface_m2": 2864
+},
+"4370": {
+"etape": 3,
+"surface_m2": 10054
+},
+"4371": {
+"etape": 4,
+"surface_m2": 2647
+},
+"4373": {
+"etape": 4,
+"surface_m2": 1831
+},
+"4376": {
+"etape": 4,
+"surface_m2": 2240
+},
+"4377": {
+"etape": 4,
+"surface_m2": 3092
+},
+"4378": {
+"etape": 4,
+"surface_m2": 4152
+},
+"4379": {
+"etape": 4,
+"surface_m2": 1223
+},
+"4380": {
+"etape": 4,
+"surface_m2": 3676
+},
+"4381": {
+"etape": 4,
+"surface_m2": 3523
+},
+"4383": {
+"etape": 3,
+"surface_m2": 32
+},
+"4384": {
+"etape": 4,
+"surface_m2": 2139
+},
+"4386": {
+"etape": 3,
+"surface_m2": 3130
+},
+"4387": {
+"etape": 4,
+"surface_m2": 3760
+},
+"4388": {
+"etape": 3,
+"surface_m2": 2784
+},
+"4389": {
+"etape": 3,
+"surface_m2": 3174
+},
+"4391": {
+"etape": 3,
+"surface_m2": 4433
+},
+"4393": {
+"etape": 3,
+"surface_m2": 3608
+},
+"4398": {
+"etape": 3,
+"surface_m2": 4112
+},
+"4403": {
+"etape": 4,
+"surface_m2": 5851
+},
+"4404": {
+"etape": 3,
+"surface_m2": 4980
+},
+"4405": {
+"etape": 3,
+"surface_m2": 9950
+},
+"4406": {
+"etape": 3,
+"surface_m2": 6759
+},
+"4407": {
+"etape": 3,
+"surface_m2": 3955
+},
+"4408": {
+"etape": 3,
+"surface_m2": 2910
+},
+"4412": {
+"etape": 4,
+"surface_m2": 2132
+},
+"4415": {
+"etape": 3,
+"surface_m2": 9829
+},
+"4417": {
+"etape": 3,
+"surface_m2": 11400
+},
+"4418": {
+"etape": 3,
+"surface_m2": 9669
+},
+"4419": {
+"etape": 3,
+"surface_m2": 5115
+},
+"4421": {
+"etape": 3,
+"surface_m2": 3659
+},
+"4422": {
+"etape": 3,
+"surface_m2": 3902
+},
+"4425": {
+"etape": 3,
+"surface_m2": 2737
+},
+"4427": {
+"etape": 4,
+"surface_m2": 5257
+},
+"4428": {
+"etape": 4,
+"surface_m2": 2100
+},
+"4429": {
+"etape": 4,
+"surface_m2": 2100
+},
+"4430": {
+"etape": 3,
+"surface_m2": 10000
+},
+"4433": {
+"etape": 3,
+"surface_m2": 223
+},
+"4436": {
+"etape": 3,
+"surface_m2": 1575
+},
+"4437": {
+"etape": 3,
+"surface_m2": 7450
+},
+"4438": {
+"etape": 3,
+"surface_m2": 2550
+},
+"4439": {
+"etape": 4,
+"surface_m2": 419
+},
+"4440": {
+"etape": 4,
+"surface_m2": 419
+},
+"4441": {
+"etape": 3,
+"surface_m2": 1898
+},
+"4442": {
+"etape": 3,
+"surface_m2": 1776
+},
+"4443": {
+"etape": 3,
+"surface_m2": 1000
+},
+"4444": {
+"etape": 3,
+"surface_m2": 7303
+},
+"4445": {
+"etape": 3,
+"surface_m2": 1520
+},
+"4446": {
+"etape": 3,
+"surface_m2": 1520
+},
+"4447": {
+"etape": 3,
+"surface_m2": 150
+},
+"4448": {
+"etape": 3,
+"surface_m2": 1520
+},
+"4449": {
+"etape": 3,
+"surface_m2": 1520
+},
+"4450": {
+"etape": 3,
+"surface_m2": 1522
+},
+"4451": {
+"etape": 3,
+"surface_m2": 1522
+},
+"4452": {
+"etape": 4,
+"surface_m2": 9368
+},
+"4453": {
+"etape": 4,
+"surface_m2": 9368
+},
+"4454": {
+"etape": 3,
+"surface_m2": 6412
+},
+"4455": {
+"etape": 3,
+"surface_m2": 4851
+},
+"4456": {
+"etape": 2,
+"surface_m2": 2484
+},
+"4457": {
+"etape": 3,
+"surface_m2": 147
+},
+"4458": {
+"etape": 4,
+"surface_m2": 147
+},
+"4459": {
+"etape": 2,
+"surface_m2": 1096
+},
+"4467": {
+"etape": 2,
+"surface_m2": 1465
+},
+"4468": {
+"etape": 2,
+"surface_m2": 1781
+},
+"4470": {
+"etape": 4,
+"surface_m2": 1063
+},
+"4471": {
+"etape": 3,
+"surface_m2": 6314
+},
+"4472": {
+"etape": 3,
+"surface_m2": 2341
+},
+"4473": {
+"etape": 4,
+"surface_m2": 3166
+},
+"4474": {
+"etape": 3,
+"surface_m2": 2232
+},
+"4475": {
+"etape": 3,
+"surface_m2": 2322
+},
+"4476": {
+"etape": 2,
+"surface_m2": 2385
+},
+"4477": {
+"etape": 2,
+"surface_m2": 3360
+},
+"4478": {
+"etape": 3,
+"surface_m2": 2090
+},
+"4479": {
+"etape": 3,
+"surface_m2": 1475
+},
+"4480": {
+"etape": 4,
+"surface_m2": 2395
+},
+"4481": {
+"etape": 3,
+"surface_m2": 2036
+},
+"4482": {
+"etape": 3,
+"surface_m2": 2296
+},
+"4483": {
+"etape": 3,
+"surface_m2": 2111
+},
+"4484": {
+"etape": 3,
+"surface_m2": 2217
+},
+"4485": {
+"etape": 3,
+"surface_m2": 2127
+},
+"4486": {
+"etape": 3,
+"surface_m2": 2091
+},
+"4487": {
+"etape": 3,
+"surface_m2": 2375
+},
+"4488": {
+"etape": 4,
+"surface_m2": 5310
+},
+"4490": {
+"etape": 3,
+"surface_m2": 1480
+},
+"4494": {
+"etape": 3,
+"surface_m2": 5905
+},
+"4495": {
+"etape": 3,
+"surface_m2": 5999
+},
+"4496": {
+"etape": 3,
+"surface_m2": 4482
+},
+"4497": {
+"etape": 4,
+"surface_m2": 1769
+},
+"4498": {
+"etape": 4,
+"surface_m2": 2038
+},
+"4499": {
+"etape": 3,
+"surface_m2": 1077
+},
+"4500": {
+"etape": 3,
+"surface_m2": 1077
+},
+"4501": {
+"etape": 4,
+"surface_m2": 2677
+},
+"4502": {
+"etape": 4,
+"surface_m2": 2495
+},
+"4503": {
+"etape": 4,
+"surface_m2": 2555
+},
+"4504": {
+"etape": 4,
+"surface_m2": 2510
+},
+"4505": {
+"etape": 4,
+"surface_m2": 2510
+},
+"4506": {
+"etape": 3,
+"surface_m2": 9895
+},
+"4508": {
+"etape": 4,
+"surface_m2": 2595
+},
+"4509": {
+"etape": 3,
+"surface_m2": 398
+},
+"4510": {
+"etape": 3,
+"surface_m2": 2748
+},
+"4511": {
+"etape": 3,
+"surface_m2": 439
+},
+"4512": {
+"etape": 3,
+"surface_m2": 2451
+},
+"4513": {
+"etape": 3,
+"surface_m2": 1004
+},
+"4514": {
+"etape": 3,
+"surface_m2": 4723
+},
+"4515": {
+"etape": 3,
+"surface_m2": 1556
+},
+"4516": {
+"etape": 3,
+"surface_m2": 3795
+},
+"4518": {
+"etape": 3,
+"surface_m2": 1155
+},
+"4519": {
+"etape": 3,
+"surface_m2": 494
+},
+"4520": {
+"etape": 4,
+"surface_m2": 1078
+},
+"4521": {
+"etape": 3,
+"surface_m2": 2835
+},
+"4522": {
+"etape": 3,
+"surface_m2": 4850
+},
+"4526": {
+"etape": 3,
+"surface_m2": 2128
+},
+"4527": {
+"etape": 3,
+"surface_m2": 325
+},
+"4528": {
+"etape": 4,
+"surface_m2": 13670
+},
+"4529": {
+"etape": 4,
+"surface_m2": 12021
+},
+"4530": {
+"etape": 4,
+"surface_m2": 11166
+},
+"4531": {
+"etape": 4,
+"surface_m2": 2028
+},
+"4532": {
+"etape": 4,
+"surface_m2": 3581
+},
+"4533": {
+"etape": 3,
+"surface_m2": 1125
+},
+"4534": {
+"etape": 3,
+"surface_m2": 1300
+},
+"4536": {
+"etape": 4,
+"surface_m2": 6388
+},
+"4537": {
+"etape": 3,
+"surface_m2": 5202
+},
+"4540": {
+"etape": 3,
+"surface_m2": 1539
+},
+"4541": {
+"etape": 2,
+"surface_m2": 5500
+},
+"4542": {
+"etape": 0,
+"surface_m2": 1945
+},
+"4543": {
+"etape": 0,
+"surface_m2": 1755
+},
+"4544": {
+"etape": 0,
+"surface_m2": 1370
+},
+"4545": {
+"etape": 0,
+"surface_m2": 1461
+},
+"4546": {
+"etape": 0,
+"surface_m2": 1293
+},
+"4548": {
+"etape": 3,
+"surface_m2": 1000
+},
+"4552": {
+"etape": 3,
+"surface_m2": 14996
+},
+"4555": {
+"etape": 2,
+"surface_m2": 3638
+},
+"4563": {
+"etape": 3,
+"surface_m2": 322
+},
+"4565": {
+"etape": 3,
+"surface_m2": 4200
+},
+"4566": {
+"etape": 3,
+"surface_m2": 4410
+},
+"4567": {
+"etape": 3,
+"surface_m2": 4866
+},
+"4568": {
+"etape": 3,
+"surface_m2": 4217
+},
+"4569": {
+"etape": 3,
+"surface_m2": 3000
+},
+"4570": {
+"etape": 3,
+"surface_m2": 3120
+},
+"4572": {
+"etape": 3,
+"surface_m2": 400
+},
+"4573": {
+"etape": 3,
+"surface_m2": 3401
+},
+"4574": {
+"etape": 3,
+"surface_m2": 3224
+},
+"4575": {
+"etape": 3,
+"surface_m2": 2837
+},
+"4576": {
+"etape": 4,
+"surface_m2": 2686
+},
+"4577": {
+"etape": 3,
+"surface_m2": 2810
+},
+"4579": {
+"etape": 3,
+"surface_m2": 2200
+},
+"4580": {
+"etape": 3,
+"surface_m2": 1053
+},
+"4581": {
+"etape": 3,
+"surface_m2": 1880
+},
+"4582": {
+"etape": 3,
+"surface_m2": 1510
+},
+"4584": {
+"etape": 3,
+"surface_m2": 1249
+},
+"4585": {
+"etape": 3,
+"surface_m2": 2062
+},
+"4586": {
+"etape": 3,
+"surface_m2": 6002
+},
+"4587": {
+"etape": 3,
+"surface_m2": 3881
+},
+"4588": {
+"etape": 3,
+"surface_m2": 887
+},
+"4589": {
+"etape": 3,
+"surface_m2": 1555
+},
+"4590": {
+"etape": 3,
+"surface_m2": 879
+},
+"4591": {
+"etape": 3,
+"surface_m2": 2112
+},
+"4592": {
+"etape": 3,
+"surface_m2": 6139
+},
+"4593": {
+"etape": 3,
+"surface_m2": 3127
+},
+"4596": {
+"etape": 3,
+"surface_m2": 2500
+},
+"4597": {
+"etape": 3,
+"surface_m2": 3085
+},
+"4598": {
+"etape": 3,
+"surface_m2": 1025
+},
+"4599": {
+"etape": 3,
+"surface_m2": 1025
+},
+"4600": {
+"etape": 3,
+"surface_m2": 499
+},
+"4601": {
+"etape": 3,
+"surface_m2": 500
+},
+"4602": {
+"etape": 3,
+"surface_m2": 1593
+},
+"4604": {
+"etape": 3,
+"surface_m2": 4822
+},
+"4605": {
+"etape": 3,
+"surface_m2": 3219
+},
+"4606": {
+"etape": 3,
+"surface_m2": 2896
+},
+"4607": {
+"etape": 3,
+"surface_m2": 3560
+},
+"4610": {
+"etape": 3,
+"surface_m2": 1063
+},
+"4611": {
+"etape": 3,
+"surface_m2": 150
+},
+"4612": {
+"etape": 3,
+"surface_m2": 150
+},
+"4613": {
+"etape": 3,
+"surface_m2": 2650
+},
+"4615": {
+"etape": 3,
+"surface_m2": 2115
+},
+"4617": {
+"etape": 3,
+"surface_m2": 30475
+},
+"4618": {
+"etape": 3,
+"surface_m2": 440
+},
+"4620": {
+"etape": 3,
+"surface_m2": 3038
+},
+"4621": {
+"etape": 3,
+"surface_m2": 2395
+},
+"4622": {
+"etape": 3,
+"surface_m2": 327
+},
+"4623": {
+"etape": 3,
+"surface_m2": 333
+},
+"4624": {
+"etape": 3,
+"surface_m2": 2975
+},
+"4625": {
+"etape": 4,
+"surface_m2": 1384
+},
+"4626": {
+"etape": 3,
+"surface_m2": 5210
+},
+"4630": {
+"etape": 3,
+"surface_m2": 23853
+},
+"4631": {
+"etape": 3,
+"surface_m2": 9810
+},
+"4632": {
+"etape": 3,
+"surface_m2": 3908
+},
+"4633": {
+"etape": 3,
+"surface_m2": 3910
+},
+"4634": {
+"etape": 3,
+"surface_m2": 3911
+},
+"4635": {
+"etape": 3,
+"surface_m2": 3046
+},
+"4636": {
+"etape": 3,
+"surface_m2": 7800
+},
+"4638": {
+"etape": 3,
+"surface_m2": 1522
+},
+"4639": {
+"etape": 3,
+"surface_m2": 918
+},
+"4641": {
+"etape": 3,
+"surface_m2": 2330
+},
+"4642": {
+"etape": 3,
+"surface_m2": 1156
+},
+"4643": {
+"etape": 3,
+"surface_m2": 2395
+},
+"4644": {
+"etape": 3,
+"surface_m2": 2780
+},
+"4645": {
+"etape": 3,
+"surface_m2": 726
+},
+"4646": {
+"etape": 3,
+"surface_m2": 791
+},
+"4647": {
+"etape": 3,
+"surface_m2": 2270
+},
+"4648": {
+"etape": 3,
+"surface_m2": 1897
+},
+"4649": {
+"etape": 3,
+"surface_m2": 1240
+},
+"4650": {
+"etape": 0,
+"surface_m2": 1240
+},
+"4651": {
+"etape": 3,
+"surface_m2": 5430
+},
+"4652": {
+"etape": 3,
+"surface_m2": 5315
+},
+"4654": {
+"etape": 3,
+"surface_m2": 556
+},
+"4655": {
+"etape": 3,
+"surface_m2": 393
+},
+"4656": {
+"etape": 3,
+"surface_m2": 1670
+},
+"4657": {
+"etape": 3,
+"surface_m2": 9848
+},
+"4658": {
+"etape": 3,
+"surface_m2": 3328
+},
+"4659": {
+"etape": 3,
+"surface_m2": 2356
+},
+"4660": {
+"etape": 3,
+"surface_m2": 4197
+},
+"4661": {
+"etape": 3,
+"surface_m2": 6280
+},
+"4662": {
+"etape": 3,
+"surface_m2": 1875
+},
+"4668": {
+"etape": 3,
+"surface_m2": 1063
+},
+"4669": {
+"etape": 3,
+"surface_m2": 1063
+},
+"4670": {
+"etape": 3,
+"surface_m2": 2125
+},
+"4671": {
+"etape": 3,
+"surface_m2": 1300
+},
+"4672": {
+"etape": 3,
+"surface_m2": 16498
+},
+"4679": {
+"etape": 3,
+"surface_m2": 3536
+},
+"4680": {
+"etape": 3,
+"surface_m2": 3354
+},
+"4681": {
+"etape": 3,
+"surface_m2": 5338
+},
+"4682": {
+"etape": 3,
+"surface_m2": 3616
+},
+"4683": {
+"etape": 2,
+"surface_m2": 12442
+},
+"4684": {
+"etape": 3,
+"surface_m2": 6140
+},
+"4685": {
+"etape": 3,
+"surface_m2": 3866
+},
+"4686": {
+"etape": 3,
+"surface_m2": 744
+},
+"4687": {
+"etape": 3,
+"surface_m2": 1724
+},
+"4688": {
+"etape": 3,
+"surface_m2": 2253
+},
+"4689": {
+"etape": 3,
+"surface_m2": 5301
+},
+"4690": {
+"etape": 3,
+"surface_m2": 2774
+},
+"4691": {
+"etape": 3,
+"surface_m2": 744
+},
+"4692": {
+"etape": 3,
+"surface_m2": 1972
+},
+"4693": {
+"etape": 3,
+"surface_m2": 2063
+},
+"4694": {
+"etape": 3,
+"surface_m2": 1620
+},
+"4695": {
+"etape": 3,
+"surface_m2": 4988
+},
+"4696": {
+"etape": 3,
+"surface_m2": 2907
+},
+"4697": {
+"etape": 3,
+"surface_m2": 3000
+},
+"4698": {
+"etape": 2,
+"surface_m2": 2495
+},
+"4699": {
+"etape": 3,
+"surface_m2": 7652
+},
+"4700": {
+"etape": 3,
+"surface_m2": 2213
+},
+"4701": {
+"etape": 3,
+"surface_m2": 744
+},
+"4702": {
+"etape": 3,
+"surface_m2": 726
+},
+"4703": {
+"etape": 3,
+"surface_m2": 1116
+},
+"4704": {
+"etape": 3,
+"surface_m2": 1192
+},
+"4705": {
+"etape": 3,
+"surface_m2": 1192
+},
+"4706": {
+"etape": 3,
+"surface_m2": 1192
+},
+"4707": {
+"etape": 3,
+"surface_m2": 1176
+},
+"4709": {
+"etape": 3,
+"surface_m2": 10819
+},
+"4710": {
+"etape": 3,
+"surface_m2": 481
+},
+"4711": {
+"etape": 3,
+"surface_m2": 12556
+},
+"4716": {
+"etape": 3,
+"surface_m2": 1312
+},
+"4717": {
+"etape": 3,
+"surface_m2": 2100
+},
+"4720": {
+"etape": 3,
+"surface_m2": 5726
+},
+"4721": {
+"etape": 3,
+"surface_m2": 23952
+},
+"4722": {
+"etape": 3,
+"surface_m2": 12381
+},
+"4723": {
+"etape": 3,
+"surface_m2": 3347
+},
+"4725": {
+"etape": 3,
+"surface_m2": 726
+},
+"4726": {
+"etape": 3,
+"surface_m2": 4688
+},
+"4727": {
+"etape": 3,
+"surface_m2": 6168
+},
+"4728": {
+"etape": 3,
+"surface_m2": 274
+},
+"4730": {
+"etape": 3,
+"surface_m2": 744
+},
+"4731": {
+"etape": 3,
+"surface_m2": 726
+},
+"4732": {
+"etape": 3,
+"surface_m2": 2439
+},
+"4733": {
+"etape": 3,
+"surface_m2": 1575
+},
+"4734": {
+"etape": 3,
+"surface_m2": 1177
+},
+"4735": {
+"etape": 3,
+"surface_m2": 1187
+},
+"4736": {
+"etape": 3,
+"surface_m2": 1200
+},
+"4737": {
+"etape": 3,
+"surface_m2": 4068
+},
+"4741": {
+"etape": 1,
+"surface_m2": 3185
+},
+"4742": {
+"etape": 1,
+"surface_m2": 13273
+},
+"4743": {
+"etape": 1,
+"surface_m2": 2138
+},
+"4744": {
+"etape": 1,
+"surface_m2": 2138
+},
+"4745": {
+"etape": 1,
+"surface_m2": 2398
+},
+"4746": {
+"etape": 1,
+"surface_m2": 1188
+},
+"4747": {
+"etape": 1,
+"surface_m2": 1116
+},
+"4748": {
+"etape": 1,
+"surface_m2": 2858
+},
+"4749": {
+"etape": 1,
+"surface_m2": 4552
+},
+"4750": {
+"etape": 1,
+"surface_m2": 1261
+},
+"4751": {
+"etape": 1,
+"surface_m2": 1437
+},
+"4752": {
+"etape": 1,
+"surface_m2": 3238
+},
+"4753": {
+"etape": 1,
+"surface_m2": 2805
+},
+"4754": {
+"etape": 1,
+"surface_m2": 1750
+},
+"4755": {
+"etape": 1,
+"surface_m2": 1750
+},
+"4756": {
+"etape": 1,
+"surface_m2": 1750
+},
+"4757": {
+"etape": 1,
+"surface_m2": 2776
+},
+"4758": {
+"etape": 1,
+"surface_m2": 14889
+},
+"4759": {
+"etape": 1,
+"surface_m2": 17898
+},
+"4760": {
+"etape": 1,
+"surface_m2": 28291
+},
+"4761": {
+"etape": 1,
+"surface_m2": 13700
+},
+"4762": {
+"etape": 1,
+"surface_m2": 21037
+},
+"4763": {
+"etape": 1,
+"surface_m2": 17451
+},
+"4764": {
+"etape": 1,
+"surface_m2": 3438
+},
+"4765": {
+"etape": 1,
+"surface_m2": 2044
+},
+"4766": {
+"etape": 1,
+"surface_m2": 2044
+},
+"4767": {
+"etape": 1,
+"surface_m2": 2776
+},
+"4768": {
+"etape": 1,
+"surface_m2": 2044
+},
+"4769": {
+"etape": 1,
+"surface_m2": 2044
+},
+"4770": {
+"etape": 1,
+"surface_m2": 2044
+},
+"4771": {
+"etape": 1,
+"surface_m2": 2044
+},
+"4772": {
+"etape": 1,
+"surface_m2": 2044
+},
+"4773": {
+"etape": 1,
+"surface_m2": 2044
+},
+"4774": {
+"etape": 1,
+"surface_m2": 4935
+},
+"4775": {
+"etape": 1,
+"surface_m2": 3970
+},
+"4776": {
+"etape": 1,
+"surface_m2": 4000
+},
+"4777": {
+"etape": 1,
+"surface_m2": 18998
+},
+"4778": {
+"etape": 1,
+"surface_m2": 20684
+},
+"4779": {
+"etape": 1,
+"surface_m2": 25650
+},
+"4780": {
+"etape": 1,
+"surface_m2": 21792
+},
+"4781": {
+"etape": 1,
+"surface_m2": 23195
+},
+"4782": {
+"etape": 1,
+"surface_m2": 2144
+},
+"4783": {
+"etape": 1,
+"surface_m2": 2069
+},
+"4784": {
+"etape": 1,
+"surface_m2": 3273
+},
+"4785": {
+"etape": 1,
+"surface_m2": 3267
+},
+"4786": {
+"etape": 1,
+"surface_m2": 2214
+},
+"4787": {
+"etape": 1,
+"surface_m2": 3224
+},
+"4788": {
+"etape": 1,
+"surface_m2": 3670
+},
+"4789": {
+"etape": 1,
+"surface_m2": 4497
+},
+"4790": {
+"etape": 1,
+"surface_m2": 5322
+},
+"4791": {
+"etape": 1,
+"surface_m2": 6149
+},
+"4792": {
+"etape": 1,
+"surface_m2": 2563
+},
+"4793": {
+"etape": 1,
+"surface_m2": 4309
+},
+"4794": {
+"etape": 1,
+"surface_m2": 2214
+},
+"4795": {
+"etape": 1,
+"surface_m2": 2214
+},
+"4796": {
+"etape": 1,
+"surface_m2": 2214
+},
+"4797": {
+"etape": 1,
+"surface_m2": 2214
+},
+"4798": {
+"etape": 1,
+"surface_m2": 2214
+},
+"4799": {
+"etape": 1,
+"surface_m2": 3085
+},
+"4800": {
+"etape": 1,
+"surface_m2": 2786
+},
+"4801": {
+"etape": 1,
+"surface_m2": 3200
+},
+"4802": {
+"etape": 1,
+"surface_m2": 3200
+},
+"4803": {
+"etape": 1,
+"surface_m2": 3200
+},
+"4804": {
+"etape": 1,
+"surface_m2": 4192
+},
+"4805": {
+"etape": 1,
+"surface_m2": 2729
+},
+"4806": {
+"etape": 1,
+"surface_m2": 3200
+},
+"4807": {
+"etape": 1,
+"surface_m2": 3200
+},
+"4808": {
+"etape": 1,
+"surface_m2": 3200
+},
+"4809": {
+"etape": 1,
+"surface_m2": 3200
+},
+"4810": {
+"etape": 1,
+"surface_m2": 3200
+},
+"4811": {
+"etape": 1,
+"surface_m2": 3200
+},
+"4812": {
+"etape": 1,
+"surface_m2": 3200
+},
+"4813": {
+"etape": 1,
+"surface_m2": 7487
+},
+"4814": {
+"etape": 1,
+"surface_m2": 591
+},
+"4815": {
+"etape": 1,
+"surface_m2": 678
+},
+"4816": {
+"etape": 1,
+"surface_m2": 592
+},
+"4817": {
+"etape": 1,
+"surface_m2": 488
+},
+"4818": {
+"etape": 1,
+"surface_m2": 470
+},
+"4819": {
+"etape": 1,
+"surface_m2": 292
+},
+"4820": {
+"etape": 1,
+"surface_m2": 328
+},
+"4821": {
+"etape": 1,
+"surface_m2": 922
+},
+"4822": {
+"etape": 1,
+"surface_m2": 418
+},
+"4823": {
+"etape": 1,
+"surface_m2": 385
+},
+"4824": {
+"etape": 1,
+"surface_m2": 353
+},
+"4825": {
+"etape": 1,
+"surface_m2": 338
+},
+"4826": {
+"etape": 1,
+"surface_m2": 346
+},
+"4827": {
+"etape": 1,
+"surface_m2": 234
+},
+"4828": {
+"etape": 1,
+"surface_m2": 284
+},
+"4829": {
+"etape": 1,
+"surface_m2": 494
+},
+"4830": {
+"etape": 1,
+"surface_m2": 234
+},
+"4831": {
+"etape": 1,
+"surface_m2": 284
+},
+"4832": {
+"etape": 1,
+"surface_m2": 236
+},
+"4833": {
+"etape": 1,
+"surface_m2": 286
+},
+"4834": {
+"etape": 1,
+"surface_m2": 300
+},
+"4835": {
+"etape": 1,
+"surface_m2": 295
+},
+"4836": {
+"etape": 1,
+"surface_m2": 153
+},
+"4837": {
+"etape": 1,
+"surface_m2": 2688
+},
+"4838": {
+"etape": 1,
+"surface_m2": 1161
+},
+"4839": {
+"etape": 1,
+"surface_m2": 1677
+},
+"4840": {
+"etape": 1,
+"surface_m2": 1605
+},
+"4841": {
+"etape": 1,
+"surface_m2": 3298
+},
+"4842": {
+"etape": 1,
+"surface_m2": 4640
+},
+"4843": {
+"etape": 1,
+"surface_m2": 2348
+},
+"4844": {
+"etape": 1,
+"surface_m2": 2491
+},
+"4845": {
+"etape": 1,
+"surface_m2": 1820
+},
+"4846": {
+"etape": 1,
+"surface_m2": 1968
+},
+"4847": {
+"etape": 1,
+"surface_m2": 1643
+},
+"4848": {
+"etape": 1,
+"surface_m2": 1643
+},
+"4849": {
+"etape": 1,
+"surface_m2": 1643
+},
+"4850": {
+"etape": 1,
+"surface_m2": 1643
+},
+"4851": {
+"etape": 3,
+"surface_m2": 2300
+},
+"4852": {
+"etape": 1,
+"surface_m2": 2757
+},
+"4853": {
+"etape": 1,
+"surface_m2": 3267
+},
+"4854": {
+"etape": 1,
+"surface_m2": 4236
+},
+"4855": {
+"etape": 1,
+"surface_m2": 4090
+},
+"4856": {
+"etape": 3,
+"surface_m2": 3362
+},
+"4857": {
+"etape": 1,
+"surface_m2": 5263
+},
+"4858": {
+"etape": 1,
+"surface_m2": 3088
+},
+"4859": {
+"etape": 1,
+"surface_m2": 3089
+},
+"4860": {
+"etape": 1,
+"surface_m2": 3286
+},
+"4861": {
+"etape": 1,
+"surface_m2": 8650
+},
+"4862": {
+"etape": 1,
+"surface_m2": 17624
+},
+"4863": {
+"etape": 1,
+"surface_m2": 15468
+},
+"4864": {
+"etape": 1,
+"surface_m2": 4411
+},
+"4865": {
+"etape": 1,
+"surface_m2": 24394
+},
+"4866": {
+"etape": 1,
+"surface_m2": 24391
+},
+"4867": {
+"etape": 1,
+"surface_m2": 25417
+},
+"4868": {
+"etape": 1,
+"surface_m2": 2265
+},
+"4869": {
+"etape": 1,
+"surface_m2": 4420
+},
+"4870": {
+"etape": 1,
+"surface_m2": 3106
+},
+"4871": {
+"etape": 3,
+"surface_m2": 3850
+},
+"4872": {
+"etape": 3,
+"surface_m2": 4132
+},
+"4873": {
+"etape": 3,
+"surface_m2": 4123
+},
+"4874": {
+"etape": 3,
+"surface_m2": 3243
+},
+"4875": {
+"etape": 3,
+"surface_m2": 3987
+},
+"4876": {
+"etape": 3,
+"surface_m2": 4002
+},
+"4877": {
+"etape": 1,
+"surface_m2": 12731
+},
+"4878": {
+"etape": 1,
+"surface_m2": 5743
+},
+"4879": {
+"etape": 3,
+"surface_m2": 10294
+},
+"4880": {
+"etape": 3,
+"surface_m2": 10512
+},
+"4881": {
+"etape": 1,
+"surface_m2": 5220
+},
+"4882": {
+"etape": 3,
+"surface_m2": 5220
+},
+"4883": {
+"etape": 3,
+"surface_m2": 15786
+},
+"4884": {
+"etape": 1,
+"surface_m2": 13570
+},
+"4885": {
+"etape": 3,
+"surface_m2": 4730
+},
+"4886": {
+"etape": 3,
+"surface_m2": 4746
+},
+"4887": {
+"etape": 3,
+"surface_m2": 4746
+},
+"4888": {
+"etape": 2,
+"surface_m2": 44850
+},
+"4889": {
+"etape": 3,
+"surface_m2": 3753
+},
+"4890": {
+"etape": 1,
+"surface_m2": 20392
+},
+"4891": {
+"etape": 1,
+"surface_m2": 4415
+},
+"4892": {
+"etape": 1,
+"surface_m2": 6773
+},
+"4893": {
+"etape": 3,
+"surface_m2": 1576
+},
+"4894": {
+"etape": 1,
+"surface_m2": 970
+},
+"4895": {
+"etape": 1,
+"surface_m2": 1240
+},
+"4896": {
+"etape": 2,
+"surface_m2": 871
+},
+"4897": {
+"etape": 1,
+"surface_m2": 867
+},
+"4898": {
+"etape": 2,
+"surface_m2": 866
+},
+"4899": {
+"etape": 2,
+"surface_m2": 864
+},
+"4900": {
+"etape": 2,
+"surface_m2": 862
+},
+"4901": {
+"etape": 1,
+"surface_m2": 859
+},
+"4902": {
+"etape": 1,
+"surface_m2": 1311
+},
+"4903": {
+"etape": 1,
+"surface_m2": 1029
+},
+"4904": {
+"etape": 1,
+"surface_m2": 1086
+},
+"4905": {
+"etape": 2,
+"surface_m2": 1367
+},
+"4906": {
+"etape": 1,
+"surface_m2": 978
+},
+"4907": {
+"etape": 1,
+"surface_m2": 971
+},
+"4908": {
+"etape": 1,
+"surface_m2": 948
+},
+"4909": {
+"etape": 1,
+"surface_m2": 919
+},
+"4910": {
+"etape": 1,
+"surface_m2": 2874
+},
+"4911": {
+"etape": 3,
+"surface_m2": 2874
+},
+"4912": {
+"etape": 1,
+"surface_m2": 3659
+},
+"4913": {
+"etape": 1,
+"surface_m2": 1212
+},
+"4914": {
+"etape": 1,
+"surface_m2": 1168
+},
+"4915": {
+"etape": 2,
+"surface_m2": 21413
+},
+"4916": {
+"etape": 2,
+"surface_m2": 18649
+},
+"4917": {
+"etape": 1,
+"surface_m2": 3733
+},
+"4918": {
+"etape": 1,
+"surface_m2": 2871
+},
+"4919": {
+"etape": 1,
+"surface_m2": 2877
+},
+"4920": {
+"etape": 1,
+"surface_m2": 2886
+},
+"4921": {
+"etape": 1,
+"surface_m2": 2894
+},
+"4922": {
+"etape": 2,
+"surface_m2": 2902
+},
+"4923": {
+"etape": 3,
+"surface_m2": 2910
+},
+"4924": {
+"etape": 2,
+"surface_m2": 2918
+},
+"4925": {
+"etape": 1,
+"surface_m2": 6100
+},
+"4926": {
+"etape": 1,
+"surface_m2": 6368
+},
+"4927": {
+"etape": 1,
+"surface_m2": 13109
+},
+"4928": {
+"etape": 1,
+"surface_m2": 22108
+},
+"4935": {
+"etape": 5,
+"surface_m2": 16010
+},
+"4936": {
+"etape": 3,
+"surface_m2": 2539
+},
+"4937": {
+"etape": 5,
+"surface_m2": 456
+},
+"4938": {
+"etape": 5,
+"surface_m2": 1516
+},
+"4939": {
+"etape": 3,
+"surface_m2": 1528
+},
+"4940": {
+"etape": 3,
+"surface_m2": 1471
+},
+"4941": {
+"etape": 4,
+"surface_m2": 2591
+},
+"4942": {
+"etape": 3,
+"surface_m2": 2231
+},
+"4943": {
+"etape": 3,
+"surface_m2": 1192
+},
+"4944": {
+"etape": 3,
+"surface_m2": 2855
+},
+"4945": {
+"etape": 0,
+"surface_m2": 2855
+},
+"4959": {
+"etape": 5,
+"surface_m2": 3222
+},
+"4961": {
+"etape": 3,
+"surface_m2": 130
+},
+"4962": {
+"etape": 3,
+"surface_m2": 130
+},
+"4963": {
+"etape": 4,
+"surface_m2": 1057
+},
+"4964": {
+"etape": 1,
+"surface_m2": 1037
+},
+"4965": {
+"etape": 1,
+"surface_m2": 1057
+},
+"4966": {
+"etape": 3,
+"surface_m2": 3614
+},
+"4967": {
+"etape": 3,
+"surface_m2": 212
+},
+"5039": {
+"etape": 1,
+"surface_m2": 3739
+},
+"5040": {
+"etape": 3,
+"surface_m2": 4294
+},
+"5041": {
+"etape": 1,
+"surface_m2": 4369
+},
+"5042": {
+"etape": 1,
+"surface_m2": 4351
+},
+"5043": {
+"etape": 1,
+"surface_m2": 4309
+},
+"5044": {
+"etape": 0,
+"surface_m2": 20303
+},
+"5045": {
+"etape": 1,
+"surface_m2": 3832
+},
+"5046": {
+"etape": 1,
+"surface_m2": 3691
+},
+"5047": {
+"etape": 1,
+"surface_m2": 4129
+},
+"5048": {
+"etape": 1,
+"surface_m2": 3679
+},
+"5049": {
+"etape": 1,
+"surface_m2": 3702
+},
+"5050": {
+"etape": 1,
+"surface_m2": 3675
+},
+"5051": {
+"etape": 1,
+"surface_m2": 3720
+},
+"5052": {
+"etape": 1,
+"surface_m2": 3600
+},
+"5053": {
+"etape": 3,
+"surface_m2": 3713
+},
+"5054": {
+"etape": 2,
+"surface_m2": 3754
+},
+"5055": {
+"etape": 3,
+"surface_m2": 3588
+},
+"5056": {
+"etape": 1,
+"surface_m2": 4465
+},
+"5057": {
+"etape": 1,
+"surface_m2": 3599
+},
+"5058": {
+"etape": 1,
+"surface_m2": 4460
+},
+"5059": {
+"etape": 1,
+"surface_m2": 4365
+},
+"5060": {
+"etape": 1,
+"surface_m2": 4280
+},
+"5061": {
+"etape": 1,
+"surface_m2": 4015
+},
+"5062": {
+"etape": 1,
+"surface_m2": 6067
+},
+"5063": {
+"etape": 1,
+"surface_m2": 4333
+},
+"5064": {
+"etape": 3,
+"surface_m2": 4319
+},
+"5066": {
+"etape": 2,
+"surface_m2": 10717
+},
+"5067": {
+"etape": 0,
+"surface_m2": 1500
+},
+"5068": {
+"etape": 0,
+"surface_m2": 1500
+},
+"5075": {
+"etape": 3,
+"surface_m2": 1126
+},
+"5076": {
+"etape": 3,
+"surface_m2": 100
+},
+"5077": {
+"etape": 0,
+"surface_m2": 40
+},
+"5078": {
+"etape": 2,
+"surface_m2": 5557
+},
+"5079": {
+"etape": 3,
+"surface_m2": 3881
+},
+"5080": {
+"etape": 3,
+"surface_m2": 3782
+},
+"5081": {
+"etape": 2,
+"surface_m2": 2278
+},
+"5082": {
+"etape": 3,
+"surface_m2": 2310
+},
+"5083": {
+"etape": 3,
+"surface_m2": 2350
+},
+"5087": {
+"etape": 1,
+"surface_m2": 600
+},
+"5088": {
+"etape": 2,
+"surface_m2": 520
+},
+"5089": {
+"etape": 1,
+"surface_m2": 615
+},
+"5090": {
+"etape": 3,
+"surface_m2": 521
+},
+"5091": {
+"etape": 3,
+"surface_m2": 600
+},
+"5092": {
+"etape": 2,
+"surface_m2": 1289
+},
+"5093": {
+"etape": 3,
+"surface_m2": 3420
+},
+"5094": {
+"etape": 2,
+"surface_m2": 3429
+},
+"5095": {
+"etape": 5,
+"surface_m2": 1010
+},
+"5096": {
+"etape": 2,
+"surface_m2": 3430
+},
+"5097": {
+"etape": 3,
+"surface_m2": 3510
+},
+"5098": {
+"etape": 2,
+"surface_m2": 43428
+},
+"5099": {
+"etape": 3,
+"surface_m2": 375
+},
+"5102": {
+"etape": 3,
+"surface_m2": 1757
+},
+"5104": {
+"etape": 5,
+"surface_m2": 2096
+},
+"5105": {
+"etape": 2,
+"surface_m2": 2380
+},
+"5106": {
+"etape": 3,
+"surface_m2": 2407
+},
+"5107": {
+"etape": 3,
+"surface_m2": 1897
+},
+"5108": {
+"etape": 2,
+"surface_m2": 4230
+},
+"5111": {
+"etape": 1,
+"surface_m2": 2398
+},
+"5112": {
+"etape": 1,
+"surface_m2": 2909
+},
+"5117": {
+"etape": 3,
+"surface_m2": 3510
+},
+"5118": {
+"etape": 1,
+"surface_m2": 7986
+},
+"5119": {
+"etape": 2,
+"surface_m2": 8430
+},
+"5120": {
+"etape": 1,
+"surface_m2": 2522
+},
+"5121": {
+"etape": 1,
+"surface_m2": 2578
+},
+"5122": {
+"etape": 1,
+"surface_m2": 3159
+},
+"5123": {
+"etape": 1,
+"surface_m2": 4092
+},
+"5124": {
+"etape": 3,
+"surface_m2": 5027
+},
+"5125": {
+"etape": 3,
+"surface_m2": 2590
+},
+"5126": {
+"etape": 1,
+"surface_m2": 2587
+},
+"5127": {
+"etape": 1,
+"surface_m2": 3477
+},
+"5130": {
+"etape": 0,
+"surface_m2": 842
+},
+"5132": {
+"etape": 1,
+"surface_m2": 3072
+},
+"5133": {
+"etape": 1,
+"surface_m2": 3223
+},
+"5134": {
+"etape": 1,
+"surface_m2": 4308
+},
+"5135": {
+"etape": 1,
+"surface_m2": 12530
+},
+"5136": {
+"etape": 1,
+"surface_m2": 6428
+},
+"5137": {
+"etape": 3,
+"surface_m2": 4462
+},
+"5138": {
+"etape": 3,
+"surface_m2": 2378
+},
+"5139": {
+"etape": 3,
+"surface_m2": 1727
+},
+"5140": {
+"etape": 3,
+"surface_m2": 1695
+},
+"5141": {
+"etape": 2,
+"surface_m2": 1803
+},
+"5142": {
+"etape": 2,
+"surface_m2": 1516
+},
+"5143": {
+"etape": 1,
+"surface_m2": 1757
+},
+"5144": {
+"etape": 1,
+"surface_m2": 3008
+},
+"5145": {
+"etape": 3,
+"surface_m2": 3297
+},
+"5146": {
+"etape": 1,
+"surface_m2": 2442
+},
+"5147": {
+"etape": 1,
+"surface_m2": 804
+},
+"5148": {
+"etape": 3,
+"surface_m2": 1030
+},
+"5149": {
+"etape": 2,
+"surface_m2": 907
+},
+"5150": {
+"etape": 1,
+"surface_m2": 852
+},
+"5151": {
+"etape": 1,
+"surface_m2": 832
+},
+"5152": {
+"etape": 1,
+"surface_m2": 873
+},
+"5153": {
+"etape": 1,
+"surface_m2": 2940
+},
+"5154": {
+"etape": 1,
+"surface_m2": 843
+},
+"5155": {
+"etape": 1,
+"surface_m2": 878
+},
+"5156": {
+"etape": 1,
+"surface_m2": 838
+},
+"5157": {
+"etape": 1,
+"surface_m2": 2172
+},
+"5158": {
+"etape": 1,
+"surface_m2": 2805
+},
+"5159": {
+"etape": 1,
+"surface_m2": 2899
+},
+"5160": {
+"etape": 1,
+"surface_m2": 2717
+},
+"5161": {
+"etape": 1,
+"surface_m2": 2373
+},
+"5162": {
+"etape": 1,
+"surface_m2": 523
+},
+"5163": {
+"etape": 1,
+"surface_m2": 116706
+},
+"5164": {
+"etape": 1,
+"surface_m2": 1600
+},
+"5165": {
+"etape": 1,
+"surface_m2": 2829
+},
+"5168": {
+"etape": 3,
+"surface_m2": 485
+},
+"5169": {
+"etape": 0,
+"surface_m2": 199
+},
+"5170": {
+"etape": 5,
+"surface_m2": 10582
+},
+"5171": {
+"etape": 5,
+"surface_m2": 65
+},
+"5172": {
+"etape": 1,
+"surface_m2": 3945
+},
+"5173": {
+"etape": 1,
+"surface_m2": 3644
+},
+"5174": {
+"etape": 1,
+"surface_m2": 4268
+},
+"5175": {
+"etape": 1,
+"surface_m2": 4340
+},
+"5176": {
+"etape": 1,
+"surface_m2": 4145
+},
+"5177": {
+"etape": 1,
+"surface_m2": 2485
+},
+"5178": {
+"etape": 1,
+"surface_m2": 2261
+},
+"5179": {
+"etape": 3,
+"surface_m2": 2116
+},
+"5180": {
+"etape": 3,
+"surface_m2": 3010
+},
+"5181": {
+"etape": 2,
+"surface_m2": 2261
+},
+"5182": {
+"etape": 1,
+"surface_m2": 2485
+},
+"5183": {
+"etape": 1,
+"surface_m2": 2583
+},
+"5184": {
+"etape": 1,
+"surface_m2": 2025
+},
+"5185": {
+"etape": 2,
+"surface_m2": 2331
+},
+"5186": {
+"etape": 2,
+"surface_m2": 2459
+},
+"5187": {
+"etape": 1,
+"surface_m2": 2750
+},
+"5188": {
+"etape": 1,
+"surface_m2": 2112
+},
+"5189": {
+"etape": 2,
+"surface_m2": 1985
+},
+"5190": {
+"etape": 2,
+"surface_m2": 3517
+},
+"5191": {
+"etape": 1,
+"surface_m2": 2607
+},
+"5192": {
+"etape": 2,
+"surface_m2": 2726
+},
+"5194": {
+"etape": 3,
+"surface_m2": 3997
+},
+"5195": {
+"etape": 2,
+"surface_m2": 10764
+},
+"5196": {
+"etape": 3,
+"surface_m2": 3956
+},
+"5197": {
+"etape": 1,
+"surface_m2": 2904
+},
+"5198": {
+"etape": 3,
+"surface_m2": 3415
+},
+"5199": {
+"etape": 3,
+"surface_m2": 3701
+},
+"5200": {
+"etape": 1,
+"surface_m2": 2904
+},
+"5201": {
+"etape": 1,
+"surface_m2": 3410
+},
+"5202": {
+"etape": 1,
+"surface_m2": 3696
+},
+"5203": {
+"etape": 1,
+"surface_m2": 3707
+},
+"5204": {
+"etape": 1,
+"surface_m2": 49883
+},
+"5205": {
+"etape": 3,
+"surface_m2": 1455
+},
+"5206": {
+"etape": 3,
+"surface_m2": 1680
+},
+"5207": {
+"etape": 3,
+"surface_m2": 1471
+},
+"5208": {
+"etape": 3,
+"surface_m2": 1469
+},
+"5209": {
+"etape": 2,
+"surface_m2": 625
+},
+"5210": {
+"etape": 3,
+"surface_m2": 1256
+},
+"5211": {
+"etape": 1,
+"surface_m2": 713
+},
+"5212": {
+"etape": 1,
+"surface_m2": 1256
+},
+"5213": {
+"etape": 1,
+"surface_m2": 1256
+},
+"5214": {
+"etape": 5,
+"surface_m2": 318
+},
+"5215": {
+"etape": 1,
+"surface_m2": 516
+},
+"5216": {
+"etape": 1,
+"surface_m2": 487
+},
+"5217": {
+"etape": 1,
+"surface_m2": 487
+},
+"5218": {
+"etape": 3,
+"surface_m2": 487
+},
+"5219": {
+"etape": 2,
+"surface_m2": 601
+},
+"5220": {
+"etape": 2,
+"surface_m2": 487
+},
+"5221": {
+"etape": 2,
+"surface_m2": 674
+},
+"5222": {
+"etape": 1,
+"surface_m2": 613
+},
+"5223": {
+"etape": 1,
+"surface_m2": 616
+},
+"5224": {
+"etape": 1,
+"surface_m2": 534
+},
+"5225": {
+"etape": 1,
+"surface_m2": 534
+},
+"5226": {
+"etape": 1,
+"surface_m2": 533
+},
+"5227": {
+"etape": 1,
+"surface_m2": 533
+},
+"5228": {
+"etape": 1,
+"surface_m2": 3847
+},
+"5229": {
+"etape": 0,
+"surface_m2": 1050
+},
+"5230": {
+"etape": 0,
+"surface_m2": 1715
+},
+"5231": {
+"etape": 2,
+"surface_m2": 1500
+},
+"5232": {
+"etape": 3,
+"surface_m2": 3268
+},
+"5237": {
+"etape": 4,
+"surface_m2": 3000
+},
+"5244": {
+"etape": 0,
+"surface_m2": 1820
+},
+"5245": {
+"etape": 0,
+"surface_m2": 1720
+},
+"5246": {
+"etape": 1,
+"surface_m2": 1650
+},
+"5247": {
+"etape": 1,
+"surface_m2": 1700
+},
+"5248": {
+"etape": 1,
+"surface_m2": 2930
+},
+"5249": {
+"etape": 1,
+"surface_m2": 2305
+},
+"5250": {
+"etape": 3,
+"surface_m2": 2255
+},
+"5251": {
+"etape": 0,
+"surface_m2": 5190
+},
+"5252": {
+"etape": 1,
+"surface_m2": 2590
+},
+"5253": {
+"etape": 1,
+"surface_m2": 2500
+},
+"5254": {
+"etape": 1,
+"surface_m2": 2500
+},
+"5255": {
+"etape": 0,
+"surface_m2": 2590
+},
+"5256": {
+"etape": 1,
+"surface_m2": 3124
+},
+"5257": {
+"etape": 0,
+"surface_m2": 1300
+},
+"5258": {
+"etape": 1,
+"surface_m2": 2650
+},
+"5259": {
+"etape": 1,
+"surface_m2": 3210
+},
+"5260": {
+"etape": 2,
+"surface_m2": 1447
+},
+"5261": {
+"etape": 2,
+"surface_m2": 1000
+},
+"5262": {
+"etape": 0,
+"surface_m2": 1950
+},
+"5263": {
+"etape": 3,
+"surface_m2": 4803
+},
+"5264": {
+"etape": 5,
+"surface_m2": 1638
+},
+"5265": {
+"etape": 0,
+"surface_m2": 5040
+},
+"5266": {
+"etape": 1,
+"surface_m2": 395
+},
+"5267": {
+"etape": 1,
+"surface_m2": 395
+},
+"5268": {
+"etape": 1,
+"surface_m2": 413
+},
+"5269": {
+"etape": 1,
+"surface_m2": 412
+},
+"5270": {
+"etape": 1,
+"surface_m2": 413
+},
+"5271": {
+"etape": 1,
+"surface_m2": 412
+},
+"5272": {
+"etape": 1,
+"surface_m2": 412
+},
+"5273": {
+"etape": 3,
+"surface_m2": 412
+},
+"5274": {
+"etape": 3,
+"surface_m2": 412
+},
+"5275": {
+"etape": 3,
+"surface_m2": 412
+},
+"5276": {
+"etape": 1,
+"surface_m2": 413
+},
+"5277": {
+"etape": 1,
+"surface_m2": 393
+},
+"5278": {
+"etape": 1,
+"surface_m2": 594
+},
+"5279": {
+"etape": 1,
+"surface_m2": 448
+},
+"5280": {
+"etape": 1,
+"surface_m2": 442
+},
+"5281": {
+"etape": 1,
+"surface_m2": 452
+},
+"5282": {
+"etape": 1,
+"surface_m2": 563
+},
+"5283": {
+"etape": 1,
+"surface_m2": 682
+},
+"5284": {
+"etape": 1,
+"surface_m2": 603
+},
+"5285": {
+"etape": 1,
+"surface_m2": 412
+},
+"5286": {
+"etape": 1,
+"surface_m2": 413
+},
+"5287": {
+"etape": 1,
+"surface_m2": 412
+},
+"5288": {
+"etape": 1,
+"surface_m2": 412
+},
+"5289": {
+"etape": 3,
+"surface_m2": 412
+},
+"5290": {
+"etape": 3,
+"surface_m2": 412
+},
+"5291": {
+"etape": 3,
+"surface_m2": 412
+},
+"5292": {
+"etape": 5,
+"surface_m2": 7816
+},
+"5293": {
+"etape": 3,
+"surface_m2": 8176
+},
+"5294": {
+"etape": 1,
+"surface_m2": 2004
+},
+"5300": {
+"etape": 2,
+"surface_m2": 5297
+},
+"5301": {
+"etape": 2,
+"surface_m2": 3961
+},
+"5302": {
+"etape": 1,
+"surface_m2": 4166
+},
+"5303": {
+"etape": 1,
+"surface_m2": 4575
+},
+"5304": {
+"etape": 1,
+"surface_m2": 6080
+},
+"5305": {
+"etape": 1,
+"surface_m2": 2224
+},
+"5306": {
+"etape": 3,
+"surface_m2": 1611
+},
+"5307": {
+"etape": 5,
+"surface_m2": 1930
+},
+"5308": {
+"etape": 1,
+"surface_m2": 1977
+},
+"5309": {
+"etape": 1,
+"surface_m2": 1683
+},
+"5310": {
+"etape": 1,
+"surface_m2": 1668
+},
+"5311": {
+"etape": 1,
+"surface_m2": 1668
+},
+"5312": {
+"etape": 1,
+"surface_m2": 1684
+},
+"5313": {
+"etape": 1,
+"surface_m2": 863
+},
+"5314": {
+"etape": 2,
+"surface_m2": 826
+},
+"5315": {
+"etape": 1,
+"surface_m2": 622
+},
+"5316": {
+"etape": 1,
+"surface_m2": 959
+},
+"5317": {
+"etape": 1,
+"surface_m2": 724
+},
+"5318": {
+"etape": 1,
+"surface_m2": 826
+},
+"5319": {
+"etape": 1,
+"surface_m2": 826
+},
+"5320": {
+"etape": 1,
+"surface_m2": 811
+},
+"5321": {
+"etape": 1,
+"surface_m2": 826
+},
+"5322": {
+"etape": 1,
+"surface_m2": 826
+},
+"5323": {
+"etape": 1,
+"surface_m2": 826
+},
+"5324": {
+"etape": 1,
+"surface_m2": 826
+},
+"5325": {
+"etape": 0,
+"surface_m2": 761
+},
+"5329": {
+"etape": 1,
+"surface_m2": 2625
+},
+"5330": {
+"etape": 2,
+"surface_m2": 2625
+},
+"5331": {
+"etape": 1,
+"surface_m2": 2625
+},
+"5332": {
+"etape": 2,
+"surface_m2": 2625
+},
+"5333": {
+"etape": 3,
+"surface_m2": 2625
+},
+"5334": {
+"etape": 3,
+"surface_m2": 9557
+},
+"5335": {
+"etape": 1,
+"surface_m2": 1347
+},
+"5336": {
+"etape": 1,
+"surface_m2": 1365
+},
+"5337": {
+"etape": 1,
+"surface_m2": 1365
+},
+"5338": {
+"etape": 1,
+"surface_m2": 1347
+},
+"5339": {
+"etape": 3,
+"surface_m2": 1365
+},
+"5340": {
+"etape": 3,
+"surface_m2": 1365
+},
+"5341": {
+"etape": 3,
+"surface_m2": 1347
+},
+"5342": {
+"etape": 3,
+"surface_m2": 1347
+},
+"5343": {
+"etape": 3,
+"surface_m2": 1365
+},
+"5344": {
+"etape": 3,
+"surface_m2": 1365
+},
+"5345": {
+"etape": 5,
+"surface_m2": 115
+},
+"5346": {
+"etape": 1,
+"surface_m2": 12974
+},
+"5347": {
+"etape": 2,
+"surface_m2": 3232
+},
+"5348": {
+"etape": 2,
+"surface_m2": 3232
+},
+"5349": {
+"etape": 2,
+"surface_m2": 3187
+},
+"5350": {
+"etape": 2,
+"surface_m2": 3206
+},
+"5351": {
+"etape": 2,
+"surface_m2": 2827
+},
+"5352": {
+"etape": 1,
+"surface_m2": 1751
+},
+"5353": {
+"etape": 1,
+"surface_m2": 1867
+},
+"5354": {
+"etape": 2,
+"surface_m2": 2251
+},
+"5355": {
+"etape": 2,
+"surface_m2": 1928
+},
+"5356": {
+"etape": 1,
+"surface_m2": 2676
+},
+"5357": {
+"etape": 1,
+"surface_m2": 5919
+},
+"5358": {
+"etape": 2,
+"surface_m2": 3010
+},
+"5359": {
+"etape": 1,
+"surface_m2": 6799
+},
+"5360": {
+"etape": 2,
+"surface_m2": 5129
+},
+"5361": {
+"etape": 1,
+"surface_m2": 5113
+},
+"5362": {
+"etape": 1,
+"surface_m2": 5098
+},
+"5363": {
+"etape": 1,
+"surface_m2": 7003
+},
+"5364": {
+"etape": 1,
+"surface_m2": 4223
+},
+"5365": {
+"etape": 1,
+"surface_m2": 4127
+},
+"5366": {
+"etape": 1,
+"surface_m2": 4793
+},
+"5367": {
+"etape": 1,
+"surface_m2": 2566
+},
+"5368": {
+"etape": 2,
+"surface_m2": 2593
+},
+"5369": {
+"etape": 1,
+"surface_m2": 2419
+},
+"5370": {
+"etape": 2,
+"surface_m2": 3232
+},
+"5371": {
+"etape": 2,
+"surface_m2": 3232
+},
+"5372": {
+"etape": 0,
+"surface_m2": 1887
+},
+"5374": {
+"etape": 0,
+"surface_m2": 6200
+},
+"5376": {
+"etape": 2,
+"surface_m2": 2621
+},
+"5377": {
+"etape": 3,
+"surface_m2": 1540
+},
+"5378": {
+"etape": 2,
+"surface_m2": 755
+},
+"5379": {
+"etape": 2,
+"surface_m2": 506
+},
+"5380": {
+"etape": 2,
+"surface_m2": 506
+},
+"5381": {
+"etape": 2,
+"surface_m2": 506
+},
+"5382": {
+"etape": 2,
+"surface_m2": 1327
+},
+"5383": {
+"etape": 1,
+"surface_m2": 825
+},
+"5384": {
+"etape": 2,
+"surface_m2": 825
+},
+"5385": {
+"etape": 2,
+"surface_m2": 825
+},
+"5386": {
+"etape": 3,
+"surface_m2": 3513
+},
+"5387": {
+"etape": 2,
+"surface_m2": 825
+},
+"5388": {
+"etape": 2,
+"surface_m2": 1328
+},
+"5389": {
+"etape": 2,
+"surface_m2": 479
+},
+"5390": {
+"etape": 2,
+"surface_m2": 497
+},
+"5391": {
+"etape": 3,
+"surface_m2": 936
+},
+"5392": {
+"etape": 3,
+"surface_m2": 863
+},
+"5393": {
+"etape": 2,
+"surface_m2": 863
+},
+"5394": {
+"etape": 2,
+"surface_m2": 863
+},
+"5395": {
+"etape": 5,
+"surface_m2": 936
+},
+"5396": {
+"etape": 3,
+"surface_m2": 2433
+},
+"5397": {
+"etape": 3,
+"surface_m2": 2389
+},
+"5398": {
+"etape": 0,
+"surface_m2": 5971
+},
+"5399": {
+"etape": 2,
+"surface_m2": 3724
+},
+"5400": {
+"etape": 5,
+"surface_m2": 3012
+},
+"5401": {
+"etape": 2,
+"surface_m2": 4244
+},
+"5402": {
+"etape": 2,
+"surface_m2": 1540
+},
+"5403": {
+"etape": 2,
+"surface_m2": 1540
+},
+"5404": {
+"etape": 2,
+"surface_m2": 1540
+},
+"5405": {
+"etape": 3,
+"surface_m2": 1540
+},
+"5406": {
+"etape": 3,
+"surface_m2": 2000
+},
+"5407": {
+"etape": 2,
+"surface_m2": 1744
+},
+"5408": {
+"etape": 2,
+"surface_m2": 1606
+},
+"5409": {
+"etape": 3,
+"surface_m2": 1725
+},
+"5410": {
+"etape": 3,
+"surface_m2": 2013
+},
+"5411": {
+"etape": 2,
+"surface_m2": 3276
+},
+"5412": {
+"etape": 2,
+"surface_m2": 3276
+},
+"5413": {
+"etape": 2,
+"surface_m2": 3276
+},
+"5441": {
+"etape": 0,
+"surface_m2": 6272
+},
+"5442": {
+"etape": 3,
+"surface_m2": 7137
+},
+"5443": {
+"etape": 5,
+"surface_m2": 2814
+},
+"5444": {
+"etape": 3,
+"surface_m2": 21200
+},
+"5445": {
+"etape": 2,
+"surface_m2": 2000
+},
+"5446": {
+"etape": 3,
+"surface_m2": 428
+},
+"5447": {
+"etape": 3,
+"surface_m2": 2255
+},
+"5448": {
+"etape": 3,
+"surface_m2": 2321
+},
+"5449": {
+"etape": 5,
+"surface_m2": 2262
+},
+"5450": {
+"etape": 3,
+"surface_m2": 2531
+},
+"5451": {
+"etape": 3,
+"surface_m2": 1030
+},
+"5452": {
+"etape": 3,
+"surface_m2": 1035
+},
+"5453": {
+"etape": 3,
+"surface_m2": 1215
+},
+"5454": {
+"etape": 3,
+"surface_m2": 966
+},
+"5455": {
+"etape": 3,
+"surface_m2": 1294
+},
+"5456": {
+"etape": 1,
+"surface_m2": 500
+},
+"5457": {
+"etape": 3,
+"surface_m2": 500
+},
+"5458": {
+"etape": 1,
+"surface_m2": 550
+},
+"5459": {
+"etape": 1,
+"surface_m2": 506
+},
+"5460": {
+"etape": 1,
+"surface_m2": 504
+},
+"5461": {
+"etape": 1,
+"surface_m2": 552
+},
+"5462": {
+"etape": 1,
+"surface_m2": 500
+},
+"5463": {
+"etape": 1,
+"surface_m2": 540
+},
+"5464": {
+"etape": 1,
+"surface_m2": 534
+},
+"5465": {
+"etape": 1,
+"surface_m2": 530
+},
+"5466": {
+"etape": 3,
+"surface_m2": 539
+},
+"5467": {
+"etape": 3,
+"surface_m2": 586
+},
+"5468": {
+"etape": 0,
+"surface_m2": 2509
+},
+"5471": {
+"etape": 5,
+"surface_m2": 35195
+},
+"5472": {
+"etape": 1,
+"surface_m2": 2395
+},
+"5473": {
+"etape": 1,
+"surface_m2": 2395
+},
+"5474": {
+"etape": 1,
+"surface_m2": 2395
+},
+"5475": {
+"etape": 3,
+"surface_m2": 2290
+},
+"5476": {
+"etape": 1,
+"surface_m2": 15105
+},
+"5477": {
+"etape": 5,
+"surface_m2": 17565
+},
+"5478": {
+"etape": 2,
+"surface_m2": 7925
+},
+"5479": {
+"etape": 1,
+"surface_m2": 4195
+},
+"5480": {
+"etape": 5,
+"surface_m2": 4045
+},
+"5481": {
+"etape": 5,
+"surface_m2": 4195
+},
+"5482": {
+"etape": 5,
+"surface_m2": 4040
+},
+"5483": {
+"etape": 5,
+"surface_m2": 4310
+},
+"5484": {
+"etape": 5,
+"surface_m2": 7945
+},
+"5485": {
+"etape": 5,
+"surface_m2": 3845
+},
+"5486": {
+"etape": 2,
+"surface_m2": 7925
+},
+"5487": {
+"etape": 2,
+"surface_m2": 7925
+},
+"5488": {
+"etape": 1,
+"surface_m2": 3595
+},
+"5489": {
+"etape": 1,
+"surface_m2": 4275
+},
+"5490": {
+"etape": 5,
+"surface_m2": 4395
+},
+"5491": {
+"etape": 5,
+"surface_m2": 7905
+},
+"5492": {
+"etape": 5,
+"surface_m2": 7895
+},
+"5493": {
+"etape": 5,
+"surface_m2": 4740
+},
+"5494": {
+"etape": 5,
+"surface_m2": 4575
+},
+"5495": {
+"etape": 5,
+"surface_m2": 3605
+},
+"5496": {
+"etape": 5,
+"surface_m2": 30300
+},
+"5497": {
+"etape": 3,
+"surface_m2": 2655
+},
+"5498": {
+"etape": 5,
+"surface_m2": 4930
+},
+"5499": {
+"etape": 2,
+"surface_m2": 2510
+},
+"5500": {
+"etape": 1,
+"surface_m2": 2510
+},
+"5509": {
+"etape": 5,
+"surface_m2": 20000
+},
+"5513": {
+"etape": 2,
+"surface_m2": 5435
+},
+"5514": {
+"etape": 1,
+"surface_m2": 5400
+},
+"5515": {
+"etape": 2,
+"surface_m2": 7120
+},
+"5516": {
+"etape": 3,
+"surface_m2": 10652
+},
+"5517": {
+"etape": 2,
+"surface_m2": 7940
+},
+"5518": {
+"etape": 3,
+"surface_m2": 10345
+},
+"5519": {
+"etape": 3,
+"surface_m2": 20418
+},
+"5520": {
+"etape": 2,
+"surface_m2": 10205
+},
+"5521": {
+"etape": 2,
+"surface_m2": 10158
+},
+"5522": {
+"etape": 3,
+"surface_m2": 10350
+},
+"5523": {
+"etape": 1,
+"surface_m2": 3600
+},
+"5524": {
+"etape": 2,
+"surface_m2": 3562
+},
+"5525": {
+"etape": 2,
+"surface_m2": 3552
+},
+"5526": {
+"etape": 3,
+"surface_m2": 3577
+},
+"5527": {
+"etape": 1,
+"surface_m2": 3562
+},
+"5528": {
+"etape": 1,
+"surface_m2": 40392
+},
+"5529": {
+"etape": 2,
+"surface_m2": 12180
+},
+"5530": {
+"etape": 1,
+"surface_m2": 10635
+},
+"5531": {
+"etape": 1,
+"surface_m2": 12975
+},
+"5532": {
+"etape": 1,
+"surface_m2": 7500
+},
+"5533": {
+"etape": 1,
+"surface_m2": 7500
+},
+"5534": {
+"etape": 1,
+"surface_m2": 7500
+},
+"5535": {
+"etape": 1,
+"surface_m2": 7500
+},
+"5536": {
+"etape": 1,
+"surface_m2": 7500
+},
+"5537": {
+"etape": 1,
+"surface_m2": 7500
+},
+"5538": {
+"etape": 1,
+"surface_m2": 7500
+},
+"5539": {
+"etape": 1,
+"surface_m2": 7500
+},
+"5540": {
+"etape": 1,
+"surface_m2": 7500
+},
+"5541": {
+"etape": 1,
+"surface_m2": 7500
+},
+"5542": {
+"etape": 1,
+"surface_m2": 7500
+},
+"5543": {
+"etape": 1,
+"surface_m2": 7652
+},
+"5544": {
+"etape": 1,
+"surface_m2": 7652
+},
+"5545": {
+"etape": 1,
+"surface_m2": 10475
+},
+"5546": {
+"etape": 1,
+"surface_m2": 10475
+},
+"5547": {
+"etape": 1,
+"surface_m2": 10500
+},
+"5548": {
+"etape": 1,
+"surface_m2": 10500
+},
+"5549": {
+"etape": 1,
+"surface_m2": 10500
+},
+"5550": {
+"etape": 1,
+"surface_m2": 10500
+},
+"5551": {
+"etape": 1,
+"surface_m2": 10500
+},
+"5552": {
+"etape": 3,
+"surface_m2": 10550
+},
+"5553": {
+"etape": 3,
+"surface_m2": 10500
+},
+"5554": {
+"etape": 3,
+"surface_m2": 8222
+},
+"5555": {
+"etape": 1,
+"surface_m2": 15180
+},
+"5556": {
+"etape": 1,
+"surface_m2": 9450
+},
+"5557": {
+"etape": 2,
+"surface_m2": 7727
+},
+"5558": {
+"etape": 2,
+"surface_m2": 7727
+},
+"5559": {
+"etape": 1,
+"surface_m2": 8135
+},
+"5560": {
+"etape": 1,
+"surface_m2": 7727
+},
+"5561": {
+"etape": 2,
+"surface_m2": 7983
+},
+"5562": {
+"etape": 1,
+"surface_m2": 7727
+},
+"5563": {
+"etape": 1,
+"surface_m2": 7907
+},
+"5564": {
+"etape": 1,
+"surface_m2": 7727
+},
+"5565": {
+"etape": 1,
+"surface_m2": 7830
+},
+"5566": {
+"etape": 1,
+"surface_m2": 7727
+},
+"5567": {
+"etape": 2,
+"surface_m2": 7810
+},
+"5568": {
+"etape": 1,
+"surface_m2": 7880
+},
+"5569": {
+"etape": 1,
+"surface_m2": 10710
+},
+"5570": {
+"etape": 1,
+"surface_m2": 10750
+},
+"5571": {
+"etape": 1,
+"surface_m2": 10600
+},
+"5572": {
+"etape": 1,
+"surface_m2": 10760
+},
+"5573": {
+"etape": 1,
+"surface_m2": 10470
+},
+"5574": {
+"etape": 1,
+"surface_m2": 10740
+},
+"5575": {
+"etape": 1,
+"surface_m2": 10340
+},
+"5576": {
+"etape": 1,
+"surface_m2": 10725
+},
+"5577": {
+"etape": 1,
+"surface_m2": 10205
+},
+"5578": {
+"etape": 1,
+"surface_m2": 10705
+},
+"5579": {
+"etape": 1,
+"surface_m2": 10075
+},
+"5580": {
+"etape": 1,
+"surface_m2": 10690
+},
+"5581": {
+"etape": 1,
+"surface_m2": 9570
+},
+"5582": {
+"etape": 1,
+"surface_m2": 10200
+},
+"5583": {
+"etape": 1,
+"surface_m2": 10180
+},
+"5586": {
+"etape": 1,
+"surface_m2": 4026
+},
+"5587": {
+"etape": 1,
+"surface_m2": 2679
+},
+"5588": {
+"etape": 1,
+"surface_m2": 2671
+},
+"5589": {
+"etape": 1,
+"surface_m2": 3662
+},
+"5590": {
+"etape": 0,
+"surface_m2": 3045
+},
+"5591": {
+"etape": 1,
+"surface_m2": 3859
+},
+"5592": {
+"etape": 2,
+"surface_m2": 3923
+},
+"5593": {
+"etape": 2,
+"surface_m2": 3729
+},
+"5594": {
+"etape": 1,
+"surface_m2": 2164
+},
+"5595": {
+"etape": 2,
+"surface_m2": 1192
+},
+"5596": {
+"etape": 2,
+"surface_m2": 2411
+},
+"5597": {
+"etape": 1,
+"surface_m2": 2202
+},
+"5598": {
+"etape": 2,
+"surface_m2": 2239
+},
+"5599": {
+"etape": 2,
+"surface_m2": 3600
+},
+"5600": {
+"etape": 0,
+"surface_m2": 1264
+},
+"5601": {
+"etape": 0,
+"surface_m2": 1184
+},
+"5602": {
+"etape": 1,
+"surface_m2": 2382
+},
+"5603": {
+"etape": 2,
+"surface_m2": 3561
+},
+"5604": {
+"etape": 2,
+"surface_m2": 1066
+},
+"5605": {
+"etape": 1,
+"surface_m2": 1161
+},
+"5606": {
+"etape": 1,
+"surface_m2": 628
+},
+"5607": {
+"etape": 1,
+"surface_m2": 697
+},
+"5608": {
+"etape": 1,
+"surface_m2": 508
+},
+"5609": {
+"etape": 1,
+"surface_m2": 591
+},
+"5610": {
+"etape": 1,
+"surface_m2": 470
+},
+"5611": {
+"etape": 1,
+"surface_m2": 435
+},
+"5612": {
+"etape": 1,
+"surface_m2": 353
+},
+"5613": {
+"etape": 1,
+"surface_m2": 364
+},
+"5614": {
+"etape": 2,
+"surface_m2": 3453
+},
+"5615": {
+"etape": 0,
+"surface_m2": 1014
+},
+"5616": {
+"etape": 0,
+"surface_m2": 1007
+},
+"5617": {
+"etape": 0,
+"surface_m2": 1121
+},
+"5618": {
+"etape": 0,
+"surface_m2": 1092
+},
+"5619": {
+"etape": 0,
+"surface_m2": 1121
+},
+"5620": {
+"etape": 0,
+"surface_m2": 1035
+},
+"5621": {
+"etape": 2,
+"surface_m2": 17944
+},
+"5622": {
+"etape": 0,
+"surface_m2": 628
+},
+"5623": {
+"etape": 0,
+"surface_m2": 697
+},
+"5624": {
+"etape": 0,
+"surface_m2": 508
+},
+"5625": {
+"etape": 0,
+"surface_m2": 591
+},
+"5626": {
+"etape": 0,
+"surface_m2": 470
+},
+"5627": {
+"etape": 0,
+"surface_m2": 435
+},
+"5628": {
+"etape": 0,
+"surface_m2": 353
+},
+"5629": {
+"etape": 0,
+"surface_m2": 364
+},
+"5630": {
+"etape": 0,
+"surface_m2": 1342
+},
+"5631": {
+"etape": 2,
+"surface_m2": 3041
+},
+"5632": {
+"etape": 3,
+"surface_m2": 6072
+},
+"5633": {
+"etape": 3,
+"surface_m2": 6075
+},
+"5634": {
+"etape": 2,
+"surface_m2": 2027
+},
+"5635": {
+"etape": 2,
+"surface_m2": 1427
+},
+"5636": {
+"etape": 3,
+"surface_m2": 1455
+},
+"5637": {
+"etape": 3,
+"surface_m2": 1451
+},
+"5638": {
+"etape": 4,
+"surface_m2": 1260
+},
+"5639": {
+"etape": 1,
+"surface_m2": 1522
+},
+"5640": {
+"etape": 4,
+"surface_m2": 1570
+},
+"5641": {
+"etape": 1,
+"surface_m2": 1811
+},
+"5642": {
+"etape": 1,
+"surface_m2": 1601
+},
+"5643": {
+"etape": 1,
+"surface_m2": 1272
+},
+"5652": {
+"etape": 0,
+"surface_m2": 2496
+},
+"5653": {
+"etape": 5,
+"surface_m2": 16037
+},
+"5654": {
+"etape": 0,
+"surface_m2": 4510
+},
+"5655": {
+"etape": 5,
+"surface_m2": 3485
+},
+"5656": {
+"etape": 1,
+"surface_m2": 4362
+},
+"5659": {
+"etape": 5,
+"surface_m2": 456
+},
+"5660": {
+"etape": 0,
+"surface_m2": 43774
+},
+"5663": {
+"etape": 5,
+"surface_m2": 64581
+},
+"5664": {
+"etape": 5,
+"surface_m2": 123616
+},
+"5667": {
+"etape": 5,
+"surface_m2": 79800
+},
+"5668": {
+"etape": 0,
+"surface_m2": 111425
+},
+"5672": {
+"etape": 5,
+"surface_m2": 41653
+},
+"5673": {
+"etape": 0,
+"surface_m2": 32248
+},
+"5674": {
+"etape": 0,
+"surface_m2": 38561
+},
+"5678": {
+"etape": 5,
+"surface_m2": 1516
+},
+"5679": {
+"etape": 0,
+"surface_m2": 38360
+},
+"5680": {
+"etape": 5,
+"surface_m2": 48522
+},
+"5685": {
+"etape": 4,
+"surface_m2": 16026
+},
+"5687": {
+"etape": 2,
+"surface_m2": 1300
+},
+"5688": {
+"etape": 2,
+"surface_m2": 941
+},
+"5689": {
+"etape": 0,
+"surface_m2": 27395
+},
+"5694": {
+"etape": 5,
+"surface_m2": 4995
+},
+"5698": {
+"etape": 0,
+"surface_m2": 8168
+},
+"5699": {
+"etape": 1,
+"surface_m2": 412
+},
+"5700": {
+"etape": 0,
+"surface_m2": 487
+},
+"5701": {
+"etape": 0,
+"surface_m2": 551
+},
+"5703": {
+"etape": 1,
+"surface_m2": 2328
+},
+"5704": {
+"etape": 0,
+"surface_m2": 17655
+},
+"5705": {
+"etape": 0,
+"surface_m2": 503
+},
+"5706": {
+"etape": 5,
+"surface_m2": 2250
+},
+"5707": {
+"etape": 5,
+"surface_m2": 4370
+},
+"5708": {
+"etape": 1,
+"surface_m2": 3000
+},
+"5709": {
+"etape": 5,
+"surface_m2": 1516
+},
+"5710": {
+"etape": 0,
+"surface_m2": 3746
+},
+"5712": {
+"etape": 0,
+"surface_m2": 1226
+},
+"5713": {
+"etape": 5,
+"surface_m2": 17510
+},
+"5714": {
+"etape": 1,
+"surface_m2": 2828
+},
+"5715": {
+"etape": 0,
+"surface_m2": 7585
+},
+"5716": {
+"etape": 0,
+"surface_m2": 21113
+},
+"5717": {
+"etape": 1,
+"surface_m2": 2257
+},
+"5718": {
+"etape": 0,
+"surface_m2": 1250
+},
+"5719": {
+"etape": 1,
+"surface_m2": 2505
+},
+"5720": {
+"etape": 2,
+"surface_m2": 8985
+},
+"5721": {
+"etape": 0,
+"surface_m2": 5036
+},
+"5722": {
+"etape": 0,
+"surface_m2": 25015
+},
+"5723": {
+"etape": 0,
+"surface_m2": 377327
+},
+"5730": {
+"etape": 5,
+"surface_m2": 299
+},
+"5731": {
+"etape": 5,
+"surface_m2": 11649
+},
+"5732": {
+"etape": 5,
+"surface_m2": 13042
+},
+"5735": {
+"etape": 0,
+"surface_m2": 4314
+},
+"5736": {
+"etape": 0,
+"surface_m2": 393
+},
+"5737": {
+"etape": 0,
+"surface_m2": 30
+},
+"5739": {
+"etape": 2,
+"surface_m2": 380
+},
+"5740": {
+"etape": 5,
+"surface_m2": 772
+},
+"5743": {
+"etape": 0,
+"surface_m2": 3747
+},
+"5744": {
+"etape": 5,
+"surface_m2": 580
+},
+"5745": {
+"etape": 5,
+"surface_m2": 32
+},
+"5746": {
+"etape": 5,
+"surface_m2": 32
+},
+"5747": {
+"etape": 5,
+"surface_m2": 32
+},
+"5748": {
+"etape": 0,
+"surface_m2": 64670
+},
+"5749": {
+"etape": 0,
+"surface_m2": 269271
+},
+"5758": {
+"etape": 5,
+"surface_m2": 34560
+},
+"5759": {
+"etape": 5,
+"surface_m2": 8822
+},
+"5760": {
+"etape": 0,
+"surface_m2": 89765
+},
+"5763": {
+"etape": 5,
+"surface_m2": 75320
+},
+"5770": {
+"etape": 5,
+"surface_m2": 80141
+},
+"5771": {
+"etape": 5,
+"surface_m2": 88672
+},
+"5775": {
+"etape": 5,
+"surface_m2": 26981
+},
+"5776": {
+"etape": 0,
+"surface_m2": 54941
+},
+"5781": {
+"etape": 5,
+"surface_m2": 14951
+},
+"5787": {
+"etape": 0,
+"surface_m2": 14417
+},
+"5788": {
+"etape": 0,
+"surface_m2": 3468
+},
+"5794": {
+"etape": 0,
+"surface_m2": 26108
+},
+"5798": {
+"etape": 0,
+"surface_m2": 15982
+},
+"5799": {
+"etape": 0,
+"surface_m2": 26388
+},
+"5800": {
+"etape": 0,
+"surface_m2": 18356
+},
+"5801": {
+"etape": 0,
+"surface_m2": 23099
+},
+"5802": {
+"etape": 0,
+"surface_m2": 30315
+},
+"5805": {
+"etape": 0,
+"surface_m2": 70410
+},
+"5806": {
+"etape": 0,
+"surface_m2": 42379
+},
+"5807": {
+"etape": 0,
+"surface_m2": 20100
+},
+"5810": {
+"etape": 5,
+"surface_m2": 49270
+},
+"5811": {
+"etape": 5,
+"surface_m2": 16953
+},
+"5812": {
+"etape": 0,
+"surface_m2": 59539
+},
+"5813": {
+"etape": 0,
+"surface_m2": 11868
+},
+"5816": {
+"etape": 0,
+"surface_m2": 31169
+},
+"5821": {
+"etape": 5,
+"surface_m2": 16350
+},
+"5827": {
+"etape": 0,
+"surface_m2": 18258
+},
+"5828": {
+"etape": 0,
+"surface_m2": 3961
+},
+"5829": {
+"etape": 0,
+"surface_m2": 22876
+},
+"5830": {
+"etape": 0,
+"surface_m2": 25000
+},
+"5832": {
+"etape": 0,
+"surface_m2": 32844
+},
+"5833": {
+"etape": 0,
+"surface_m2": 14356
+},
+"5834": {
+"etape": 0,
+"surface_m2": 109785
+},
+"5835": {
+"etape": 0,
+"surface_m2": 37693
+},
+"5836": {
+"etape": 0,
+"surface_m2": 23534
+},
+"5839": {
+"etape": 0,
+"surface_m2": 20129
+},
+"5841": {
+"etape": 0,
+"surface_m2": 27014
+},
+"5842": {
+"etape": 0,
+"surface_m2": 31406
+},
+"5843": {
+"etape": 0,
+"surface_m2": 84708
+},
+"5845": {
+"etape": 0,
+"surface_m2": 1883092
+},
+"5847": {
+"etape": 5,
+"surface_m2": 47263
+},
+"5850": {
+"etape": 0,
+"surface_m2": 324536
+},
+"5851": {
+"etape": 5,
+"surface_m2": 60072
+},
+"5853": {
+"etape": 0,
+"surface_m2": 15556
+},
+"5854": {
+"etape": 0,
+"surface_m2": 295627
+},
+"5856": {
+"etape": 0,
+"surface_m2": 113568
+},
+"5857": {
+"etape": 0,
+"surface_m2": 39550
+},
+"5861": {
+"etape": 5,
+"surface_m2": 14078
+},
+"5862": {
+"etape": 0,
+"surface_m2": 550
+},
+"5865": {
+"etape": 5,
+"surface_m2": 41649
+},
+"5866": {
+"etape": 0,
+"surface_m2": 16686
+},
+"5867": {
+"etape": 0,
+"surface_m2": 81453
+},
+"5869": {
+"etape": 5,
+"surface_m2": 2
+},
+"5875": {
+"etape": 5,
+"surface_m2": 2805
+},
+"5879": {
+"etape": 5,
+"surface_m2": 2756
+},
+"5880": {
+"etape": 0,
+"surface_m2": 1321
+},
+"5882": {
+"etape": 2,
+"surface_m2": -39
+},
+"5885": {
+"etape": 5,
+"surface_m2": 2030
+},
+"5886": {
+"etape": 5,
+"surface_m2": -3812
+},
+"5888": {
+"etape": 0,
+"surface_m2": -5710
+},
+"5890": {
+"etape": 0,
+"surface_m2": -2543
+},
+"5891": {
+"etape": 0,
+"surface_m2": 3929
+},
+"5892": {
+"etape": 0,
+"surface_m2": 4046
+},
+"5894": {
+"etape": 5,
+"surface_m2": -1402
+},
+"5897": {
+"etape": 0,
+"surface_m2": 88
+},
+"5906": {
+"etape": 5,
+"surface_m2": 99852
+},
+"5907": {
+"etape": 5,
+"surface_m2": -975
+},
+"5911": {
+"etape": 5,
+"surface_m2": 31842
+},
+"5914": {
+"etape": 0,
+"surface_m2": -42
+},
+"5916": {
+"etape": 0,
+"surface_m2": 12920
+},
+"5917": {
+"etape": 0,
+"surface_m2": -40792
+},
+"5919": {
+"etape": 0,
+"surface_m2": 577
+},
+"5923": {
+"etape": 0,
+"surface_m2": 113786
+},
+"5924": {
+"etape": 0,
+"surface_m2": 140
+},
+"5925": {
+"etape": 0,
+"surface_m2": -1739
+},
+"5926": {
+"etape": 0,
+"surface_m2": -264
+},
+"5927": {
+"etape": 5,
+"surface_m2": 129
+},
+"5931": {
+"etape": 5,
+"surface_m2": -152
+},
+"5932": {
+"etape": 0,
+"surface_m2": -3
+},
+"5933": {
+"etape": 0,
+"surface_m2": -1574
+},
+"5935": {
+"etape": 5,
+"surface_m2": -818
+},
+"5938": {
+"etape": 0,
+"surface_m2": 100
+},
+"5939": {
+"etape": 0,
+"surface_m2": -1472
+},
+"5941": {
+"etape": 0,
+"surface_m2": -1374
+},
+"5942": {
+"etape": 0,
+"surface_m2": -1268
+},
+"5947": {
+"etape": 0,
+"surface_m2": 259
+},
+"5949": {
+"etape": 0,
+"surface_m2": -49
+},
+"5950": {
+"etape": 0,
+"surface_m2": -2134
+},
+"5954": {
+"etape": 1,
+"surface_m2": 6879
+},
+"5955": {
+"etape": 1,
+"surface_m2": 6750
+},
+"5956": {
+"etape": 1,
+"surface_m2": 3299
+},
+"5957": {
+"etape": 1,
+"surface_m2": 3308
+},
+"5975": {
+"etape": 1,
+"surface_m2": 3661
+},
+"5976": {
+"etape": 1,
+"surface_m2": 4156
+},
+"5979": {
+"etape": 1,
+"surface_m2": 3732
+},
+"5980": {
+"etape": 1,
+"surface_m2": 3703
+},
+"5981": {
+"etape": 1,
+"surface_m2": 3603
+},
+"5982": {
+"etape": 1,
+"surface_m2": 3665
+},
+"5983": {
+"etape": 1,
+"surface_m2": 3558
+},
+"5984": {
+"etape": 1,
+"surface_m2": 3577
+},
+"5985": {
+"etape": 1,
+"surface_m2": 4241
+},
+"5986": {
+"etape": 1,
+"surface_m2": 3600
+},
+"5987": {
+"etape": 1,
+"surface_m2": 4257
+},
+"5988": {
+"etape": 1,
+"surface_m2": 3266
+},
+"5989": {
+"etape": 1,
+"surface_m2": 3266
+},
+"5990": {
+"etape": 1,
+"surface_m2": 3227
+},
+"5991": {
+"etape": 1,
+"surface_m2": 4863
+},
+"5992": {
+"etape": 1,
+"surface_m2": 3233
+},
+"5993": {
+"etape": 1,
+"surface_m2": 3193
+},
+"5994": {
+"etape": 1,
+"surface_m2": 7824
+},
+"5995": {
+"etape": 1,
+"surface_m2": 7711
+},
+"5996": {
+"etape": 1,
+"surface_m2": 11608
+},
+"5997": {
+"etape": 1,
+"surface_m2": 3883
+},
+"5998": {
+"etape": 1,
+"surface_m2": 3653
+},
+"5999": {
+"etape": 1,
+"surface_m2": 1100
+},
+"6000": {
+"etape": 1,
+"surface_m2": 1020
+},
+"6001": {
+"etape": 1,
+"surface_m2": 1117
+},
+"6002": {
+"etape": 1,
+"surface_m2": 1064
+},
+"6003": {
+"etape": 1,
+"surface_m2": 1034
+},
+"6004": {
+"etape": 1,
+"surface_m2": 1145
+},
+"6005": {
+"etape": 2,
+"surface_m2": 1104
+},
+"6006": {
+"etape": 1,
+"surface_m2": 1020
+},
+"6007": {
+"etape": 1,
+"surface_m2": 1117
+},
+"6008": {
+"etape": 1,
+"surface_m2": 1065
+},
+"6009": {
+"etape": 1,
+"surface_m2": 1034
+},
+"6010": {
+"etape": 1,
+"surface_m2": 1113
+},
+"6012": {
+"etape": 1,
+"surface_m2": 6268
+},
+"6098": {
+"etape": 5,
+"surface_m2": 1425
+},
+"6275": {
+"etape": 1,
+"surface_m2": 5036
+},
+"6276": {
+"etape": 1,
+"surface_m2": 2886
+},
+"6317": {
+"etape": 1,
+"surface_m2": 825
+},
+"6321": {
+"etape": 1,
+"surface_m2": 2259
+},
+"6322": {
+"etape": 1,
+"surface_m2": 2030
+},
+"6323": {
+"etape": 2,
+"surface_m2": 1850
+},
+"6324": {
+"etape": 1,
+"surface_m2": 1565
+},
+"6325": {
+"etape": 1,
+"surface_m2": 2997
+},
+"6326": {
+"etape": 1,
+"surface_m2": 2656
+},
+"6328": {
+"etape": 2,
+"surface_m2": 2055
+},
+"6329": {
+"etape": 2,
+"surface_m2": 1963
+},
+"6330": {
+"etape": 2,
+"surface_m2": 2423
+},
+"6331": {
+"etape": 1,
+"surface_m2": 2225
+},
+"6332": {
+"etape": 2,
+"surface_m2": 2468
+},
+"6333": {
+"etape": 2,
+"surface_m2": 3125
+},
+"6334": {
+"etape": 1,
+"surface_m2": 460
+},
+"6335": {
+"etape": 1,
+"surface_m2": 711
+},
+"6336": {
+"etape": 1,
+"surface_m2": 500
+},
+"6337": {
+"etape": 1,
+"surface_m2": 471
+},
+"6338": {
+"etape": 1,
+"surface_m2": 564
+},
+"6339": {
+"etape": 1,
+"surface_m2": 542
+},
+"6340": {
+"etape": 1,
+"surface_m2": 507
+},
+"6341": {
+"etape": 1,
+"surface_m2": 584
+},
+"6343": {
+"etape": 1,
+"surface_m2": 671
+},
+"6344": {
+"etape": 1,
+"surface_m2": 504
+},
+"6345": {
+"etape": 1,
+"surface_m2": 472
+},
+"6346": {
+"etape": 1,
+"surface_m2": 445
+},
+"6347": {
+"etape": 1,
+"surface_m2": 514
+},
+"6348": {
+"etape": 1,
+"surface_m2": 548
+},
+"6609": {
+"etape": 1,
+"surface_m2": 3960
+},
+"6610": {
+"etape": 1,
+"surface_m2": 5230
+},
+"6611": {
+"etape": 1,
+"surface_m2": 5680
+},
+"6612": {
+"etape": 1,
+"surface_m2": 6100
+},
+"6613": {
+"etape": 1,
+"surface_m2": 3690
+},
+"6614": {
+"etape": 1,
+"surface_m2": 3905
+},
+"6615": {
+"etape": 1,
+"surface_m2": 5375
+},
+"6616": {
+"etape": 1,
+"surface_m2": 4400
+},
+"6617": {
+"etape": 1,
+"surface_m2": 4400
+},
+"6618": {
+"etape": 1,
+"surface_m2": 4400
+},
+"6619": {
+"etape": 1,
+"surface_m2": 4400
+},
+"6620": {
+"etape": 1,
+"surface_m2": 4160
+},
+"6621": {
+"etape": 1,
+"surface_m2": 4160
+},
+"6622": {
+"etape": 1,
+"surface_m2": 4160
+},
+"6623": {
+"etape": 1,
+"surface_m2": 4160
+},
+"6624": {
+"etape": 1,
+"surface_m2": 4160
+},
+"6625": {
+"etape": 1,
+"surface_m2": 4400
+},
+"6626": {
+"etape": 1,
+"surface_m2": 4400
+},
+"6627": {
+"etape": 1,
+"surface_m2": 4500
+},
+"6628": {
+"etape": 1,
+"surface_m2": 7060
+},
+"6629": {
+"etape": 1,
+"surface_m2": 9040
+},
+"6630": {
+"etape": 2,
+"surface_m2": 11565
+},
+"6631": {
+"etape": 1,
+"surface_m2": 4560
+},
+"6632": {
+"etape": 1,
+"surface_m2": 4810
+},
+"6633": {
+"etape": 1,
+"surface_m2": 4950
+},
+"6634": {
+"etape": 1,
+"surface_m2": 4735
+},
+"6635": {
+"etape": 1,
+"surface_m2": 4735
+},
+"6636": {
+"etape": 1,
+"surface_m2": 4470
+},
+"6637": {
+"etape": 1,
+"surface_m2": 4365
+},
+"6638": {
+"etape": 1,
+"surface_m2": 4260
+},
+"6639": {
+"etape": 1,
+"surface_m2": 4190
+},
+"6640": {
+"etape": 1,
+"surface_m2": 4260
+},
+"6641": {
+"etape": 1,
+"surface_m2": 4200
+},
+"6642": {
+"etape": 1,
+"surface_m2": 4115
+},
+"6643": {
+"etape": 1,
+"surface_m2": 4150
+},
+"6644": {
+"etape": 1,
+"surface_m2": 4560
+},
+"6645": {
+"etape": 1,
+"surface_m2": 3820
+},
+"6646": {
+"etape": 1,
+"surface_m2": 3775
+},
+"6647": {
+"etape": 1,
+"surface_m2": 5515
+},
+"6648": {
+"etape": 1,
+"surface_m2": 6465
+},
+"6649": {
+"etape": 1,
+"surface_m2": 4170
+},
+"6650": {
+"etape": 1,
+"surface_m2": 3955
+},
+"6651": {
+"etape": 1,
+"surface_m2": 4220
+},
+"6652": {
+"etape": 1,
+"surface_m2": 4220
+},
+"6653": {
+"etape": 1,
+"surface_m2": 3570
+},
+"6654": {
+"etape": 1,
+"surface_m2": 2400
+},
+"6655": {
+"etape": 5,
+"surface_m2": 2400
+},
+"6656": {
+"etape": 1,
+"surface_m2": 3800
+},
+"6657": {
+"etape": 1,
+"surface_m2": 4245
+},
+"6658": {
+"etape": 1,
+"surface_m2": 4270
+},
+"6659": {
+"etape": 1,
+"surface_m2": 4295
+},
+"6660": {
+"etape": 1,
+"surface_m2": 4320
+},
+"6661": {
+"etape": 1,
+"surface_m2": 4345
+},
+"6662": {
+"etape": 1,
+"surface_m2": 4185
+},
+"6663": {
+"etape": 1,
+"surface_m2": 5970
+},
+"6664": {
+"etape": 1,
+"surface_m2": 4080
+},
+"6665": {
+"etape": 1,
+"surface_m2": 4060
+},
+"6666": {
+"etape": 1,
+"surface_m2": 3805
+},
+"6667": {
+"etape": 1,
+"surface_m2": 3785
+},
+"6668": {
+"etape": 1,
+"surface_m2": 3765
+},
+"6669": {
+"etape": 1,
+"surface_m2": 3985
+},
+"6670": {
+"etape": 1,
+"surface_m2": 3965
+},
+"6671": {
+"etape": 1,
+"surface_m2": 5510
+},
+"6672": {
+"etape": 1,
+"surface_m2": 5980
+},
+"6673": {
+"etape": 1,
+"surface_m2": 4320
+},
+"6674": {
+"etape": 1,
+"surface_m2": 4300
+},
+"6675": {
+"etape": 1,
+"surface_m2": 4280
+},
+"6676": {
+"etape": 1,
+"surface_m2": 4260
+},
+"6677": {
+"etape": 1,
+"surface_m2": 4240
+},
+"6678": {
+"etape": 1,
+"surface_m2": 4225
+},
+"6679": {
+"etape": 1,
+"surface_m2": 4205
+},
+"6680": {
+"etape": 1,
+"surface_m2": 4185
+},
+"6681": {
+"etape": 1,
+"surface_m2": 4165
+},
+"6682": {
+"etape": 1,
+"surface_m2": 3500
+},
+"6683": {
+"etape": 1,
+"surface_m2": 500
+},
+"6684": {
+"etape": 1,
+"surface_m2": 30
+},
+"6685": {
+"etape": 1,
+"surface_m2": 30
+},
+"6686": {
+"etape": 1,
+"surface_m2": 100
+},
+"6690": {
+"etape": 5,
+"surface_m2": 1510
+},
+"6691": {
+"etape": 5,
+"surface_m2": 1887
+},
+"6706": {
+"etape": 5,
+"surface_m2": 754
+},
+"6707": {
+"etape": 0,
+"surface_m2": 21
+},
+"6708": {
+"etape": 5,
+"surface_m2": 400
+},
+"6709": {
+"etape": 5,
+"surface_m2": 2600
+},
+"6724": {
+"etape": 5,
+"surface_m2": 7585
+},
+"6729": {
+"etape": 1,
+"surface_m2": 2035
+},
+"6730": {
+"etape": 1,
+"surface_m2": 2575
+},
+"6731": {
+"etape": 1,
+"surface_m2": 2440
+},
+"6732": {
+"etape": 1,
+"surface_m2": 2615
+},
+"6733": {
+"etape": 1,
+"surface_m2": 2600
+},
+"6734": {
+"etape": 1,
+"surface_m2": 3210
+},
+"6735": {
+"etape": 1,
+"surface_m2": 4095
+},
+"6736": {
+"etape": 1,
+"surface_m2": 2600
+},
+"6737": {
+"etape": 1,
+"surface_m2": 2685
+},
+"6738": {
+"etape": 1,
+"surface_m2": 2575
+},
+"6739": {
+"etape": 1,
+"surface_m2": 2465
+},
+"6740": {
+"etape": 1,
+"surface_m2": 2010
+},
+"6741": {
+"etape": 1,
+"surface_m2": 5035
+},
+"6742": {
+"etape": 1,
+"surface_m2": 4703
+},
+"6743": {
+"etape": 0,
+"surface_m2": 805
+},
+"6744": {
+"etape": 1,
+"surface_m2": 1305
+},
+"6745": {
+"etape": 2,
+"surface_m2": 6658
+},
+"6746": {
+"etape": 1,
+"surface_m2": 1865
+},
+"6747": {
+"etape": 1,
+"surface_m2": 2645
+},
+"6748": {
+"etape": 1,
+"surface_m2": 2835
+},
+"6749": {
+"etape": 1,
+"surface_m2": 2690
+},
+"6750": {
+"etape": 1,
+"surface_m2": 2695
+},
+"6751": {
+"etape": 1,
+"surface_m2": 4055
+},
+"6752": {
+"etape": 1,
+"surface_m2": 3300
+},
+"6753": {
+"etape": 1,
+"surface_m2": 3216
+},
+"6754": {
+"etape": 1,
+"surface_m2": 3160
+},
+"6755": {
+"etape": 1,
+"surface_m2": 3300
+},
+"6756": {
+"etape": 1,
+"surface_m2": 3020
+},
+"6757": {
+"etape": 1,
+"surface_m2": 2915
+},
+"6758": {
+"etape": 1,
+"surface_m2": 2631
+},
+"6759": {
+"etape": 1,
+"surface_m2": 3326
+},
+"6760": {
+"etape": 1,
+"surface_m2": 3925
+},
+"6761": {
+"etape": 1,
+"surface_m2": 2936
+},
+"6762": {
+"etape": 1,
+"surface_m2": 3777
+},
+"6763": {
+"etape": 0,
+"surface_m2": 3185
+},
+"6764": {
+"etape": 5,
+"surface_m2": 13310
+},
+"6765": {
+"etape": 0,
+"surface_m2": 690
+},
+"6766": {
+"etape": 1,
+"surface_m2": 3550
+},
+"6767": {
+"etape": 1,
+"surface_m2": 5370
+},
+"6768": {
+"etape": 1,
+"surface_m2": 2375
+},
+"6769": {
+"etape": 1,
+"surface_m2": 2445
+},
+"6770": {
+"etape": 1,
+"surface_m2": 2440
+},
+"6772": {
+"etape": 1,
+"surface_m2": 3345
+},
+"6773": {
+"etape": 1,
+"surface_m2": 3046
+},
+"6774": {
+"etape": 1,
+"surface_m2": 3058
+},
+"6775": {
+"etape": 1,
+"surface_m2": 2928
+},
+"6776": {
+"etape": 1,
+"surface_m2": 6508
+},
+"6777": {
+"etape": 1,
+"surface_m2": 3345
+},
+"6778": {
+"etape": 1,
+"surface_m2": 3046
+},
+"6779": {
+"etape": 1,
+"surface_m2": 3058
+},
+"6780": {
+"etape": 1,
+"surface_m2": 2980
+},
+"6781": {
+"etape": 1,
+"surface_m2": 6812
+},
+"6782": {
+"etape": 1,
+"surface_m2": 4696
+},
+"6783": {
+"etape": 3,
+"surface_m2": 2400
+},
+"6784": {
+"etape": 1,
+"surface_m2": 2400
+},
+"6785": {
+"etape": 1,
+"surface_m2": 3600
+},
+"6786": {
+"etape": 1,
+"surface_m2": 2700
+},
+"6787": {
+"etape": 1,
+"surface_m2": 2700
+},
+"6788": {
+"etape": 1,
+"surface_m2": 3354
+},
+"6789": {
+"etape": 1,
+"surface_m2": 7993
+},
+"6790": {
+"etape": 5,
+"surface_m2": 3640
+},
+"6924": {
+"etape": 2,
+"surface_m2": 22881
+},
+"6925": {
+"etape": 2,
+"surface_m2": 4593
+},
+"6926": {
+"etape": 2,
+"surface_m2": 2479
+},
+"6927": {
+"etape": 2,
+"surface_m2": 3037
+},
+"6928": {
+"etape": 2,
+"surface_m2": 15413
+},
+"6929": {
+"etape": 2,
+"surface_m2": 4534
+},
+"6930": {
+"etape": 2,
+"surface_m2": 4846
+},
+"6931": {
+"etape": 2,
+"surface_m2": 4656
+},
+"6932": {
+"etape": 4,
+"surface_m2": 4815
+},
+"6933": {
+"etape": 2,
+"surface_m2": 10393
+},
+"6934": {
+"etape": 2,
+"surface_m2": 5554
+},
+"6935": {
+"etape": 2,
+"surface_m2": 6510
+},
+"6936": {
+"etape": 2,
+"surface_m2": 9948
+},
+"6937": {
+"etape": 2,
+"surface_m2": 4679
+},
+"6938": {
+"etape": 2,
+"surface_m2": 391
+},
+"6939": {
+"etape": 2,
+"surface_m2": 10537
+},
+"6940": {
+"etape": 2,
+"surface_m2": 5675
+},
+"6941": {
+"etape": 2,
+"surface_m2": 6182
+},
+"6942": {
+"etape": 2,
+"surface_m2": 74840
+},
+"6943": {
+"etape": 2,
+"surface_m2": 8064
+},
+"6944": {
+"etape": 2,
+"surface_m2": 4965
+},
+"6945": {
+"etape": 2,
+"surface_m2": 5033
+},
+"6946": {
+"etape": 2,
+"surface_m2": 4795
+},
+"6947": {
+"etape": 2,
+"surface_m2": 4834
+},
+"6948": {
+"etape": 2,
+"surface_m2": 3138
+},
+"6949": {
+"etape": 2,
+"surface_m2": 5845
+},
+"6950": {
+"etape": 2,
+"surface_m2": 16800
+},
+"6951": {
+"etape": 2,
+"surface_m2": 5217
+},
+"6952": {
+"etape": 2,
+"surface_m2": 5944
+},
+"6953": {
+"etape": 2,
+"surface_m2": 17200
+},
+"6954": {
+"etape": 2,
+"surface_m2": 5097
+},
+"6955": {
+"etape": 2,
+"surface_m2": 10644
+},
+"6956": {
+"etape": 2,
+"surface_m2": 12015
+},
+"6957": {
+"etape": 2,
+"surface_m2": 10000
+},
+"6958": {
+"etape": 2,
+"surface_m2": 4018
+},
+"6959": {
+"etape": 3,
+"surface_m2": 5978
+},
+"6960": {
+"etape": 2,
+"surface_m2": 5779
+},
+"6961": {
+"etape": 2,
+"surface_m2": 10501
+},
+"6962": {
+"etape": 2,
+"surface_m2": 5506
+},
+"6963": {
+"etape": 2,
+"surface_m2": 3555
+},
+"6964": {
+"etape": 5,
+"surface_m2": 35800
+},
+"6965": {
+"etape": 5,
+"surface_m2": 20012
+},
+"6966": {
+"etape": 5,
+"surface_m2": 8825
+},
+"7043": {
+"etape": 1,
+"surface_m2": 12090
+},
+"7044": {
+"etape": 1,
+"surface_m2": 14436
+},
+"7045": {
+"etape": 1,
+"surface_m2": 16154
+},
+"7046": {
+"etape": 1,
+"surface_m2": 4720
+},
+"7047": {
+"etape": 1,
+"surface_m2": 4708
+},
+"7048": {
+"etape": 1,
+"surface_m2": 4699
+},
+"7049": {
+"etape": 1,
+"surface_m2": 4698
+},
+"7050": {
+"etape": 1,
+"surface_m2": 4697
+},
+"7051": {
+"etape": 1,
+"surface_m2": 4715
+},
+"7052": {
+"etape": 1,
+"surface_m2": 6513
+},
+"7053": {
+"etape": 1,
+"surface_m2": 5065
+},
+"7054": {
+"etape": 1,
+"surface_m2": 5491
+},
+"7055": {
+"etape": 1,
+"surface_m2": 9129
+},
+"7056": {
+"etape": 1,
+"surface_m2": 10867
+},
+"7057": {
+"etape": 1,
+"surface_m2": 10998
+},
+"7058": {
+"etape": 1,
+"surface_m2": 6127
+},
+"7059": {
+"etape": 1,
+"surface_m2": 5016
+},
+"7060": {
+"etape": 1,
+"surface_m2": 5301
+},
+"7061": {
+"etape": 1,
+"surface_m2": 6881
+},
+"7062": {
+"etape": 1,
+"surface_m2": 5066
+},
+"7063": {
+"etape": 1,
+"surface_m2": 4643
+},
+"7064": {
+"etape": 1,
+"surface_m2": 4624
+},
+"7065": {
+"etape": 1,
+"surface_m2": 4976
+},
+"7066": {
+"etape": 1,
+"surface_m2": 4966
+},
+"7067": {
+"etape": 1,
+"surface_m2": 6459
+},
+"7068": {
+"etape": 1,
+"surface_m2": 6199
+},
+"7069": {
+"etape": 1,
+"surface_m2": 6479
+},
+"7070": {
+"etape": 1,
+"surface_m2": 6364
+},
+"7071": {
+"etape": 1,
+"surface_m2": 7073
+},
+"7072": {
+"etape": 1,
+"surface_m2": 6841
+},
+"7073": {
+"etape": 1,
+"surface_m2": 7076
+},
+"7074": {
+"etape": 1,
+"surface_m2": 6889
+},
+"7075": {
+"etape": 1,
+"surface_m2": 7080
+},
+"7076": {
+"etape": 1,
+"surface_m2": 6897
+},
+"7077": {
+"etape": 1,
+"surface_m2": 7081
+},
+"7078": {
+"etape": 1,
+"surface_m2": 5933
+},
+"7079": {
+"etape": 1,
+"surface_m2": 3122
+},
+"7080": {
+"etape": 1,
+"surface_m2": 1719
+},
+"7081": {
+"etape": 1,
+"surface_m2": 1719
+},
+"7082": {
+"etape": 1,
+"surface_m2": 6222
+},
+"7083": {
+"etape": 1,
+"surface_m2": 6632
+},
+"7084": {
+"etape": 1,
+"surface_m2": 4358
+},
+"7085": {
+"etape": 1,
+"surface_m2": 4260
+},
+"7086": {
+"etape": 1,
+"surface_m2": 4421
+},
+"7087": {
+"etape": 1,
+"surface_m2": 2627
+},
+"7088": {
+"etape": 1,
+"surface_m2": 2003
+},
+"7089": {
+"etape": 1,
+"surface_m2": 4000
+},
+"7090": {
+"etape": 1,
+"surface_m2": 1768
+},
+"7091": {
+"etape": 1,
+"surface_m2": 5354
+},
+"7092": {
+"etape": 1,
+"surface_m2": 4000
+},
+"7093": {
+"etape": 1,
+"surface_m2": 4001
+},
+"7094": {
+"etape": 1,
+"surface_m2": 3535
+},
+"7095": {
+"etape": 1,
+"surface_m2": 3651
+},
+"7096": {
+"etape": 1,
+"surface_m2": 6216
+},
+"7097": {
+"etape": 5,
+"surface_m2": 1163
+},
+"7098": {
+"etape": 5,
+"surface_m2": 1758
+},
+"7099": {
+"etape": 5,
+"surface_m2": 1199
+},
+"7100": {
+"etape": 5,
+"surface_m2": 878
+},
+"7101": {
+"etape": 5,
+"surface_m2": 1868
+},
+"7102": {
+"etape": 5,
+"surface_m2": 292
+},
+"7103": {
+"etape": 5,
+"surface_m2": 2997
+},
+"7104": {
+"etape": 5,
+"surface_m2": 5560
+},
+"7105": {
+"etape": 5,
+"surface_m2": 3889
+},
+"7106": {
+"etape": 5,
+"surface_m2": 375
+},
+"7107": {
+"etape": 5,
+"surface_m2": 1003
+},
+"7108": {
+"etape": 2,
+"surface_m2": 1983
+},
+"7109": {
+"etape": 5,
+"surface_m2": 302
+},
+"7110": {
+"etape": 5,
+"surface_m2": 402
+},
+"7111": {
+"etape": 5,
+"surface_m2": 2932
+},
+"7112": {
+"etape": 5,
+"surface_m2": 3126
+},
+"7113": {
+"etape": 5,
+"surface_m2": 3126
+},
+"7114": {
+"etape": 5,
+"surface_m2": 30
+},
+"7115": {
+"etape": 5,
+"surface_m2": 30
+},
+"7116": {
+"etape": 5,
+"surface_m2": 30
+},
+"7117": {
+"etape": 5,
+"surface_m2": 294
+},
+"7186": {
+"etape": 5,
+"surface_m2": 25
+},
+"7187": {
+"etape": 2,
+"surface_m2": 26354
+},
+"7188": {
+"etape": 2,
+"surface_m2": 2562
+},
+"7189": {
+"etape": 2,
+"surface_m2": 3108
+},
+"7190": {
+"etape": 2,
+"surface_m2": 2347
+},
+"7191": {
+"etape": 2,
+"surface_m2": 1972
+},
+"7192": {
+"etape": 2,
+"surface_m2": 1784
+},
+"7193": {
+"etape": 1,
+"surface_m2": 1632
+},
+"7194": {
+"etape": 1,
+"surface_m2": 3987
+},
+"7195": {
+"etape": 1,
+"surface_m2": 1110
+},
+"7196": {
+"etape": 1,
+"surface_m2": 1217
+},
+"7197": {
+"etape": 1,
+"surface_m2": 1517
+},
+"7198": {
+"etape": 1,
+"surface_m2": 1530
+},
+"7199": {
+"etape": 1,
+"surface_m2": 3213
+},
+"7200": {
+"etape": 2,
+"surface_m2": 1957
+},
+"7201": {
+"etape": 2,
+"surface_m2": 1475
+},
+"7202": {
+"etape": 2,
+"surface_m2": 1525
+},
+"7203": {
+"etape": 2,
+"surface_m2": 1487
+},
+"7204": {
+"etape": 1,
+"surface_m2": 1000
+}
+}
+}

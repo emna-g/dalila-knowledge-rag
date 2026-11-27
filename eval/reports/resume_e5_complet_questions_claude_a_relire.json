@@ -1,8 +1,8 @@
 {
  "reglage": "e5_complet_questions_claude_a_relire",
  "questions": 24,
- "rappel@5": "16/16",
- "MRR": 0.835,
+ "rappel@5": "14/16",
+ "MRR": 0.802,
  "par_langue": {
   "fr": {
    "rappel@5": "2/2",
@@ -13,8 +13,8 @@
    "MRR": 1.0
   },
   "ar": {
-   "rappel@5": "2/2",
-   "MRR": 0.6
+   "rappel@5": "1/2",
+   "MRR": 0.5
   },
   "de": {
    "rappel@5": "2/2",
@@ -33,8 +33,8 @@
    "MRR": 1.0
   },
   "ly": {
-   "rappel@5": "2/2",
-   "MRR": 0.667
+   "rappel@5": "1/2",
+   "MRR": 0.5
   }
  },
  "chiffres_exacts": {
@@ -47,6 +47,6 @@
   "dz": "1/1",
   "ly": "1/1"
  },
- "temps_median_s": 0.47,
- "temps_p95_s": 0.73
+ "temps_median_s": 0.36,
+ "temps_p95_s": 1.49
 }

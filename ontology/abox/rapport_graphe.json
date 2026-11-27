@@ -1,8 +1,8 @@
 {
- "genere_le": "2026-11-26T19:18",
+ "genere_le": "2026-11-27T02:45",
  "triplets": {
   "core": 249,
-  "abox": 13855,
+  "abox": 13504,
   "lexique": 319,
   "a-valider": 435
  },
@@ -14,7 +14,7 @@
   "fr": [
    137,
    0,
-   883
+   884
   ],
   "en": [
    24,
@@ -64,7 +64,7 @@
   "-": [
    0,
    0,
-   8
+   10
   ]
  },
  "shacl_conforme": true,
@@ -76,7 +76,7 @@
    "exemple": [
     [
      "<https://afi.nat.tn/ontology/dalila/donnees/zone/930607>",
-     "\"ENFIDHA 2\"@fr"
+     "\"ENNFIDHA II\"@fr"
     ],
     [
      "<https://afi.nat.tn/ontology/dalila/donnees/zone/930602>",
@@ -92,7 +92,7 @@
    "nb_resultats": 1,
    "exemple": [
     [
-     "\"67\"^^<http://www.w3.org/2001/XMLSchema#integer>"
+     "\"64\"^^<http://www.w3.org/2001/XMLSchema#integer>"
     ]
    ]
   },
@@ -159,18 +159,18 @@
    ]
   },
   "07_organisme": {
-   "nb_resultats": 3,
+   "nb_resultats": 35,
    "exemple": [
     [
      "\"Pêche et aquaculture\"@fr",
      "\"APIA\""
     ],
     [
-     "\"Industries extractives (minéraux bruts et autres)\"@fr",
+     "\"Activités de services administratifs et de soutien\"@fr",
      "\"APII\""
     ],
     [
-     "\"Industries manufacturières\"@fr",
+     "\"Activités spécialisées scientifiques et techniques\"@fr",
      "\"APII\""
     ]
    ]
@@ -218,19 +218,21 @@
    "nb_resultats": 10,
    "exemple": [
     [
-     "\"APIA\"",
+     "\"TIA\"",
      "\"Beja Bouteffaha\"@fr"
     ],
     [
      "\"APIA\"",
-     "\"Jendouba El IRTIYEH\"@fr"
+     "\"Beja Bouteffaha\"@fr"
     ],
     [
-     "\"APIA\"",
-     "\"Sbikha 2\"@fr"
+     "\"TIA\"",
+     "\"Jendouba El IRTIYEH\"@fr"
     ]
    ]
   }
  },
- "toutes_les_requetes_repondent": true
+ "toutes_les_requetes_repondent": true,
+ "mis_en_service": true,
+ "echecs": []
 }

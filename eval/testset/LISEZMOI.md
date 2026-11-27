@@ -1,14 +1,15 @@
 # Jeu de test de Dalila : comment l'agrandir
 
-Le jeu actuel (30 questions, `lexicon/tests/questions_test.csv`) est petit, et 19 de ses questions ont été écrites
-par l'auteur du lexique. Pour une évaluation honnête, **les nouvelles questions doivent être écrites par d'autres
-membres de l'équipe**, dans les 8 langues, sans regarder les passages avant d'écrire.
+Le jeu principal est `questions_reelles.csv` (vraies questions de visiteurs). Le jeu du lexique (30 questions,
+`dalila/langue/lexique/tests/questions_test.csv`) teste surtout le tunisien. Pour agrandir l'évaluation, **les nouvelles questions
+doivent être écrites par d'autres membres de l'équipe**, dans les 8 langues, sans regarder les passages avant d'écrire.
 
 ## Fichiers
 
 | Fichier | Rôle |
 |---|---|
 | `MODELE_questions.csv` | Le modèle à copier : une ligne par question, colonnes expliquées ci-dessous. |
+| `questions_reelles.csv` | **Le jeu principal : 57 vraies questions de visiteurs**, reprises telles quelles de la table `chatbot_logs` de la base AFI (sans identifiant de session ni de promoteur ; une question contenant un nom et un CV a été écartée). 31 sont vérifiées automatiquement (passages attendus, ou nombre exact de lots par une requête SQL sur les vues, filtres de surface, de prix et de lieu compris) ; les 26 autres (prix, proximité, projets, hors sujet…) ont une `reponse_attendue` écrite, pour un juge humain ou un LLM juge. La colonne `reponse_ancien_bot` garde la réponse du chatbot actuel de l'AFI : c'est le point de départ à battre. **À ne jamais utiliser pour entraîner un modèle.** |
 | `questions_claude_a_relire.csv` | 24 questions d'exemple **écrites par Claude** (3 par langue). Elles montrent le format. Elles ne comptent pas dans le score officiel tant qu'un membre ne les a pas relues (`statut_relecture = relue`). |
 
 ## Colonnes
@@ -21,7 +22,7 @@ membres de l'équipe**, dans les 8 langues, sans regarder les passages avant d'�
 | `ecrite_par` | `equipe:<prénom>` ou `claude`. |
 | `statut_relecture` | `a_relire` ou `relue`. |
 | `scenario` | `lots`, `zone_commodites`, `regles_zone`, `demarche`, `incitation`, `hors_sujet`. |
-| `passages_attendus` | Comment reconnaître une bonne réponse dans les 5 passages : `ids:p000014,p000012` ou `regex:Sidi Achour|services`. Vide pour une question de chiffres. |
+| `passages_attendus` | Comment reconnaître une bonne réponse dans les 5 passages : `ids:kb0016,kb0014` ou `regex:Sidi Achour|services`. Vide pour une question de chiffres. |
 | `verite_sql` | Pour une question de chiffres : la requête SQL sur les vues `v_pub_*` qui donne la bonne valeur (ex. `SELECT COUNT(*) FROM v_pub_lots_disponibles l JOIN v_pub_zones z USING(zone_id) WHERE z.gouvernorat_fr='Sfax'`). |
 | `reponse_attendue` | La valeur attendue (texte court), pour vérification à la main. |
 

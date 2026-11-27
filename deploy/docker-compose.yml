@@ -8,7 +8,7 @@
 #
 # Avant le premier lancement :
 #   - copier .env.example en .env à la racine du dépôt et remplir les mots de passe ;
-#   - mettre afi.sql dans donnees/afi.sql et décompresser dalila_fusion dans donnees/dalila_fusion/.
+#   - mettre afi.sql dans donnees/afi.sql et mettre le corpus préparé dans donnees/corpus/ (passages.jsonl, pages_web.jsonl).
 # afi.sql est chargé TEL QUEL au tout premier démarrage de la base (volume vide).
 
 name: dalila
@@ -20,7 +20,7 @@ services:
     environment:
       MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:?mettre DB_ROOT_PASSWORD dans .env}
       MARIADB_DATABASE: afi
-    command: ["--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci", "--max-allowed-packet=256M"]
+    command: ["--character-set-server=utf8mb4", "--collation-server=utf8mb4_general_ci", "--max-allowed-packet=256M"]
     volumes:
       - dbdata:/var/lib/mysql
       - ../donnees/afi.sql:/docker-entrypoint-initdb.d/00_afi.sql:ro
@@ -46,7 +46,7 @@ services:
     env_file: ../.env
     environment: {DB_HOST: db, DB_PORT: "3306"}
     depends_on: {db: {condition: service_healthy}}
-    command: ["/bin/sh", "-c", "python -m backend.ingest.migrer && python -m backend.ingest.charger_fusion && python -m backend.ingest.construire_abox && python -m backend.ingest.vectoriser"]
+    command: ["/bin/sh", "-c", "python -m dalila.connaissances.migrer && python -m dalila.connaissances.charger && python -m dalila.connaissances.construire_abox && python -m dalila.connaissances.vectoriser"]
     volumes:
       - models:/models
       - ../donnees:/data:ro

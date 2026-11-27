@@ -3,15 +3,14 @@
 FROM python:3.12-slim
 
 ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 PYTHONIOENCODING=utf-8 \
-    HF_HOME=/models DALILA_MODELES=/models DALILA_DONNEES=/data/dalila_fusion
+    HF_HOME=/models DALILA_MODELES=/models DALILA_DONNEES=/data
 
 WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir torch==2.14.1 --index-url https://download.pytorch.org/whl/cpu \
  && pip install --no-cache-dir -r requirements.txt
 
-COPY backend ./backend
-COPY lexicon ./lexicon
+COPY dalila ./dalila
 COPY ontology ./ontology
 COPY db ./db
 COPY eval ./eval

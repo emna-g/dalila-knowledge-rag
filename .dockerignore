@@ -2,7 +2,6 @@
 donnees/
 modeles/
 ontology/store/
-ancien_sqlite_chroma/
 eval/reports/
 .env
 .git/

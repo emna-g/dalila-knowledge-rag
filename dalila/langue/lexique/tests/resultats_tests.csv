@@ -1,0 +1,65 @@
+﻿reglage,id,origine,question,langue_attendue,detecte_tunisien,concepts_attendus,concepts_trouves,concepts_manques,bon_passage_top5_sans_lexique,bon_passage_top5_avec_lexique,arabizi_en_lettres_arabes
+atteste,R1,conversation_afi (id 257),"slt, nheb na3mel usine mta3 plastique fi Sousse, kifech nebda?",tn,True,vouloir;faire;usine;plastique;comment,salut;vouloir;faire;usine;de_possession;plastique;dans;comment,,True,True,"slt, نحبّ نعمل usine متاع plastique في Sousse, كيفاش نبدا"
+atteste,R2,conversation_afi (id 261),chnowa lwra9 lazmin bech na5ou ma9sem sina3i?,tn,True,quoi;papiers;falloir;prendre;terrain,quoi;papiers;falloir;pour;prendre;terrain;industriel,,False,True,شنوة lwra9 lazmin باش na5ou ma9sem sina3i?
+atteste,R3,cahier_officiel p.7,n7eb terrain f Sfax,tn,True,vouloir;terrain,vouloir;terrain;dans,,True,True,نحبّ terrain ف صفاقس
+atteste,R4,cahier_officiel p.7,3andi projet sardine,tn,True,avoir;projet;poisson,avoir;projet;poisson,,False,False,عندي projet sardine
+atteste,R5,cahier_officiel p.7,عندي مشروع سردين,tn,True,avoir;projet;poisson,avoir;projet;poisson,,False,False,عندي مشروع سردين
+atteste,R6,cahier_officiel p.8,9at3a,tn,True,terrain,terrain,,,,9at3a
+atteste,H1,doc_equipe (hypothese de Fida),"mosna3 9rib l port, b9adech, w fi 9adech wa9t ?",tn,True,usine;proche;port;combien;delai,proche;port;combien;prix;dans;delai,usine,False,False,"mosna3 قريب ال port, بقدّاش و في قدّاش وقت ?"
+atteste,F1,conversation_afi (id 6),Procédure d'acquisition ?,fr,False,procedure;acheter,procedure;acheter,,True,True,Procédure d'acquisition ?
+atteste,F2,conversation_afi (id 226),je cherche un lot dans zone subventionnée,fr,False,chercher;terrain;zone_industrielle,chercher;terrain;dans;zone_industrielle,,True,True,جا cherche un lot dans zone subventionnée
+atteste,F3,conversation_afi (id 3),إجراءات الاقتناء؟,ar,False,procedure;acheter,procedure;acheter,,True,True,إجراءات الاقتناء؟
+atteste,F4,conversation_afi (id 119),أسعار المقسم؟,ar,False,prix;terrain,prix;terrain,,True,True,أسعار المقسم؟
+atteste,F5,conversation_afi (id 264),Available zones?,en,False,,,,,,Available zones?
+atteste,F6,conversation_afi (id 251),comment avoir l'attestation des suvention regional,fr,False,comment;subvention,comment;prendre,subvention,False,False,comment avoir l'attestation des suvention regional
+atteste,C1,ecrite_par_claude_a_relire,9adech soum el metre fi zone Sfax?,tn,True,combien;prix;surface,combien;prix;dans;zone_industrielle,surface,True,True,قدّاش سوم ال metre في zone صفاقس
+atteste,C2,ecrite_par_claude_a_relire,famma 9at3a mawjouda 9rib mel port?,tn,True,il_y_a;terrain;disponible;proche;port,disponible;il_y_a;terrain;proche;port,,False,False,فمّة 9at3a موجودة قريب مال port?
+atteste,C3,ecrite_par_claude_a_relire,"n7eb nechri ma9sem fi Bizerte, chnowa lwra9?",tn,True,vouloir;acheter;terrain;quoi;papiers,vouloir;acheter;terrain;dans;quoi;papiers,,False,True,"نحبّ نشري ma9sem في Bizerte, شنوة lwra9?"
+atteste,C4,ecrite_par_claude_a_relire,kifech na3mel demande bech na5ou terrain?,tn,True,comment;faire;demande;prendre;terrain,comment;faire;demande;pour;prendre;terrain,,True,True,كيفاش نعمل demande باش na5ou terrain?
+atteste,C5,ecrite_par_claude_a_relire,famma min7a ken na3mel machrou3 fi Kasserine?,tn,True,il_y_a;subvention;faire;projet,disponible;il_y_a;faire;projet;dans,subvention,True,True,فمّة min7a كان نعمل machrou3 في Kasserine?
+atteste,C6,ecrite_par_claude_a_relire,wa9tech nal9a el contrat?,tn,True,delai;chercher;contrat,delai;chercher;contrat,,True,True,وقتاش نلقى ال contrat?
+atteste,C7,ecrite_par_claude_a_relire,kifech nechri fi el batta mta3 AFI?,tn,True,comment;acheter;encheres,comment;acheter;dans;de_possession,encheres,False,False,كيفاش نشري في ال batta متاع AFI?
+atteste,C8,ecrite_par_claude_a_relire,"3andi machrou3 mta3 5iyata, win nal9a blasa?",tn,True,avoir;projet;textile;ou;chercher;gouvernorat,avoir;projet;de_possession;ou;chercher;gouvernorat,textile,False,False,"عندي machrou3 متاع 5iyata, وين نلقى بلاصة"
+atteste,C9,ecrite_par_claude_a_relire,lazem nebni fi 9adech mel wa9t ba3d ma na5ou el ma9sem?,tn,True,falloir;construire;combien;delai;prendre;terrain,falloir;dans;combien;prix;delai;eau;prendre;terrain,construire,False,True,لازم nebni في قدّاش مال وقت بعد ما na5ou ال ma9sem?
+atteste,C10,ecrite_par_claude_a_relire,"n7eb credit mel banka, kifech na5ou attestation?",tn,True,vouloir;credit;comment;prendre,vouloir;credit;comment;prendre,,True,True,"نحبّ credit مال banka, كيفاش na5ou attestation?"
+atteste,C11,ecrite_par_claude_a_relire,شنوة الوراق اللازمين باش ناخو مقسم صناعي؟,tn,True,quoi;papiers;falloir;prendre;terrain,quoi;falloir;pour;terrain;industriel,papiers;prendre,False,True,شنوة الوراق اللازمين باش ناخو مقسم صناعي؟
+atteste,C12,ecrite_par_claude_a_relire,قداش السوم متاع المتر في جندوبة؟,tn,True,combien;prix;surface,combien;prix;de_possession;surface;dans,,True,True,قداش السوم متاع المتر في جندوبة؟
+atteste,C13,ecrite_par_claude_a_relire,فما قطعة أرض قريبة من المطار؟,tn,True,il_y_a;terrain;proche;aeroport,disponible;il_y_a;terrain;aeroport,proche,True,True,فما قطعة أرض قريبة من المطار؟
+atteste,C14,ecrite_par_claude_a_relire,كيفاش نعمل باش نشري مقسم؟,tn,True,comment;faire;acheter;terrain,comment;faire;pour;acheter;terrain,,False,True,كيفاش نعمل باش نشري مقسم؟
+atteste,C15,ecrite_par_claude_a_relire,نحب نعمل معمل متاع بلاستيك في سوسة,tn,True,vouloir;faire;usine;plastique,vouloir;faire;de_possession;plastique;dans,usine,True,True,نحب نعمل معمل متاع بلاستيك في سوسة
+atteste,C16,ecrite_par_claude_a_relire,"3aslema, n7eb na3ref chnowa el avantages fi zone de developpement regional",tn,True,salut;vouloir;quoi;avantages;zone_industrielle,vouloir;quoi;avantages;dans;zone_industrielle;de_possession,salut,True,True,عالسلامة نحبّ نعرف شنوة ال avantages في zone de developpement regional
+atteste,C17,ecrite_par_claude_a_relire,fama lot disponible fi Gabes?,tn,True,il_y_a;terrain;disponible,disponible;il_y_a;terrain;dans,,True,True,فمّة lot disponible في قابس
+atteste,C18,ecrite_par_claude_a_relire,barcha flous el terrain? n7eb 7aja r5isa,tn,True,beaucoup;argent;terrain;vouloir;pas_cher,beaucoup;argent;terrain;vouloir,pas_cher,True,True,برشا فلوس ال terrain? نحبّ حاجة r5isa
+atteste,C19,ecrite_par_claude_a_relire,el ma wel dhaw mawjoudin fil zone?,tn,False,eau;electricite;disponible;zone_industrielle,eau;dans;zone_industrielle,electricite;disponible,False,False,ال ما وال dhaw mawjoudin فال zone?
+avec_a_valider,R1,conversation_afi (id 257),"slt, nheb na3mel usine mta3 plastique fi Sousse, kifech nebda?",tn,True,vouloir;faire;usine;plastique;comment,salut;vouloir;faire;usine;de_possession;plastique;dans;comment,,True,True,"slt, نحبّ نعمل usine متاع plastique في Sousse, كيفاش نبدا"
+avec_a_valider,R2,conversation_afi (id 261),chnowa lwra9 lazmin bech na5ou ma9sem sina3i?,tn,True,quoi;papiers;falloir;prendre;terrain,quoi;papiers;falloir;pour;prendre;terrain;industriel,,False,True,شنوة lwra9 lazmin باش na5ou ma9sem sina3i?
+avec_a_valider,R3,cahier_officiel p.7,n7eb terrain f Sfax,tn,True,vouloir;terrain,vouloir;terrain;dans,,True,True,نحبّ terrain ف صفاقس
+avec_a_valider,R4,cahier_officiel p.7,3andi projet sardine,tn,True,avoir;projet;poisson,avoir;projet;poisson,,False,False,عندي projet sardine
+avec_a_valider,R5,cahier_officiel p.7,عندي مشروع سردين,tn,True,avoir;projet;poisson,avoir;projet;poisson,,False,False,عندي مشروع سردين
+avec_a_valider,R6,cahier_officiel p.8,9at3a,tn,True,terrain,terrain,,,,9at3a
+avec_a_valider,H1,doc_equipe (hypothese de Fida),"mosna3 9rib l port, b9adech, w fi 9adech wa9t ?",tn,True,usine;proche;port;combien;delai,usine;proche;port;combien;prix;dans;delai,,False,False,"mosna3 قريب ال port, بقدّاش و في قدّاش وقت ?"
+avec_a_valider,F1,conversation_afi (id 6),Procédure d'acquisition ?,fr,False,procedure;acheter,procedure;acheter,,True,True,Procédure d'acquisition ?
+avec_a_valider,F2,conversation_afi (id 226),je cherche un lot dans zone subventionnée,fr,False,chercher;terrain;zone_industrielle,chercher;terrain;dans;zone_industrielle,,True,True,جا cherche un lot dans zone subventionnée
+avec_a_valider,F3,conversation_afi (id 3),إجراءات الاقتناء؟,ar,False,procedure;acheter,procedure;acheter,,True,True,إجراءات الاقتناء؟
+avec_a_valider,F4,conversation_afi (id 119),أسعار المقسم؟,ar,False,prix;terrain,prix;terrain,,True,True,أسعار المقسم؟
+avec_a_valider,F5,conversation_afi (id 264),Available zones?,en,False,,,,,,Available zones?
+avec_a_valider,F6,conversation_afi (id 251),comment avoir l'attestation des suvention regional,fr,False,comment;subvention,comment;prendre,subvention,False,False,comment avoir l'attestation des suvention regional
+avec_a_valider,C1,ecrite_par_claude_a_relire,9adech soum el metre fi zone Sfax?,tn,True,combien;prix;surface,combien;prix;surface;dans;zone_industrielle,,True,True,قدّاش سوم ال metre في zone صفاقس
+avec_a_valider,C2,ecrite_par_claude_a_relire,famma 9at3a mawjouda 9rib mel port?,tn,True,il_y_a;terrain;disponible;proche;port,disponible;il_y_a;terrain;proche;port,,False,False,فمّة 9at3a موجودة قريب مال port?
+avec_a_valider,C3,ecrite_par_claude_a_relire,"n7eb nechri ma9sem fi Bizerte, chnowa lwra9?",tn,True,vouloir;acheter;terrain;quoi;papiers,vouloir;acheter;terrain;dans;quoi;papiers,,False,True,"نحبّ نشري ma9sem في Bizerte, شنوة lwra9?"
+avec_a_valider,C4,ecrite_par_claude_a_relire,kifech na3mel demande bech na5ou terrain?,tn,True,comment;faire;demande;prendre;terrain,comment;faire;demande;pour;prendre;terrain,,True,True,كيفاش نعمل demande باش na5ou terrain?
+avec_a_valider,C5,ecrite_par_claude_a_relire,famma min7a ken na3mel machrou3 fi Kasserine?,tn,True,il_y_a;subvention;faire;projet,disponible;il_y_a;subvention;faire;projet;dans,,True,True,فمّة min7a كان نعمل machrou3 في Kasserine?
+avec_a_valider,C6,ecrite_par_claude_a_relire,wa9tech nal9a el contrat?,tn,True,delai;chercher;contrat,delai;chercher;contrat,,True,True,وقتاش نلقى ال contrat?
+avec_a_valider,C7,ecrite_par_claude_a_relire,kifech nechri fi el batta mta3 AFI?,tn,True,comment;acheter;encheres,comment;acheter;dans;encheres;de_possession,,False,True,كيفاش نشري في ال batta متاع AFI?
+avec_a_valider,C8,ecrite_par_claude_a_relire,"3andi machrou3 mta3 5iyata, win nal9a blasa?",tn,True,avoir;projet;textile;ou;chercher;gouvernorat,avoir;projet;de_possession;textile;ou;chercher;gouvernorat,,False,True,"عندي machrou3 متاع 5iyata, وين نلقى بلاصة"
+avec_a_valider,C9,ecrite_par_claude_a_relire,lazem nebni fi 9adech mel wa9t ba3d ma na5ou el ma9sem?,tn,True,falloir;construire;combien;delai;prendre;terrain,falloir;construire;dans;delai;eau;prendre;terrain,combien,False,True,لازم nebni في قدّاش مال وقت بعد ما na5ou ال ma9sem?
+avec_a_valider,C10,ecrite_par_claude_a_relire,"n7eb credit mel banka, kifech na5ou attestation?",tn,True,vouloir;credit;comment;prendre,vouloir;credit;comment;prendre,,True,True,"نحبّ credit مال banka, كيفاش na5ou attestation?"
+avec_a_valider,C11,ecrite_par_claude_a_relire,شنوة الوراق اللازمين باش ناخو مقسم صناعي؟,tn,True,quoi;papiers;falloir;prendre;terrain,quoi;papiers;falloir;pour;prendre;terrain;industriel,,False,True,شنوة الوراق اللازمين باش ناخو مقسم صناعي؟
+avec_a_valider,C12,ecrite_par_claude_a_relire,قداش السوم متاع المتر في جندوبة؟,tn,True,combien;prix;surface,combien;prix;de_possession;surface;dans,,True,True,قداش السوم متاع المتر في جندوبة؟
+avec_a_valider,C13,ecrite_par_claude_a_relire,فما قطعة أرض قريبة من المطار؟,tn,True,il_y_a;terrain;proche;aeroport,disponible;il_y_a;terrain;aeroport,proche,True,True,فما قطعة أرض قريبة من المطار؟
+avec_a_valider,C14,ecrite_par_claude_a_relire,كيفاش نعمل باش نشري مقسم؟,tn,True,comment;faire;acheter;terrain,comment;faire;pour;acheter;terrain,,False,True,كيفاش نعمل باش نشري مقسم؟
+avec_a_valider,C15,ecrite_par_claude_a_relire,نحب نعمل معمل متاع بلاستيك في سوسة,tn,True,vouloir;faire;usine;plastique,vouloir;faire;usine;de_possession;plastique;dans,,True,True,نحب نعمل معمل متاع بلاستيك في سوسة
+avec_a_valider,C16,ecrite_par_claude_a_relire,"3aslema, n7eb na3ref chnowa el avantages fi zone de developpement regional",tn,True,salut;vouloir;quoi;avantages;zone_industrielle,salut;vouloir;quoi;avantages;dans;zone_industrielle;de_possession,,True,True,عالسلامة نحبّ نعرف شنوة ال avantages في zone de developpement regional
+avec_a_valider,C17,ecrite_par_claude_a_relire,fama lot disponible fi Gabes?,tn,True,il_y_a;terrain;disponible,disponible;il_y_a;terrain;dans,,True,True,فمّة lot disponible في قابس
+avec_a_valider,C18,ecrite_par_claude_a_relire,barcha flous el terrain? n7eb 7aja r5isa,tn,True,beaucoup;argent;terrain;vouloir;pas_cher,beaucoup;argent;terrain;vouloir,pas_cher,True,True,برشا فلوس ال terrain? نحبّ حاجة r5isa
+avec_a_valider,C19,ecrite_par_claude_a_relire,el ma wel dhaw mawjoudin fil zone?,tn,True,eau;electricite;disponible;zone_industrielle,eau;electricite;dans;zone_industrielle,disponible,False,True,ال ما وال dhaw mawjoudin فال zone?

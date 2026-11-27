@@ -1,6 +1,7 @@
-# Installer dans un environnement virtuel sur D: (voir README) ; torch CPU d'abord :
-#   .venv\Scripts\python -m pip install torch==2.14.1 --index-url https://download.pytorch.org/whl/cpu
-#   .venv\Scripts\python -m pip install -r requirements.txt
+# Dans un environnement virtuel (voir README). Installer torch d'abord :
+#   carte graphique NVIDIA : .venv\Scripts\python -m pip install torch==2.14.1 --index-url https://download.pytorch.org/whl/cu130
+#   sans carte graphique  : .venv\Scripts\python -m pip install torch==2.14.1 --index-url https://download.pytorch.org/whl/cpu
+#   puis                  : .venv\Scripts\python -m pip install -r requirements.txt
 rdflib==7.6.0
 owlrl==7.6.2
 pyshacl==0.40.2
@@ -8,3 +9,4 @@ pyoxigraph==0.5.13
 pymysql==1.2.4
 numpy<3
 sentence-transformers==6.3.0
+pydantic==2.14.4

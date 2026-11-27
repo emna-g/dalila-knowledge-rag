@@ -45,11 +45,11 @@ dal:ZoneIndustrielle a owl:Class ; rdfs:subClassOf dal:Lieu ; skos:prefLabel "Zo
 
 # Commodités : trois sortes, bien séparées (correction G5)
 dal:TypeProximite  a owl:Class ; rdfs:subClassOf dal:Commodite ; skos:prefLabel "Infrastructure proche (port, aéroport…)"@fr ;
-    rdfs:comment "La distance (km) est dans la base, table dalila_zone_distances."@fr .
+    rdfs:comment "La distance (km) est dans la base, vue v_pub_zone_distances (table AFI zone_commodites)."@fr .
 dal:TypeEquipement a owl:Class ; rdfs:subClassOf dal:Commodite ; skos:prefLabel "Équipement de la zone (électricité, eau…)"@fr ;
-    rdfs:comment "La valeur (kVA/ha, m3/jour/ha…) est dans la base, table dalila_zone_equipements."@fr .
+    rdfs:comment "La valeur (kVA/ha, m3/jour/ha…) est dans la base, vue v_pub_zone_equipements (table AFI zone_commodites)."@fr .
 dal:TypeService    a owl:Class ; rdfs:subClassOf dal:Commodite ; skos:prefLabel "Service proche (banque, poste, santé…)"@fr ;
-    rdfs:comment "Les services et leurs distances sont dans la base, table dalila_services_proches."@fr .
+    rdfs:comment "Les services et leurs distances sont dans la base, vue v_pub_services_proches (table AFI zone_services)."@fr .
 [] a owl:AllDisjointClasses ; owl:members ( dal:TypeProximite dal:TypeEquipement dal:TypeService ) .
 
 dal:Activite a owl:Class ; rdfs:subClassOf dal:SecteurActivite ; skos:prefLabel "Activité"@fr ;

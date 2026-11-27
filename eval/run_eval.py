@@ -1,16 +1,17 @@
 """Évaluation de la recherche de Dalila (graphe + filtres + passages MariaDB).
 
-python -m eval.run_eval --modele e5                       index complet (8 860 passages)
-python -m eval.run_eval --modele e5  --echantillon        échantillon commun de 1 500 passages
-python -m eval.run_eval --modele bge --echantillon
-python -m eval.run_eval --modele bge --echantillon --reranker
-Questions : eval/testset/questions_*.csv (même format) ; par défaut le jeu de 30 questions du lexique.
+python -m eval.run_eval --modele e5                       tous les passages
+python -m eval.run_eval --modele bge --reranker
+python -m eval.run_eval --modele qwen3 --questions eval/testset/questions_reelles.csv
+python -m eval.run_eval --modele e5  --echantillon        échantillon commun (machine sans carte graphique)
+Questions : par défaut le jeu de 30 questions du lexique ; jeu principal : eval/testset/questions_reelles.csv.
+Comparer tous les modèles d'un coup : python -m eval.comparer_modeles.
 Mesures : rappel@5 (la bonne réponse est-elle dans les 5 premiers ?), MRR (rang moyen inverse de la 1re bonne
 réponse), par langue ; temps de réponse (médiane et 95e centile).
 """
 import argparse, csv, json, re, statistics, time, pathlib
-from backend.config import LEXIQUE, MODELE, RACINE, RERANKER
-from backend.app.dalila import Dalila
+from dalila.config import LEXIQUE, MODELE, RACINE, RERANKER
+from dalila.harnais.pipeline_fixe import Dalila
 
 
 def attendu_ok(attendu, r):
@@ -38,11 +39,12 @@ def main():
         res = d.analyser(q["question"], k=5)
         temps.append(time.time() - t)
         lang = q.get("langue_attendue") or q.get("langue")
-        if q.get("verite_sql"):  # question de chiffres : le nombre de lots renvoyé doit égaler la vérité SQL
+        if q.get("verite_sql"):  # question de chiffres : le nombre de lots donné par Dalila doit égaler la vérité SQL
             with d.outils.con.cursor() as cur:
                 cur.execute(q["verite_sql"])
                 vrai = list(cur.fetchone().values())[0]
-            obtenu = len(res["chiffres"].get("lots", []))
+            # le compte (COUNT dans la vue), pas la longueur de la liste affichée (limitée à 10 lignes)
+            obtenu = res["chiffres"].get("nb_lots_disponibles")
             s = chiffres.setdefault(lang, {"n": 0, "ok": 0})
             s["n"] += 1
             s["ok"] += int(obtenu == vrai)

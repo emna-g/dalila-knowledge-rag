@@ -1,110 +1,109 @@
-# Dalila : base de connaissances et recherche (version MariaDB + Oxigraph)
+# Dalila : l'agent IA de l'AFI
 
-Partie « données et recherche » de **Dalila**, l'assistante de l'AFI (Agence Foncière Industrielle), Hackathon AGENTIC 2026.
-Cette branche (`refonte-revue-1-12`) applique les points 1 à 12 de la revue de l'équipe (`docs` : « 14 — Review of the data/RAG pipeline »).
+**Dalila**, l'agente IA de l'AFI (Agence Foncière Industrielle), Hackathon AGENTIC 2026 : elle comprend et parle le
+tunisien et les autres langues des investisseurs, à l'écrit et à la voix, et répond à partir des **données de l'AFI**
+(zones, lots, prix) et des **sources officielles** (cahiers des charges, AFI, TIA, FIPA, APII, SICAD, APIA…), sans rien
+inventer. Service Python avec une API HTTP, modèles locaux uniquement.
+
+## Structure du dépôt
+
+Le paquet `dalila/` suit les modules du cahier des charges (section VI.3). Chaque module a un `README.md` : rôle,
+exigences couvertes, contrat, état. La carte complète des exigences et de leur état est dans
+[docs/exigences.md](docs/exigences.md).
+
+```
+dalila/                 le service (paquet Python)
+├─ communication/       API HTTP POST /carte/chatbot                        à faire
+├─ harnais/             boucle d'agent, garde-fous, repli                   à faire
+├─ traitement/          outils de l'agent : lieux, lots, zones, démarches   fait (7 outils, testés)
+├─ semantique/          graphe (compréhension) et recherche par le sens     existant
+├─ langue/              langue, arabizi, reformulation (+ lexique tunisien) à faire
+├─ voix/                voix vers texte, texte vers voix                    à faire
+├─ sources/             URL configurées, lecture hebdomadaire, état         à faire
+├─ apprentissage/       boucle d'apprentissage contrôlée                    à faire
+├─ administration/      supervision, connaissances, réglages, droits        à faire
+├─ moteurs/             modèles locaux (langage, recherche, reranker, voix) à faire
+├─ connaissances/       construction de la base (MariaDB, vecteurs, graphe) existant
+└─ config.py            réglages (.env)
+db/                     migrations SQL, corrections relues, références
+ontology/               ontologie OWL, règles SHACL, requêtes de test
+frontend/               carte interactive et fenêtre de Dalila              à faire
+eval/                   jeux de questions, évaluation, comparaison des modèles
+tests/                  tests automatiques du code                          à faire
+deploy/                 Docker Compose (MariaDB, Oxigraph, service)
+scripts/                page de test (tester.bat)
+docs/                   architecture, décisions, limites, exigences
+donnees/  modeles/      hors git : afi.sql et corpus, modèles téléchargés
+```
 
 | Brique | Où | Rôle |
 |---|---|---|
-| **MariaDB 11.8** | `db/migrations/` | **Source unique des chiffres et des textes.** `afi.sql` est chargé **tel quel** ; nos tables `dalila_*` et `agent_*` sont ajoutées à côté ; la carte et Dalila lisent les mêmes vues `v_pub_*`. Les passages et leurs vecteurs (type `VECTOR`) y sont aussi : ChromaDB n'est plus utilisé. |
-| **Graphe (Oxigraph)** | `ontology/` | Le **sens** : ontologie OWL écrite à la main (`dalila.ttl`), données générées depuis la base (aucun prix, statut ni distance), contrôles SHACL (`shapes.ttl`), graphes nommés (core, abox, lexique, a-valider, appris/…), requêtes de test (`queries/*.rq`). |
-| **Recherche** | `backend/app/` | Comprendre la question avec le graphe, lire les chiffres dans les vues, trouver les passages à citer (filtres SQL + sens + mots-clés). |
-| **Lexique tunisien** | `lexicon/` | Comprendre l'arabizi et la darija (formes attestées seulement). |
-| **Évaluation** | `eval/` | Mesures (rappel@5, MRR, chiffres exacts, temps) et modèle de jeu de test pour l'équipe. |
+| **MariaDB 11.8** | `db/` | Copie des tables de l'AFI (`afi.sql`, rafraîchie depuis la carte publique). Les vues `v_pub_*` lisent **en direct** zones, lots, prix, distances, équipements, services et plans ; les corrections relues (`db/corrections/`) s'y appliquent tant que l'AFI n'a pas changé la valeur. Nos tables `dalila_*` gardent seulement ce que l'AFI n'a pas : textes à citer et leurs vecteurs, gouvernorats, cahiers, groupes, corrections. |
+| **Graphe (Oxigraph)** | `ontology/` | Le **sens** : ontologie écrite à la main, faits générés depuis la base (aucun chiffre), règles SHACL, graphes nommés. |
+| **Évaluation** | `eval/` | Rappel@5, MRR, chiffres exacts, temps de réponse, sur de vraies questions de visiteurs. |
 
-Les explications fichier par fichier sont dans **[GUIDE_COMPLET.md](GUIDE_COMPLET.md)**, et les choix chiffrés dans **[DECISIONS.md](DECISIONS.md)**.
-
-**Modèle de recherche par défaut : BGE-M3 + reranker (bge-reranker-v2-m3).** Les vecteurs BGE-M3 ne sont **pas encore calculés** : ce calcul est trop lent pour le PC d'Emna (4 cœurs), il doit être lancé sur un PC plus puissant (voir « Lancer sur un PC puissant »). Le modèle léger e5-small reste disponible (`DALILA_MODELE=e5` et `DALILA_RERANKER=0` dans `.env`).
+À lire aussi : **[docs/architecture.md](docs/architecture.md)** (la mécanique, fichier par fichier), **[docs/decisions.md](docs/decisions.md)** (les choix
+et leurs preuves), **[docs/limites.md](docs/limites.md)** (ce qui manque), **[docs/exigences.md](docs/exigences.md)** (chaque exigence du cahier des charges, son module et son état), **[db/corrections/DESACCORDS.md](db/corrections/DESACCORDS.md)**
+(chaque décision sur les données, avec les deux valeurs).
 
 ## Installer (Windows, sans Docker)
 
-1. **MariaDB 11.8** en version zip (sans installateur ni service) :
-   ```
-   mariadb-install-db.exe --datadir=<dossier>\data --password=<mot de passe root> --port=3307
-   mariadbd.exe --defaults-file=<dossier>\data\my.ini --console
-   ```
-2. **Charger `afi.sql` tel quel** dans une base `afi` (utf8mb4), puis copier `.env.example` en `.env` et le remplir.
-3. **Python** dans un environnement virtuel :
+1. **MariaDB 11.8** (type `VECTOR`). Charger `afi.sql` **tel quel** dans une base `afi` (utf8mb4).
+2. Copier `.env.example` en `.env` et le remplir (connexion, mots de passe des comptes `dalila_ro` et `dalila_rw`).
+3. **Python 3.10 à 3.12** :
    ```
    python -m venv .venv
-   .venv\Scripts\python -m pip install torch==2.14.1 --index-url https://download.pytorch.org/whl/cpu --extra-index-url https://pypi.org/simple
+   .venv\Scripts\python -m pip install torch==2.14.1 --index-url https://download.pytorch.org/whl/cu130
    .venv\Scripts\python -m pip install -r requirements.txt
    ```
-4. **Données** : décompresser les 2 zips `dalila_fusion_partie*.zip` du Drive d'équipe dans `donnees/dalila_fusion/`.
+   Avec une carte graphique NVIDIA récente (pilote CUDA 13), l'index `cu130` ci-dessus ; sans carte graphique, remplacer
+   `cu130` par `cpu` (les vecteurs des grands modèles prennent alors plusieurs heures).
+4. **Corpus** (hors git, Drive de l'équipe) : `donnees/corpus/passages.jsonl` et `donnees/corpus/pages_web.jsonl`.
+   Ils sont produits une fois par `dalila.connaissances.preparer_corpus` à partir de l'archive de la fusion (voir docs/architecture.md).
 
 ## Construire (dans l'ordre)
 
 ```
-.venv\Scripts\python -m backend.ingest.migrer           tables dalila_*, agent_*, vues v_pub_*, comptes dalila_ro / dalila_rw
-.venv\Scripts\python -m backend.ingest.charger_fusion   remplit les tables depuis dalila_fusion (doublons écartés)
-.venv\Scripts\python -m backend.ingest.vectoriser             vecteurs BGE-M3 des passages (long : voir ci-dessous)
-.venv\Scripts\python -m backend.ingest.construire_abox  graphe : génération, SHACL, OWL RL, Oxigraph, requêtes de test
+.venv\Scripts\python -m dalila.connaissances.migrer           tables dalila_*, agent_*, vues v_pub_*, comptes dalila_ro / dalila_rw
+.venv\Scripts\python -m dalila.connaissances.charger          références, corrections, passages (+ réponses AFI et fiches de zone)
+.venv\Scripts\python -m dalila.connaissances.construire_abox  graphe : génération, SHACL, OWL RL, Oxigraph, requêtes de test
+.venv\Scripts\python -m dalila.connaissances.vectoriser       vecteurs des passages (BGE-M3 par défaut ; --modele e5 ou qwen3 pour les autres)
 ```
 
-## Lancer sur un PC puissant (BGE-M3 + reranker)
-
-Prérequis : Python 3.10 à 3.12, MariaDB **11.8** (type VECTOR), environ 8 Go de RAM libre et 6 Go de disque
-(bibliothèques + modèles BGE-M3 et reranker, environ 4,5 Go téléchargés depuis Hugging Face au premier lancement).
-
-1. Récupérer la branche :
-   ```
-   git clone https://github.com/emna-g/dalila-knowledge-rag.git
-   cd dalila-knowledge-rag
-   git checkout refonte-revue-1-12
-   ```
-2. Installer MariaDB 11.8, charger `afi.sql` dans la base `afi`, copier `.env.example` en `.env` et le remplir
-   (section « Installer » ci-dessus). Décompresser les 2 zips de données dans `donnees/dalila_fusion/`.
-3. Python : comme dans « Installer ». **Avec une carte graphique NVIDIA**, installer torch avec CUDA
-   (`--index-url https://download.pytorch.org/whl/cu124`) : le calcul passe de plusieurs heures à quelques minutes.
-   Le code utilise la carte graphique automatiquement si elle est là.
-4. Construire, dans l'ordre :
-   ```
-   python -m backend.ingest.migrer
-   python -m backend.ingest.charger_fusion
-   python -m backend.ingest.construire_abox
-   python -m backend.ingest.vectoriser --modele bge          8 860 passages
-   python -m backend.ingest.vectoriser --modele e5           (facultatif, pour comparer)
-   ```
-   Durée mesurée sur le PC d'Emna (processeur 4 cœurs, sans carte graphique) : environ **1,5 s par passage** avec
-   BGE-M3, soit environ 4 h pour l'index complet en coupant les passages à 256 jetons (`--longueur-max 256`), et
-   davantage à 512 jetons. Un processeur plus rapide va proportionnellement plus vite ; une carte graphique NVIDIA,
-   beaucoup plus. Le calcul peut être arrêté et relancé : il reprend où il s'est arrêté.
-5. Évaluer et comparer (rappel@5, MRR, temps par question ; résultats dans `eval/reports/`) :
-   ```
-   python -m eval.run_eval --modele bge --reranker           réglage par défaut
-   python -m eval.run_eval --modele bge --no-reranker
-   python -m eval.run_eval --modele e5 --no-reranker         ancien réglage : 19/30
-   python -m eval.run_eval --questions eval/testset/questions_claude_a_relire.csv
-   ```
-   Vérifier aussi le temps par question avec le reranker (budget du cahier des charges : 35 s par réponse).
-6. Pousser les rapports `eval/reports/*` sur la branche et noter le choix final dans `DECISIONS.md` (point 10).
-
-## Avec Docker (point 13)
-
-Tout se lance depuis `deploy/`, avec le fichier `.env` de la racine. Il faut d'abord mettre `afi.sql` dans
-`donnees/afi.sql` et décompresser les données dans `donnees/dalila_fusion/` (un vrai dossier, pas un raccourci).
-
+Pour remettre la copie des tables de l'AFI à jour (au plus une fois par semaine : la carte de l'AFI bloque les robots) :
 ```
-cd deploy
-docker compose --env-file ../.env up -d db                         MariaDB 11.8 ; afi.sql est chargé tel quel au 1er démarrage
-docker compose --env-file ../.env --profile build run --rm ingest  tables, vues, graphe, vecteurs BGE-M3 (long, voir plus haut)
-docker compose --env-file ../.env run --rm kg load --location /data --file /graphe/dalila.trig
-docker compose --env-file ../.env up -d kg                         graphe dans Oxigraph, interface SPARQL : http://localhost:7878
-docker compose --env-file ../.env --profile eval run --rm eval     évaluation, rapports dans eval/reports/
+.venv\Scripts\python -m dalila.connaissances.rafraichir_copie_afi              montre les différences
+.venv\Scripts\python -m dalila.connaissances.rafraichir_copie_afi --appliquer  les écrit, puis relancer charger et construire_abox
 ```
-Seuls MariaDB et Oxigraph tournent en continu ; l'image Python (`deploy/Dockerfile`, torch CPU épinglé) sert à
-construire et à évaluer. Il n'y a pas encore d'API ni d'interface web : elles viendront avec le backend de l'équipe.
-Sans Docker, l'installation Windows ci-dessus reste valable.
+
+Pour revoir les décisions sur les données (rarement) :
+```
+.venv\Scripts\python -m dalila.connaissances.lire_carte_afi        relevé de la carte publique actuelle de l'AFI
+.venv\Scripts\python -m dalila.connaissances.extraire_corrections  réécrit db/corrections/ et DESACCORDS.md
+```
 
 ## Tester
 
-- `tester.bat` (double-clic) : pose une question, une page s'ouvre avec ce que Dalila a trouvé.
-- `.venv\Scripts\python -m eval.run_eval` : jeu de 30 questions ; `--questions eval/testset/<fichier>.csv` pour un autre jeu.
+- `scripts/tester.bat` (double-clic) : pose une question, une page s'ouvre avec ce que Dalila a trouvé.
+- `.venv\Scripts\python -m eval.run_eval` : jeu de 30 questions du lexique ; `--questions eval/testset/<fichier>.csv` pour un autre jeu.
+- `.venv\Scripts\python -m dalila.langue.lexique.tests.tester_lexique` : tests du lexique tunisien.
+
+## Avec Docker
+
+Depuis `deploy/`, avec le `.env` de la racine ; `afi.sql` dans `donnees/afi.sql`, le corpus dans `donnees/corpus/` :
+```
+docker compose --env-file ../.env up -d db                         MariaDB 11.8 ; afi.sql chargé tel quel au 1er démarrage
+docker compose --env-file ../.env --profile build run --rm ingest  tables, vues, graphe, vecteurs
+docker compose --env-file ../.env run --rm kg load --location /data --file /graphe/dalila.trig
+docker compose --env-file ../.env up -d kg                         graphe dans Oxigraph, SPARQL : http://localhost:7878
+docker compose --env-file ../.env --profile eval run --rm eval     évaluation, rapports dans eval/reports/
+```
 
 ## Règles
 
-- Un chiffre (prix, surface, disponibilité, distance) vient **toujours** des vues MariaDB, jamais d'un passage ni du graphe.
-- Le compte `dalila_ro` ne lit que les vues publiques : les noms des acquéreurs et les contrats lui sont inaccessibles.
-- Les libellés que personne n'a encore vérifiés (allemand, turc, algérien, libyen, formes tunisiennes non attestées) sont dans le graphe nommé **a-valider**.
+- Un chiffre (prix, surface, disponibilité, distance) vient **toujours** des vues `v_pub_*`, jamais d'un passage ni du graphe.
+- Le compte `dalila_ro` ne lit que les vues publiques : les noms des acquéreurs (`LOT_PROMOTEUR`) et les contrats lui sont inaccessibles.
+- Les données de l'AFI ne sont jamais copiées : une correction garde la valeur AFI d'origine et cesse de s'appliquer si l'AFI la change.
+- Les libellés non vérifiés (allemand, turc, algérien, libyen, formes tunisiennes non attestées) sont dans le graphe nommé **a-valider**.
 - Lexique : `translitteration_arabizi_tarc.csv` et `variantes_arabizi_tarc.csv` dérivent du corpus TArC (CC BY-NC-SA 4.0) : **démo seulement**.
-- Les données (afi.sql, dalila_fusion) ne sont jamais dans git ni dans l'image Docker : elles sont montées en lecture seule.
-- Ancienne version SQLite + ChromaDB : `ancien_sqlite_chroma/`.
+- `afi.sql` et le corpus ne sont jamais dans git ni dans l'image Docker : ils sont montés en lecture seule.

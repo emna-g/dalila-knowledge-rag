@@ -1,0 +1,9 @@
+service,besoin,reponses_kb,source,non_publie_par_afi
+acquisition,Acheter un lot industriel,"12,13,14,15,16,17,92",https://www.afi.nat.tn/fr/nos-services/,"montants des frais de rédaction du contrat et de délimitation topographique (le prix du lot vient des vues v_pub_*)"
+encheres,Participer à une vente publique,"24,25",https://www.afi.nat.tn/fr/nos-services/,"montant de la garantie (fixé dans le cahier des charges de chaque vente) ; dates des ventes"
+situation_fonciere,Connaître la situation d'un lot (attestation de situation foncière),18,https://www.afi.nat.tn/fr/nos-services/,"lieu de dépôt de la demande (seulement : demande écrite adressée au PDG de l'AFI)"
+insertion_hypotheque,Obtenir un prêt bancaire (attestation d'insertion d'hypothèque),19,https://www.afi.nat.tn/fr/nos-services/,"lieu de dépôt de la demande (seulement : demande écrite adressée au PDG de l'AFI)"
+mainlevee,Obtenir la mainlevée sur son terrain,23,https://www.afi.nat.tn/fr/nos-services/,"lieu de dépôt de la demande (seulement : demande écrite adressée au PDG de l'AFI)"
+acte_precision,Isoler le lot comme propriété distincte (acte de précision ou contrat final),20,https://www.afi.nat.tn/fr/nos-services/,"lieu de dépôt de la demande (seulement : demande justifiée)"
+autorisation_vente,Vente d'un lot par une société de leasing (autorisation de vente),21,https://www.afi.nat.tn/fr/nos-services/,"frais de l'AFI (seuls les frais du GMG sont cités) ; lieu de dépôt (seulement : demande écrite adressée au PDG de l'AFI)"
+copie_conforme,Obtenir une copie du contrat ou de l'acte,22,https://www.afi.nat.tn/fr/nos-services/,"lieu de dépôt de la demande (seulement : demande écrite adressée au PDG de l'AFI)"
