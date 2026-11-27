@@ -36,12 +36,13 @@ export function filtrer(zones: Zone[], f: Filtres): Zone[] {
   return r.sort((a, b) =>
     f.tri === 'nom' ? a.nom.localeCompare(b.nom)
       : f.tri === 'prix' ? (a.prix_m2_dt ?? 1e9) - (b.prix_m2_dt ?? 1e9)
-        : b.lots_disponibles - a.lots_disponibles)
+        : f.encheres ? b.lots_aux_encheres - a.lots_aux_encheres : b.lots_disponibles - a.lots_disponibles)
 }
 
 interface Props {
   zones: Zone[]
   resultats: Zone[]
+  chargement: boolean
   filtres: Filtres
   setFiltres: (f: Filtres) => void
   onZone: (id: number) => void
@@ -50,7 +51,7 @@ interface Props {
   survol: (id: number | null) => void
 }
 
-export function Recherche({ zones, resultats, filtres, setFiltres, onZone, comparer, basculerComparer, survol }: Props) {
+export function Recherche({ zones, resultats, chargement, filtres, setFiltres, onZone, comparer, basculerComparer, survol }: Props) {
   const { t, langue } = useLangue()
   const nom = useNom()
   const [avances, setAvances] = useState(false)
@@ -64,7 +65,7 @@ export function Recherche({ zones, resultats, filtres, setFiltres, onZone, compa
   const actifs = filtres.surface != null || filtres.prixMax != null || filtres.dr || filtres.cahier
 
   return (
-    <div className="flex h-full flex-col">
+    <div className="defile h-full overflow-y-auto">
       {/* chiffres clés */}
       <div className="grid grid-cols-3 gap-2 px-4 pt-3">
         {[
@@ -73,7 +74,7 @@ export function Recherche({ zones, resultats, filtres, setFiltres, onZone, compa
           { v: gouvernorats.length, l: t.gouvernorats, i: Landmark },
         ].map(({ v, l, i: I }) => (
           <div key={l} className="rounded-2xl bg-gradient-to-br from-marine to-marine-fonce px-3 py-2.5 text-white shadow-carte">
-            <p className="flex items-center gap-1.5 text-lg font-bold leading-none"><I size={15} className="opacity-70" aria-hidden />{nombre(v, langue)}</p>
+            <p className="flex items-center gap-1.5 text-lg font-bold leading-none"><I size={15} className="opacity-70" aria-hidden />{chargement ? <span className="inline-block h-4 w-8 animate-pulse rounded bg-white/30" /> : nombre(v, langue)}</p>
             <p className="mt-1 text-[11px] leading-tight opacity-80">{l}</p>
           </div>
         ))}
@@ -117,7 +118,7 @@ export function Recherche({ zones, resultats, filtres, setFiltres, onZone, compa
         </button>
         {avances && (
           <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} className="space-y-3 overflow-hidden pt-3">
-            <Champ libelle={t.surface} unite="m²" valeur={filtres.surface} pas={500} onChange={(v) => maj({ surface: v })} />
+            <Champ libelle={t.surface} unite={t.m2} valeur={filtres.surface} pas={500} onChange={(v) => maj({ surface: v })} />
             <Champ libelle={t.prixMax} unite={t.parM2} valeur={filtres.prixMax} pas={5} onChange={(v) => maj({ prixMax: v })} />
             <div className="flex flex-wrap gap-2">
               <Puce actif={filtres.dr} onClick={() => maj({ dr: !filtres.dr })}><Landmark size={14} aria-hidden /> {t.dr}</Puce>
@@ -140,11 +141,17 @@ export function Recherche({ zones, resultats, filtres, setFiltres, onZone, compa
         </div>
       </div>
 
-      <p className="px-5 pb-2 text-sm font-medium text-doux" aria-live="polite">{t.zonesTrouvees(resultats.length)}</p>
+      <p className="px-5 pb-2 text-sm font-medium text-doux" aria-live="polite">{chargement ? t.chargement : t.zonesTrouvees(resultats.length)}</p>
 
       {/* résultats */}
-      <ul className="defile flex-1 space-y-2 overflow-y-auto px-4 pb-6">
-        {resultats.length === 0 && <li className="rounded-2xl border border-dashed border-trait p-6 text-center text-sm text-doux">{t.aucuneZone}</li>}
+      <ul className="space-y-2 px-4 pb-6">
+        {chargement && [0, 1, 2, 3, 4].map((i) => (
+          <li key={i} className="flex gap-3 rounded-2xl border border-trait bg-white p-3.5" aria-hidden>
+            <span className="size-11 animate-pulse rounded-xl bg-brume" />
+            <span className="flex-1 space-y-2 pt-1"><span className="block h-4 w-2/3 animate-pulse rounded bg-brume" /><span className="block h-3 w-1/3 animate-pulse rounded bg-brume" /></span>
+          </li>
+        ))}
+        {!chargement && resultats.length === 0 && <li className="rounded-2xl border border-dashed border-trait p-6 text-center text-sm text-doux">{t.aucuneZone}</li>}
         {resultats.map((z, i) => {
           const choisie = comparer.includes(z.zone_id)
           return (
@@ -154,8 +161,8 @@ export function Recherche({ zones, resultats, filtres, setFiltres, onZone, compa
               <button type="button" onClick={() => onZone(z.zone_id)} className="block w-full p-3.5 pe-12 text-start">
                 <div className="flex items-start gap-3">
                   <span className={clsx('mt-0.5 grid size-11 shrink-0 place-items-center rounded-xl text-sm font-bold text-white',
-                    z.lots_disponibles > 0 ? 'bg-vert' : z.lots_aux_encheres > 0 ? 'bg-alerte' : 'bg-[#7C8A93]')}>
-                    {z.lots_disponibles}
+                    filtres.encheres ? 'bg-alerte' : z.lots_disponibles > 0 ? 'bg-vert' : z.lots_aux_encheres > 0 ? 'bg-alerte' : 'bg-[#7C8A93]')}>
+                    {filtres.encheres ? z.lots_aux_encheres : z.lots_disponibles}
                   </span>
                   <span className="min-w-0">
                     <span className="block truncate font-semibold text-encre group-hover:text-marine">{nom(z.nom, z.nom_ar)}</span>

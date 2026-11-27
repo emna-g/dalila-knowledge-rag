@@ -1,0 +1,137 @@
+DALILA – CARTE INTERACTIVE DES ZONES INDUSTRIELLES DE L'AFI (version 2.0)
+Ce que l'interface permet de faire
+==========================================================================
+
+Adresse : http://127.0.0.1:8000/  (après avoir lancé le service, voir la fin du fichier)
+Toutes les données affichées viennent de la base de l'AFI : 50 zones, 2 524 lots.
+
+
+1. TROUVER UNE ZONE INDUSTRIELLE
+--------------------------------
+- Voir d'un coup d'œil les chiffres clés : 50 zones, 673 lots disponibles, 23 gouvernorats.
+- Chercher une zone par son nom ou par son gouvernorat (en français ou en arabe).
+- Choisir un gouvernorat dans la liste.
+- Ne garder que les zones qui ont des lots disponibles.
+- Ne garder que les zones qui ont des lots aux enchères (bouton « Enchères » en haut).
+- Filtres avancés :
+    - surface recherchée (en m²) : seules les zones qui ont un lot assez grand restent ;
+    - prix maximum (en DT/m²) ;
+    - zones de développement régional ;
+    - zones dont le cahier des charges est en ligne.
+- Trier les zones par nombre de lots disponibles, par prix ou par nom.
+- Revenir à zéro en un clic (« Réinitialiser » ou « Accueil »).
+
+
+2. LA CARTE
+-----------
+- Les zones apparaissent sur la carte de la Tunisie :
+    - vert = la zone a des lots disponibles ;
+    - orange = seulement des lots aux enchères ;
+    - gris = aucun lot disponible ;
+    - le chiffre dans le rond = le nombre de lots disponibles.
+- Quand on s'éloigne, les zones proches se regroupent (le chiffre = total des lots disponibles).
+  Un clic sur un groupe zoome dessus.
+- En mode « Enchères », tout passe en orange et le chiffre devient le nombre de lots aux enchères.
+- Survoler une zone affiche son nom et ses lots disponibles.
+- Survoler une zone dans la liste l'entoure en bleu sur la carte.
+- Quand on filtre, la carte se cadre toute seule sur les zones trouvées.
+- Deux fonds de carte : « Plan » (en couleurs) et « Satellite » (vraies images du terrain).
+- Les noms des villes s'affichent dans la langue choisie (français, arabe ou anglais).
+- Zoom, rotation, inclinaison, plein écran, échelle ; légende repliable.
+
+
+3. LA FICHE D'UNE ZONE
+----------------------
+Un clic sur une zone (carte ou liste) ouvre sa fiche, et la carte va dessus.
+- Chiffres clés : lots disponibles, prix au m², prix après subvention, surface totale,
+  surface aménagée.
+- Badges : développement régional (et son groupe), nombre de lots aux enchères.
+- Onglet « Aperçu » : lots par état (disponible, réservé, aux enchères, attribué...)
+  en barre de couleur avec les nombres.
+- Onglet « Lots » : liste de tous les lots, filtrable par état.
+- Onglet « Infrastructures » :
+    - accès : distance au port, à l'aéroport, à l'autoroute, à la gare, au gazoduc ;
+    - réseaux : électricité, eau, gaz naturel, téléphone, station d'épuration ;
+    - services les plus proches : banque, hôpital, clinique, hôtel, poste, restaurant,
+      université, école, parking... avec la distance.
+- Onglet « Documents » : cahiers des charges et plans de lotissement (PDF à ouvrir).
+- Bouton « Demander à Dalila » : pose la question sur cette zone à Dalila.
+- Bouton « Comparer » : ajoute la zone au comparateur.
+
+
+4. LES LOTS SUR LA CARTE
+------------------------
+- Chaque lot est dessiné avec sa vraie forme, en couleur selon son état
+  (vert disponible, orange réservé, rouge aux enchères, gris attribué...).
+- Le numéro du lot s'affiche quand on zoome.
+- Un clic sur un lot (carte ou liste) :
+    - le surligne en jaune et zoome dessus ;
+    - affiche sa fiche : surface, prix au m², et PRIX DU TERRAIN calculé
+      (exemple : 1 823 m² × 32 DT = 58 336 DT) ;
+    - bouton « Demander à Dalila » sur ce lot (comment l'acheter, quels documents).
+
+
+5. COMPARER DES ZONES
+---------------------
+- Choisir 2 ou 3 zones (icône de balance sur chaque zone, ou bouton « Comparer » de la fiche).
+- Un tableau les met côte à côte : prix, prix subventionné, lots disponibles, surfaces des lots,
+  enchères, surface totale, développement régional, distances (port, aéroport, autoroute, gare),
+  réseaux (électricité, eau, gaz), cahier des charges.
+- Le meilleur prix et le plus grand nombre de lots sont signalés par une étoile.
+- Bouton « Demander à Dalila » pour qu'elle compare et conseille.
+
+
+6. DALILA, LA CONSEILLÈRE
+-------------------------
+- Un panneau à côté de la carte (ou une bulle avec la mascotte quand il est réduit).
+- Accueil avec les 3 cas d'usage de l'AFI et des questions prêtes à cliquer :
+    1) choix du lot, 2) avantages fiscaux et financiers, 3) procédures administratives.
+- 8 langues : français, arabe, tunisien, algérien, libyen, anglais, allemand, turc.
+  L'arabe et les dialectes s'affichent de droite à gauche.
+- Les réponses sont présentées en fiches :
+    - les zones et les lots cités sont des boutons : un clic les montre sur la carte ;
+    - les zones citées clignotent sur la carte, qui se cadre sur elles ;
+    - les documents (PDF) sont des cartes à ouvrir ;
+    - les choix proposés sont des boutons (on répond en un clic) ;
+    - les sources sont toujours indiquées sous la réponse ;
+    - les chiffres sont en gras pour être lus en premier.
+- Dalila sait de quoi on parle : la zone ou le lot ouvert sur la carte lui est transmis
+  (« À propos de : Lot 83 · Kairouan II »), et on peut l'enlever.
+- Pendant qu'elle cherche : son anneau tourne, les étapes s'affichent
+  (« Je consulte la base de l'AFI… ») avec les secondes écoulées.
+- La voix :
+    - bouton micro : on parle, le texte reconnu s'affiche pour être vérifié AVANT l'envoi ;
+    - la première fois, Dalila demande l'autorisation et explique que l'audio n'est pas gardé ;
+    - une question posée à la voix reçoit une réponse lue à voix haute ;
+    - bouton haut-parleur sur chaque réponse pour l'écouter.
+- Avis sur chaque réponse : utile / pas utile (enregistré pour l'AFI).
+- Nouvelle conversation en un clic.
+- Si le service ne répond pas : un message clair avec le contact de l'AFI, jamais d'erreur.
+- Rappel en bas : « Dalila peut se tromper : vérifiez auprès de l'AFI ».
+
+
+7. LANGUES, TÉLÉPHONE, ACCESSIBILITÉ
+------------------------------------
+- Interface entière en français, en arabe (de droite à gauche, unités en arabe) et en anglais.
+- Sur téléphone : la carte prend l'écran, la fiche s'ouvre en bas (la carte reste visible),
+  Dalila s'ouvre en plein écran.
+- Lien à partager : l'adresse change avec la sélection
+  (exemple : http://127.0.0.1:8000/#zone=931402&lot=261 ouvre directement ce lot).
+- Utilisable au clavier, boutons assez grands pour le doigt, couleur + mot pour chaque état,
+  « réduire les animations » du système respecté.
+
+
+8. CE QUI N'EST PAS ENCORE FAIT
+-------------------------------
+- Les vraies réponses de Dalila demandent le modèle local (Ollama + qwen3:4b-instruct).
+  Sans lui, Dalila répond par un message de secours avec le contact de l'AFI.
+- La bande « J'ai compris » (ce que Dalila a retenu de la question) : l'API ne le renvoie pas encore.
+- Le back-office de l'agent de l'AFI et de l'administrateur.
+- Le fond de carte, les images satellite et les polices viennent d'Internet.
+
+
+LANCER L'INTERFACE
+------------------
+1. Démarrer la base :         docker start dalila-db
+2. Lancer le service :        .venv\Scripts\python -m uvicorn frontend.serveur:app --port 8000
+3. Ouvrir dans le navigateur : http://127.0.0.1:8000/

@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import { FileText, ExternalLink, MapPin, LayoutGrid } from 'lucide-react'
+import { joliNom } from '../i18n'
 
 /*
  * Rendu d'une réponse de l'API (/carte/chatbot) :
@@ -105,7 +106,7 @@ export function Rendu({ analyse, onZone, onLot, libelleLot, libelleSources }: Re
       case 'zone': return (
         <button key={k} type="button" onClick={() => onZone(m.id)}
           className="mx-0.5 inline-flex min-h-7 items-center gap-1 rounded-full border border-marine/30 bg-marine/5 px-2.5 align-middle text-[13px] font-semibold text-marine transition hover:bg-marine hover:text-white">
-          <MapPin size={13} aria-hidden />{m.nom}
+          <MapPin size={13} aria-hidden />{joliNom(m.nom)}
         </button>)
       case 'lot': return (
         <button key={k} type="button" onClick={() => onLot(m.id)}

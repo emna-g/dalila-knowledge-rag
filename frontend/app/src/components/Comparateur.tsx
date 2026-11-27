@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { Check, MessageCircle, X } from 'lucide-react'
 import { api } from '../api'
-import { DISTANCES, EQUIPEMENTS, nombre } from '../i18n'
+import { DISTANCES, EQUIPEMENTS, nombre, unite } from '../i18n'
 import { useLangue, useNom } from '../langue'
 import type { FicheZone } from '../types'
 
@@ -28,12 +28,12 @@ export function Comparateur({ ids, onFermer, onZone, onDemander, onRetirer }: Pr
     { titre: t.parM2, valeur: (f) => f.prix_m2_dt != null ? nombre(f.prix_m2_dt, langue) : '—', top: (f) => f.prix_m2_dt != null && f.prix_m2_dt === prixMin },
     { titre: `${t.parM2} · ${t.subventionne}`, valeur: (f) => f.prix_m2_subventionne_dt != null ? nombre(f.prix_m2_subventionne_dt, langue, 2) : '—' },
     { titre: t.lotsDispo, valeur: (f) => nombre(f.lots_disponibles, langue), top: (f) => f.lots_disponibles > 0 && f.lots_disponibles === lotsMax },
-    { titre: `${t.lotsDispo} (m²)`, valeur: (f) => f.surface_lot_min_m2 != null ? `${nombre(f.surface_lot_min_m2, langue)} – ${nombre(f.surface_lot_max_m2, langue)}` : '—' },
+    { titre: `${t.lotsDispo} (${t.m2})`, valeur: (f) => f.surface_lot_min_m2 != null ? <bdi dir="ltr">{nombre(f.surface_lot_min_m2, langue)} – {nombre(f.surface_lot_max_m2, langue)}</bdi> : '—' },
     { titre: t.encheres, valeur: (f) => nombre(f.lots_aux_encheres, langue) },
-    { titre: t.surfaceTotale, valeur: (f) => f.surface_totale_m2 != null ? `${nombre(f.surface_totale_m2 / 10000, langue, 1)} ha` : '—' },
+    { titre: t.surfaceTotale, valeur: (f) => f.surface_totale_m2 != null ? `${nombre(f.surface_totale_m2 / 10000, langue, 1)} ${t.ha}` : '—' },
     { titre: t.dr, valeur: (f) => f.developpement_regional ? <Check size={18} className="inline text-vert" aria-label="oui" /> : '—' },
-    ...['port', 'aeroport', 'autoroute', 'gare'].map((k) => ({ titre: DISTANCES[k][langue], valeur: (f: FicheZone) => { const d = dist(f, k); return d ? `${nombre(d.km, langue)} km` : '—' } })),
-    ...['electricite_puissance', 'eau_debit', 'gaz_pression'].map((k) => ({ titre: EQUIPEMENTS[k][langue], valeur: (f: FicheZone) => { const e = eq(f, k); return e ? `${e.valeur ?? '✓'} ${e.unite ?? ''}` : '—' } })),
+    ...['port', 'aeroport', 'autoroute', 'gare'].map((k) => ({ titre: DISTANCES[k][langue], valeur: (f: FicheZone) => { const d = dist(f, k); return d ? `${nombre(d.km, langue)} ${t.km}` : '—' } })),
+    ...['electricite_puissance', 'eau_debit', 'gaz_pression'].map((k) => ({ titre: EQUIPEMENTS[k][langue], valeur: (f: FicheZone) => { const e = eq(f, k); return e ? `${e.valeur ?? '✓'} ${unite(e.unite, langue)}` : '—' } })),
     { titre: t.cahiers, valeur: (f) => f.cahiers.length ? <a href={f.cahiers[0].lien} target="_blank" rel="noopener noreferrer" className="font-medium text-lien underline">PDF</a> : '—' },
   ]
 
@@ -64,7 +64,7 @@ export function Comparateur({ ids, onFermer, onZone, onDemander, onRetirer }: Pr
                 <tr key={l.titre} className={i % 2 ? 'bg-fond/60' : ''}>
                   <th scope="row" className="p-3 ps-6 text-start font-medium text-doux first-letter:uppercase">{l.titre}</th>
                   {fiches.map((f) => (
-                    <td key={f.zone_id} className={`border-s border-trait p-3 font-semibold ${l.top?.(f) ? 'text-vert' : 'text-encre'}`}>
+                    <td key={f.zone_id} className={`border-s border-trait p-3 font-semibold ${l.top?.(f) ? 'text-vert-texte' : 'text-encre'}`}>
                       {l.valeur(f)}{l.top?.(f) && <span className="ms-1.5 rounded-full bg-vert/10 px-1.5 py-0.5 text-[10px] font-bold uppercase">★</span>}
                     </td>
                   ))}

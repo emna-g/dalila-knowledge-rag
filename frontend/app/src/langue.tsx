@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react'
-import { DICOS, type Dico } from './i18n'
+import { DICOS, joliNom, type Dico } from './i18n'
 import type { LangueUI } from './types'
 
 interface Ctx { langue: LangueUI; t: Dico; changer: (l: LangueUI) => void; rtl: boolean }
@@ -32,5 +32,5 @@ export function useLangue() {
 /** Nom d'une zone ou d'un gouvernorat dans la langue de l'interface. */
 export function useNom() {
   const { langue } = useLangue()
-  return (fr: string, ar?: string | null) => (langue === 'ar' && ar ? ar : fr)
+  return (fr: string, ar?: string | null) => (langue === 'ar' && ar ? ar : joliNom(fr))
 }

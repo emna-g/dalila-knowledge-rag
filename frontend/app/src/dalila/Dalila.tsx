@@ -6,7 +6,7 @@ import {
 } from 'lucide-react'
 import clsx from 'clsx'
 import { api } from '../api'
-import { LANGUES_DALILA } from '../i18n'
+import { DICOS_DALILA, LANGUES_DALILA } from '../i18n'
 import { useLangue } from '../langue'
 import type { LangueDalila, ReponseDalila } from '../types'
 import { analyser, Rendu, type Analyse } from './rendu'
@@ -41,7 +41,7 @@ const HISTORIQUE = 20
 let suivant = 1
 
 export function Dalila({ ouvert, onFermer, demande, contexte, onRetirerContexte, onZone, onLot, onCiter }: Props) {
-  const { t, langue } = useLangue()
+  const { t: tUI, langue } = useLangue()
   const [lang, setLang] = useState<LangueDalila>(() => (localStorage.getItem('dalila_lang') as LangueDalila) || langue)
   const [messages, setMessages] = useState<Message[]>([])
   const [saisie, setSaisie] = useState('')
@@ -61,6 +61,8 @@ export function Dalila({ ouvert, onFermer, demande, contexte, onRetirerContexte,
   const enregistreur = useRef<MediaRecorder | null>(null)
   const prochaineParVoix = useRef(false)
   const rtl = LANGUES_DALILA.find((l) => l.code === lang)?.rtl ?? false
+  // les textes du panneau suivent la langue choisie pour Dalila (arabe et dialectes : textes en arabe)
+  const t = DICOS_DALILA[lang] ?? tUI
 
   useEffect(() => { localStorage.setItem('dalila_lang', lang) }, [lang])
   // l'interface change de langue : Dalila suit, sauf si le visiteur a choisi un dialecte
@@ -80,6 +82,12 @@ export function Dalila({ ouvert, onFermer, demande, contexte, onRetirerContexte,
   }, [ouvert])
 
   useEffect(() => {
+    const dernier = messages[messages.length - 1]
+    if (dernier?.role === 'dalila' && !occupe) {
+      // une réponse arrive : on la montre depuis son début (une longue réponse ne défile pas jusqu'en bas)
+      fil.current?.querySelector(`[data-message="${dernier.id}"]`)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      return
+    }
     if (messages.length || occupe || consentement) fil.current?.scrollTo({ top: fil.current.scrollHeight, behavior: 'smooth' })
   }, [messages, occupe, note, consentement])
   useEffect(() => { if (ouvert) setTimeout(() => champ.current?.focus(), 250) }, [ouvert])
@@ -195,7 +203,7 @@ export function Dalila({ ouvert, onFermer, demande, contexte, onRetirerContexte,
           onKeyDown={(e) => { if (e.key === 'Escape') onFermer() }}>
 
           {/* en-tête */}
-          <div className="relative flex items-center gap-3 overflow-hidden border-b border-trait bg-gradient-to-r from-white to-fond px-4 py-3">
+          <div className="relative z-20 flex items-center gap-3 border-b border-trait bg-gradient-to-r from-white to-fond px-4 py-3">
             <Anneau etat={etat} taille={52} />
             <div className="min-w-0 flex-1">
               <p className="text-lg font-bold leading-tight text-marine">{t.dlNom}</p>
@@ -212,7 +220,7 @@ export function Dalila({ ouvert, onFermer, demande, contexte, onRetirerContexte,
               <AnimatePresence>
                 {menuLangue && (
                   <motion.ul initial={{ opacity: 0, y: -4 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
-                    className="absolute end-0 top-12 z-10 w-48 overflow-hidden rounded-xl border border-trait bg-white py-1 shadow-flotte" role="listbox" aria-label={t.dlLangue}>
+                    className="absolute end-0 top-12 z-50 w-52 overflow-hidden rounded-xl border border-trait bg-white py-1 shadow-flotte" role="listbox" aria-label={t.dlLangue}>
                     {LANGUES_DALILA.map((l) => (
                       <li key={l.code}>
                         <button type="button" role="option" aria-selected={l.code === lang} onClick={() => { setLang(l.code); setMenuLangue(false) }}
@@ -282,7 +290,7 @@ export function Dalila({ ouvert, onFermer, demande, contexte, onRetirerContexte,
                 {m.texte}
               </motion.div>
             ) : (
-              <motion.div key={m.id} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="flex gap-2.5">
+              <motion.div key={m.id} data-message={m.id} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="flex scroll-mt-3 gap-2.5">
                 <img src={visage} alt="" className="mt-1 size-9 shrink-0 rounded-full border-2 border-white object-cover shadow" />
                 <div className={clsx('min-w-0 flex-1 rounded-2xl rounded-ss-sm border bg-white p-3.5 shadow-sm', m.reponse?.source === 'repli' ? 'border-alerte/40' : 'border-trait')} dir="auto">
                   <Rendu analyse={m.analyse!} onZone={onZone} onLot={onLot} libelleLot={t.lot} libelleSources={t.dlSources} />

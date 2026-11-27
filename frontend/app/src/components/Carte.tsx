@@ -7,13 +7,13 @@ import 'maplibre-gl/dist/maplibre-gl.css'
 import urlWorker from 'maplibre-gl/dist/maplibre-gl-worker.mjs?url'
 import { Layers, Satellite, Map as IconeCarte, ChevronDown } from 'lucide-react'
 import clsx from 'clsx'
-import { ETATS, nombre } from '../i18n'
+import { ETATS, joliNom, nombre } from '../i18n'
 import { useLangue } from '../langue'
 import type { Lot, Statut, Zone } from '../types'
 
 maplibregl.setWorkerUrl(urlWorker)   // MapLibre 6 : le worker est un fichier à part, copié par Vite
 
-const STYLE = 'https://tiles.openfreemap.org/styles/positron'
+const STYLE = 'https://tiles.openfreemap.org/styles/liberty'   // couleurs (eau, verdure, routes), plus lisible que le gris
 const SATELLITE = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'
 const POLICE = ['Noto Sans Bold']
 const TUNISIE: [[number, number], [number, number]] = [[7.6, 30.3], [11.6, 37.4]]
@@ -25,7 +25,10 @@ interface Props {
   lotChoisi: number | null
   citees: number[]
   fond: 'plan' | 'satellite'
-  marges: { gauche: number; droite: number }
+  survol: number | null
+  cadrage: number
+  basMobile: boolean
+  encheres: boolean
   onZone: (id: number) => void
   onLot: (id: number) => void
   onFond: (f: 'plan' | 'satellite') => void
@@ -34,13 +37,15 @@ interface Props {
 const couleurEtat = ['match', ['get', 'statut'],
   ...Object.entries(ETATS).flatMap(([k, e]) => [k, e.couleur]), '#B9C2C7'] as unknown as ExpressionSpecification
 
-function zonesGeo(zones: Zone[]): FeatureCollection {
+function zonesGeo(zones: Zone[], encheres: boolean): FeatureCollection {
   return {
     type: 'FeatureCollection',
     features: zones.map((z) => ({
       type: 'Feature', id: z.zone_id,
       geometry: { type: 'Point', coordinates: [z.lng, z.lat] },
-      properties: { id: z.zone_id, nom: z.nom, nom_ar: z.nom_ar ?? z.nom, dispo: z.lots_disponibles, encheres: z.lots_aux_encheres },
+      properties: { id: z.zone_id, nom: joliNom(z.nom), nom_ar: z.nom_ar ?? joliNom(z.nom), dispo: z.lots_disponibles, encheres: z.lots_aux_encheres,
+        // le nombre affiché : lots disponibles, ou lots aux enchères quand ce filtre est actif
+        valeur: encheres ? z.lots_aux_encheres : z.lots_disponibles, mode: encheres ? 'e' : 'd' },
     })),
   }
 }
@@ -56,13 +61,28 @@ function lotsGeo(lots: Lot[]): FeatureCollection {
   }
 }
 
-export function Carte({ zones, zoneChoisie, lots, lotChoisi, citees, fond, marges, onZone, onLot, onFond }: Props) {
+function centresGeo(lots: Lot[]): FeatureCollection {
+  return {
+    type: 'FeatureCollection',
+    features: lots.filter((l) => l.contour.length >= 3).map((l) => {
+      const n = l.contour.length
+      const c = l.contour.reduce((a, p) => [a[0] + p[0] / n, a[1] + p[1] / n], [0, 0])
+      return { type: 'Feature', geometry: { type: 'Point', coordinates: c }, properties: { numero: l.numero } }
+    }),
+  }
+}
+
+const SANS_GROUPE = ['!', ['has', 'point_count']] as unknown as ExpressionSpecification
+
+export function Carte({ zones, zoneChoisie, lots, lotChoisi, citees, fond, survol, cadrage, basMobile, encheres, onZone, onLot, onFond }: Props) {
+  const marges = { gauche: 0, droite: 0 }
   const { t, langue } = useLangue()
   const boite = useRef<HTMLDivElement>(null)
   const carte = useRef<maplibregl.Map | null>(null)
   const [prete, setPrete] = useState(false)
   const [legende, setLegende] = useState(false)
   const reperes = useRef<maplibregl.Marker[]>([])
+  const dernieresCitees = useRef('')
   const rappels = useRef({ onZone, onLot })
   rappels.current = { onZone, onLot }
 
@@ -93,13 +113,14 @@ export function Carte({ zones, zoneChoisie, lots, lotChoisi, citees, fond, marge
         'line-color': couleurEtat, 'line-width': ['interpolate', ['linear'], ['zoom'], 13, 0.6, 18, 2.2] } })
       m.addLayer({ id: 'lots-choisi', type: 'line', source: 'lots', filter: ['==', ['get', 'id'], -1], paint: {
         'line-color': '#FFED00', 'line-width': 4 } })
-      m.addLayer({ id: 'lots-numero', type: 'symbol', source: 'lots', minzoom: 16.2, layout: {
+      m.addSource('lots-centres', { type: 'geojson', data: centresGeo([]) })
+      m.addLayer({ id: 'lots-numero', type: 'symbol', source: 'lots-centres', minzoom: 16.2, layout: {
         'text-field': ['get', 'numero'], 'text-font': POLICE, 'text-size': 11, 'text-allow-overlap': false },
         paint: { 'text-color': '#0B2A42', 'text-halo-color': '#fff', 'text-halo-width': 1.4 } })
 
       /* zones, regroupées quand on s'éloigne */
-      m.addSource('zones', { type: 'geojson', data: zonesGeo([]), cluster: true, clusterRadius: 34, clusterMaxZoom: 7,
-        clusterProperties: { dispo: ['+', ['get', 'dispo']] } })
+      m.addSource('zones', { type: 'geojson', data: zonesGeo([], false), cluster: true, clusterRadius: 34, clusterMaxZoom: 7,
+        clusterProperties: { valeur: ['+', ['get', 'valeur']] } })
       m.addLayer({ id: 'groupes-halo', type: 'circle', source: 'zones', filter: ['has', 'point_count'], paint: {
         'circle-color': '#17598B', 'circle-opacity': 0.16,
         'circle-radius': ['step', ['get', 'point_count'], 26, 4, 32, 8, 38] } })
@@ -107,21 +128,24 @@ export function Carte({ zones, zoneChoisie, lots, lotChoisi, citees, fond, marge
         'circle-color': '#17598B', 'circle-stroke-color': '#fff', 'circle-stroke-width': 2.5,
         'circle-radius': ['step', ['get', 'point_count'], 18, 4, 22, 8, 27] } })
       m.addLayer({ id: 'groupes-texte', type: 'symbol', source: 'zones', filter: ['has', 'point_count'], layout: {
-        'text-field': ['to-string', ['get', 'dispo']], 'text-font': POLICE, 'text-size': 13, 'text-allow-overlap': true },
+        'text-field': ['to-string', ['get', 'valeur']], 'text-font': POLICE, 'text-size': 13, 'text-allow-overlap': true },
         paint: { 'text-color': '#fff' } })
       m.addLayer({ id: 'zone-halo', type: 'circle', source: 'zones', filter: ['!', ['has', 'point_count']], paint: {
-        'circle-color': ['case', ['>', ['get', 'dispo'], 0], '#008D36', ['>', ['get', 'encheres'], 0], '#E94E1B', '#5B6670'],
+        'circle-color': ['case', ['==', ['get', 'mode'], 'e'], '#E94E1B', ['>', ['get', 'dispo'], 0], '#008D36', ['>', ['get', 'encheres'], 0], '#E94E1B', '#5B6670'],
         'circle-opacity': 0.18,
-        'circle-radius': ['+', 16, ['*', 1.4, ['sqrt', ['get', 'dispo']]]] } })
+        'circle-radius': ['+', 16, ['*', 1.4, ['sqrt', ['get', 'valeur']]]] } })
       m.addLayer({ id: 'zone', type: 'circle', source: 'zones', filter: ['!', ['has', 'point_count']], paint: {
-        'circle-color': ['case', ['>', ['get', 'dispo'], 0], '#008D36', ['>', ['get', 'encheres'], 0], '#E94E1B', '#7C8A93'],
+        'circle-color': ['case', ['==', ['get', 'mode'], 'e'], '#E94E1B', ['>', ['get', 'dispo'], 0], '#008D36', ['>', ['get', 'encheres'], 0], '#E94E1B', '#7C8A93'],
         'circle-stroke-color': '#fff', 'circle-stroke-width': 2.5,
-        'circle-radius': ['+', 11, ['*', 1.1, ['sqrt', ['get', 'dispo']]]] } })
+        'circle-radius': ['+', 11, ['*', 1.1, ['sqrt', ['get', 'valeur']]]] } })
       m.addLayer({ id: 'zone-choisie', type: 'circle', source: 'zones', filter: ['==', ['get', 'id'], -1], paint: {
         'circle-color': 'transparent', 'circle-stroke-color': '#FFED00', 'circle-stroke-width': 4,
-        'circle-radius': ['+', 15, ['*', 1.1, ['sqrt', ['get', 'dispo']]]] } })
+        'circle-radius': ['+', 15, ['*', 1.1, ['sqrt', ['get', 'valeur']]]] } })
+      m.addLayer({ id: 'zone-survol', type: 'circle', source: 'zones', filter: ['==', ['get', 'id'], -1], paint: {
+        'circle-color': 'transparent', 'circle-stroke-color': '#04B4E3', 'circle-stroke-width': 4,
+        'circle-radius': ['+', 17, ['*', 1.1, ['sqrt', ['get', 'valeur']]]] } })
       m.addLayer({ id: 'zone-texte', type: 'symbol', source: 'zones', filter: ['!', ['has', 'point_count']], layout: {
-        'text-field': ['to-string', ['get', 'dispo']], 'text-font': POLICE, 'text-size': 12, 'text-allow-overlap': true },
+        'text-field': ['to-string', ['get', 'valeur']], 'text-font': POLICE, 'text-size': 12, 'text-allow-overlap': true },
         paint: { 'text-color': '#fff' } })
       m.addLayer({ id: 'zone-nom', type: 'symbol', source: 'zones', filter: ['!', ['has', 'point_count']], minzoom: 7.5, layout: {
         'text-field': ['get', 'nom'], 'text-font': POLICE, 'text-size': 12.5, 'text-offset': [0, 1.9], 'text-anchor': 'top',
@@ -150,7 +174,10 @@ export function Carte({ zones, zoneChoisie, lots, lotChoisi, citees, fond, marge
         const el = document.createElement('div')
         el.className = 'text-sm'
         const b = document.createElement('strong'); b.textContent = nom; b.className = 'block text-marine'
-        const s = document.createElement('span'); s.textContent = `${p.dispo} ${document.documentElement.lang === 'ar' ? 'مقسم متاح' : document.documentElement.lang === 'en' ? 'available lots' : 'lots disponibles'}`
+        const lg = document.documentElement.lang
+        const s = document.createElement('span'); s.textContent = p.mode === 'e'
+          ? `${p.encheres} ${lg === 'ar' ? 'مقسم للبتة' : lg === 'en' ? 'lots at auction' : 'lots aux enchères'}`
+          : `${p.dispo} ${lg === 'ar' ? 'مقسم متاح' : lg === 'en' ? 'available lots' : 'lots disponibles'}`
         s.className = 'text-doux'
         el.append(b, s); bulle.setDOMContent(el)
       })
@@ -167,7 +194,7 @@ export function Carte({ zones, zoneChoisie, lots, lotChoisi, citees, fond, marge
         const b = document.createElement('strong'); b.className = 'block text-marine'
         b.textContent = `${lg === 'ar' ? 'مقسم' : 'Lot'} ${f.properties.numero}`
         const s = document.createElement('span'); s.className = 'text-doux'
-        s.textContent = `${st[lg]}${f.properties.surface ? ' · ' + nombre(Number(f.properties.surface), lg) + ' m²' : ''}`
+        s.textContent = `${st[lg]}${f.properties.surface ? ' · ' + nombre(Number(f.properties.surface), lg) + (lg === 'ar' ? ' م²' : ' m²') : ''}`
         el.append(b, s)
         bulle.setLngLat(e.lngLat).setDOMContent(el).addTo(m)
       })
@@ -194,12 +221,46 @@ export function Carte({ zones, zoneChoisie, lots, lotChoisi, citees, fond, marge
 
   /* ---------- données ---------- */
   useEffect(() => {
-    if (prete) (carte.current?.getSource('zones') as GeoJSONSource | undefined)?.setData(zonesGeo(zones))
-  }, [zones, prete])
+    const m = carte.current
+    if (!m || !prete) return
+    ;(m.getSource('zones') as GeoJSONSource | undefined)?.setData(zonesGeo(zones, encheres))
+    m.setPaintProperty('groupes', 'circle-color', encheres ? '#E94E1B' : '#17598B')
+    m.setPaintProperty('groupes-halo', 'circle-color', encheres ? '#E94E1B' : '#17598B')
+  }, [zones, prete, encheres])
 
   useEffect(() => {
-    if (prete) (carte.current?.getSource('lots') as GeoJSONSource | undefined)?.setData(lotsGeo(lots))
+    if (!prete) return
+    ;(carte.current?.getSource('lots') as GeoJSONSource | undefined)?.setData(lotsGeo(lots))
+    ;(carte.current?.getSource('lots-centres') as GeoJSONSource | undefined)?.setData(centresGeo(lots))
   }, [lots, prete])
+
+  /* la zone choisie dont les lots sont dessinés : son rond (placé au centre déclaré, souvent à côté des lots) s'efface */
+  useEffect(() => {
+    const m = carte.current
+    if (!m || !prete) return
+    const masque = zoneChoisie && lots.some((l) => l.zone_id === zoneChoisie.zone_id && l.contour.length >= 3) ? zoneChoisie.zone_id : -1
+    const sauf = ['all', SANS_GROUPE, ['!=', ['get', 'id'], masque]] as unknown as ExpressionSpecification
+    for (const c of ['zone-halo', 'zone', 'zone-texte', 'zone-nom']) m.setFilter(c, sauf)
+    m.setFilter('zone-choisie', ['all', ['==', ['get', 'id'], zoneChoisie?.zone_id ?? -1], ['!=', ['get', 'id'], masque]])
+  }, [zoneChoisie, lots, prete])
+
+  /* survol d'une zone dans la liste */
+  useEffect(() => {
+    if (prete) carte.current?.setFilter('zone-survol', ['==', ['get', 'id'], survol ?? -1])
+  }, [survol, prete])
+
+  /* filtres changés : la carte montre les zones trouvées */
+  useEffect(() => {
+    const m = carte.current
+    if (!m || !prete || !cadrage || zoneChoisie || !zones.length) return
+    const b = new maplibregl.LngLatBounds()
+    zones.forEach((z) => b.extend([z.lng, z.lat]))
+    m.fitBounds(b, { padding: 80, maxZoom: 11, duration: 1000 })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cadrage, prete])
+
+  /* sur téléphone, le panneau du bas couvre la moitié de l'écran : les cadrages se font dans la partie visible */
+  const bas = () => (basMobile && window.innerWidth < 1024 ? Math.round(window.innerHeight * 0.52) - 40 : 0)
 
   useEffect(() => {
     const m = carte.current
@@ -211,8 +272,7 @@ export function Carte({ zones, zoneChoisie, lots, lotChoisi, citees, fond, marge
   useEffect(() => {
     const m = carte.current
     if (!m || !prete) return
-    m.setFilter('zone-choisie', ['==', ['get', 'id'], zoneChoisie?.zone_id ?? -1])
-    const pad = { top: 60, bottom: 60, left: marges.gauche + 40, right: marges.droite + 40 }
+    const pad = { top: bas() ? 24 : 60, bottom: (bas() ? 24 : 60) + bas(), left: marges.gauche + 40, right: marges.droite + 40 }
     if (!zoneChoisie) { m.fitBounds(TUNISIE, { padding: pad, duration: 1200 }); return }
     const avecContour = lots.filter((l) => l.zone_id === zoneChoisie.zone_id && l.contour.length >= 3)
     if (avecContour.length) {
@@ -222,7 +282,8 @@ export function Carte({ zones, zoneChoisie, lots, lotChoisi, citees, fond, marge
     } else {
       m.flyTo({ center: [zoneChoisie.lng, zoneChoisie.lat], zoom: 14, duration: 1600, padding: pad })
     }
-  }, [zoneChoisie, lots, prete, marges.gauche, marges.droite])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [zoneChoisie, lots, prete])
 
   /* ---------- lot choisi ---------- */
   useEffect(() => {
@@ -233,20 +294,30 @@ export function Carte({ zones, zoneChoisie, lots, lotChoisi, citees, fond, marge
     if (l && l.contour.length >= 3) {
       const b = new maplibregl.LngLatBounds()
       l.contour.forEach((p) => b.extend(p))
-      m.fitBounds(b, { padding: { top: 120, bottom: 120, left: marges.gauche + 120, right: marges.droite + 120 }, maxZoom: 17.5, duration: 1200 })
+      m.fitBounds(b, { padding: { top: bas() ? 30 : 80, bottom: (bas() ? 30 : 80) + bas(), left: marges.gauche + 60, right: marges.droite + 60 }, maxZoom: 17.5, duration: 1200 })
     }
-  }, [lotChoisi, lots, prete, marges.gauche, marges.droite])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lotChoisi, lots, prete])
 
   /* ---------- zones citées par Dalila : repères qui pulsent ---------- */
   useEffect(() => {
     const m = carte.current
     if (!m || !prete) return
     reperes.current.forEach((r) => r.remove())
-    reperes.current = citees.map((id) => zones.find((z) => z.zone_id === id)).filter((z): z is Zone => !!z).map((z) => {
+    reperes.current = citees.filter((id) => id !== zoneChoisie?.zone_id).map((id) => zones.find((z) => z.zone_id === id)).filter((z): z is Zone => !!z).map((z) => {
       const el = document.createElement('div'); el.className = 'repere-cite'
       return new maplibregl.Marker({ element: el }).setLngLat([z.lng, z.lat]).addTo(m)
     })
-  }, [citees, zones, prete])
+    const vues = citees.map((id) => zones.find((z) => z.zone_id === id)).filter((z): z is Zone => !!z)
+    const cle = citees.join(',')
+    if (cle === dernieresCitees.current) return      // seulement quand Dalila cite de nouvelles zones
+    dernieresCitees.current = cle
+    if (vues.length && !zoneChoisie) {
+      const b = new maplibregl.LngLatBounds()
+      vues.forEach((z) => b.extend([z.lng, z.lat]))
+      m.fitBounds(b, { padding: 120, maxZoom: 10, duration: 1400 })
+    }
+  }, [citees, zones, prete, zoneChoisie])
 
   return (
     <div className="relative h-full w-full">

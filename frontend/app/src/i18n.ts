@@ -1,6 +1,7 @@
 import type { LangueDalila, LangueUI, Statut } from './types'
 
 const fr = {
+  m2: 'm²', ha: 'ha', km: 'km', dt: 'DT',
   titre: 'Carte interactive',
   sousTitre: 'Découvrez les zones industrielles en Tunisie',
   agence: 'Agence Foncière Industrielle',
@@ -68,6 +69,7 @@ const fr = {
   erreurZones: "Les zones n'ont pas pu être chargées. Le service de Dalila est-il démarré ?",
   pasDePlan: 'Pas de plan des lots pour cette zone dans la base.',
   dlNom: 'Dalila',
+  huitLangues: '8 langues',
   dlRole: "Conseillère de l'AFI",
   dlOuvrir: 'Demander à Dalila',
   dlBonjour: 'Bonjour, je suis Dalila',
@@ -113,6 +115,7 @@ type Dico = typeof fr
 
 const ar: Dico = {
   ...fr,
+  m2: 'م²', ha: 'هك', km: 'كم', dt: 'د',
   titre: 'الخريطة التفاعلية',
   sousTitre: 'اكتشف المناطق الصناعية في تونس',
   agence: 'الوكالة العقارية الصناعية',
@@ -180,6 +183,7 @@ const ar: Dico = {
   erreurZones: 'تعذّر تحميل المناطق. هل خدمة دليلة تعمل؟',
   pasDePlan: 'لا يوجد مثال للمقاسم لهذه المنطقة.',
   dlNom: 'دليلة',
+  huitLangues: '8 لغات',
   dlRole: 'مستشارة الوكالة',
   dlOuvrir: 'اسأل دليلة',
   dlBonjour: 'مرحبًا، أنا دليلة',
@@ -290,6 +294,7 @@ const en: Dico = {
   erreurZones: 'Zones could not be loaded. Is the Dalila service running?',
   pasDePlan: 'No lot plan for this zone in the database.',
   dlRole: 'AFI advisor',
+  huitLangues: '8 languages',
   dlOuvrir: 'Ask Dalila',
   dlBonjour: "Hello, I'm Dalila",
   dlIntro: 'I help you with your investment project: choosing a lot, incentives, procedures. Every figure comes from the AFI database.',
@@ -330,6 +335,104 @@ const en: Dico = {
 }
 
 export const DICOS: Record<LangueUI, Dico> = { fr, ar, en }
+
+/* Panneau de Dalila en allemand et en turc (le reste de l'interface : fr, ar, en). À faire relire par un locuteur. */
+const de: Dico = {
+  ...en,
+  lot: 'Grundstück',
+  dlNom: 'Dalila',
+  dlRole: 'Beraterin der AFI',
+  huitLangues: '8 Sprachen',
+  dlOuvrir: 'Dalila fragen',
+  dlBonjour: 'Hallo, ich bin Dalila',
+  dlIntro: 'Ich begleite Sie bei Ihrem Ansiedlungsprojekt: Wahl des Grundstücks, Förderungen, Verfahren. Jede Zahl stammt aus der AFI-Datenbank.',
+  dlPlaceholder: 'Ihre Frage…',
+  dlEnvoyer: 'Senden',
+  dlParler: 'Sprechen',
+  dlArreter: 'Aufnahme beenden',
+  dlReflechit: ['Ich lese Ihre Frage…', 'Ich prüfe die AFI-Datenbank…', 'Ich überprüfe die Zahlen…', 'Ich schreibe die Antwort…'],
+  dlEcoute: 'Ich höre zu… zum Beenden erneut drücken',
+  dlTranscription: 'Ich schreibe auf, was Sie gesagt haben…',
+  dlVerifier: 'Prüfen Sie den Text und senden Sie ihn dann.',
+  dlMicroIndispo: 'Mikrofon nicht verfügbar',
+  dlConsentTitre: 'Mikrofon verwenden',
+  dlConsent: 'Dalila hört nur zu, während Sie das Mikrofon drücken. Die Aufnahme dient nur der Abschrift Ihrer Frage und wird nicht gespeichert.',
+  dlAutoriser: 'Mikrofon erlauben',
+  dlEcrire: 'Lieber schreiben',
+  dlLire: 'Anhören',
+  dlStop: 'Stopp',
+  dlPasDeVoix: 'Keine Stimme für diese Schrift: Die Antwort bleibt als Text.',
+  dlUtile: 'Hilfreich',
+  dlPasUtile: 'Nicht hilfreich',
+  dlMerci: 'Danke für Ihre Rückmeldung',
+  dlSources: 'Quellen',
+  dlContexte: 'Zu',
+  dlPreparation: 'Dalila wird vorbereitet (etwa eine Minute)…',
+  dlHorsService: 'Dalila ist im Moment nicht verfügbar. Kontakt AFI: +216 71 124 260.',
+  dlDelai: 'Die Antwort hat zu lange gedauert. Bitte erneut versuchen oder AFI kontaktieren: +216 71 124 260.',
+  dlPied: 'Dalila kann sich irren: Die Zahlen stammen aus der AFI-Datenbank, bitte bei der AFI prüfen.',
+  dlLangue: 'Sprache von Dalila',
+  dlNouvelle: 'Neues Gespräch',
+  dlReduire: 'Verkleinern',
+  dlSecondes: 's',
+  dlVoirCarte: 'Auf der Karte zeigen',
+  fermer: 'Schließen',
+  dlCas: [
+    { titre: 'Wahl des Grundstücks', texte: 'Das passende Grundstück für Ihr Projekt finden', questions: ['Ein Grundstück mit 3.000 m² nahe dem Hafen von Sfax', 'Welche Zonen in Bizerte haben freie Grundstücke?'] },
+    { titre: 'Steuerliche und finanzielle Vorteile', texte: 'Verfügbare Anreize und Finanzierungen', questions: ['Welche Vorteile bietet eine Zone für regionale Entwicklung?', 'Wie hoch ist der geförderte Preis in Kasserine?'] },
+    { titre: 'Verwaltungsverfahren', texte: 'Unterlagen, Schritte und Fristen', questions: ['Welche Unterlagen brauche ich für den Kauf eines Grundstücks?', 'Wie nehme ich an einer Versteigerung teil?'] },
+  ],
+}
+
+const tr: Dico = {
+  ...en,
+  lot: 'Arsa',
+  dlNom: 'Dalila',
+  dlRole: 'AFI danışmanı',
+  huitLangues: '8 dil',
+  dlOuvrir: "Dalila'ya sor",
+  dlBonjour: 'Merhaba, ben Dalila',
+  dlIntro: 'Yatırım projenizde size eşlik ediyorum: arsa seçimi, teşvikler, işlemler. Her rakam AFI veritabanından gelir.',
+  dlPlaceholder: 'Sorunuz…',
+  dlEnvoyer: 'Gönder',
+  dlParler: 'Konuş',
+  dlArreter: 'Kaydı durdur',
+  dlReflechit: ['Sorunuzu okuyorum…', 'AFI veritabanına bakıyorum…', 'Rakamları kontrol ediyorum…', 'Yanıtı yazıyorum…'],
+  dlEcoute: 'Dinliyorum… durdurmak için tekrar basın',
+  dlTranscription: 'Söylediklerinizi yazıyorum…',
+  dlVerifier: 'Metni kontrol edin, sonra gönderin.',
+  dlMicroIndispo: 'Mikrofon kullanılamıyor',
+  dlConsentTitre: 'Mikrofon kullanımı',
+  dlConsent: 'Dalila yalnızca mikrofona bastığınızda dinler. Ses yalnızca sorunuzu yazıya dökmek için kullanılır ve saklanmaz.',
+  dlAutoriser: 'Mikrofona izin ver',
+  dlEcrire: 'Yazmayı tercih et',
+  dlLire: 'Dinle',
+  dlStop: 'Durdur',
+  dlPasDeVoix: 'Bu yazı için ses yok: yanıt metin olarak kalır.',
+  dlUtile: 'Faydalı',
+  dlPasUtile: 'Faydalı değil',
+  dlMerci: 'Geri bildiriminiz için teşekkürler',
+  dlSources: 'Kaynaklar',
+  dlContexte: 'Konu',
+  dlPreparation: 'Dalila hazırlanıyor (yaklaşık bir dakika)…',
+  dlHorsService: 'Dalila şu anda kullanılamıyor. AFI ile iletişime geçin: +216 71 124 260.',
+  dlDelai: 'Yanıt çok uzun sürdü. Tekrar deneyin veya AFI ile iletişime geçin: +216 71 124 260.',
+  dlPied: 'Dalila hata yapabilir: rakamlar AFI veritabanından gelir, lütfen AFI ile doğrulayın.',
+  dlLangue: "Dalila'nın dili",
+  dlNouvelle: 'Yeni sohbet',
+  dlReduire: 'Küçült',
+  dlSecondes: 'sn',
+  dlVoirCarte: 'Haritada göster',
+  fermer: 'Kapat',
+  dlCas: [
+    { titre: 'Arsa seçimi', texte: 'Projenize uygun arsayı bulun', questions: ['Sfax limanına yakın 3.000 m² arsa', "Bizerte'de hangi bölgelerde boş arsa var?"] },
+    { titre: 'Vergi ve finansal teşvikler', texte: 'Mevcut teşvikler ve finansman', questions: ['Bölgesel kalkınma bölgesinde hangi teşvikler var?', "Kasserine'de teşvikli fiyat nedir?"] },
+    { titre: 'İdari işlemler', texte: 'Belgeler, adımlar ve süreler', questions: ['Arsa satın almak için hangi belgeler gerekir?', 'Bir açık artırmaya nasıl katılırım?'] },
+  ],
+}
+
+/** Textes du panneau de Dalila selon la langue choisie pour elle (8 langues ; dialectes : textes en arabe). */
+export const DICOS_DALILA: Record<string, Dico> = { fr, en, ar, aeb: ar, arq: ar, ayl: ar, de, tr }
 export type { Dico }
 
 export const LANGUES_DALILA: { code: LangueDalila; nom: string; rtl: boolean }[] = [
@@ -380,6 +483,35 @@ export const SERVICES: Record<string, { fr: string; ar: string; en: string }> = 
   college: { fr: 'Collège', ar: 'إعدادية', en: 'Middle school' },
   ecole: { fr: 'École', ar: 'مدرسة', en: 'School' },
   parking: { fr: 'Parking', ar: 'موقف سيارات', en: 'Parking' },
+}
+
+/** « sejnane », « KAIROUAN II », « KASSERINE Extention » -> « Sejnane », « Kairouan II », « Kasserine Extention ».
+ *  Mot par mot : un mot tout en majuscules ou tout en minuscules prend une majuscule ; chiffres romains gardés. */
+const ROMAINS = /^(I{1,3}|IV|VI{0,3}|IX|X)$/i
+const PETITS = new Set(['de', 'du', 'des', 'la', 'le', 'les', 'et', 'el', 'rte'])
+export function joliNom(s: string): string {
+  if (!s || /[\u0600-\u06FF]/.test(s)) return s
+  return s.split(/(\s+)/).map((mot, i) => {
+    if (!/[a-zA-Zà-ü]/.test(mot)) return mot
+    if (ROMAINS.test(mot)) return mot.toUpperCase()
+    if (mot !== mot.toUpperCase() && mot !== mot.toLowerCase()) return mot
+    const bas = mot.toLowerCase()
+    if (i > 0 && PETITS.has(bas)) return bas === 'el' ? 'El' : bas === 'rte' ? 'Rte' : bas
+    return bas.charAt(0).toUpperCase() + bas.slice(1)
+  }).join('')
+}
+
+const UNITES: Record<string, { ar: string; en: string }> = {
+  'kVA/ha': { ar: 'ك.ف.أ/هك', en: 'kVA/ha' },
+  'm3/jour/ha': { ar: 'م³/يوم/هك', en: 'm³/day/ha' },
+  bar: { ar: 'بار', en: 'bar' },
+  paires: { ar: 'زوج', en: 'pairs' },
+}
+/** Unité d'un réseau (base en français) dans la langue de l'interface. */
+export function unite(u: string | null | undefined, langue: LangueUI): string {
+  if (!u) return ''
+  if (langue === 'fr') return u === 'm3/jour/ha' ? 'm³/jour/ha' : u
+  return UNITES[u]?.[langue] ?? u
 }
 
 export function nombre(n: number | null | undefined, langue: LangueUI = 'fr', decimales = 0): string {

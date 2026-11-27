@@ -1,4 +1,5 @@
-import { Gavel, Globe, Home, MapPin, Scale } from 'lucide-react'
+import { useEffect, useRef, useState } from 'react'
+import { Check, ChevronDown, Gavel, Globe, Home, MapPin, Scale } from 'lucide-react'
 import clsx from 'clsx'
 import logo from '../assets/afi/logo.png'
 import { useLangue } from '../langue'
@@ -13,7 +14,7 @@ interface Props {
 }
 
 export function Entete({ encheres, onEncheres, nbComparer, onComparer, onAccueil }: Props) {
-  const { t, langue, changer } = useLangue()
+  const { t, langue } = useLangue()
   return (
     <header className="relative z-30 bg-white">
       <div className="relative flex h-[84px] items-center gap-5 overflow-hidden px-5 lg:px-8">
@@ -63,18 +64,56 @@ export function Entete({ encheres, onEncheres, nbComparer, onComparer, onAccueil
             <Scale size={18} aria-hidden /> <span className="hidden md:inline">{t.comparer}</span>
             {nbComparer > 0 && <span className="grid size-5 place-items-center rounded-full bg-marine text-[11px] font-bold text-white">{nbComparer}</span>}
           </button>
-          <div className="flex items-center rounded-xl border border-trait p-0.5" role="group" aria-label="Langue">
-            <Globe size={16} className="mx-2 text-doux" aria-hidden />
-            {(['fr', 'ar', 'en'] as LangueUI[]).map((l) => (
-              <button key={l} type="button" onClick={() => changer(l)} aria-pressed={langue === l} lang={l}
-                className={clsx('min-h-9 min-w-10 rounded-lg px-2 text-sm font-semibold transition',
-                  langue === l ? 'bg-marine text-white' : 'text-doux hover:text-marine')}>
-                {l === 'ar' ? <span className="font-arabe">عربي</span> : l.toUpperCase()}
-              </button>
-            ))}
-          </div>
+          <ChoixLangue />
         </div>
       </nav>
     </header>
+  )
+}
+
+const LANGUES: { code: LangueUI; court: string; nom: string }[] = [
+  { code: 'fr', court: 'FR', nom: 'Français' },
+  { code: 'ar', court: 'عربي', nom: 'العربية' },
+  { code: 'en', court: 'EN', nom: 'English' },
+]
+
+/** Le globe : menu de la langue de tout le site (comme sur la carte actuelle de l'AFI). */
+function ChoixLangue() {
+  const { langue, changer } = useLangue()
+  const [ouvert, setOuvert] = useState(false)
+  const boite = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    if (!ouvert) return
+    const dehors = (e: MouseEvent) => { if (!boite.current?.contains(e.target as Node)) setOuvert(false) }
+    document.addEventListener('mousedown', dehors)
+    return () => document.removeEventListener('mousedown', dehors)
+  }, [ouvert])
+  const actuelle = LANGUES.find((l) => l.code === langue)!
+  return (
+    <div ref={boite} className="relative" onKeyDown={(e) => { if (e.key === 'Escape') setOuvert(false) }}>
+      <button type="button" onClick={() => setOuvert(!ouvert)} aria-expanded={ouvert} aria-haspopup="listbox"
+        aria-label={`Langue du site · لغة الموقع · Site language : ${actuelle.nom}`}
+        className="flex min-h-10 items-center gap-2 rounded-xl border border-trait px-3 font-semibold text-marine transition hover:bg-fond">
+        <Globe size={18} aria-hidden />
+        <span className={langue === 'ar' ? 'font-arabe' : ''}>{actuelle.court}</span>
+        <ChevronDown size={15} className={clsx('transition-transform', ouvert && 'rotate-180')} aria-hidden />
+      </button>
+      {ouvert && (
+        <ul role="listbox" aria-label="Langue · لغة · Language"
+          className="absolute end-0 top-12 z-50 w-44 overflow-hidden rounded-xl border border-trait bg-white py-1 shadow-flotte">
+          {LANGUES.map((l) => (
+            <li key={l.code}>
+              <button type="button" role="option" aria-selected={l.code === langue} lang={l.code}
+                onClick={() => { changer(l.code); setOuvert(false) }}
+                className={clsx('flex min-h-11 w-full items-center gap-2 px-3 text-start hover:bg-fond',
+                  l.code === langue ? 'font-semibold text-marine' : 'text-encre', l.code === 'ar' && 'font-arabe')}>
+                <span className="flex-1">{l.nom}</span>
+                {l.code === langue && <Check size={16} aria-hidden />}
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
   )
 }

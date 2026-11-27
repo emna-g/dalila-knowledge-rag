@@ -12,6 +12,7 @@
   --color-ciel: #04B4E3;        /* micro actif, écoute */
   --color-sarcelle: #0F7C8C;    /* boutons de la carte actuelle */
   --color-vert: #008D36;        /* disponible */
+  --color-vert-texte: #006B29;  /* petit texte vert : contraste 4,5:1 sur fond clair */
   --color-orange: #CE651B;      /* réservé */
   --color-alerte: #E94E1B;      /* enchères, alerte */
   --color-jaune: #FFED00;       /* surligneur, petite dose */

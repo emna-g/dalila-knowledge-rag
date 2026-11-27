@@ -6,7 +6,7 @@ import {
 } from 'lucide-react'
 import clsx from 'clsx'
 import { api } from '../api'
-import { DISTANCES, EQUIPEMENTS, ETATS, SERVICES, nombre } from '../i18n'
+import { DISTANCES, EQUIPEMENTS, ETATS, SERVICES, nombre, unite } from '../i18n'
 import { useLangue, useNom } from '../langue'
 import type { FicheZone as Fiche, Lot, Statut, Zone } from '../types'
 
@@ -58,7 +58,7 @@ export function FicheZone({ zone, lots, lotChoisi, onLot, onRetour, onDemander, 
     { zone: zone.zone_id, nom: zone.nom })
 
   return (
-    <div className="flex h-full flex-col">
+    <div className="defile flex h-full flex-col max-lg:overflow-y-auto max-lg:[&>*]:shrink-0">
       {/* en-tête de la fiche */}
       <div className="relative overflow-hidden bg-gradient-to-br from-marine via-marine to-nuit px-5 pb-5 pt-4 text-white">
         <svg aria-hidden className="absolute -end-16 -top-16 size-56 opacity-20" viewBox="0 0 100 100">
@@ -92,14 +92,14 @@ export function FicheZone({ zone, lots, lotChoisi, onLot, onRetour, onDemander, 
         <Chiffre libelle={t.lotsDispo} valeur={nombre(zone.lots_disponibles, langue)} accent="text-vert" />
         <Chiffre libelle={t.parM2.replace('/', ' / ')} valeur={zone.prix_m2_dt != null ? nombre(zone.prix_m2_dt, langue) : '—'}
           sous={zone.prix_m2_subventionne_dt != null ? `${nombre(zone.prix_m2_subventionne_dt, langue, 2)} ${t.subventionne}` : undefined} />
-        <Chiffre libelle={t.surfaceTotale} valeur={zone.surface_totale_m2 != null ? `${nombre(zone.surface_totale_m2 / 10000, langue, 1)} ha` : '—'} />
-        <Chiffre libelle={t.surfaceAmenagee} valeur={zone.surface_amenagee_m2 != null ? `${nombre(zone.surface_amenagee_m2 / 10000, langue, 1)} ha` : '—'} />
+        <Chiffre libelle={t.surfaceTotale} valeur={zone.surface_totale_m2 != null ? `${nombre(zone.surface_totale_m2 / 10000, langue, 1)} ${t.ha}` : '—'} />
+        <Chiffre libelle={t.surfaceAmenagee} valeur={zone.surface_amenagee_m2 != null ? `${nombre(zone.surface_amenagee_m2 / 10000, langue, 1)} ${t.ha}` : '—'} />
       </div>
 
       {/* onglets */}
       <div role="tablist" className="flex gap-1 border-b border-trait bg-white px-3">
         {([['apercu', t.apercu], ['lots', `${t.lots} · ${lots.length || totalLots}`], ['infra', t.infrastructures], ['docs', t.documents]] as const).map(([k, l]) => (
-          <button key={k} type="button" role="tab" aria-selected={onglet === k} onClick={() => setOnglet(k)}
+          <button key={k} type="button" role="tab" id={`onglet-${k}`} aria-controls="panneau-onglet" aria-selected={onglet === k} onClick={() => setOnglet(k)}
             className={clsx('relative min-h-11 flex-1 whitespace-nowrap px-1 text-[13px] font-medium transition', onglet === k ? 'text-marine' : 'text-doux hover:text-encre')}>
             {l}
             {onglet === k && <motion.span layoutId="onglet" className="absolute inset-x-2 -bottom-px h-0.5 rounded-full bg-marine" />}
@@ -107,9 +107,9 @@ export function FicheZone({ zone, lots, lotChoisi, onLot, onRetour, onDemander, 
         ))}
       </div>
 
-      <div className="defile flex-1 overflow-y-auto bg-fond/60 p-4">
+      <div className="defile flex-1 bg-fond/60 p-4 lg:overflow-y-auto">
         <AnimatePresence mode="wait">
-          <motion.div key={onglet} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.15 }} className="space-y-4">
+          <motion.div key={onglet} id="panneau-onglet" role="tabpanel" aria-labelledby={`onglet-${onglet}`} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.15 }} className="space-y-4">
 
             {onglet === 'apercu' && (<>
               <Carte titre={t.aEtat}>
@@ -133,7 +133,7 @@ export function FicheZone({ zone, lots, lotChoisi, onLot, onRetour, onDemander, 
               <Acces fiche={fiche} />
               {zone.surface_lot_min_m2 != null && (
                 <Carte titre={t.lotsDispo}>
-                  <p className="text-sm text-doux">{nombre(zone.surface_lot_min_m2, langue)} – {nombre(zone.surface_lot_max_m2, langue)} m²</p>
+                  <p className="text-sm text-doux"><bdi dir="ltr">{nombre(zone.surface_lot_min_m2, langue)} – {nombre(zone.surface_lot_max_m2, langue)}</bdi> {t.m2}</p>
                 </Carte>
               )}
             </>)}
@@ -151,11 +151,11 @@ export function FicheZone({ zone, lots, lotChoisi, onLot, onRetour, onDemander, 
                       <button type="button" onClick={() => onLot(null)} aria-label={t.fermer} className="ms-auto grid size-9 place-items-center rounded-lg text-doux hover:bg-fond"><X size={18} aria-hidden /></button>
                     </div>
                     <dl className="mt-3 grid grid-cols-2 gap-2 text-sm">
-                      <div className="rounded-xl bg-fond p-2.5"><dt className="text-doux">m²</dt><dd className="text-lg font-bold">{nombre(lot.surface_m2, langue)}</dd></div>
+                      <div className="rounded-xl bg-fond p-2.5"><dt className="text-doux">{t.m2}</dt><dd className="text-lg font-bold">{nombre(lot.surface_m2, langue)}</dd></div>
                       <div className="rounded-xl bg-fond p-2.5"><dt className="text-doux">{t.parM2}</dt><dd className="text-lg font-bold">{nombre(lot.prix_m2_dt, langue)}</dd></div>
                       {lot.surface_m2 != null && lot.prix_m2_dt != null && (
                         <div className="col-span-2 rounded-xl bg-sauge p-2.5"><dt className="text-[#3c5a1e]">{t.prixTerrain} ({nombre(lot.surface_m2, langue)} × {nombre(lot.prix_m2_dt, langue)})</dt>
-                          <dd className="text-xl font-bold text-encre">{nombre(Math.round(lot.surface_m2 * lot.prix_m2_dt), langue)} DT</dd></div>
+                          <dd className="text-xl font-bold text-encre">{nombre(Math.round(lot.surface_m2 * lot.prix_m2_dt), langue)} {t.dt}</dd></div>
                       )}
                     </dl>
                     <button type="button" onClick={() => onDemander(
@@ -183,7 +183,7 @@ export function FicheZone({ zone, lots, lotChoisi, onLot, onRetour, onDemander, 
                         className={clsx('flex min-h-12 w-full items-center gap-3 px-3.5 text-start text-sm transition hover:bg-fond', l.lot_id === lotChoisi && 'bg-jaune/20')}>
                         <span className="size-2.5 shrink-0 rounded-full" style={{ background: ETATS[l.statut].couleur }} />
                         <span className="w-16 font-semibold">{t.lot} {l.numero}</span>
-                        <span className="text-doux">{nombre(l.surface_m2, langue)} m²</span>
+                        <span className="text-doux">{nombre(l.surface_m2, langue)} {t.m2}</span>
                         <span className="ms-auto text-xs" style={{ color: ETATS[l.statut].couleur }}>{ETATS[l.statut][langue]}</span>
                       </button>
                     </li>
@@ -203,7 +203,7 @@ export function FicheZone({ zone, lots, lotChoisi, onLot, onRetour, onDemander, 
                         <li key={e.type} className="rounded-xl bg-fond p-2.5">
                           <I size={18} className="text-sarcelle" aria-hidden />
                           <p className="mt-1 text-[12px] text-doux">{EQUIPEMENTS[e.type]?.[langue] ?? e.type}</p>
-                          <p className="text-sm font-semibold">{e.valeur ?? '✓'} {e.unite ?? ''}</p>
+                          <p className="text-sm font-semibold" dir="auto">{e.valeur ?? '✓'} {unite(e.unite, langue)}</p>
                         </li>
                       )
                     })}
@@ -217,7 +217,7 @@ export function FicheZone({ zone, lots, lotChoisi, onLot, onRetour, onDemander, 
                       <li key={k} className="flex items-center gap-2">
                         <span className="text-doux">{SERVICES[k]?.[langue] ?? k}</span>
                         <span className="truncate text-xs text-doux/70">{s.nom ?? ''}</span>
-                        <span className="ms-auto shrink-0 font-semibold">{nombre(s.km, langue, 1)} km</span>
+                        <span className="ms-auto shrink-0 font-semibold">{nombre(s.km, langue, 1)} {t.km}</span>
                       </li>
                     ))}
                   </ul>
@@ -250,7 +250,7 @@ export function FicheZone({ zone, lots, lotChoisi, onLot, onRetour, onDemander, 
                 <li key={d.type + d.nom} className="flex items-center gap-3 text-sm">
                   <span className="grid size-9 shrink-0 place-items-center rounded-xl bg-lien/10 text-lien"><I size={17} aria-hidden /></span>
                   <span className="min-w-0"><span className="block font-medium">{DISTANCES[d.type]?.[langue] ?? d.type}</span><span className="block truncate text-xs text-doux">{d.nom}</span></span>
-                  <span className="ms-auto shrink-0 font-semibold text-marine">{nombre(d.km, langue)} km</span>
+                  <span className="ms-auto shrink-0 font-semibold text-marine">{nombre(d.km, langue)} {t.km}</span>
                 </li>
               )
             })}
@@ -275,7 +275,7 @@ function Chiffre({ libelle, valeur, sous, accent }: { libelle: string; valeur: s
     <div className="rounded-xl bg-fond p-3">
       <p className="truncate text-[12px] text-doux first-letter:uppercase">{libelle}</p>
       <p className={clsx('mt-0.5 text-xl font-bold', accent ?? 'text-encre')}>{valeur}</p>
-      {sous && <p className="truncate text-[11px] font-medium text-vert">{sous}</p>}
+      {sous && <p className="truncate text-[11px] font-medium text-vert-texte">{sous}</p>}
     </div>
   )
 }

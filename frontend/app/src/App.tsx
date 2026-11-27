@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { List, Scale, X } from 'lucide-react'
 import clsx from 'clsx'
@@ -11,6 +11,13 @@ import { Recherche, FILTRES_VIDES, filtrer, type Filtres } from './components/Re
 import { FicheZone } from './components/FicheZone'
 import { Comparateur } from './components/Comparateur'
 import { Dalila, Anneau, type Demande } from './dalila/Dalila'
+
+/** Lien partageable : #zone=931402&lot=261 */
+function lireAdresse(): { zone: number | null; lot: number | null } {
+  const p = new URLSearchParams(location.hash.slice(1))
+  const n = (k: string) => (p.get(k) && /^\d+$/.test(p.get(k)!) ? Number(p.get(k)) : null)
+  return { zone: n('zone'), lot: n('lot') }
+}
 
 export default function App() {
   const { t } = useLangue()
@@ -29,18 +36,40 @@ export default function App() {
   const [demande, setDemande] = useState<Demande | null>(null)
   const [contexte, setContexte] = useState<Record<string, unknown> | null>(null)
   const [panneauMobile, setPanneauMobile] = useState(false)
-  const [, setSurvol] = useState<number | null>(null)
+  const [survol, setSurvol] = useState<number | null>(null)
+  const [cadrage, setCadrage] = useState(0)
+  const premierFiltre = useRef(true)
 
-  useEffect(() => { api.zones().then(setZones).catch(() => setErreur(true)) }, [])
+  const choisirZone = useCallback((id: number | null, lot: number | null = null) => {
+    setZoneId(id); setLotId(lot)
+    if (id != null) setPanneauMobile(true)
+    if (id == null) { setLots([]); return }
+    api.lots(id).then((l) => setLots(l)).catch(() => setLots([]))
+  }, [])
+
+  useEffect(() => {
+    api.zones().then((z) => {
+      setZones(z)
+      const a = lireAdresse()
+      if (a.zone != null && z.some((x) => x.zone_id === a.zone)) choisirZone(a.zone, a.lot)
+    }).catch(() => setErreur(true))
+  }, [choisirZone])
+
+  // l'adresse suit la sélection (lien à partager, bouton « précédent » du navigateur)
+  useEffect(() => {
+    if (!zones.length) return          // pas avant d'avoir lu l'adresse de départ
+    const h = zoneId != null ? `#zone=${zoneId}${lotId != null ? `&lot=${lotId}` : ''}` : ''
+    if (location.hash !== h) history.replaceState(null, '', h || location.pathname)
+  }, [zoneId, lotId, zones.length])
 
   const resultats = useMemo(() => filtrer(zones, filtres), [zones, filtres])
   const zone = zones.find((z) => z.zone_id === zoneId) ?? null
 
-  const choisirZone = useCallback((id: number | null, lot: number | null = null) => {
-    setZoneId(id); setLotId(lot); setPanneauMobile(id != null)
-    if (id == null) { setLots([]); return }
-    api.lots(id).then((l) => setLots(l)).catch(() => setLots([]))
-  }, [])
+  // un filtre change : la carte se cadre sur les zones trouvées
+  useEffect(() => {
+    if (premierFiltre.current) { premierFiltre.current = false; return }
+    setCadrage((c) => c + 1)
+  }, [filtres.gouvernorat, filtres.texte, filtres.dispo, filtres.encheres, filtres.dr, filtres.cahier, filtres.surface, filtres.prixMax])
 
   // garder le contexte de Dalila en accord avec la sélection sur la carte
   useEffect(() => {
@@ -50,8 +79,7 @@ export default function App() {
   }, [zone, lotId, lots, t.lot, nom])
 
   const allerAuLot = useCallback(async (id: number) => {
-    const deja = lots.find((l) => l.lot_id === id)
-    if (deja) { setLotId(id); return }
+    if (lots.some((l) => l.lot_id === id)) { setLotId(id); setPanneauMobile(true); return }
     try { const l = await api.lot(id); choisirZone(l.zone_id, id) } catch { /* lot sans contour : rien à montrer */ }
   }, [lots, choisirZone])
 
@@ -61,53 +89,66 @@ export default function App() {
   }, [contexte])
 
   const basculerComparer = (id: number) => setComparer((c) => c.includes(id) ? c.filter((x) => x !== id) : [...c, id].slice(-3))
-  const marges = { gauche: 0, droite: 0 }   // les panneaux sont à côté de la carte, pas dessus
+  const mobile = () => window.innerWidth < 1024
 
   return (
     <div className="flex h-full flex-col">
       <Entete encheres={filtres.encheres} onEncheres={() => setFiltres({ ...filtres, encheres: !filtres.encheres })}
-        nbComparer={comparer.length} onComparer={() => setComparateur(true)} onAccueil={() => { choisirZone(null); setFiltres(FILTRES_VIDES); setCitees([]) }} />
+        nbComparer={comparer.length} onComparer={() => setComparateur(true)}
+        onAccueil={() => { choisirZone(null); setFiltres(FILTRES_VIDES); setCitees([]); setPanneauMobile(false) }} />
 
       <main className="relative flex min-h-0 flex-1">
-        {/* panneau de gauche : recherche ou fiche d'une zone */}
-        <aside className={clsx('absolute inset-y-0 start-0 z-20 w-full max-w-[400px] border-e border-trait bg-white shadow-flotte transition-transform lg:static lg:translate-x-0 lg:shadow-none',
-          panneauMobile ? 'translate-x-0' : 'max-lg:ltr:-translate-x-full max-lg:rtl:translate-x-full')}>
-          <button type="button" onClick={() => setPanneauMobile(false)} aria-label={t.fermer}
-            className="absolute end-3 top-3 z-10 grid size-9 place-items-center rounded-lg bg-white/90 text-doux shadow lg:hidden"><X size={18} aria-hidden /></button>
-          <AnimatePresence mode="wait" initial={false}>
-            {zone ? (
-              <motion.div key={`z${zone.zone_id}`} className="h-full" initial={{ opacity: 0, x: 16 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -16 }} transition={{ duration: 0.2 }}>
-                <FicheZone zone={zone} lots={lots} lotChoisi={lotId} onLot={setLotId} onRetour={() => choisirZone(null)}
-                  onDemander={demander} comparee={comparer.includes(zone.zone_id)} basculerComparer={() => basculerComparer(zone.zone_id)} />
-              </motion.div>
-            ) : (
-              <motion.div key="recherche" className="h-full" initial={{ opacity: 0, x: -16 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 16 }} transition={{ duration: 0.2 }}>
-                <Recherche zones={zones} resultats={resultats} filtres={filtres} setFiltres={setFiltres} onZone={(id) => choisirZone(id)}
-                  comparer={comparer} basculerComparer={basculerComparer} survol={setSurvol} />
-              </motion.div>
-            )}
-          </AnimatePresence>
+        {/* panneau : à gauche sur ordinateur, en bas de l'écran sur téléphone (la carte reste visible) */}
+        <aside aria-label={zone ? nom(zone.nom, zone.nom_ar) : t.rechercheTitre}
+          className={clsx('z-30 bg-white transition-transform duration-300',
+            'max-lg:fixed max-lg:inset-x-0 max-lg:bottom-0 max-lg:h-[52dvh] max-lg:rounded-t-3xl max-lg:shadow-flotte',
+            'lg:relative lg:w-[400px] lg:shrink-0 lg:border-e lg:border-trait',
+            panneauMobile ? 'max-lg:translate-y-0' : 'max-lg:translate-y-full')}>
+          <div className="flex h-11 items-center justify-center lg:hidden">
+            <span className="h-1.5 w-12 rounded-full bg-trait" aria-hidden />
+            <button type="button" onClick={() => setPanneauMobile(false)} aria-label={t.fermer}
+              className="absolute end-3 top-1.5 grid size-9 place-items-center rounded-lg text-doux hover:bg-fond"><X size={18} aria-hidden /></button>
+          </div>
+          <div className="h-[calc(100%-2.75rem)] overflow-hidden max-lg:rounded-t-2xl lg:h-full">
+            <AnimatePresence mode="wait" initial={false}>
+              {zone ? (
+                <motion.div key={`z${zone.zone_id}`} className="h-full" initial={{ opacity: 0, x: 16 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -16 }} transition={{ duration: 0.2 }}>
+                  <FicheZone zone={zone} lots={lots} lotChoisi={lotId} onLot={setLotId} onRetour={() => choisirZone(null)}
+                    onDemander={demander} comparee={comparer.includes(zone.zone_id)} basculerComparer={() => basculerComparer(zone.zone_id)} />
+                </motion.div>
+              ) : (
+                <motion.div key="recherche" className="h-full" initial={{ opacity: 0, x: -16 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 16 }} transition={{ duration: 0.2 }}>
+                  <Recherche zones={zones} resultats={resultats} filtres={filtres} setFiltres={setFiltres} chargement={!zones.length && !erreur}
+                    onZone={(id) => choisirZone(id)} comparer={comparer} basculerComparer={basculerComparer} survol={setSurvol} />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
         </aside>
 
         {/* carte */}
         <section className="relative min-w-0 flex-1">
-          <Carte zones={resultats} zoneChoisie={zone} lots={lots} lotChoisi={lotId} citees={citees} fond={fond} marges={marges}
-            onZone={(id) => choisirZone(id)} onLot={(id) => setLotId(id)} onFond={setFond} />
+          <Carte zones={resultats} zoneChoisie={zone} lots={lots} lotChoisi={lotId} citees={citees} fond={fond}
+            survol={survol} cadrage={cadrage} basMobile={panneauMobile} encheres={filtres.encheres}
+            onZone={(id) => choisirZone(id)} onLot={(id) => { setLotId(id); setPanneauMobile(true) }} onFond={setFond} />
           {!zones.length && (
-            <div className="pointer-events-none absolute inset-x-0 top-16 z-10 mx-auto w-fit rounded-xl bg-white/95 px-4 py-2 text-sm shadow-carte" role="status">
+            <div className={clsx('pointer-events-none absolute inset-x-0 top-16 z-10 mx-auto w-fit rounded-xl px-4 py-2 text-sm shadow-carte',
+              erreur ? 'bg-alerte text-white' : 'bg-white/95')} role="status">
               {erreur ? t.erreurZones : t.chargement}
             </div>
           )}
-          <button type="button" onClick={() => setPanneauMobile(true)}
-            className="absolute bottom-24 start-3 z-10 flex min-h-11 items-center gap-2 rounded-xl bg-white px-4 font-semibold text-marine shadow-carte lg:hidden">
-            <List size={18} aria-hidden /> {t.zonesTrouvees(resultats.length)}
-          </button>
+          {!panneauMobile && (
+            <button type="button" onClick={() => setPanneauMobile(true)}
+              className="absolute bottom-24 start-3 z-10 flex min-h-11 items-center gap-2 rounded-xl bg-white px-4 font-semibold text-marine shadow-carte lg:hidden">
+              <List size={18} aria-hidden /> {t.zonesTrouvees(resultats.length)}
+            </button>
+          )}
 
           {/* barre de comparaison */}
           <AnimatePresence>
-            {comparer.length > 0 && (
+            {comparer.length > 0 && !(panneauMobile && mobile()) && (
               <motion.div initial={{ y: 30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 30, opacity: 0 }}
-                className="absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 items-center gap-2 rounded-2xl bg-nuit/95 p-2 ps-4 text-white shadow-flotte backdrop-blur">
+                className="absolute bottom-8 left-1/2 z-10 flex max-w-[calc(100%-2rem)] -translate-x-1/2 flex-wrap items-center gap-2 rounded-2xl bg-nuit/95 p-2 ps-4 text-white shadow-flotte backdrop-blur">
                 <Scale size={18} className="text-ciel" aria-hidden />
                 {comparer.map((id) => { const z = zones.find((x) => x.zone_id === id); return z && (
                   <span key={id} className="flex items-center gap-1 rounded-lg bg-white/10 px-2 py-1 text-sm">
@@ -122,13 +163,13 @@ export default function App() {
 
           {/* Dalila réduite : la mascotte en bouton */}
           <AnimatePresence>
-            {!dalila && (
+            {!dalila && !(panneauMobile && mobile()) && (
               <motion.button type="button" onClick={() => setDalila(true)} initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.8, opacity: 0 }}
                 className="group absolute bottom-8 end-4 z-20 flex items-center gap-3 rounded-full bg-white p-1.5 pe-5 shadow-flotte ring-1 ring-trait transition hover:-translate-y-0.5">
                 <Anneau etat="repos" taille={58} />
                 <span className="text-start">
                   <span className="block font-bold text-marine">{t.dlOuvrir}</span>
-                  <span className="block text-xs text-doux">{t.dlRole} · 8 langues</span>
+                  <span className="block text-xs text-doux">{t.dlRole} · {t.huitLangues}</span>
                 </span>
               </motion.button>
             )}
@@ -136,8 +177,8 @@ export default function App() {
         </section>
 
         <Dalila ouvert={dalila} onFermer={() => setDalila(false)} demande={demande} contexte={contexte} onRetirerContexte={() => setContexte(null)}
-          onZone={(id) => { choisirZone(id); if (window.innerWidth < 1024) setDalila(false) }}
-          onLot={(id) => { allerAuLot(id); if (window.innerWidth < 1024) setDalila(false) }}
+          onZone={(id) => { choisirZone(id); if (mobile()) setDalila(false) }}
+          onLot={(id) => { allerAuLot(id); if (mobile()) setDalila(false) }}
           onCiter={setCitees} />
       </main>
 
