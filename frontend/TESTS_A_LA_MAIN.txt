@@ -1,0 +1,104 @@
+TESTS À FAIRE À LA MAIN – INTERFACE DALILA
+==========================================
+Avant : base démarrée (docker start dalila-db), service lancé, page ouverte sur http://127.0.0.1:8000/
+Recharger avec Ctrl + F5. Cocher [x] ce qui marche ; noter ce qui ne marche pas.
+
+
+A. PAGE D'ACCUEIL
+[ ] 1. Le logo AFI, le titre « Carte interactive » et le ministère s'affichent.
+[ ] 2. Les chiffres clés : 50 zones, 673 lots disponibles, 23 gouvernorats.
+[ ] 3. La carte de la Tunisie est en couleurs (mer bleue), avec des ronds bleus et verts.
+[ ] 4. Le panneau de Dalila est ouvert à droite, avec la mascotte et 3 cas d'usage.
+
+B. LANGUE DU SITE (le globe en haut à droite)
+[ ] 5. Clic sur le globe → menu Français / العربية / English.
+[ ] 6. العربية → tout le site passe en arabe, de droite à gauche (panneaux inversés).
+[ ] 7. En arabe : noms des zones en arabe, unités en arabe (هك، كم، م²).
+[ ] 8. English → tout en anglais. Revenir en Français.
+[ ] 9. Recharger la page → la langue choisie est gardée.
+
+C. RECHERCHE ET FILTRES (panneau de gauche)
+[ ] 10. Taper « sfax » → seules les zones de Sfax restent, la carte se cadre dessus.
+[ ] 11. Taper « صفاقس » (en arabe) → même résultat.
+[ ] 12. Choisir un gouvernorat dans la liste → la liste et la carte changent.
+[ ] 13. « Lots disponibles seulement » → les zones à 0 disparaissent.
+[ ] 14. « Lots aux enchères » (ou le bouton « Enchères » en haut) → ronds orange,
+        le chiffre devient le nombre de lots aux enchères.
+[ ] 15. Filtres avancés → surface 5000 m² → moins de zones ; prix max 40 → moins de zones.
+[ ] 16. Cocher « Développement régional » puis « Cahier des charges en ligne ».
+[ ] 17. Trier par prix, puis par nom.
+[ ] 18. « Réinitialiser » → tout revient à 50 zones.
+[ ] 19. Faire défiler le panneau de gauche jusqu'en bas (tout défile d'un bloc).
+[ ] 20. Passer la souris sur une zone de la liste → elle est entourée en bleu sur la carte.
+
+D. LA CARTE
+[ ] 21. Zoomer, dézoomer (molette ou + / −), déplacer la carte.
+[ ] 22. Clic sur un rond bleu (groupe) → la carte zoome sur ce groupe.
+[ ] 23. Passer la souris sur une zone → bulle avec son nom et ses lots disponibles.
+[ ] 24. Bouton « Satellite » → vraies images ; « Plan » → retour aux couleurs.
+[ ] 25. Ouvrir « Légende » → les couleurs des zones et des états de lots.
+[ ] 26. Bouton plein écran (en haut à droite), puis Échap pour sortir.
+
+E. FICHE D'UNE ZONE
+[ ] 27. Clic sur « Kairouan II » (liste ou carte) → la fiche s'ouvre, la carte va dessus,
+        les lots sont dessinés en couleurs.
+[ ] 28. La fiche montre : lots disponibles, prix au m², prix après subvention, surfaces.
+[ ] 29. Onglet « Aperçu » → barre de couleurs des lots par état.
+[ ] 30. Onglet « Lots » → liste ; cliquer un état (ex. Réservé) filtre la liste.
+[ ] 31. Onglet « Infrastructures » → distances (port, aéroport…), réseaux, services proches.
+[ ] 32. Onglet « Documents » → ouvrir un cahier des charges (le PDF s'ouvre dans un onglet).
+[ ] 33. Bouton « Retour » → retour à la liste des zones.
+
+F. LES LOTS
+[ ] 34. Dans Kairouan II, cliquer un lot vert sur la carte → il devient jaune,
+        sa fiche montre surface, prix et PRIX DU TERRAIN (ex. 1 823 × 32 = 58 336 DT).
+[ ] 35. Zoomer fort → le numéro de chaque lot s'affiche (une seule fois).
+[ ] 36. En satellite, le lot reste visible sur l'image.
+
+G. LIEN À PARTAGER
+[ ] 37. Ouvrir un lot, copier l'adresse de la page, l'ouvrir dans un nouvel onglet
+        → la même zone et le même lot s'ouvrent directement.
+
+H. COMPARER
+[ ] 38. Cliquer l'icône balance sur 2 ou 3 zones → une barre apparaît en bas de la carte.
+[ ] 39. « Comparer 3 zones » → tableau côte à côte ; une étoile sur le meilleur prix
+        et sur le plus de lots.
+[ ] 40. « Retirer » une zone dans le tableau ; fermer avec la croix ou Échap.
+[ ] 41. Un 4e choix remplace le plus ancien (3 zones maximum).
+
+I. DALILA (sans le modèle : réponse de secours ; avec Ollama + qwen : vraie réponse)
+[ ] 42. Clic sur une question prête → la question s'affiche, l'anneau tourne,
+        « Je consulte la base de l'AFI… » avec les secondes.
+[ ] 43. Une réponse arrive (de secours : contact de l'AFI, bordure orange).
+[ ] 44. Écrire une question et appuyer sur Entrée (Maj + Entrée = retour à la ligne).
+[ ] 45. Avec le modèle : clic sur une zone citée dans la réponse → la carte va dessus ;
+        les zones citées clignotent sur la carte.
+[ ] 46. Pouces « utile / pas utile » → « Merci pour votre avis ».
+[ ] 47. Haut-parleur → la réponse est lue (fr, en, ar) ; recliquer pour arrêter.
+[ ] 48. Ouvrir une zone puis demander à Dalila → la bande verte « À propos de … » s'affiche ;
+        la croix l'enlève.
+[ ] 49. Bouton « Demander à Dalila » d'une fiche de zone, puis d'un lot.
+[ ] 50. Menu de langue de Dalila → Deutsch, Türkçe, Tounsi : les textes du panneau changent.
+[ ] 51. Bouton « Nouvelle conversation » (flèche ronde) → on revient à l'accueil.
+[ ] 52. Bouton « − » → Dalila se réduit en bulle avec la mascotte ; un clic la rouvre.
+
+J. LE MICRO (navigateur avec micro ; adresse 127.0.0.1)
+[ ] 53. Clic sur le micro → message « Premier usage du micro » ; « Autoriser le micro ».
+[ ] 54. Le navigateur demande l'accès au micro → accepter.
+[ ] 55. Parler (« Je cherche un lot à Sfax »), recliquer → le texte reconnu apparaît
+        dans le champ, À VÉRIFIER avant d'envoyer.
+[ ] 56. Envoyer → la réponse est lue à voix haute automatiquement.
+[ ] 57. « Écrire plutôt » ferme le message sans enregistrer.
+
+K. TÉLÉPHONE (Chrome : F12 → icône téléphone, ou un vrai téléphone)
+[ ] 58. La carte prend l'écran ; bouton « 50 zones trouvées » en bas à gauche.
+[ ] 59. Ouvrir une zone → la fiche monte en bas, la carte reste visible au-dessus.
+[ ] 60. La croix ferme la fiche ; la bulle de Dalila ouvre Dalila en plein écran.
+[ ] 61. Dalila → clic sur une zone citée → Dalila se ferme et la carte montre la zone.
+
+L. SI QUELQUE CHOSE NE RÉPOND PAS
+[ ] 62. Arrêter le service (Ctrl + C) puis poser une question → message clair avec
+        le contact de l'AFI (pas d'erreur technique) ; bandeau rouge « Dalila n'est pas
+        disponible ».
+[ ] 63. Service arrêté, recharger la page → message « Les zones n'ont pas pu être chargées »
+        en haut de la carte. Relancer le service ensuite.
