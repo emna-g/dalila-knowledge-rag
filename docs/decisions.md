@@ -55,7 +55,10 @@ pages disparues ou changées, échecs de lecture répétés.
 | **Dalila = un harnais d'agent** : boucle d'outils typés et bornés, garde-fous en entrée et en sortie, couches de sécurité, repli sans erreur brute. | — | Voir « Le harnais de l'agent » ci-dessous. |
 | **Pas de règles écrites à la main pour les langues** (pas d'expressions régulières ni de listes par langue). | `recherche.langue_de` (compte des lettres arabes), listes de mots vides (`comprendre.py`, `recherche.py`), normaliseur du lexique (`dalila/langue/lexique/`). | Laisser le modèle détecter la langue et reformuler la question ; un modèle de recherche multilingue (ajusté si besoin) remplace le lexique. |
 
-## Ajustement des modèles (à faire, après mesure)
+## Ajustement des modèles
+
+Agent : voir « Modèle de l'agent » (ajustement de secours en cours). Voix : ajuster Whisper `small` sur de la parole
+tunisienne, algérienne et libyenne (voir « Voix »). Recherche :
 
 Le modèle de recherche (BGE-M3) sera ajusté sur nos propres paires, puis remesuré sur le jeu de vraies questions,
 **jamais utilisé pour l'entraînement**. Paires disponibles sans rien inventer :
@@ -103,13 +106,20 @@ Jeu : 40 vraies questions (`eval/agent_bench.py`, rapports dans `eval/reports/`)
 | Qwen3-4B (variante « thinking ») | dépasse 90 s à chaque question : écarté | | | | | |
 | Qwen3-4B-Instruct, premier harnais | 9/35 | 4/16 | 5/15 | 14 | 54 s | 23 |
 | Qwen3-4B-Instruct, harnais corrigé | 15/35 | 7/16 | 6/15 | 3 | 22 s | 2 |
-| **Qwen3-4B-Instruct, outils corrigés** (*) | **23/35** | **11/16** | **8/15** | **1** | **21 s** | **1** |
+| Qwen3-4B-Instruct, outils corrigés (*) | 23/35 | 11/16 | 8/15 | 1 | 21 s | 1 |
+| **Qwen3-4B-Instruct, version livrée** (**) | **23/35** | **11/16** | **8/15** | **0** | **23 s** | **0** |
 
 (*) Corrections d'outils : `relier_concepts` caché au modèle (il l'appelait sans enchaîner) ; `chercher_passages`
 accepte un nom de zone ; `lister_zones` rend le nombre exact de lots ; choix explicite `hors_sujet`, outil obligatoire
 à la première étape pour toutes les questions ; temps de lecture estimé sur la taille réelle des résultats. La notation
 accepte désormais le nombre exact de lots rendu par `lister_zones` ou `fiche_zone` (avant : `chercher_lots` seul) ;
 sans ce changement, 4 réponses justes (R07, R38, R39, R51) restaient comptées fausses.
+
+(**) En plus : rappel de la langue du visiteur avant la réponse (langue juste 35/37, contre des réponses en français
+pour l'allemand, le turc, l'arabe et les dialectes) ; lieu réécrit par le modèle recherché dans le message du visiteur ;
+réponse qui boucle rejetée ; chiffre collé à des lettres lu comme une lettre (arabizi). Délai le plus long : 31,5 s.
+Un essai de consigne « réponds en arabizi » a fait boucler le modèle même en français (18/35, 11 replis) : retiré,
+la mesure l'a montré avant toute livraison.
 
 Ce qui a coûté le temps (mesuré pas à pas) : le modèle **écrit** 4 à 6 jetons par seconde ; une réponse de 200 à 340
 jetons prenait 50 à 120 s. La lecture n'est pas le problème une fois les consignes en cache (≈ 4 s par étape).
@@ -123,20 +133,29 @@ Corrections du harnais, sans changer de modèle :
 | Outil obligatoire à la première étape : si le modèle commence à écrire sans données, il est arrêté (≈ 1 s) et invité à appeler un outil, une fois. | Fin des réponses écrites « de mémoire » ; le hors-sujet reste refusé sans outil. |
 | `resoudre_lieu` caché au modèle : `chercher_lots`, `lister_zones` et `fiche_zone` prennent le nom du lieu tel qu'écrit. | Une étape de moins ; fin des arrêts après la seule résolution du lieu. |
 | Préchauffage avec les vraies consignes et les outils. | La première question ne paie plus 40 à 60 s de lecture. |
+| Rappel de langue, ajouté juste avant la réponse et non gardé dans l'historique ; il cite le message du visiteur et la langue de l'interface. | Réponses dans la langue du visiteur (les résultats d'outils, en français, l'entraînaient vers le français). |
+| Lieu inconnu (« Qassrin » pour « القصرين », « port » mis comme lieu) : recherché dans le message du visiteur, sinon le filtre de lieu est retiré. | Plus jamais « aucune zone » à tort (Kasserine : 29 lots). |
+| Réponse qui répète la même suite de mots : rejetée, le modèle est relancé une fois, sinon repli. | Le tunisien en lettres arabes faisait boucler le modèle ; le visiteur ne voit jamais ce texte. |
 
 Reste à corriger, propre au modèle : des questions sur l'AFI prises pour hors sujet (R11, R29), un lieu réécrit au
 lieu d'être recopié (« Grand Tunis » → « tunis », R15), le mauvais outil pour un cahier des charges (R17) ; et 8/15
 passages trouvés. Sur les 7 manqués, 4 viennent de l'agent (pas de recherche, ou question mal reformulée) : avec
 les mots du visiteur, BGE-M3 trouve le passage attendu (rang 1 ou 2 pour R11, R17, R46 ; rang 7 pour R48). Seuls R29,
-R42 et R47 (tunisien, question vague) sont des manques de la recherche elle-même. Étapes suivantes, dans l'ordre : corrections d'outils
-ciblées, puis ajustement du modèle (paires question → appel d'outil), puis seulement la mesure d'un modèle plus grand.
+R42 et R47 (tunisien, question vague) sont des manques de la recherche elle-même.
+
+**Ajustement du modèle (solution de secours, en cours)** : QLoRA de Qwen3-4B-Instruct sur Kaggle (jeu privé), 816
+conversations en 9 variantes de langue (`ajustement/generer.py`) : appels d'outils vérifiés sur la base, réponses
+ancrées ; le jeu de test n'y entre jamais. Même taille, même vitesse sur processeur (GGUF q4). Adopté seulement s'il
+fait mieux que 23/35 au même banc d'essai, langue comprise. Un modèle plus grand ne serait proposé qu'ensuite, mesures
+à l'appui.
 
 ## Voix (mesurée sur processeur, 8 fils)
 
 | Rôle | Choix | Licence | Pourquoi |
 |---|---|---|---|
-| Voix vers texte | **faster-whisper `small`** (int8) | MIT (modèle Whisper : MIT) | 3,0 s de médiane pour une question de 2 à 5 s (cible BNF3 : 4 s) ; langue détectée 5/5 ; exactitude 0,85 à 0,88 sur les mots. `large-v3-turbo` est plus exact (0,87) mais prend 16 s : écarté sur processeur. |
-| Texte vers voix | **Piper** (voix fr, en, de, tr, ar) | MIT | 0,7 à 0,9 s pour une réponse ; seul moteur local rapide qui couvre ces 5 langues. Kokoro (sans arabe, allemand, turc), XTTS-v2 et MMS-TTS (licences non commerciales, lents sur processeur) écartés. |
+| Voix vers texte, arabe et dialectes | **whisper-small-tunisian-derja-ct2** (« whisper-tn-ct2 » du cahier des charges, int8) | Apache 2.0 | Sur 25 vrais extraits tunisiens (LinTO, jeu de test, jamais vus à l'entraînement), sans langue donnée : 38 % de mots faux et 19 % de caractères faux, contre 69 % et 28 % pour Whisper `small` ; garde le français mêlé au tunisien ; 3,7 s de médiane (au-delà de 4 s seulement pour des phrases de 9 à 15 s). Seul, il prend l'allemand et le turc pour de l'arabe : il ne sert que quand Whisper `small` entend de l'arabe (probabilité ≥ 0,15). |
+| Voix vers texte, fr, en, de, tr, et détection de la langue | **faster-whisper `small`** (int8) | MIT (modèle Whisper : MIT) | 3,0 s de médiane pour une question de 2 à 5 s (cible BNF3 : 4 s) ; langue détectée 5/5 ; exactitude 0,85 à 0,88 sur les mots. `large-v3-turbo` est plus exact (0,87) mais prend 16 s : écarté sur processeur. |
+| Texte vers voix | **Piper** (voix fr, en, de, tr, ar) | MIT (moteur) ; voix : voir « Modèles, licences et coûts » | 0,7 à 0,9 s pour une réponse ; seul moteur local rapide qui couvre ces 5 langues. Kokoro (sans arabe, allemand, turc), XTTS-v2 et MMS-TTS (licences non commerciales, lents sur processeur) écartés. |
 
 En français, anglais, allemand et turc seulement, les noms des gouvernorats de la base sont donnés à Whisper comme mots
 favorisés (pas en arabe ni en dialecte : sur du tunisien mal compris, ils devenaient des suggestions, « عسلامة كيفاش
@@ -145,9 +164,19 @@ deviennent Jendouba, Sfax, Bizerte (exactitude 0,78 -> 0,88, sans coût de temps
 aussi les fautes restantes. Mesure faite avec des voix de synthèse (optimiste) : `eval/voix_bench.py --dossier` mesure
 de vrais enregistrements dès qu'il y en a.
 
-Dialectes maghrébins : Whisper les comprend mal (le tunisien écrit en lettres arabes, lu par la voix arabe, est bien
-reconnu ; l'arabizi n'a pas de voix, la réponse reste en texte). Modèles spécialisés à mesurer ensuite sur de vrais
-enregistrements, convertis pour faster-whisper : [FarukSTT](https://huggingface.co/medyas/FarukSTT) (Whisper large-v3
+Dialectes maghrébins, mesurés sur de vrais extraits sans langue donnée (mots faux / caractères faux) :
+
+| | Whisper `small` seul | Partage retenu (tunisien pour l'arabe) |
+|---|---|---|
+| Tunisien (LinTO, 25 extraits) | 69 % / 28 % | **38 % / 19 %** |
+| Libyen (lahgtna, 20 extraits lus) | **33 % / 12 %** | 46 % / 18 % (en partie l'orthographe tunisienne : « باش تطور ») |
+| Algérien (Casablanca, 20 extraits de télévision) | 94 % / 54 % | 93 % / 53 % |
+
+Le partage est gardé : il divise par deux les erreurs en tunisien, la langue de la plupart des visiteurs de l'AFI ; la
+parole seule ne permet pas de séparer libyen et tunisien avant transcription. L'algérien spontané échoue avec les deux
+modèles : un ajustement sur CAFE (35 h, algérien mêlé de français, ouvert) serait nécessaire. Langue détectée seule, jamais choisie par le visiteur, limitée à fr, en,
+ar, de, tr : laissé libre, Whisper prenait le tunisien pour du polonais. Synthèse en tunisien : TunArTTS (Elyadata,
+Apache 2.0) demande un texte entièrement vocalisé ; à évaluer après la livraison. Autres modèles possibles : [FarukSTT](https://huggingface.co/medyas/FarukSTT) (Whisper large-v3
 ajusté sur le tunisien, WER annoncé 32 % contre plus de 50 % pour la base ; trop lent sur processeur tel quel) et
 [whisper-large-v3-arabic-dialectal-v2](https://huggingface.co/oddadmix/whisper-large-v3-arabic-dialectal-v2) (libyen et
 algérien, chiffres sur très peu d'exemples). Un ajustement de Whisper `small` sur les jeux tunisiens ouverts (LinTO,
@@ -177,3 +206,27 @@ graphe (`python -m eval.comparer_modeles`, `python -m eval.vitesse_cpu`) :
 
 - SICAD et APIA : seulement les extraits de la base AFI (le module sources lira les URL configurées) ; INS et ministères : cités seulement, comme le prévoit le cahier des charges (voir limites.md).
 - Jeu de test de l'équipe à écrire (`eval/testset/MODELE_questions.csv`) : les 24 questions d'exemple, écrites par Claude, sont faciles et ne comptent pas dans le score officiel.
+
+## Modèles, licences et coûts (BNF12)
+
+Tous les modèles tournent en local, sans clé ni service payant : coût nul à l'usage (processeur du serveur). Le service
+n'appelle aucune API externe.
+
+| Rôle | Modèle | Licence | Taille |
+|---|---|---|---|
+| Agent (outils et réponse) | Qwen3-4B-Instruct-2507 (`qwen3:4b-instruct`, Ollama) | Apache 2.0 | 2,5 Go (q4) |
+| Recherche par le sens | BAAI/bge-m3 | MIT | 2,2 Go |
+| Voix vers texte | Whisper `small` (faster-whisper, CTranslate2 int8) | MIT | 0,5 Go |
+| Voix vers texte, tunisien | TheBiggyBang/whisper-small-tunisian-derja-ct2 (int8) | Apache 2.0 | 0,25 Go |
+| Texte vers voix (moteur) | Piper | MIT | — |
+| Voix française | fr_FR-siwis-medium | CC BY 4.0 (citer le jeu SIWIS) | 63 Mo |
+| Voix anglaise | en_US-ljspeech-medium | domaine public | 63 Mo |
+| Voix allemande | de_DE-thorsten-medium | CC0 | 63 Mo |
+| Voix turque | tr_TR-dfki-medium | CC BY-NC-SA 4.0 | 63 Mo |
+| Voix arabe | ar_JO-kareem-medium | non indiquée par son auteur | 63 Mo |
+| Graphe | Oxigraph | MIT / Apache 2.0 | — |
+| Base | MariaDB 11.8 | GPL v2 | — |
+
+Les voix viennent de la liste officielle de Piper (rhasspy/piper-voices) ; ce sont les seules voix Piper en turc
+et en arabe. La voix anglaise `ljspeech` (domaine public) remplace `lessac`.
+

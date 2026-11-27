@@ -11,10 +11,19 @@ Réglages (fichier .env) :
 Le mode « réflexion » des modèles Qwen3 est coupé : il allonge beaucoup les réponses sur processeur. La variante
 « instruct » est celle qui le respecte (l'étiquette qwen3:4b désigne la variante « thinking », qui réfléchit toujours).
 """
-import json, os, time, urllib.request
+import json, os, re, time, urllib.request
 
 MODELE_LLM = os.environ.get("DALILA_LLM", "qwen3:4b-instruct")
 URL = os.environ.get("DALILA_LLM_URL", "http://127.0.0.1:11434")
+
+
+_REFLEXION = re.compile(r"<think>.*?(?:</think>|$)\s*", re.S)
+
+
+def visible(texte):
+    """Le texte sans bloc <think>…</think> (vide chez le modèle ajusté : son gabarit d'entraînement en mettait un avant
+    chaque réponse ; jamais montré au visiteur, et ne compte pas comme une réponse commencée)."""
+    return _REFLEXION.sub("", texte or "").strip()
 
 
 class ErreurMoteur(Exception):
@@ -52,7 +61,7 @@ def discuter(messages, outils=None, modele=None, delai_s=60, temperature=0.0, je
                     m = morceau.get("message", {})
                     contenu += m.get("content") or ""
                     appels += m.get("tool_calls") or []
-                    if contenu.strip() and not appels:
+                    if visible(contenu) and not appels:
                         interrompu = True  # fermer la connexion arrête la génération dans Ollama
                         break
                     if morceau.get("done"):
@@ -60,7 +69,7 @@ def discuter(messages, outils=None, modele=None, delai_s=60, temperature=0.0, je
                         break
     except Exception as ex:  # noqa: BLE001
         raise ErreurMoteur(f"{type(ex).__name__}: {ex}") from ex
-    return {"content": contenu, "duree_s": round(time.time() - debut, 2), "interrompu": interrompu,
+    return {"content": visible(contenu), "duree_s": round(time.time() - debut, 2), "interrompu": interrompu,
             "tool_calls": [{"nom": c["function"]["name"], "arguments": c["function"].get("arguments") or {}}
                            for c in appels],
             "jetons_lus": fin.get("prompt_eval_count"), "jetons_ecrits": fin.get("eval_count"),

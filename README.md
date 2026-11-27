@@ -13,23 +13,24 @@ exigences couvertes, contrat, état. La carte complète des exigences et de leur
 
 ```
 dalila/                 le service (paquet Python)
-├─ communication/       API HTTP POST /carte/chatbot                        à faire
-├─ harnais/             boucle d'agent, garde-fous, repli                   à faire
-├─ traitement/          outils de l'agent : lieux, lots, zones, démarches   fait (7 outils, testés)
+├─ communication/       API HTTP : /carte/chatbot, /carte/voix/*, /sante    fait
+├─ harnais/             boucle d'agent, garde-fous, repli, faits ajoutés    fait (23/35, ≤ 35 s)
+├─ traitement/          outils de l'agent : lieux, lots, zones, démarches   fait (9 outils, testés)
 ├─ semantique/          graphe (compréhension) et recherche par le sens     existant
 ├─ langue/              langue, arabizi, reformulation (+ lexique tunisien) à faire
-├─ voix/                voix vers texte, texte vers voix                    à faire
-├─ sources/             URL configurées, lecture hebdomadaire, état         à faire
+├─ voix/                voix vers texte, texte vers voix                    fait (Whisper small, Piper)
+├─ sources/             URL configurées, lecture hebdomadaire, état         fait
 ├─ apprentissage/       boucle d'apprentissage contrôlée                    à faire
 ├─ administration/      supervision, connaissances, réglages, droits        à faire
-├─ moteurs/             modèles locaux (langage, recherche, reranker, voix) à faire
+├─ moteurs/             modèles locaux (langage Ollama)                     fait pour le langage
 ├─ connaissances/       construction de la base (MariaDB, vecteurs, graphe) existant
 └─ config.py            réglages (.env)
 db/                     migrations SQL, corrections relues, références
 ontology/               ontologie OWL, règles SHACL, requêtes de test
 frontend/               carte interactive et fenêtre de Dalila              à faire
 eval/                   jeux de questions, évaluation, comparaison des modèles
-tests/                  tests automatiques du code                          à faire
+tests/                  tests automatiques : outils et harnais, sources, voix
+ajustement/             ajustement de l'agent : jeu d'entraînement, script Kaggle, Modelfile
 deploy/                 Docker Compose (MariaDB, Oxigraph, service)
 scripts/                page de test (tester.bat)
 docs/                   architecture, décisions, limites, exigences
@@ -109,6 +110,9 @@ Les tours sont journalisés anonymisés dans `agent_turns` ; les questions sans 
 ## Tester
 
 - `.venv\Scripts\python -m tests.traitement.test_outils` : outils et harnais sur de vraies questions (base chargée).
+- `.venv\Scripts\python -m tests.voix.test_voix` et `-m tests.sources.test_sources` : voix, sources.
+- `.venv\Scripts\python -m eval.voix_bench` : vitesse et exactitude de la voix ; rapport dans `eval/reports/`.
+- Page d'essai locale (voix et chat) : http://localhost:8000/essai une fois le service lancé.
 - `.venv\Scripts\python -m eval.agent_bench --delai 35` : banc d'essai de l'agent (40 vraies questions, processeur
   seul) ; rapports dans `eval/reports/`.
 - `scripts/tester.bat` (double-clic) : pose une question, une page s'ouvre avec ce que Dalila a trouvé.

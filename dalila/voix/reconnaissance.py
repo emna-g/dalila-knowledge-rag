@@ -8,17 +8,27 @@ gardé (BNF8). Le texte reconnu est rendu à l'interface, qui l'affiche avant de
 peut le corriger). Whisper détecte la langue ; si l'interface donne une langue qu'il connaît, elle est imposée
 (plus rapide et plus sûr). Les dialectes (tunisien, algérien, libyen) sont laissés à la détection.
 
-Réglages (.env) : DALILA_STT (taille du modèle Whisper, défaut « small » ; « large-v3-turbo » plus exact, plus lent ;
-choix mesuré : docs/decisions.md), DALILA_LLM_FILS (fils de calcul, défaut 8).
+Deux modèles : Whisper `small` détecte la langue et transcrit fr, en, de, tr ; l'arabe et les dialectes sont transcrits
+par whisper-small-tunisian-derja-ct2 (le modèle « whisper-tn-ct2 » du cahier des charges, Apache 2.0) : sur 28 vrais
+extraits tunisiens (LinTO, test), 32 % de mots faux contre 69 % pour Whisper `small`, à la même vitesse ; il garde le
+français mêlé au tunisien. Seul, il prend l'allemand et le turc pour de l'arabe : d'où le partage.
+
+Réglages (.env) : DALILA_STT (modèle général, défaut « small »), DALILA_STT_ARABE (modèle de l'arabe et des dialectes,
+défaut TheBiggyBang/whisper-small-tunisian-derja-ct2 ; vide : le modèle général), DALILA_LLM_FILS (fils, défaut 8).
 """
 import io, os, threading, time
 from dalila.config import MODELES
 
 MODELE_STT = os.environ.get("DALILA_STT", "small")
+MODELE_ARABE = os.environ.get("DALILA_STT_ARABE", "TheBiggyBang/whisper-small-tunisian-derja-ct2") or MODELE_STT
 LANGUES_WHISPER = {"fr", "en", "ar", "de", "tr"}
 DIALECTES = {"aeb", "arq", "ayl", "tn"}
 TAILLE_MAX = 5 * 1024 * 1024   # octets : ~1 min de parole compressée
 DUREE_MAX_S = 60
+PART_ARABE = 0.15      # probabilité de l'arabe au-delà de laquelle le modèle tunisien transcrit (français mêlé compris)
+OPTIONS = dict(beam_size=1, vad_filter=True, condition_on_previous_text=False, temperature=0.0, max_new_tokens=160)
+# une seule température : un passage qui boucle n'est pas relancé 5 fois (un extrait a pris 40 s) ; une question tient
+# dans 160 jetons
 _modeles, _verrou = {}, threading.Lock()
 
 
@@ -92,15 +102,21 @@ def transcrire(audio: bytes, lang=None, nom=None):
             raise AudioInvalide("audio trop long")
 
         def lancer(langue):
-            return modele(nom).transcribe(echantillons, language=langue, beam_size=1, vad_filter=True,
-                                          condition_on_previous_text=False,
+            return modele(nom).transcribe(echantillons, language=langue, **OPTIONS,
                                           hotwords=vocabulaire() if langue in LANGUES_VOCABULAIRE else None)
 
         segments, info = lancer(code if code in LANGUES_WHISPER else None)
+        probas = dict(info.all_language_probs or [])
+        arabe = code == "ar" or info.language == "ar" or probas.get("ar", 0) >= PART_ARABE
+        if arabe and nom is None and MODELE_ARABE != MODELE_STT:  # arabe, dialectes, tunisien mêlé de français
+            segments, _ = modele(MODELE_ARABE).transcribe(echantillons, language="ar", **OPTIONS)
+            texte = " ".join(s.text.strip() for s in segments).strip()
+            return {"texte": texte, "langue": "ar", "confiance": round(max(probas.get("ar", 0), info.language_probability
+                    if info.language == "ar" else 0), 2), "duree_audio_s": round(info.duration, 2),
+                    "duree_s": round(time.time() - debut, 2)}
         # langue détectée : seulement parmi les nôtres (polonais... -> la plus probable des nôtres) ; détectée fr, en,
         # de ou tr : relancée avec les noms de lieux favorisés (le décodage n'a pas encore commencé : peu de coût)
         if info.language not in LANGUES_WHISPER or (code not in LANGUES_WHISPER and info.language in LANGUES_VOCABULAIRE):
-            probas = dict(info.all_language_probs or [])
             langue = info.language if info.language in LANGUES_WHISPER else \
                 max(LANGUES_WHISPER, key=lambda l: probas.get(l, 0))
             segments, info = lancer(langue)

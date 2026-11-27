@@ -11,7 +11,7 @@ remplacées par leur libellé, les liens retirés, les unités dites en mots.
 import io, re, threading, wave
 from dalila.config import MODELES
 
-VOIX = {"fr": "fr_FR-siwis-medium", "en": "en_US-lessac-medium", "de": "de_DE-thorsten-medium",
+VOIX = {"fr": "fr_FR-siwis-medium", "en": "en_US-ljspeech-medium", "de": "de_DE-thorsten-medium",
         "tr": "tr_TR-dfki-medium", "ar": "ar_JO-kareem-medium"}
 DIALECTES_ARABES = {"aeb", "arq", "ayl", "tn"}
 UNITES = {  # ce que la voix doit dire à la place des symboles
