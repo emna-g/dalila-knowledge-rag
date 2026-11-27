@@ -131,7 +131,7 @@ class Agent:
         code = (lang or "").strip().lower()
         repli = REPLI.get(code) or REPLI.get(code[:2]) or (REPLI["ar"] if code in DIALECTES else REPLI["fr"])
         rappel_langue = {"role": "user", "content": RAPPEL_LANGUE.format(
-            message=message[:200], interface=f" (langue de l'interface : {LANGUES[code]})" if code in LANGUES else "")}
+            message=message[:200], interface="")}  # la langue du message prime : jamais celle de l'interface
 
         def sortie_repli(etape, erreur, ancrage=None):
             faits = bloc(resultats)  # ce que les outils ont trouvé reste exact, même si la phrase du modèle ne l'est pas
