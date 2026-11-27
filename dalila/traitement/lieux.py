@@ -2,7 +2,7 @@
 
     resoudre_lieu("Agba")         -> zone 930403 EL AGBA
     resoudre_lieu("Grand Tunis")  -> région : Tunis, Ariana, Ben Arous, La Manouba
-    resoudre_lieu("Jendouba")     -> ambigu : le gouvernorat ET la zone JENDOUBA
+    resoudre_lieu("Jendouba")     -> le gouvernorat (il contient la zone JENDOUBA, proposée en second)
 
 Le modèle extrait le nom de lieu de la question ; cet outil le compare aux noms de la base (français, arabe, anciens noms
 des zones) en tolérant les fautes. Il ne devine pas : un nom qui désigne plusieurs lieux est rendu « ambigu », un nom
@@ -66,13 +66,18 @@ def _candidats():
     return out
 
 
-def _ressemblance(qn, nom):
+def _ressemblance(qn, nom, contenu=False):
+    """contenu=False : le texte est le nom, ou une partie du nom complet (« Agba » / « EL AGBA ») ;
+    contenu=True : le texte contient le nom avec d'autres mots (« ولاية جندوبة »), utilisé seulement si rien d'autre."""
     n = _norm(nom)
     if not n:
         return 0.0
-    best = difflib.SequenceMatcher(None, qn, n).ratio()
     mq, mn = qn.split(), n.split()
-    for i in range(len(mn) - len(mq) + 1):  # le nom cherché peut être une partie du nom complet (« Agba » / « EL AGBA »)
+    if contenu:
+        return max([difflib.SequenceMatcher(None, n, " ".join(mq[i:i + len(mn)])).ratio()
+                    for i in range(len(mq) - len(mn) + 1)] or [0.0])
+    best = difflib.SequenceMatcher(None, qn, n).ratio()
+    for i in range(len(mn) - len(mq) + 1):
         best = max(best, difflib.SequenceMatcher(None, qn, " ".join(mn[i:i + len(mq)])).ratio())
     return best
 
@@ -80,10 +85,13 @@ def _ressemblance(qn, nom):
 def resoudre_lieu(e: EntreeLieu) -> ResultatLieux:
     qn = _norm(e.texte)
     trouves = []
-    for typ, ident, nom, gouvs, noms in _candidats():
-        s = max(_ressemblance(qn, n) for n in noms)
-        if s >= SEUIL:
-            trouves.append(Lieu(type=typ, id=ident, nom=nom, gouvernorats=gouvs, ressemblance=round(s, 2)))
+    for contenu in (False, True):
+        for typ, ident, nom, gouvs, noms in _candidats():
+            s = max(_ressemblance(qn, n, contenu) for n in noms)
+            if s >= SEUIL:
+                trouves.append(Lieu(type=typ, id=ident, nom=nom, gouvernorats=gouvs, ressemblance=round(s, 2)))
+        if trouves:
+            break
     trouves.sort(key=lambda l: -l.ressemblance)
     if not trouves:
         return ResultatLieux(texte=e.texte, lieux=[], ambigu=False, sources=[SOURCE_BASE],
@@ -92,6 +100,13 @@ def resoudre_lieu(e: EntreeLieu) -> ResultatLieux:
     proches = [l for l in trouves if l.ressemblance >= haut - ECART_AMBIGU]
     ambigu = len({(l.type, l.id) for l in proches}) > 1
     note = None
+    gouv = [l for l in proches if l.type in ("gouvernorat", "region")]
+    if ambigu and len(gouv) == 1 and all(set(l.gouvernorats) <= set(gouv[0].gouvernorats) for l in proches):
+        # « Jendouba » : le gouvernorat contient la zone du même nom -> chercher dans le gouvernorat, proposer la zone
+        zones = [l for l in proches if l is not gouv[0]]
+        return ResultatLieux(texte=e.texte, lieux=[gouv[0]] + zones[:5], ambigu=False, sources=[SOURCE_BASE],
+                             note=f"Le {gouv[0].type} {gouv[0].nom} contient la ou les zones du même nom : chercher dans "
+                                  f"le {gouv[0].type} (premier lieu) et proposer la zone en question à choix.")
     if ambigu:
         types = {l.type for l in proches}
         note = ("Le même nom désigne " + " et ".join(sorted(types)) + " : choisir selon la question (un gouvernorat couvre "

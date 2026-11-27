@@ -103,9 +103,8 @@ def relier_concepts(e: EntreeConcepts) -> ResultatConcepts:
 
 # ---------------------------------------------------------------- conseiller
 class EntreeConseil(BaseModel):
-    secteur: str = Field(..., max_length=200, description="l'activité du projet DÉCRITE EN FRANÇAIS avec des mots de "
-                                                         "métier (ex. « transformation de poisson » pour « 3andi projet "
-                                                         "sardine », « fabrication de jouets en bois »)")
+    secteur: str = Field(..., max_length=200, description="l'activité du projet décrit par le visiteur, reformulée en "
+                                                         "français avec des mots de métier (quelques mots)")
 
 
 class Lien(BaseModel):

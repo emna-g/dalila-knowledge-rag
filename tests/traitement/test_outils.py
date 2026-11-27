@@ -26,7 +26,8 @@ def code_gouv(nom):
 def test_lieux():
     assert [(l["type"], l["id"]) for l in lieu("Agba")["lieux"]] == [("zone", "930403")]  # R23 : non reconnu avant
     r = lieu("Jendouba")  # R38 : le pipeline fixe prenait la zone (0 lot) au lieu du gouvernorat (19)
-    assert r["ambigu"] and {l["type"] for l in r["lieux"]} == {"zone", "gouvernorat"}
+    assert not r["ambigu"] and r["lieux"][0]["type"] == "gouvernorat" and r["lieux"][1]["type"] == "zone"
+    assert lieu("ولاية جندوبة")["lieux"][0]["type"] == "gouvernorat"  # R39 : le nom est dans un texte plus long
     gt = lieu("Grand Tunis")["lieux"][0]
     assert gt["type"] == "region" and len(gt["gouvernorats"]) == 4
     assert lieu("Enfidha 2")["lieux"][0]["id"] == "930607"  # ancien nom de la zone ENNFIDHA II
