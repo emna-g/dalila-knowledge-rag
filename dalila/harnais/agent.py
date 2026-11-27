@@ -18,8 +18,18 @@ from dalila.traitement.registre import appeler, definitions
 TAILLE_RESULTAT = 6000  # caractères d'un résultat d'outil rendus au modèle (le contexte du modèle est limité)
 
 
+def _sans_vides(v):
+    """Retire les champs vides (None, listes et dicts vides) : rien à lire pour le modèle, du temps en moins sur
+    processeur. Les zéros et les faux restent (ce sont des informations)."""
+    if isinstance(v, dict):
+        return {k: _sans_vides(x) for k, x in v.items() if x is not None and x != [] and x != {}}
+    if isinstance(v, list):
+        return [_sans_vides(x) for x in v]
+    return v
+
+
 def _compact(res):
-    texte = json.dumps(res, ensure_ascii=False, separators=(",", ":"))
+    texte = json.dumps(_sans_vides(res), ensure_ascii=False, separators=(",", ":"))
     return texte if len(texte) <= TAILLE_RESULTAT else texte[:TAILLE_RESULTAT] + "…(tronqué)"
 
 

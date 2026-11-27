@@ -29,6 +29,23 @@ Les choix en vigueur et leurs preuves (2026-11-26). Les décisions sur chaque do
 | **Groupe 1 ou 2 de chaque zone de développement régional** ajouté (la base AFI dit seulement oui / non), visible seulement tant que l'AFI garde la zone en développement régional. | Carte de la FIPA (décret 2017-389), lue sur le PDF (couleurs) : 3 zones en groupe 1, 27 en groupe 2. |
 | **Plans de lotissement** : liens publics lus en direct dans la table AFI `zone_documents` (`v_pub_plans`). | Les 45 plans de la table répondent sur carte.afi.nat.tn/storage (vérifié le 2026-11-27). |
 
+## Fraîcheur des données (à mettre en œuvre après le choix du modèle et l'API)
+
+Chaque couche de données vieillit différemment ; aucune ne doit être citée plus vieille qu'elle ne le dit.
+
+| Couche | Aujourd'hui | Décision |
+|---|---|---|
+| **Base de l'AFI** (lots, disponibilité, prix, zones, équipements) | Lue au moment de la question par les vues `v_pub_*` : en production sur le serveur de l'AFI, toujours à jour. Sur la copie de Dalila : aussi fraîche que le dernier `rafraichir_copie_afi`. | Rafraîchir la copie chaque jour tant que Dalila n'est pas sur le serveur de l'AFI. |
+| **Corrections de Dalila** | Chaque correction garde la valeur de l'AFI qu'elle corrige ; si l'AFI change cette valeur, `v_dalila_corrections_etat` la marque périmée et la valeur de l'AFI s'applique. | Gardé tel quel : une correction ne masque jamais un changement de l'AFI. Les corrections périmées vont dans la liste à relire. |
+| **Réponses validées de l'AFI** | Relues à chaque chargement ; vecteurs recalculés seulement si le texte change. | Gardé tel quel. |
+| **Fichiers de référence** (`db/reference/*.csv` : prix du site, derniers prix publiés, groupes FIPA, régions, services) | Relevés une fois, sourcés, jamais revérifiés. Seul garde-fou : `prix_en_conflit` quand le site et la base diffèrent. | Chaque ligne reçoit sa date de consultation et l'empreinte de la page source ; revérification par le module sources ; une ligne dont la source a changé ou disparu passe en « à relire ». |
+| **Textes officiels** (TIA, FIPA, APII, APIA, SICAD, lois, cahiers des charges) | Relevés une fois et vectorisés ; l'âge du texte n'est pas dit au visiteur. | Module sources : relecture au moins chaque semaine, empreinte de contenu, seuls les passages changés sont revectorisés ; un texte changé n'écrase pas une version validée sans relecture ; la réponse cite la date de consultation (« site de la FIPA, consulté le … »). En cas d'échec de lecture, la dernière version reste utilisée et l'échec est journalisé (`agent_source_status`). |
+| **Graphe de connaissances** | Dérivé de la base et des règles sourcées ; reconstruit à la main (`construire_abox`). | Reconstruit automatiquement après chaque rafraîchissement, puis tests des outils en barrière : si un test échoue, l'ancienne version reste en service. |
+| **carte.afi.nat.tn** | Protégée par CAPTCHA. | Pas de relecture automatique ; le CAPTCHA n'est jamais contourné. Seules la base de l'AFI et les pages publiques de son site sont relues. |
+
+Alertes pour l'administration : corrections périmées, lignes de référence plus vieilles que leur délai de revérification,
+pages disparues ou changées, échecs de lecture répétés.
+
 ## Orientations de l'équipe (à mettre en œuvre)
 
 | Décision | Ce que le code fait aujourd'hui | À faire |
