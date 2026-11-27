@@ -31,15 +31,17 @@ class Lot(BaseModel):
     zone: str
     gouvernorat: str
     surface_m2: float
-    prix_m2_dt: float | None
+    prix_m2_dt: float | None = Field(description="prix au m² utilisé (actuel, ou dernier publié : voir prix_selon)")
     prix_total_dt: float | None
+    prix_selon: str | None = Field(description="« prix actuel de l'AFI », ou dernier prix publié (à confirmer) ; "
+                                               "vide : aucun prix publié")
     a_confirmer: bool
 
 
 class ResultatLots(BaseModel):
     nombre_total: int = Field(description="nombre exact de lots disponibles qui répondent aux filtres")
     lots: list[Lot]
-    zones_prix_non_publie: list[str] = Field(description="zones du résultat dont l'AFI ne publie pas le prix")
+    zones_prix_non_publie: list[str] = Field(description="zones du résultat sans aucun prix publié par l'AFI")
     filtres: dict
     sources: list[Source]
 
@@ -74,23 +76,29 @@ def chercher_lots(e: EntreeLots) -> ResultatLots:
     if not zones:
         return ResultatLots(nombre_total=0, lots=[], zones_prix_non_publie=[], filtres=filtres, sources=[SOURCE_BASE])
     sql = " FROM v_pub_lots_disponibles l WHERE l.zone_id IN (" + ",".join(["%s"] * len(zones)) + ")"
+    prix = "COALESCE(l.prix_m2_dt, l.prix_m2_dernier_publie_dt)"  # prix actuel, sinon dernier prix publié par l'AFI
     p = list(zones)
     for cond, val in (("l.surface_m2 >= %s", e.surface_min_m2), ("l.surface_m2 <= %s", e.surface_max_m2),
-                      ("l.prix_m2_dt <= %s", e.prix_max_m2_dt), ("l.surface_m2 * l.prix_m2_dt <= %s", e.budget_max_dt)):
+                      (f"{prix} <= %s", e.prix_max_m2_dt), (f"l.surface_m2 * {prix} <= %s", e.budget_max_dt)):
         if val is not None:
             sql += f" AND {cond}"
             p.append(val)
-    par_zone = q("SELECT l.zone_id, MAX(l.prix_m2_dt IS NULL) sans_prix, COUNT(*) n" + sql + " GROUP BY l.zone_id", *p)
-    ordre = {"prix_total": "l.prix_m2_dt IS NULL, l.surface_m2 * l.prix_m2_dt, l.surface_m2",
-             "prix_m2": "l.prix_m2_dt IS NULL, l.prix_m2_dt, l.surface_m2", "surface": "l.surface_m2"}[e.tri]
-    rows = q("SELECT l.lot_id, l.lot_num, l.zone_id, l.zone_fr, l.surface_m2, l.prix_m2_dt, l.a_confirmer" + sql
+    par_zone = q(f"SELECT l.zone_id, MAX({prix} IS NULL) sans_prix, COUNT(*) n" + sql + " GROUP BY l.zone_id", *p)
+    ordre = {"prix_total": f"{prix} IS NULL, l.surface_m2 * {prix}, l.surface_m2",
+             "prix_m2": f"{prix} IS NULL, {prix}, l.surface_m2", "surface": "l.surface_m2"}[e.tri]
+    rows = q("SELECT l.lot_id, l.lot_num, l.zone_id, l.zone_fr, l.surface_m2, l.prix_m2_dt, l.prix_m2_dernier_publie_dt, "
+             "l.a_confirmer" + sql
              + f" ORDER BY {ordre} LIMIT %s", *p, e.limite)
     gouv = {r["zone_id"]: r["gouvernorat_fr"] for r in q("SELECT zone_id, gouvernorat_fr FROM v_pub_zones")} if rows else {}
-    lots = [Lot(lot_id=r["lot_id"], numero=r["lot_num"], zone_id=r["zone_id"], zone=r["zone_fr"],
-                gouvernorat=gouv.get(r["zone_id"], ""), surface_m2=nombre(r["surface_m2"]),
-                prix_m2_dt=nombre(r["prix_m2_dt"]),
-                prix_total_dt=nombre(r["surface_m2"] * r["prix_m2_dt"]) if r["prix_m2_dt"] is not None else None,
-                a_confirmer=bool(r["a_confirmer"])) for r in rows]
+    lots = []
+    for r in rows:
+        pm2 = r["prix_m2_dt"] if r["prix_m2_dt"] is not None else r["prix_m2_dernier_publie_dt"]
+        selon = ("prix actuel de l'AFI" if r["prix_m2_dt"] is not None else
+                 "dernier prix publié par l'AFI (ancienne carte, 25/11/2026), à confirmer" if pm2 is not None else None)
+        lots.append(Lot(lot_id=r["lot_id"], numero=r["lot_num"], zone_id=r["zone_id"], zone=r["zone_fr"],
+                        gouvernorat=gouv.get(r["zone_id"], ""), surface_m2=nombre(r["surface_m2"]), prix_m2_dt=nombre(pm2),
+                        prix_total_dt=nombre(r["surface_m2"] * pm2) if pm2 is not None else None, prix_selon=selon,
+                        a_confirmer=bool(r["a_confirmer"])))
     return ResultatLots(nombre_total=int(sum(r["n"] for r in par_zone)), lots=lots,
                         zones_prix_non_publie=[r["zone_id"] for r in par_zone if r["sans_prix"]],
                         filtres=filtres, sources=[SOURCE_BASE])

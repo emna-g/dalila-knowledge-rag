@@ -38,6 +38,7 @@ class ResultatDemarche(BaseModel):
     services: list[ServiceResume] = Field(default_factory=list, description="rempli si aucun service n'est demandé")
     service: str | None = None
     reponses_afi: list[Reponse] = Field(default_factory=list)
+    lieu_depot: str | None = Field(None, description="où déposer la demande, d'après les réponses de l'AFI")
     non_publie_par_afi: str | None = Field(None, description="à dire tel quel, sans estimation")
     contact_afi: list[Reponse] = Field(default_factory=list)
     sources: list[Source]
@@ -64,7 +65,8 @@ def demarche(e: EntreeDemarche) -> ResultatDemarche:
                                 sources=[Source(titre="Services de l'AFI", url="https://www.afi.nat.tn/fr/nos-services/")])
     s = S[e.service]
     ids = [f"kb{int(i):04d}" for i in s["reponses_kb"].split(",")]
-    return ResultatDemarche(service=e.service, reponses_afi=_reponses(ids), non_publie_par_afi=s["non_publie_par_afi"],
+    return ResultatDemarche(service=e.service, reponses_afi=_reponses(ids), lieu_depot=s["lieu_depot"],
+                            non_publie_par_afi=s["non_publie_par_afi"] or None,
                             contact_afi=_reponses(list(REPONSES_CONTACT)),
                             sources=[Source(titre="Base de connaissances de l'AFI (réponses validées)"),
                                      Source(titre="Services de l'AFI", url=s["source"])])

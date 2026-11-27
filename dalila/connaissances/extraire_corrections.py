@@ -59,7 +59,9 @@ PREUVE = {
     ("931803", "gare"): "El Krib est à 18 km de Gaafour, dont la gare est à 1 km : la gare de Gaafour à 16 km est cohérente",
     ("930900", "zone_sup_total"): "le site de l'AFI (page « المناطق المهيئة ») donne 31 ha, et les lots couvrent déjà "
                                   "plus de 150 000 m²",
-    ("931804", "prixunitaire"): "118 DT/m² serait de loin le prix le plus élevé des zones de développement régional",
+    ("931804", "prixunitaire"): "conflit entre publications de l'AFI : 118 DT/m² sur l'ancienne carte et sur la page des "
+                                "incitations du site de l'AFI, 32 dans sa base et sur sa carte actuelle ; Dalila donne 32 "
+                                "et signale 118 (champ prix_en_conflit), à confirmer auprès de l'AFI",
 }
 
 

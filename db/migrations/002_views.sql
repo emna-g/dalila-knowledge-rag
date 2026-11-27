@@ -48,9 +48,11 @@ LEFT JOIN v_dalila_corrections_actives cs ON cs.table_afi = 'lots' AND cs.champ 
 
 CREATE OR REPLACE VIEW v_pub_lots AS
 SELECT d.lot_id, d.zone_id, z.nom_fr AS zone_fr, d.lot_num, d.surface_m2, e.statut, e.libelle_carte,
-       IF(a.lot_id IS NULL, 0, 1) AS a_confirmer, z.prix_m2_dt, d.source_statut
+       IF(a.lot_id IS NULL, 0, 1) AS a_confirmer, z.prix_m2_dt, d.source_statut,
+       IF(z.prix_m2_dt IS NULL, pp.prix_m2_dt, NULL) AS prix_m2_dernier_publie_dt
 FROM v_dalila_lots d
 JOIN v_dalila_zones z ON z.zone_id = d.zone_id
+LEFT JOIN dalila_prix_publies pp ON pp.zone_id = d.zone_id
 JOIN dalila_etape_statut e ON e.etape = d.etape
 LEFT JOIN dalila_lots_a_confirmer a ON a.lot_id = d.lot_id AND a.etape_afi = d.etape
 -- seuls les lots cessibles (LOT_NATURE = 1) : c'est la règle de la carte publique de l'AFI (les autres natures sont
@@ -64,12 +66,21 @@ SELECT z.zone_id, z.nom_fr, z.nom_ar, g.nom_fr AS gouvernorat_fr, g.nom_ar AS go
        z.gouvernorat_code, z.lat, z.lng, z.surface_totale_m2, z.surface_amenagee_m2, z.prix_m2_dt,
        z.zone_developpement_regional,
        IF(z.zone_developpement_regional = 1, gr.groupe, NULL) AS groupe_developpement_regional,
+       IF(z.prix_m2_dt IS NULL, pp.prix_m2_dt, NULL) AS prix_m2_dernier_publie_dt,
+       IF(z.prix_m2_dt IS NULL, pp.source, NULL) AS prix_dernier_publie_source,
+       IF(z.surface_amenagee_m2 IS NULL, sc.surface_m2, NULL) AS surface_amenagee_calculee_m2,
+       ps.prix_m2_dt AS prix_m2_site_afi_dt, ps.prix_m2_subventionne_dt AS prix_m2_subventionne_site_afi_dt,
+       ps.source AS prix_site_afi_source,
+       IF(ps.prix_m2_dt IS NOT NULL AND z.prix_m2_dt IS NOT NULL AND ps.prix_m2_dt <> z.prix_m2_dt, 1, 0) AS prix_en_conflit,
        CAST(COALESCE(n.disponibles, 0) AS SIGNED) AS lots_disponibles,
        CAST(COALESCE(n.disponibles_a_confirmer, 0) AS SIGNED) AS lots_disponibles_a_confirmer,
        CAST(COALESCE(n.encheres, 0) AS SIGNED) AS lots_mis_aux_encheres
 FROM v_dalila_zones z
 LEFT JOIN dalila_gouvernorats g ON g.code = z.gouvernorat_code
 LEFT JOIN dalila_zone_groupe_dr gr ON gr.zone_id = z.zone_id
+LEFT JOIN dalila_prix_publies pp ON pp.zone_id = z.zone_id
+LEFT JOIN dalila_zone_surface_contours sc ON sc.zone_id = z.zone_id
+LEFT JOIN dalila_prix_site ps ON ps.zone_id = z.zone_id
 LEFT JOIN (SELECT zone_id, SUM(statut = 'disponible') AS disponibles,
                   SUM(statut = 'disponible' AND a_confirmer = 1) AS disponibles_a_confirmer,
                   SUM(statut = 'mis_aux_encheres') AS encheres

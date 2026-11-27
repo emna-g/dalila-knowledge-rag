@@ -38,6 +38,20 @@ Les choix en vigueur et leurs preuves (2026-11-26). Les décisions sur chaque do
 | **Dalila = un harnais d'agent** : boucle d'outils typés et bornés, garde-fous en entrée et en sortie, couches de sécurité, repli sans erreur brute. | — | Voir « Le harnais de l'agent » ci-dessous. |
 | **Pas de règles écrites à la main pour les langues** (pas d'expressions régulières ni de listes par langue). | `recherche.langue_de` (compte des lettres arabes), listes de mots vides (`comprendre.py`, `recherche.py`), normaliseur du lexique (`dalila/langue/lexique/`). | Laisser le modèle détecter la langue et reformuler la question ; un modèle de recherche multilingue (ajusté si besoin) remplace le lexique. |
 
+## Ajustement des modèles (à faire, après mesure)
+
+Le modèle de recherche (BGE-M3) sera ajusté sur nos propres paires, puis remesuré sur le jeu de vraies questions,
+**jamais utilisé pour l'entraînement**. Paires disponibles sans rien inventer :
+
+| Tâche | Paires (entrée → cible) | Pourquoi |
+|---|---|---|
+| Relier un projet à la nomenclature (`conseiller`) | description d'un projet, dans les 8 langues et en arabizi → activité de la nomenclature de l'APII (501 libellés) | Aujourd'hui, la bonne activité est dans les 5 premières (12 cas sur 12) mais pas toujours première ; les libellés courts se distinguent mal. |
+| Trouver la réponse de l'AFI (`chercher_passages`, `demarche`) | question de visiteur → réponse validée de l'AFI (85) ou passage qui y répond | Rappel@5 de 12/15 sur les vraies questions ; le tunisien reste le point faible (22/30). |
+
+Les paraphrases dans les 8 langues sont produites par le modèle local à partir des libellés et des réponses de l'AFI,
+puis vérifiées automatiquement (retrouvent-elles leur cible ?) ; les corpus tunisiens (TArC, TUNIZI, TSAC) apportent
+l'écriture réelle (licences : démonstration seulement pour TArC).
+
 ## Le harnais de l'agent (à construire)
 
 Le cahier des charges n'emploie pas le mot « harnais », mais il exige presque toutes ses couches. Chaque couche est

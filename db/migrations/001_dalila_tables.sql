@@ -46,6 +46,26 @@ CREATE TABLE IF NOT EXISTS dalila_zone_groupe_dr (
   zone_id VARCHAR(20) PRIMARY KEY, groupe TINYINT, delegation VARCHAR(80), source VARCHAR(500)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- Dernier prix publié par l'AFI pour une zone dont elle ne publie plus de prix (db/reference/derniers_prix_publies.csv).
+-- Montré à part, avec sa source et sa date, seulement tant que le prix actuel de l'AFI manque.
+CREATE TABLE IF NOT EXISTS dalila_prix_publies (
+  zone_id VARCHAR(20) PRIMARY KEY, prix_m2_dt DOUBLE, source VARCHAR(500)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Surface couverte par les contours des lots de chaque zone (table AFI lots_kml, chevauchements comptés une fois),
+-- calculée à chaque chargement. Elle correspond à la « surface aménagée » de l'AFI (vérifié sur les zones qui en ont une) :
+-- elle la remplace seulement quand l'AFI ne la donne pas.
+CREATE TABLE IF NOT EXISTS dalila_zone_surface_contours (
+  zone_id VARCHAR(20) PRIMARY KEY, surface_m2 DOUBLE, nb_contours INT
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Prix publiés sur la page des incitations du site de l'AFI pour les zones de développement régional : prix au m² et
+-- prix subventionné (après la prime d'infrastructure : 65 % en groupe 1, 85 % en groupe 2). db/reference/prix_site_afi.csv
+CREATE TABLE IF NOT EXISTS dalila_prix_site (
+  zone_id VARCHAR(20) PRIMARY KEY, nom_sur_la_page VARCHAR(100), prix_m2_dt DOUBLE, prix_m2_subventionne_dt DOUBLE,
+  source VARCHAR(500)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 -- Décodage de lots.LOT_ETAPE (libellés lus sur les cartes de l'AFI).
 CREATE TABLE IF NOT EXISTS dalila_etape_statut (
   etape INT PRIMARY KEY, statut VARCHAR(40), libelle_carte VARCHAR(60)

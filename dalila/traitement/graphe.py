@@ -103,8 +103,9 @@ def relier_concepts(e: EntreeConcepts) -> ResultatConcepts:
 
 # ---------------------------------------------------------------- conseiller
 class EntreeConseil(BaseModel):
-    secteur: str = Field(..., max_length=200, description="le secteur ou l'activité du projet, avec les mots du "
-                                                         "visiteur (ex. « pêche », « emballage de poisson », « bois »)")
+    secteur: str = Field(..., max_length=200, description="l'activité du projet DÉCRITE EN FRANÇAIS avec des mots de "
+                                                         "métier (ex. « transformation de poisson » pour « 3andi projet "
+                                                         "sardine », « fabrication de jouets en bois »)")
 
 
 class Lien(BaseModel):
@@ -137,45 +138,44 @@ class ResultatConseil(BaseModel):
     sources: list[Source]
 
 
-SEUIL_SENS = 0.5  # proximité minimale pour retenir une activité
+NB_CANDIDATES = 5   # activités proposées à l'agent (la bonne est dans les 5 premières : 12 cas sur 12, mesuré)
+ECART_SUR = 0.03    # sous cet écart entre deux secteurs, le choix est incertain : l'agent confirme avec le visiteur
 
 
 @lru_cache(maxsize=1)
 def _index_activites():
-    """Libellés français des secteurs et activités, et leurs vecteurs (calculés une fois avec le modèle de recherche)."""
+    """Secteurs et activités, indexés « libellé (secteur : …) » : le secteur aide le modèle à distinguer des libellés
+    courts. Vecteurs calculés une fois avec le modèle de recherche."""
     from dalila.moteurs.embeddings import encoder_textes
     c = _comprendre()
     noeuds = sorted({s for ss in c.libelles.values() for s in ss
                      if c.types.get(s, set()) & {"SecteurActivite", "Activite"}})
-    libelles = [c.label(s) for s in noeuds]
-    return noeuds, libelles, encoder_textes(libelles)
+    libelles, secteurs = [c.label(s) for s in noeuds], []
+    for s in noeuds:
+        r = _sparql(f"SELECT ?sec WHERE {{ <{s}> dal:dansSecteur ?sec }}")
+        secteurs.append(r[0]["sec"].value if r else s)
+    textes = [l if sec == s else f"{l} (secteur : {c.label(sec)})" for s, l, sec in zip(noeuds, libelles, secteurs)]
+    return noeuds, libelles, secteurs, encoder_textes(textes)
 
 
-def _activites(texte, k=5):
-    """Activités et secteurs les plus proches PAR LE SENS de la description du visiteur (toutes langues)."""
+def _activites(texte, k=NB_CANDIDATES):
+    """Les k activités ou secteurs les plus proches PAR LE SENS : (noeud, libellé, secteur, proximité)."""
     from dalila.moteurs.embeddings import encoder_questions
-    noeuds, libelles, vecs = _index_activites()
+    noeuds, libelles, secteurs, vecs = _index_activites()
     sims = vecs @ encoder_questions([texte])[0]
-    ordre = sims.argsort()[::-1][:k]
-    return [(noeuds[i], libelles[i], float(sims[i])) for i in ordre if sims[i] >= SEUIL_SENS]
+    return [(noeuds[i], libelles[i], secteurs[i], float(sims[i])) for i in sims.argsort()[::-1][:k]]
 
 
 def conseiller(e: EntreeConseil) -> ResultatConseil:
     c = _comprendre()
     proches = _activites(e.secteur)
-    secteurs, liens, activites = {}, [], []
-    for s, lib, sim in proches:
-        if "SecteurActivite" in c.types.get(s, set()):
-            secteurs.setdefault(s, sim)
-            activites.append(Activite(libelle=lib, secteur=lib, proximite=round(sim, 2)))
-            continue
-        for r in _sparql(f"SELECT ?sec WHERE {{ <{s}> dal:dansSecteur ?sec }}"):
-            secteurs.setdefault(r["sec"].value, sim)
-            activites.append(Activite(libelle=lib, secteur=c.label(r["sec"].value), proximite=round(sim, 2)))
-            liens.append(Lien(de=lib, relation="fait partie du secteur", vers=c.label(r["sec"].value)))
-    if secteurs:  # garder le ou les secteurs les plus proches (un secteur loin derrière n'est pas proposé)
-        haut = max(secteurs.values())
-        secteurs = {s: v for s, v in secteurs.items() if v >= haut - 0.05}
+    activites = [Activite(libelle=lib, secteur=c.label(sec), proximite=round(sim, 2)) for _, lib, sec, sim in proches]
+    liens = [Lien(de=lib, relation="fait partie du secteur", vers=c.label(sec)) for n, lib, sec, _ in proches[:1] if n != sec]
+    meilleur = proches[0][3]
+    secteurs = {}
+    for _, _, sec, sim in proches:  # le secteur de la meilleure activité, et ceux presque aussi proches
+        if sim >= meilleur - ECART_SUR:
+            secteurs.setdefault(sec, sim)
     organismes, infra, racc = {}, set(), set()
     for sec in secteurs:
         for r in _sparql(f"SELECT ?o ?d WHERE {{ <{sec}> dal:organismeCompetent ?o . OPTIONAL {{ ?o "
@@ -191,10 +191,9 @@ def conseiller(e: EntreeConseil) -> ResultatConseil:
             elif t == "TypeEquipement":
                 racc.add(x)
     note = None
-    if not secteurs:
-        note = "Aucune activité proche dans la nomenclature : demander au visiteur de décrire son activité autrement."
-    elif len(secteurs) > 1:
-        note = "Plusieurs secteurs possibles : confirmer avec le visiteur par une question à choix."
+    if len(secteurs) > 1:
+        note = ("Plusieurs secteurs presque aussi proches : confirmer l'activité avec le visiteur par une question à "
+                "choix (liste « activites »).")
     return ResultatConseil(activites=activites, secteurs=sorted(c.label(s) for s in secteurs),
                            organismes=sorted(organismes.values(), key=lambda o: o.id),
                            infrastructures_utiles=sorted(infra), raccordements_necessaires=sorted(racc),

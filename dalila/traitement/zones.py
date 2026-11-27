@@ -28,9 +28,20 @@ class FicheZone(BaseModel):
     gouvernorat: str
     developpement_regional: bool
     groupe_developpement_regional: int | None = Field(description="1 ou 2 ; vide hors développement régional")
-    prix_m2_dt: float | None = Field(description="vide : prix non publié par l'AFI")
+    prix_m2_dt: float | None = Field(description="prix actuel de l'AFI ; vide : l'AFI ne publie pas de prix")
+    prix_m2_dernier_publie_dt: float | None = Field(None, description="si pas de prix actuel : dernier prix publié par "
+                                                                     "l'AFI, à dire avec sa source et « à confirmer »")
+    prix_dernier_publie_source: str | None = None
+    prix_m2_subventionne_dt: float | None = Field(None, description="prix au m² après la prime d'infrastructure du "
+                                                                    "développement régional, publié sur le site de l'AFI")
+    prix_site_afi: float | None = Field(None, description="prix au m² publié sur la page des incitations du site de l'AFI")
+    prix_en_conflit: bool = Field(False, description="vrai si le site de l'AFI donne un autre prix que sa base : dire les "
+                                                     "deux et conseiller de confirmer auprès de l'AFI")
     surface_totale_m2: float | None
     surface_amenagee_m2: float | None
+    surface_amenagee_calculee_m2: float | None = Field(None, description="si l'AFI ne donne pas la surface aménagée : "
+                                                                         "surface couverte par les contours des lots de la "
+                                                                         "base AFI (calculée), à dire comme telle")
     lots_disponibles: int
     lots_disponibles_a_confirmer: int
     lots_mis_aux_encheres: int
@@ -61,12 +72,19 @@ def fiche_zone(e: EntreeFiche) -> FicheZone | None:
     return FicheZone(zone_id=zid, nom=z["nom_fr"], nom_ar=z["nom_ar"], gouvernorat=z["gouvernorat_fr"],
                      developpement_regional=bool(z["zone_developpement_regional"]),
                      groupe_developpement_regional=z["groupe_developpement_regional"],
-                     prix_m2_dt=nombre(z["prix_m2_dt"]), surface_totale_m2=nombre(z["surface_totale_m2"]),
-                     surface_amenagee_m2=nombre(z["surface_amenagee_m2"]), lots_disponibles=z["lots_disponibles"],
+                     prix_m2_dt=nombre(z["prix_m2_dt"]), prix_m2_dernier_publie_dt=nombre(z["prix_m2_dernier_publie_dt"]),
+                     prix_dernier_publie_source=z["prix_dernier_publie_source"],
+                     prix_m2_subventionne_dt=nombre(z["prix_m2_subventionne_site_afi_dt"]),
+                     prix_site_afi=nombre(z["prix_m2_site_afi_dt"]), prix_en_conflit=bool(z["prix_en_conflit"]),
+                     surface_totale_m2=nombre(z["surface_totale_m2"]),
+                     surface_amenagee_m2=nombre(z["surface_amenagee_m2"]), surface_amenagee_calculee_m2=nombre(z["surface_amenagee_calculee_m2"]),
+                     lots_disponibles=z["lots_disponibles"],
                      lots_disponibles_a_confirmer=z["lots_disponibles_a_confirmer"],
                      lots_mis_aux_encheres=z["lots_mis_aux_encheres"], distances=dist, equipements=equip,
                      services_proches=serv, cahiers_des_charges=cahiers, plans_de_lotissement=plans,
-                     sources=[SOURCE_BASE] + [Source(titre=d.titre, url=d.lien) for d in cahiers + plans])
+                     sources=[SOURCE_BASE] + [Source(titre=d.titre, url=d.lien) for d in cahiers + plans]
+                     + ([Source(titre="Site de l'AFI, incitations en zones de développement régional",
+                                url=z["prix_site_afi_source"].split(" (")[0])] if z["prix_site_afi_source"] else []))
 
 
 class EntreeListeZones(BaseModel):

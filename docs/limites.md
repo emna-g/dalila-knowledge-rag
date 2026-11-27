@@ -6,16 +6,23 @@ officiels collectés et le corpus. Quand une information manque, Dalila le dit e
 
 ## 1. Données de l'AFI
 
-| Manque | Zones / détail | Ce que Dalila dit |
+Ce qui manquait a été comblé avec des sources de l'AFI, chaque valeur ajoutée étant montrée à part, avec sa source :
+
+| Manque | Comblé par | Reste sans source |
 |---|---|---|
-| **Prix non publié** | Gabès I, II et III ; Sousse I ; Sousse II ; Hstaftimi (prix 0 dans la base et sur la carte de l'AFI) ; Bir El Kassaa 2 (2022 DT/m² dans la base : impossible, masqué). | « Prix non publié par l'AFI », avec le contact de la direction commerciale (+216 71 124 242). |
-| **Surface totale absente** | Bir El Kassaa 2, Kasserine Extention, Bouficha 2 (0 dans la base et sur la carte de l'AFI). Le site de l'AFI donne « Bouficha 30 ha » et « Kasserine 54 ha » sans dire de quelle tranche il s'agit : pas utilisé. | « Surface non publiée ». |
-| **Surface aménagée** | Dans 43 zones sur 50, les lots ensemble dépassent ce chiffre : il ne mesure pas toute la partie lotie. | La citer telle quelle, sans rien en calculer. |
-| **Enchères** | Ni la base ni la carte de l'AFI ne donnent de dates ou de mise à prix (champs vides). | Expliquer la procédure (réponses validées de l'AFI) ; renvoyer vers l'AFI pour les dates. |
-| **Plans de lotissement** | ~~Aucun plan publié~~ **Réglé** : la carte de l'AFI publie les 45 plans de sa table `zone_documents` (30 zones visibles), vue `v_pub_plans`. Les 20 autres zones visibles n'ont pas de plan dans la base. | Donner le lien du plan quand il existe. |
-| **Groupe 1 ou 2 du développement régional** | ~~La base dit seulement oui / non~~ **Réglé** : groupe de chaque zone d'après la carte de la FIPA (décret 2017-389), `db/reference/groupes_developpement_regional.csv` : 3 zones en groupe 1 (El Hancha, Menzel Chekir, Zriba 4), 27 en groupe 2. | Citer les avantages du groupe de la zone (TIA, FIPA) avec leur source, sans calculer de montant pour le projet. |
-| **Équipements non renseignés** | Valeur 0 dans la base (34 zones pour le gaz, El Hancha pour tout) ; gazoducs nommés par une route (« RN … », 9 zones). | Non montrés : « information non disponible ». |
-| **Lot à confirmer** | Lot 7204 (Sbikha 2) : disponible dans `afi.sql`, absent de la carte actuelle de l'AFI. | « Disponible selon la base, à confirmer auprès de l'AFI ». |
+| **Prix** (prix 0 ou impossible dans la base) | Dernier prix publié par l'AFI, sur son ancienne carte (25/11/2026), « à confirmer » : Gabès I, II et III 50 DT/m², Sousse II 100, Bir El Kassaa 2 100 (champ `prix_m2_dernier_publie_dt`). | Sousse I et Hstaftimi : aucun prix dans aucune source (ni base, ni cartes, ni site) → contact de la direction commerciale (+216 71 124 242). |
+| **Prix subventionné** (nouveau) | Page des incitations du site de l'AFI : prix au m² après la prime d'infrastructure (65 % groupe 1, 85 % groupe 2), 28 zones de développement régional (`prix_m2_subventionne_dt`). | — |
+| **Prix en conflit** | El Kef Extension : 32 DT/m² dans la base et sur la carte actuelle, 118 sur l'ancienne carte et sur la page des incitations du site de l'AFI. Dalila donne 32, signale 118 (`prix_en_conflit`) et conseille de confirmer. | — |
+| **Surface aménagée** | Bir El Kassaa 2 : 48,1 ha, surface couverte par les contours de ses lots (table AFI `lots_kml`) ; méthode vérifiée : elle retrouve la surface aménagée de l'AFI sur les zones qui en ont une (ex. Choutrana 41,7 / 41,3 ha). | — |
+| **Surface totale** | — | Bir El Kassaa 2, Kasserine Extention, Bouficha 2 : la surface totale (voirie et espaces verts compris) ne se déduit pas des lots (rapport à la surface aménagée de 1,3 à 2,9 selon les zones) → « surface totale non publiée », avec la surface aménagée. |
+| **Groupe 1 ou 2** | Carte de la FIPA (décret 2017-389), confirmée par la page des incitations de l'AFI : 3 zones en groupe 1, 27 en groupe 2. | — |
+| **Plans de lotissement** | Les 45 plans de la table AFI `zone_documents`, publiés sur la carte (30 zones visibles), vue `v_pub_plans`. | 20 zones visibles sans plan dans la base de l'AFI. |
+| **Enchères** | Procédure complète (réponses AFI 24 et 25). | Dates et mise à prix : vides dans la base et sur la carte → renvoi vers l'AFI. |
+| **Équipements non renseignés** | — | Valeur 0 dans la base et sur la carte (34 zones pour le gaz, El Hancha pour tout) ; gazoducs nommés par une route (9 zones) → « information non disponible ». OpenStreetMap essayé le 2026-11-27 (237 tronçons de gazoduc en Tunisie) : il ne retrouve les distances de l'AFI que pour 3 zones sur 40 (écart médian 51 km), réseau incomplet : non utilisé. |
+| **Lot à confirmer** | — | Lot 7204 (Sbikha 2) : disponible dans `afi.sql`, absent de la carte actuelle → « à confirmer auprès de l'AFI ». |
+
+Remarque : la surface aménagée de l'AFI correspond bien à la surface des lots (contours) ; la somme brute des surfaces de
+lots la dépasse parce que certains lots découpés figurent aussi sous leur numéro d'origine.
 
 ## 2. Services de l'AFI (BF23)
 
@@ -28,7 +35,7 @@ par service : `db/reference/services_afi.csv`) :
 | Montant des frais de rédaction du contrat et de délimitation topographique | Acquisition d'un lot | « Montant non publié par l'AFI » (le cahier des charges interdit toute estimation de frais). |
 | Frais de l'AFI | Autorisation de vente (leasing) | Seuls les frais du GMG sont cités : le dire. |
 | Montant de la garantie, dates des ventes | Enchères | Fixés dans le cahier des charges de chaque vente : renvoyer vers l'AFI. |
-| Lieu de dépôt | Les 6 services administratifs (attestations, acte de précision, autorisation, copie) | Ce que dit la source : « demande écrite adressée au PDG de l'AFI », avec l'adresse du siège et le bureau des relations avec le citoyen (+216 71 124 260) pour confirmer. Pas de lieu supposé. |
+| Lieu de dépôt (comblé) | Les 6 services administratifs | Champ `lieu_depot` de l'outil `demarche` : « demande écrite adressée au PDG de l'AFI » (réponses 18 à 23) et accueil au siège (9 et 13 rue Chott Mariem, Montplaisir, Tunis) et dans les délégations régionales (réponse 26). |
 
 Frais publiés (cités tels quels) : attestation de situation foncière, d'insertion d'hypothèque et de mainlevée : 50 DT ;
 acte de précision ou contrat final : 150 DT ; copie conforme : 15 DT par copie.
@@ -42,7 +49,8 @@ acte de précision ou contrat final : 150 DT ; copie conforme : 15 DT par copie.
   Vérifié le 2026-11-27 : la table AFI `zone_documents` cite un vrai cahier pour **Om Laatham** (`CC-OM-Laadham-2020.pdf`),
   mais ce fichier n'est publié ni sur la carte ni sur le site de l'AFI. Des 61 cahiers de cette table, nous avons tous
   ceux des zones visibles par le site afi.nat.tn, sauf celui d'Om Laatham (et celui de Bennane, zone masquée par l'AFI).
-  À demander à l'AFI.
+  À demander à l'AFI. Vérifié une seconde fois le 2026-11-27 : la page « CC.ZI.Oum-Laadham.Sidi Bouzid » du site de l'AFI
+  renvoie bien au PDF de Sidi Ali Hattab ; le vrai fichier n'est publié nulle part.
 - **Erreurs du site de l'AFI** (corrigées dans `db/reference/cahiers.csv`, colonne `remarque`) : la page d'Om Laatham
   propose le PDF de Sidi Ali Hattab ; « Sbikha 02 » propose celui de Soliman ; « Mghira 03 » celui de Zriba 2 et 3.
   Pour Kalaa Kebira, Kairouan II, Mghira 1 et Souassi, la page parle d'un projet ou d'une étude d'aménagement.

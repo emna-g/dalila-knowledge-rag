@@ -71,12 +71,41 @@ def fiches_zones(cur):
     return out
 
 
+def surfaces_contours(cur):
+    """Surface couverte par les contours des lots de chaque zone (chevauchements comptés une fois), en m²."""
+    import math
+    from shapely.geometry import Polygon
+    from shapely.ops import unary_union
+    cur.execute("SELECT TRIM(ZONE_ID) z, LOT_COORDINATES k FROM lots_kml")
+    par = collections.defaultdict(list)
+    for r in cur.fetchall():
+        pts = [tuple(map(float, p.split(",")[:2])) for p in (r["k"] or "").split() if p.count(",") >= 1]
+        if len(pts) >= 3:
+            par[r["z"]].append(pts)
+    out = []
+    for z, polys in par.items():
+        lat0 = math.radians(sum(p[1] for ps in polys for p in ps) / sum(len(ps) for ps in polys))
+        R = 6371008.8  # projection locale : écart de moins de 1 % à l'échelle d'une zone
+        geoms = [g for g in (Polygon([(math.radians(x) * R * math.cos(lat0), math.radians(y) * R) for x, y in ps]).buffer(0)
+                             for ps in polys) if g.area > 0]
+        if geoms:
+            out.append((z, round(unary_union(geoms).area), len(geoms)))
+    return out
+
+
 def main():
     con = db("root")
     cur = con.cursor()
     for t in ("dalila_gouvernorats", "dalila_corrections", "dalila_lots_a_confirmer", "dalila_zone_alias",
-              "dalila_zone_groupe_dr", "dalila_cahiers", "dalila_sources"):
+              "dalila_zone_groupe_dr", "dalila_prix_publies", "dalila_prix_site", "dalila_zone_surface_contours", "dalila_cahiers",
+              "dalila_sources"):
         cur.execute(f"DELETE FROM {t}")
+    cur.executemany("INSERT INTO dalila_zone_surface_contours VALUES (%s,%s,%s)", surfaces_contours(cur))
+    cur.executemany("INSERT INTO dalila_prix_site VALUES (%s,%s,%s,%s,%s)",
+                    [(r["zone_id"], r["nom_sur_la_page"], r["prix_m2_dt"], r["prix_m2_subventionne_dt"], r["source"])
+                     for r in lire_csv(REF / "prix_site_afi.csv")])
+    cur.executemany("INSERT INTO dalila_prix_publies VALUES (%s,%s,%s)",
+                    [(r["zone_id"], r["prix_m2_dt"], r["source"]) for r in lire_csv(REF / "derniers_prix_publies.csv")])
     cur.executemany("INSERT INTO dalila_zone_groupe_dr VALUES (%s,%s,%s,%s)",
                     [(r["zone_id"], r["groupe"], r["delegation"], r["source"])
                      for r in lire_csv(REF / "groupes_developpement_regional.csv")])

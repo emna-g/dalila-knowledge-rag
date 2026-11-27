@@ -73,14 +73,44 @@ def test_zone_et_services():
     assert "+216 71 124 260" in " ".join(r["texte"] for r in h["contact_afi"])  # numéro corrigé
 
 
+def test_manques_combles():
+    g = appeler("fiche_zone", {"zone_id": "88888"})       # prix absent de la base : dernier prix publié par l'AFI, sourcé
+    assert g["prix_m2_dt"] is None and g["prix_m2_dernier_publie_dt"] == 50 and "ancienne carte" in g["prix_dernier_publie_source"]
+    assert appeler("fiche_zone", {"zone_id": "930601"})["prix_m2_dernier_publie_dt"] is None  # Sousse I : aucune source
+    k = appeler("fiche_zone", {"zone_id": "931804"})       # El Kef Extension : deux publications de l'AFI en désaccord
+    assert k["prix_m2_dt"] == 32 and k["prix_site_afi"] == 118 and k["prix_en_conflit"]
+    h = appeler("fiche_zone", {"zone_id": "931005"})       # prix subventionné du site de l'AFI (groupe 1 : 35 % du prix)
+    assert h["prix_m2_subventionne_dt"] == 13.3 and h["groupe_developpement_regional"] == 1
+    b = appeler("fiche_zone", {"zone_id": "9302051"})      # surface aménagée calculée à partir des contours AFI
+    assert b["surface_amenagee_m2"] is None and 400000 < b["surface_amenagee_calculee_m2"] < 560000
+    r = appeler("chercher_lots", {"gouvernorats": [7], "budget_max_dt": 200000})  # Gabès : lots trouvés grâce au dernier prix
+    assert r["nombre_total"] > 0 and all("dernier prix" in l["prix_selon"] for l in r["lots"])
+    s = appeler("demarche", {"service": "mainlevee"})
+    assert "PDG" in s["lieu_depot"] and "Chott Mariem" in s["lieu_depot"] and s["non_publie_par_afi"] is None
+
+
+def test_graphe():
+    r = appeler("relier_concepts", {"texte": "La banque me demande un papier pour mon prêt"})  # exemple BF22
+    assert r["services_afi"] == ["insertion_hypotheque"]
+    assert "Eau" not in [c["libelle"] for c in r["concepts"]]  # « me » n'est pas un concept
+    p = appeler("conseiller", {"secteur": "pêche et élevage de poissons"})  # exemple BF20
+    assert p["secteurs"] == ["Pêche et aquaculture"] and "APIA" in [o["id"] for o in p["organismes"]]
+    assert p["infrastructures_utiles"] == ["port"]
+    h = appeler("conseiller", {"secteur": "hôtel touristique"})
+    assert "ONTT" in [o["id"] for o in h["organismes"]]
+    t = appeler("conseiller", {"secteur": "transformation de poisson"})
+    assert "poisson" in t["activites"][0]["libelle"].lower()
+    assert all(o["role"] for o in t["organismes"])  # chaque organisme a son rôle sourcé (seuil, secteur)
+
+
 def test_registre_robuste():
     assert "erreur" in appeler("supprimer_base", {})                    # outil hors liste
     assert "erreur" in appeler("chercher_lots", {"limite": 1000})        # borne dépassée
     assert "erreur" in appeler("fiche_zone", {"zone_id": "1; DROP TABLE lots"}) or True  # paramètre lié, sans effet
     assert q("SELECT COUNT(*) n FROM v_pub_zones")[0]["n"] == 50
     noms = {d["function"]["name"] for d in definitions()}
-    assert noms == {"resoudre_lieu", "chercher_lots", "fiche_zone", "lister_zones", "zones_proches", "demarche",
-                    "chercher_passages"}
+    assert noms == {"relier_concepts", "conseiller", "resoudre_lieu", "chercher_lots", "fiche_zone", "lister_zones",
+                    "zones_proches", "demarche", "chercher_passages"}
 
 
 if __name__ == "__main__":
