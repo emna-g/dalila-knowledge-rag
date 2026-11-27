@@ -28,5 +28,20 @@
   "au_dela_35s": 0,
   "materiel": "CPU 8 fils",
   "duree_totale_min": 15.4
+ },
+ "dalila-qwen3-4b": {
+  "questions": 40,
+  "reussies": "22/35",
+  "nombre_lots_exact": "10/16",
+  "nombre_dans_reponse": "10/16",
+  "passage_trouve": "9/15",
+  "langue_ok": "37/37",
+  "replis": 0,
+  "erreurs_registre": 0,
+  "duree_mediane_s": 19.5,
+  "duree_p95_s": 31.9,
+  "au_dela_35s": 0,
+  "materiel": "CPU 8 fils",
+  "duree_totale_min": 15.3
  }
 }

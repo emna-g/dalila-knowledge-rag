@@ -149,6 +149,48 @@ ancrées ; le jeu de test n'y entre jamais. Même taille, même vitesse sur proc
 fait mieux que 23/35 au même banc d'essai, langue comprise. Un modèle plus grand ne serait proposé qu'ensuite, mesures
 à l'appui.
 
+**Modèle ajusté (mesuré, même banc d'essai)** : `dalila-qwen3-4b` (QLoRA sur Kaggle, 816 conversations, 9 variantes de
+langue).
+
+| | Qwen3-4B-Instruct (base) | **Ajusté** |
+|---|---|---|
+| Réussies | 23/35 | 22/35 |
+| Nombre de lots exact | 11/16 | 10/16 |
+| Passage trouvé | 8/15 | 9/15 |
+| Langue juste | 35/37 | **37/37** |
+| Replis / au-delà de 35 s | 0 / 0 | 0 / 0 |
+| Médiane | 23 s | **19,5 s** |
+
+Exactitude égale à une question près ; langue toujours juste, plus rapide, réponses écrites dans le dialecte du
+visiteur (« Fama 2 lots disponibles fi Sfax… »). Ses erreurs propres : les questions sur les textes de l'AFI parfois
+envoyées vers les lots ou les zones (peu d'exemples de démarches et de passages à l'entraînement : 73 sur 816).
+Il lit ses conversations avec le gabarit de son entraînement (`ajustement/gabarit_entrainement.jinja`, envoi brut à
+Ollama) : avec le gabarit d'Ollama, il répétait ses appels d'outils au lieu de répondre. Le bloc vide qui ouvrait
+chaque réponse à l'entraînement est écrit d'avance après les outils (`dalila/moteurs/llm.py`).
+
+## Langue du visiteur (BF1) : détectée par des modèles, sans règle
+
+| Écriture | Modèle | Licence |
+|---|---|---|
+| Lettres arabes | CAMeL-Lab camelbert-mix-did-madar-corpus26 : 25 villes et l'arabe standard ; Tunis et Sfax -> tunisien, Alger -> algérien, Tripoli et Benghazi -> libyen | Apache 2.0 |
+| Lettres latines | n-grammes de caractères et régression logistique (`dalila/langue/entrainer_detection.py`) : fr, en, de, tr, tunisien et algérien en arabizi ; entraîné sur papluca/language-identification (MIT), TUNIZI, commentaires algériens (MIT), les questions de l'ancien chatbot et le jeu d'ajustement (jamais les jeux de test) | MIT (données) |
+
+| Jeu | Justes |
+|---|---|
+| 8 langues (24 questions) | **24/24** |
+| Vraies questions (57) | **54/57** (dont une étiquette fausse au jeu : « lots disponible de la zone agba » noté anglais) |
+| Lexique tunisien (32) | **30/32** |
+
+Un premier essai par les vecteurs de BGE-M3 donnait 13/24 : ce modèle met au même endroit une phrase et sa traduction,
+il ne sert pas à reconnaître une langue. La langue détectée est rendue par l'API, journalisée (liste pour l'AFI par
+dialecte, BF12) et choisit la langue du repli ; elle ne change pas ce que lit le modèle de l'agent.
+
+**Recherche sans règles de langue** (`eval/recherche_bench.py`, rapport `eval/reports/recherche_regles.json`) : les
+anciennes règles écrites à la main (normaliseur du lexique, langue devinée, listes de mots vides) sont coupées sur le
+chemin du service (décision de l'équipe). Même résultat sur les vraies questions (10/15) et les 8 langues (14/16 contre
+15/16, MRR 0,83 contre 0,79) ; moins bon sur le tunisien brut (17/30 contre 21/30). En service, l'agent reformule la
+question en français avant la recherche ; la vraie correction est l'ajustement de BGE-M3 sur des paires tunisiennes.
+
 ## Voix (mesurée sur processeur, 8 fils)
 
 | Rôle | Choix | Licence | Pourquoi |

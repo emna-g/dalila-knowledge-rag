@@ -1,0 +1,43 @@
+{
+ "8 langues": {
+  "justes": "24/24",
+  "par_langue": {
+   "aeb": "3/3",
+   "ar": "3/3",
+   "arq": "3/3",
+   "ayl": "3/3",
+   "de": "3/3",
+   "en": "3/3",
+   "fr": "3/3",
+   "tr": "3/3"
+  },
+  "exemples_d_erreurs": []
+ },
+ "vraies questions": {
+  "justes": "54/57",
+  "par_langue": {
+   "aeb": "2/2",
+   "ar": "3/4",
+   "en": "1/2",
+   "fr": "48/49"
+  },
+  "exemples_d_erreurs": [
+   "fr -> aeb : vous connu mon prenom",
+   "ar -> aeb : ولاية جندوبة",
+   "en -> fr : lots disponible de la zone agba"
+  ]
+ },
+ "lexique tunisien": {
+  "justes": "30/32",
+  "par_langue": {
+   "aeb": "24/26",
+   "ar": "2/2",
+   "en": "1/1",
+   "fr": "3/3"
+  },
+  "exemples_d_erreurs": [
+   "aeb -> ar : عندي مشروع سردين",
+   "aeb -> arq : فما قطعة أرض قريبة من المطار؟"
+  ]
+ }
+}

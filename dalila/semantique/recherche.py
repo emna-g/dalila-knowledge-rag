@@ -25,8 +25,9 @@ STOP = set("le la les de des du un une et a au aux en dans pour par sur est que 
 
 
 class BM25:
-    def __init__(self, docs, k1=1.5, b=0.75):
-        self.tf = [collections.Counter(w for w in tokens(d) if w not in STOP) for d in docs]
+    def __init__(self, docs, k1=1.5, b=0.75, mots_vides=frozenset()):
+        self.vides = mots_vides  # vide par défaut : l'idf écarte déjà les mots trop fréquents, sans liste par langue
+        self.tf = [collections.Counter(w for w in tokens(d) if w not in mots_vides) for d in docs]
         self.len = [sum(t.values()) for t in self.tf]
         self.avg = sum(self.len) / max(len(self.len), 1)
         df = collections.Counter(w for t in self.tf for w in t)
@@ -34,7 +35,7 @@ class BM25:
         self.k1, self.b = k1, b
 
     def scores(self, q, candidats):
-        qt = [w for w in tokens(q) if w not in STOP and w in self.idf]
+        qt = [w for w in tokens(q) if w not in self.vides and w in self.idf]
         out = []
         for i in candidats:
             tf, s = self.tf[i], 0.0
@@ -48,7 +49,12 @@ class BM25:
 
 
 class Recherche:
-    def __init__(self, modele=MODELE, reranker=RERANKER, lexique=True, echantillon=False):
+    def __init__(self, modele=MODELE, reranker=RERANKER, lexique=False, echantillon=False, regles_langue=False):
+        """lexique, regles_langue : anciennes règles écrites à la main (normaliseur tunisien, langue devinée au compte des
+        lettres arabes, listes de mots vides) ; coupées par défaut (décision de l'équipe : aucune règle de langue ; le
+        modèle de l'agent reformule la question en français, BGE-M3 est multilingue). Gardées pour la comparaison
+        mesurée (eval/recherche_bench.py) et pour l'ancienne chaîne fixe."""
+        self.regles_langue = regles_langue
         self.cfg = MODELES_RECHERCHE[modele]
         self.con = db("root" if echantillon else "ro")
         filtre = " AND id IN (SELECT id FROM dalila_echantillon_eval)" if echantillon else ""
@@ -76,7 +82,8 @@ class Recherche:
                         f"kb_id, pertinence, contient_chiffre, longueur FROM dalila_passages WHERE 1=1{filtre}")
             self.P = cur.fetchall()
         self.pos = {p["id"]: i for i, p in enumerate(self.P)}
-        self.bm25 = BM25([f"{p['titre'] or ''} {p['texte']}" for p in self.P])
+        self.bm25 = BM25([f"{p['titre'] or ''} {p['texte']}" for p in self.P],
+                         mots_vides=STOP if regles_langue else frozenset())
 
     @staticmethod
     def langue_de(question):
@@ -103,7 +110,7 @@ class Recherche:
         demarche : la question porte sur une démarche (papiers, procédure) : les réponses validées de l'AFI passent devant."""
         q, tn = self.requete(question)
         if langue == "auto":
-            langue = self.langue_de(question)
+            langue = self.langue_de(question) if self.regles_langue else None
         vec = self.modele.encode([self.cfg["prefixe_question"] + q], normalize_embeddings=True)[0]
         vtxt = "[" + ",".join(f"{x:.6f}" for x in vec) + "]"
         col = self.cfg["colonne"]

@@ -82,6 +82,9 @@ class Reponse(BaseModel):
     source: str
     action: str | None
     duree_s: float
+    langue: str | None = Field(None, description="langue détectée du message : fr, en, ar, de, tr, aeb (tunisien), "
+                                                 "arq (algérien), ayl (libyen)")
+    ecriture: str | None = Field(None, description="arabe ou latin")
 
 
 class Avis(BaseModel):
@@ -116,17 +119,21 @@ def chatbot(q: Question):
         r = {"reponse": REPLI.get(lang[:2], REPLI["fr"]), "source": "repli", "outils": [], "duree_s": 0.0,
              "erreur": type(ex).__name__}
     texte = masquer((q.message or "").strip()[:500])
+    det = r.get("langue_detectee") or {}
+    langue = det.get("langue") or lang
     outils = [{"outil": o["outil"], "arguments": o.get("arguments"), **({"arguments_modele": o["arguments_modele"]}
               if o.get("arguments_modele") else {})} for o in r["outils"]]  # lieu inconnu : pour l'apprentissage
     log_id = _ecrire("INSERT INTO agent_turns (session_id, texte_anonymise, langue, outils, garde_faits, latence_ms, "
-                     "source, reponse) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)", q.session_id, texte, lang,
+                     "source, reponse, script) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)", q.session_id, texte, langue,
                      json.dumps(outils, ensure_ascii=False), "ancre" if r["source"] == "dalila" else "repli",
-                     int(r["duree_s"] * 1000), r["source"], masquer(r.get("texte_modele") or "")[:4000] or None)
+                     int(r["duree_s"] * 1000), r["source"], masquer(r.get("texte_modele") or "")[:4000] or None,
+                     det.get("ecriture"))
     if r["source"] == "repli" and texte:
         _ecrire("INSERT INTO agent_needs (texte_anonymise, langue, raison) VALUES (%s, %s, %s)",
-                texte, lang, (r.get("erreur") or "repli")[:60])
+                texte, langue, (r.get("erreur") or "repli")[:60])
     return Reponse(message=r["reponse"], log_id=log_id, source=r["source"],
-                   action="choix" if "[[CHOIX:" in r["reponse"] else None, duree_s=r["duree_s"])
+                   action="choix" if "[[CHOIX:" in r["reponse"] else None, duree_s=r["duree_s"],
+                   langue=det.get("langue"), ecriture=det.get("ecriture"))
 
 
 @app.post("/carte/chatbot/avis")

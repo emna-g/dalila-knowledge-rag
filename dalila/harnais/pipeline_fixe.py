@@ -15,7 +15,8 @@ class Dalila:
     def __init__(self, modele=MODELE, reranker=RERANKER, echantillon=False):
         self.comprendre = Comprendre()
         self.outils = Outils()
-        self.recherche = Recherche(modele=modele, reranker=reranker, echantillon=echantillon)
+        self.recherche = Recherche(modele=modele, reranker=reranker, echantillon=echantillon, lexique=True,
+                                   regles_langue=True)  # ancienne chaîne : inchangée
 
     def analyser(self, question, k=5):
         sens = self.comprendre.analyser(question)

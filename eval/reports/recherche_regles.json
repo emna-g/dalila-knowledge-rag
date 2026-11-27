@@ -1,0 +1,42 @@
+{
+ "sans règles de langue (service)": {
+  "vraies questions": {
+   "questions": 15,
+   "rappel@5": "10/15",
+   "MRR": 0.56,
+   "temps_median_s": 2.0
+  },
+  "lexique tunisien": {
+   "questions": 30,
+   "rappel@5": "17/30",
+   "MRR": 0.52,
+   "temps_median_s": 1.88
+  },
+  "8 langues": {
+   "questions": 16,
+   "rappel@5": "14/16",
+   "MRR": 0.83,
+   "temps_median_s": 1.89
+  }
+ },
+ "avec les anciennes règles": {
+  "vraies questions": {
+   "questions": 15,
+   "rappel@5": "10/15",
+   "MRR": 0.57,
+   "temps_median_s": 1.93
+  },
+  "lexique tunisien": {
+   "questions": 30,
+   "rappel@5": "21/30",
+   "MRR": 0.62,
+   "temps_median_s": 1.88
+  },
+  "8 langues": {
+   "questions": 16,
+   "rappel@5": "15/16",
+   "MRR": 0.79,
+   "temps_median_s": 1.87
+  }
+ }
+}

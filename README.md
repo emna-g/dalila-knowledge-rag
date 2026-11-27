@@ -17,7 +17,7 @@ dalila/                 le service (paquet Python)
 ├─ harnais/             boucle d'agent, garde-fous, repli, faits ajoutés    fait (23/35, ≤ 35 s)
 ├─ traitement/          outils de l'agent : lieux, lots, zones, démarches   fait (9 outils, testés)
 ├─ semantique/          graphe (compréhension) et recherche par le sens     existant
-├─ langue/              langue, arabizi, reformulation (+ lexique tunisien) à faire
+├─ langue/              détection de la langue (modèles), lexique tunisien  fait
 ├─ voix/                voix vers texte, texte vers voix                    fait (Whisper small, Piper)
 ├─ sources/             URL configurées, lecture hebdomadaire, état         fait
 ├─ apprentissage/       liste pour l'AFI, exemples vérifiés, noms de lieux  fait (voir son README)
@@ -85,7 +85,12 @@ Pour revoir les décisions sur les données (rarement) :
 
 ## Lancer l'agent (API `POST /carte/chatbot`)
 
-1. **Ollama** (https://ollama.com), puis le modèle de l'agent (2,5 Go) : `ollama pull qwen3:4b-instruct`.
+1. **Ollama** (https://ollama.com), puis le modèle de l'agent :
+   - **modèle ajusté (par défaut)** : le fichier `dalila.Q4_K_M.gguf` (2,5 Go, sortie du carnet Kaggle privé
+     `dalila-ajustement-qwen3-4b`, hors git) dans `donnees/ajustement/modele/`, puis
+     `ollama create dalila-qwen3-4b -f ajustement/Modelfile` ;
+   - **modèle de base** (utilisé seul si le modèle ajusté n'est pas installé) : `ollama pull qwen3:4b-instruct`.
+   `DALILA_LLM` impose l'un ou l'autre.
 2. Le service (le premier démarrage lit les consignes une fois : 40 à 60 s sur processeur) :
    ```
    .venv\Scripts\python -m uvicorn dalila.communication.api:app --host 0.0.0.0 --port 8000

@@ -8,7 +8,7 @@ Légende : **Fait** (vérifié), **Partiel** (une partie existe ou n'est pas mes
 
 | Réf. | Besoin (résumé) | Priorité | Module | État |
 |---|---|---|---|---|
-| BF1 | Détecter la langue parmi les 8, distinguer tunisien, algérien, libyen, arabe standard | Obligatoire | `dalila/langue` | Partiel (le modèle reconnaît la langue du texte ; la voix détecte fr, en, ar, de, tr ; dialectes non mesurés séparément ; ancienne règle du lexique à retirer) |
+| BF1 | Détecter la langue parmi les 8, distinguer tunisien, algérien, libyen, arabe standard | Obligatoire | `dalila/langue` | Fait (`dalila/langue/detection.py` : modèles CAMeL MADAR-26 et n-grammes ; 24/24 sur le jeu des 8 langues, « n7eb terrain f Sfax » -> tunisien ; rendue par l'API) |
 | BF2 | Comprendre le tunisien, mêlé de français, sans orthographe fixe | Obligatoire | `dalila/langue`, `dalila/semantique` | Partiel (lexique attesté ; recherche 20/30 sur le jeu tunisien) |
 | BF3 | Répondre dans la langue et l'écriture du visiteur | Obligatoire | `dalila/langue` | Fait (fr, en, ar, de, tr, dialectes en lettres arabes : rappel de langue du harnais ; langue juste 35/37 au banc d'essai) ; arabizi faible |
 | BF4 | Fonctions existantes dans les 8 langues (terrain, proximité, qualification, procédure, étude) | Obligatoire | `dalila/traitement`, `dalila/harnais` | Partiel (terrain, proximité, procédures, conseil de projet : outils testés, 8 langues par le harnais ; « qualification » et « étude » : à faire) |
@@ -33,6 +33,27 @@ Légende : **Fait** (vérifié), **Partiel** (une partie existe ou n'est pas mes
 | BF23 | Conditions, pièces, frais, lieu de dépôt, lien de chacun des 8 services | Obligatoire | `dalila/traitement`, base de connaissances | Fait (outil `demarche` : les 8 services, réponses validées de l'AFI, lien, contact) |
 | BF24 | Service non couvert : contact AFI, besoin enregistré | Obligatoire | `dalila/harnais` | Fait (repli avec contact ; question gardée dans `agent_needs` par l'API) |
 
+### Besoins BF25 à BF40 (cahier des charges fusionné, section 4)
+
+| Réf. | Besoin (résumé) | Priorité | Module | État |
+|---|---|---|---|---|
+| BF25 | Lot ou regroupement de lots selon superficie, lieu, budget, calculé en base | Obligatoire | `dalila/traitement/lots.py` | Fait (outil `chercher_lots`, testé) |
+| BF26 | Zone par proximité (port, gare, aéroport, autoroute) | Obligatoire | `dalila/traitement/zones.py` | Fait (`zones_proches`, `proche_de`) |
+| BF27 | Comparer 2 à 4 zones : prix, surface disponible, accès, développement régional | Obligatoire | `dalila/traitement` | À faire |
+| BF28 | État d'un lot : disponible, réservé, vendu, aux enchères | Obligatoire | `dalila/traitement` | Partiel (disponibles et mis aux enchères ; les autres états à exposer) |
+| BF29 | Expliquer pourquoi un lot est recommandé | Obligatoire | `dalila/traitement`, `dalila/harnais` | À faire |
+| BF30 | Activité autorisée dans la zone, incompatibilités avec les voisins (par secteur) | Souhaité | `dalila/traitement` | Partiel (cahiers des charges cherchés par `chercher_passages`) |
+| BF31 | Qualifier le projet (région, emplois, investissement, superficie) et donner un guide sourcé | Obligatoire | `dalila/traitement` | Partiel (`conseiller` : activité, organismes ; qualification complète à faire) |
+| BF32 | Étude de projet guidée : 10 questions, puis PDF | Souhaité | `dalila/traitement` | À faire |
+| BF33 | Expliquer les avantages : développement régional, aide déduite du prix, organisme | Obligatoire | `dalila/traitement` | Partiel (prix subventionné, groupe, organismes ; explication à rassembler) |
+| BF34 | Conversation guidée par boutons pour une demande large | Obligatoire | `dalila/harnais` | Partiel (`[[CHOIX]]` pour les lieux et les services) |
+| BF35 | Promoteur connecté : demandes, favoris, conversations | Souhaité | interface | Interface |
+| BF36 | L'agent AFI gère connaissances, concepts, synonymes, avec retour arrière | Obligatoire | `dalila/administration` | Partiel (noms de lieux appris et annulables) |
+| BF37 | L'agent AFI ajoute ou retire une URL et relance la lecture | Obligatoire | `dalila/sources` | Partiel (`config_sources.csv`, relecture hebdomadaire ; écran : interface) |
+| BF38 | Besoins analysés : profil, intention, stade, sentiment, questions sans réponse | Souhaité | `dalila/apprentissage` | Partiel (questions sans réponse : `besoins.py`) |
+| BF39 | L'administrateur choisit moteurs, voix, langues, droits, sans code | Obligatoire | `dalila/config.py` | Partiel (moteurs et voix par `.env` ; écran : interface) |
+| BF40 | Avis utile / pas utile avec commentaire, alimente l'apprentissage | Obligatoire | `dalila/communication` | Partiel (avis enregistré, liste et export ; commentaire à ajouter) |
+
 ## Besoins non fonctionnels
 
 | Réf. | Besoin (résumé) | Cible | Module | État |
@@ -56,6 +77,9 @@ Légende : **Fait** (vérifié), **Partiel** (une partie existe ou n'est pas mes
 | BNF17 | Gain d'apprentissage mesuré avant / après, par langue | hausse | `eval/` | Partiel : chaque ajustement est mesuré sur le même banc d'essai avant adoption ; mesure par langue limitée par le jeu de test (surtout français) |
 | BNF18 | Jamais apprendre un prix, une disponibilité, une condition d'un visiteur ; plusieurs conversations | aucun ajout sans source | `dalila/apprentissage` | Fait pour les noms de lieux : au moins 2 conversations distinctes ; un nom avec des chiffres est refusé ; seulement « ce nom désigne ce lieu » |
 | BNF19 | OWL 2, RDF, SPARQL 1.1, libellés avec langue, export Turtle | export sans erreur | `ontology/`, `dalila/connaissances` | Fait (export TriG/Turtle, SHACL, OWL RL, requêtes de test) |
+
+| BNF20 | Proposer un conseiller AFI quand la question dépasse Dalila | contact proposé | `dalila/harnais` | Fait (repli avec le contact de l'AFI) |
+| BNF21 | Charte graphique AFI et mascotte | couleurs, typographies | interface | Interface |
 
 ## Livrables
 

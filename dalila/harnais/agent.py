@@ -92,6 +92,15 @@ def appeler_avec_lieu(nom, arguments, message):
     return res, arguments
 
 
+def _langue(texte):
+    """Langue détectée du message (dalila/langue/detection.py) ; modèles absents : rien, le service continue."""
+    try:
+        from dalila.langue.detection import detecter
+        return detecter(texte)
+    except Exception:  # noqa: BLE001
+        return {}
+
+
 def journal_outils(journal):
     """Vrai dès qu'un outil (hors rappels) a été appelé pendant la question."""
     return any(not j["outil"].startswith("(") for j in journal)
@@ -109,6 +118,7 @@ class Agent:
         les questions des visiteurs ne la paient plus."""
         from dalila.moteurs.embeddings import encoder_questions
         encoder_questions(["préchauffage"])
+        _langue("préchauffage")
         try:
             discuter([systeme(), {"role": "user", "content": "Bonjour"}], outils=self.outils, modele=self.modele,
                      delai_s=300, jetons_max=1)
@@ -123,12 +133,14 @@ class Agent:
         journal, resultats, deja = [], [], {}
         relance, rappels, a_lire = False, 0, 0
 
+        detectee = _langue(message)  # BF1 : langue et écriture du message (modèles, aucune règle)
+
         def sortie(texte, source, ancrage=None, etape=0, erreur=None, texte_modele=None):
             return {"reponse": texte, "texte_modele": texte_modele, "source": source, "outils": journal,
                     "ancrage": ancrage, "etapes": etape, "duree_s": round(time.time() - debut, 2),
-                    "modele": self.modele, "erreur": erreur}
+                    "modele": self.modele, "erreur": erreur, "langue_detectee": detectee}
 
-        code = (lang or "").strip().lower()
+        code = (detectee.get("langue") or lang or "").strip().lower()  # le repli dans la langue du visiteur
         repli = REPLI.get(code) or REPLI.get(code[:2]) or (REPLI["ar"] if code in DIALECTES else REPLI["fr"])
         rappel_langue = {"role": "user", "content": RAPPEL_LANGUE.format(
             message=message[:200], interface="")}  # la langue du message prime : jamais celle de l'interface
@@ -148,7 +160,7 @@ class Agent:
                 # avant d'écrire, après des résultats en français : rappel de la langue du visiteur, non gardé
                 r = discuter(messages + ([rappel_langue] if journal_outils(journal) else []), outils=self.outils, modele=self.modele, delai_s=reste,
                              jetons_max=_jetons(reste, a_lire), arret_si_texte=not journal_outils(journal)
-                             and rappels < RAPPELS_MAX)
+                             and rappels < RAPPELS_MAX, reponse_attendue=journal_outils(journal))
                 a_lire = 0
             except ErreurMoteur as ex:
                 return sortie_repli(etape, str(ex))
