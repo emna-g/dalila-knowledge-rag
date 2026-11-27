@@ -1,4 +1,4 @@
-code,nom_fr,nom_ar
+code,nom_fr,nom_ar,source
 1,Tunis,تونس
 2,Ariana,أريانة
 3,Ben Arous,بن عروس
@@ -6,6 +6,7 @@ code,nom_fr,nom_ar
 5,Beja,باجة
 6,Bizerte,بنزرت
 7,Gabes,قابس
+8,Gafsa,قفصة,"AFI afi.sql, zones.code_zone=932001 (gouv_id=8, GAFSA, قفصة)"
 9,Jendouba,جندوبة
 10,Kairouan,القيروان
 11,Kasserine,القصرين

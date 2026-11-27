@@ -28,10 +28,10 @@ def lire(zone_id):
 
 
 def main():
-    con = db("root")
-    with con.cursor() as cur:
-        cur.execute("SELECT CAST(code_zone AS CHAR) z FROM zones WHERE zone_show = 1 ORDER BY code_zone")
-        ids = [r["z"] for r in cur.fetchall()]
+    with db("ro") as con:
+        with con.cursor() as cur:
+            cur.execute("SELECT zone_id AS z FROM v_pub_zones ORDER BY zone_id")
+            ids = [r["z"] for r in cur.fetchall()]
     out = {"source": "carte publique actuelle de l'AFI, carte.afi.nat.tn",
            "lu_le": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d"), "zones": {}}
     for i in ids:

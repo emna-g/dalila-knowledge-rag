@@ -16,6 +16,7 @@ import gc, json, re, datetime, pathlib, shutil, sys
 from rdflib import Dataset, Graph, Namespace, Literal, URIRef, RDF, RDFS
 from rdflib.namespace import SKOS, DCTERMS, XSD, OWL
 from dalila.config import DONNEES, ONTOLOGIE, LEXIQUE, db
+from dalila.traitement.references import alias_zones, gouvernorats_par_code
 
 DAL = Namespace("https://afi.nat.tn/ontology/dalila#")
 D = Namespace("https://afi.nat.tn/ontology/dalila/donnees/")
@@ -62,7 +63,7 @@ def main():
     core, abox, lex, aval = (ds.graph(G[n]) for n in ("core", "abox", "lexique", "a-valider"))
     core.parse(ONTOLOGIE / "dalila.ttl")
     aval.parse(ONTOLOGIE / "libelles_a_valider.ttl")
-    con = db("root")
+    con = db("ro")
     cur = con.cursor()
 
     def q(sql):
@@ -70,20 +71,21 @@ def main():
         return cur.fetchall()
 
     # ---------------- Lieux, lots, commodités (liens seulement, aucun chiffre)
-    for r in q("SELECT code, nom_fr, nom_ar FROM dalila_gouvernorats"):
-        n = D[f"gouvernorat/{r['code']}"]
+    gouvernorats = gouvernorats_par_code()
+    for code, r in gouvernorats.items():
+        n = D[f"gouvernorat/{code}"]
         abox.add((n, RDF.type, DAL.Gouvernorat))
         lab(abox, n, r["nom_fr"])
         lab(abox, n, r["nom_ar"], "ar")
-        abox.add((n, DAL.idAFI, Literal(str(r["code"]))))
+        abox.add((n, DAL.idAFI, Literal(str(code))))
     regimes = {1: D["regime/developpement_regional"], 0: D["regime/littoral_grand_tunis"]}
     for (k, n), (fr, src) in zip(regimes.items(), [("Zone de développement régional", 13), ("Zone littorale ou Grand Tunis", 15)]):
         abox.add((n, RDF.type, DAL.RegimeZone))
         lab(abox, n, fr)
         abox.add((n, DCTERMS.source, Literal(f"base AFI afi.sql, chatbot_connaissances id {src}")))
     alias = {}
-    for a in q("SELECT zone_id, alias, langue FROM dalila_zone_alias"):
-        alias.setdefault(a["zone_id"], []).append(a)
+    for valeur in alias_zones():
+        alias.setdefault(valeur["zone_id"], []).append(valeur)
     for z in q("SELECT zone_id, nom_fr, nom_ar, gouvernorat_code, zone_developpement_regional FROM v_pub_zones"):
         n = D[f"zone/{z['zone_id']}"]
         abox.add((n, RDF.type, DAL.ZoneIndustrielle))
@@ -92,9 +94,11 @@ def main():
             lab(abox, n, z["nom_ar"], "ar")
         abox.add((n, DAL.idAFI, Literal(z["zone_id"])))
         abox.add((n, DCTERMS.source, SRC_BASE))
-        for a in alias.get(z["zone_id"], []):
-            abox.add((n, SKOS.hiddenLabel, Literal(a["alias"], lang=a["langue"])))  # ancien nom : reconnu, pas affiché
-        abox.add((n, DAL.dansGouvernorat, D[f"gouvernorat/{z['gouvernorat_code']}"]))
+        for ancien_nom in alias.get(str(z["zone_id"]), []):
+            abox.add((n, SKOS.hiddenLabel, Literal(ancien_nom["alias"], lang=ancien_nom["langue"])))
+        code = int(z["gouvernorat_code"]) if z["gouvernorat_code"] is not None else None
+        if code in gouvernorats:
+            abox.add((n, DAL.dansGouvernorat, D[f"gouvernorat/{code}"]))
         if z["zone_developpement_regional"] is not None:
             abox.add((n, DAL.aRegime, regimes[int(z["zone_developpement_regional"])]))
     for r in q("SELECT lot_id, zone_id FROM v_pub_lots"):
@@ -216,6 +220,7 @@ def main():
 
     # ---------------- Services de l'AFI : procédures, étapes, pièces, frais (tirés des fiches 12 à 25)
     kb = {r["id"]: r for r in q("SELECT id, question, reponse FROM chatbot_connaissances WHERE id BETWEEN 12 AND 25")}
+    con.close()
     SERVICES = {  # service -> [(procédure, fiches, régime)]  ; fiches vérifiées sur leurs titres
         "acquisition_lot": ("Acquisition d'un lot", [("acquisition_regional", [13, 14], 1),
                                                      ("acquisition_littoral", [15, 16, 17], 0)]),

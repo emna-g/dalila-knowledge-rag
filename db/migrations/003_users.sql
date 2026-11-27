@@ -1,4 +1,5 @@
--- Deux comptes : dalila_ro lit seulement les vues publiques et les passages ; dalila_rw écrit les tables agent_*.
+-- dalila_ro lit les vues publiques, passages et seules colonnes AFI requises ;
+-- dalila_rw écrit uniquement les tables agent_*.
 -- Les mots de passe viennent du fichier .env (jamais dans git) : ce script est lancé par backend/ingest/migrer.py,
 -- qui remplace :RO_PASSWORD et :RW_PASSWORD.
 CREATE USER IF NOT EXISTS 'dalila_ro'@'%' IDENTIFIED BY ':RO_PASSWORD';
@@ -16,7 +17,9 @@ GRANT SELECT ON afi.dalila_passages TO 'dalila_ro'@'%';
 GRANT SELECT ON afi.dalila_sources TO 'dalila_ro'@'%';
 GRANT SELECT ON afi.dalila_gouvernorats TO 'dalila_ro'@'%';
 GRANT SELECT ON afi.dalila_zone_alias TO 'dalila_ro'@'%';
+GRANT SELECT ON afi.dalila_cahiers TO 'dalila_ro'@'%';
 GRANT SELECT ON afi.chatbot_connaissances TO 'dalila_ro'@'%';
+GRANT SELECT (contenu) ON afi.chatbot_sources TO 'dalila_ro'@'%';
 GRANT SELECT, INSERT, UPDATE ON afi.agent_sessions TO 'dalila_rw'@'%';
 GRANT SELECT, INSERT, UPDATE ON afi.agent_turns TO 'dalila_rw'@'%';
 GRANT SELECT, INSERT, UPDATE ON afi.agent_needs TO 'dalila_rw'@'%';

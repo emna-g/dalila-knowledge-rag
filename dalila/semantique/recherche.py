@@ -58,9 +58,20 @@ class Recherche:
                         f"FROM dalila_passages WHERE 1=1{filtre}")
             r = cur.fetchone()
         if not r["avec"] or int(r["sans"] or 0) == r["avec"]:
-            raise RuntimeError(f"Aucun vecteur « {modele} » dans dalila_passages ({self.cfg['colonne']} vide) : lancer "
-                               f"d'abord « python -m dalila.connaissances.vectoriser --modele {modele}"
-                               f"{' --echantillon' if echantillon else ''} », ou choisir un autre DALILA_MODELE.")
+            if echantillon:
+                etapes = (
+                    "python -m dalila.connaissances.echantillon --taille 1500, puis "
+                    f"python -m dalila.connaissances.vectoriser --modele {modele} --echantillon"
+                )
+            else:
+                etapes = (
+                    "python -m dalila.connaissances.echantillon --taille 1500, puis "
+                    "python -m dalila.connaissances.vectoriser --modele e5 --echantillon et évaluer cet échantillon; "
+                    f"après validation seulement, index complet avec --modele {modele} --index-complet"
+                )
+            raise RuntimeError(
+                f"Aucun vecteur « {modele} » dans dalila_passages ({self.cfg['colonne']} vide) : lancer {etapes}."
+            )
         if int(r["sans"] or 0):
             print(f"attention : {r['sans']}/{r['avec']} passages sans vecteur « {modele} » "
                   "(trouvés seulement par mots-clés)")

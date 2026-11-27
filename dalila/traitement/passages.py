@@ -21,7 +21,12 @@ class Passage(BaseModel):
     id: str
     type: str
     titre: str | None
+    source: str | None
+    url: str | None
+    date_source: str | None
     texte: str
+    similarite: float | None = None
+    # Kept for callers that already consume the original field.
     lien: str | None
     texte_lu_par_ocr: bool = Field(description="chiffre lu par OCR : citer avec le lien du document")
 
@@ -39,7 +44,18 @@ def _recherche():
 
 def chercher_passages(e: EntreePassages) -> ResultatPassages:
     r = _recherche().chercher(e.question, k=e.nombre, zone_ids=[e.zone_id] if e.zone_id else None, regime=e.regime)
-    ps = [Passage(id=p["id"], type=p["type"], titre=p["titre"], texte=p["texte"][:1500],
-                  lien=p["source_url"] if str(p["source_url"] or "").startswith("http") else None,
-                  texte_lu_par_ocr=p["texte_ocr"]) for p in r["resultats"]]
-    return ResultatPassages(passages=ps, sources=[Source(titre=p.titre or p.type, url=p.lien) for p in ps])
+    ps = []
+    for p in r["resultats"]:
+        source_url = p.get("source_url") or p.get("url")
+        url = source_url if str(source_url or "").startswith(("http://", "https://")) else None
+        ps.append(Passage(
+            id=p["id"], type=p["type"], titre=p.get("titre"),
+            source=p.get("source") or source_url, url=url, date_source=p.get("date_source"),
+            texte=p["texte"][:1500], similarite=p.get("similarite"), lien=url,
+            texte_lu_par_ocr=bool(p.get("texte_ocr")),
+        ))
+    sources = {}
+    for p in ps:
+        titre = p.titre or p.source or p.type
+        sources[(titre, p.url)] = Source(titre=titre, url=p.url, date_source=p.date_source)
+    return ResultatPassages(passages=ps, sources=list(sources.values()))

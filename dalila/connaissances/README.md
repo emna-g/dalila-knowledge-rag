@@ -5,6 +5,6 @@ Construit et met à jour tout ce que l'agent lit : tables et vues MariaDB, corre
 | | |
 |---|---|
 | **Exigences** | BNF1, BF16, BNF19 |
-| **Contrat** | Ordre : migrer → charger → construire_abox → vectoriser ; rafraichir_copie_afi pour remettre la copie AFI à jour ; lire_carte_afi et extraire_corrections pour revoir les décisions sur les données ; preparer_corpus une seule fois. |
+| **Contrat** | Base existante : migration ciblée validée → charger avec `dalila_ingest` → construire_abox en lecture seule. La synchronisation est upsert-only; les surfaces KML nécessitent `--surfaces`. Vectorisation séparée : créer l'échantillon, indexer E5 avec `--echantillon`, évaluer, puis seulement autoriser `--index-complet`. `charger` n'exécute aucune migration et n'efface rien par défaut. `rafraichir_copie_afi` met à jour la copie AFI ; `preparer_corpus` se lance une fois. |
 | **S'appuie sur** | db/, ontology/, donnees/ (hors git) |
 | **État** | Existant. |

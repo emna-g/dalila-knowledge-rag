@@ -4,7 +4,7 @@
     reponse = discuter(messages, outils=definitions())   # -> {"content": ..., "tool_calls": [...], "duree_s": ...}
 
 Réglages (fichier .env) :
-  DALILA_LLM            modèle Ollama (défaut : qwen3:4b ; choix mesuré : docs/decisions.md)
+  DALILA_LLM            modèle Ollama (défaut : qwen3.5:4b)
   DALILA_LLM_URL        adresse d'Ollama (défaut : http://127.0.0.1:11434)
   DALILA_LLM_CPU        1 : processeur seulement, comme le serveur de l'AFI (pour mesurer) ; 0 (défaut) : carte graphique si là
   DALILA_LLM_FILS       nombre de fils de calcul (défaut 8, comme le serveur de l'AFI)
@@ -12,7 +12,11 @@ Le mode « réflexion » des modèles Qwen3 est coupé : il allonge beaucoup les
 """
 import json, os, time, urllib.request
 
-MODELE_LLM = os.environ.get("DALILA_LLM", "qwen3:4b")
+from dalila.config import charger_env
+
+charger_env()
+
+MODELE_LLM = os.environ.get("DALILA_LLM", "qwen3.5:4b")
 URL = os.environ.get("DALILA_LLM_URL", "http://127.0.0.1:11434")
 
 

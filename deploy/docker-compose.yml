@@ -1,7 +1,15 @@
-# Dalila : tout démarrer avec Docker Compose (depuis le dossier deploy/, toujours avec --env-file ../.env).
+# DALILA : commandes Docker Compose depuis deploy/ (toujours avec --env-file ../.env).
 #
 #   docker compose --env-file ../.env up -d db                                     base MariaDB 11.8 (afi.sql chargé au 1er démarrage)
-#   docker compose --env-file ../.env --profile build run --rm ingest              construit tout : tables, vues, graphe, vecteurs (long)
+#   docker compose --env-file ../.env --profile build run --rm ingest              charge les données et construit le graphe
+#   docker compose --env-file ../.env --profile e5-sample run --rm e5-sample       indexe un échantillon E5 léger
+#   PowerShell, avant bootstrap : $env:DALILA_CONFIRM_FRESH_DATABASE='I_ACCEPT_DESTRUCTIVE_FRESH_DATABASE'
+#   docker compose --env-file ../.env --profile fresh-database run --rm bootstrap  INITIALISATION DESTRUCTIVE d'une base neuve uniquement
+#   PowerShell, après bootstrap : Remove-Item Env:DALILA_CONFIRM_FRESH_DATABASE
+#   Index complet, après évaluation E5 : $env:DALILA_CONFIRM_FULL_VECTORIZATION='I_ACCEPT_FULL_VECTORIZATION'
+#   docker compose --env-file ../.env --profile full-vectorization run --rm full-vectorization
+#   PowerShell, après index complet : Remove-Item Env:DALILA_CONFIRM_FULL_VECTORIZATION
+#   Pour une base existante : appliquer explicitement la migration ciblée, puis lancer ingest.
 #   docker compose --env-file ../.env run --rm kg load --location /data --file /graphe/dalila.trig   charge le graphe dans Oxigraph
 #   docker compose --env-file ../.env up -d kg                                     interface SPARQL : http://localhost:7878
 #   docker compose --env-file ../.env --profile eval run --rm eval                 évaluation (rapports dans eval/reports/)
@@ -21,6 +29,8 @@ services:
       MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:?mettre DB_ROOT_PASSWORD dans .env}
       MARIADB_DATABASE: afi
     command: ["--character-set-server=utf8mb4", "--collation-server=utf8mb4_general_ci", "--max-allowed-packet=256M"]
+    ports:
+      - "127.0.0.1:${DB_PORT:-3306}:3306"
     volumes:
       - dbdata:/var/lib/mysql
       - ../donnees/afi.sql:/docker-entrypoint-initdb.d/00_afi.sql:ro
@@ -46,7 +56,64 @@ services:
     env_file: ../.env
     environment: {DB_HOST: db, DB_PORT: "3306"}
     depends_on: {db: {condition: service_healthy}}
-    command: ["/bin/sh", "-c", "python -m dalila.connaissances.migrer && python -m dalila.connaissances.charger && python -m dalila.connaissances.construire_abox && python -m dalila.connaissances.vectoriser"]
+    command: ["/bin/sh", "-c", "python -m dalila.connaissances.charger && python -m dalila.connaissances.construire_abox"]
+    volumes:
+      - models:/models
+      - ../donnees:/data:ro
+      - ../ontology:/app/ontology
+
+  e5-sample:
+    profiles: ["e5-sample"]
+    build: {context: .., dockerfile: deploy/Dockerfile}
+    env_file: ../.env
+    environment: {DB_HOST: db, DB_PORT: "3306"}
+    depends_on: {db: {condition: service_healthy}}
+    command: ["/bin/sh", "-c", "python -m dalila.connaissances.echantillon --taille 1500 && python -m dalila.connaissances.vectoriser --modele e5 --echantillon"]
+    volumes:
+      - models:/models
+
+  full-vectorization:
+    profiles: ["full-vectorization"]
+    build: {context: .., dockerfile: deploy/Dockerfile}
+    env_file: ../.env
+    environment:
+      DB_HOST: db
+      DB_PORT: "3306"
+      DALILA_MODELE: ${DALILA_MODELE:-e5}
+      DALILA_CONFIRM_FULL_VECTORIZATION: ${DALILA_CONFIRM_FULL_VECTORIZATION:-}
+    depends_on: {db: {condition: service_healthy}}
+    command:
+      - /bin/sh
+      - -c
+      - |
+        if [ "$$DALILA_CONFIRM_FULL_VECTORIZATION" != "I_ACCEPT_FULL_VECTORIZATION" ]; then
+          echo "Refus : confirmez l'indexation complète seulement après l'évaluation de l'échantillon E5." >&2
+          exit 64
+        fi
+        python -m dalila.connaissances.vectoriser --modele "$$DALILA_MODELE" --index-complet
+    volumes:
+      - models:/models
+
+  bootstrap:
+    profiles: ["fresh-database"]
+    build: {context: .., dockerfile: deploy/Dockerfile}
+    env_file: ../.env
+    environment:
+      DB_HOST: db
+      DB_PORT: "3306"
+      DALILA_CONFIRM_FRESH_DATABASE: ${DALILA_CONFIRM_FRESH_DATABASE:-}
+    depends_on: {db: {condition: service_healthy}}
+    command:
+      - /bin/sh
+      - -c
+      - |
+        if [ "$$DALILA_CONFIRM_FRESH_DATABASE" != "I_ACCEPT_DESTRUCTIVE_FRESH_DATABASE" ]; then
+          echo "Refus : définissez DALILA_CONFIRM_FRESH_DATABASE=I_ACCEPT_DESTRUCTIVE_FRESH_DATABASE pour une base neuve." >&2
+          exit 64
+        fi
+        python -m dalila.connaissances.migrer --all --allow-destructive-history &&
+        python -m dalila.connaissances.charger --replace-dalila-data --confirm-replace-dalila-data --surfaces &&
+        python -m dalila.connaissances.construire_abox
     volumes:
       - models:/models
       - ../donnees:/data:ro

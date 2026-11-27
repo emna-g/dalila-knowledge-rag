@@ -5,6 +5,7 @@ ils ne peuvent ni écrire ni voir les acquéreurs. Chaque résultat porte ses so
 le harnais vérifie que chaque chiffre vient bien d'un outil.
 """
 import threading
+from datetime import date
 from pydantic import BaseModel
 from dalila.config import db
 
@@ -12,6 +13,7 @@ from dalila.config import db
 class Source(BaseModel):
     titre: str
     url: str | None = None
+    date_source: date | None = None
 
 
 SOURCE_BASE = Source(titre="Données de l'AFI (zones, lots, prix, distances), lues dans la base de Dalila")

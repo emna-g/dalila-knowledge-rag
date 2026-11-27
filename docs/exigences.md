@@ -11,13 +11,13 @@ Légende : **Fait** (vérifié), **Partiel** (une partie existe ou n'est pas mes
 | BF1 | Détecter la langue parmi les 8, distinguer tunisien, algérien, libyen, arabe standard | Obligatoire | `dalila/langue` | À faire (le lexique détecte le tunisien : 31/32 sur son jeu ; règle écrite à la main, à remplacer) |
 | BF2 | Comprendre le tunisien, mêlé de français, sans orthographe fixe | Obligatoire | `dalila/langue`, `dalila/semantique` | Partiel (lexique attesté ; recherche 20/30 sur le jeu tunisien) |
 | BF3 | Répondre dans la langue et l'écriture du visiteur | Obligatoire | `dalila/langue` | À faire |
-| BF4 | Fonctions existantes dans les 8 langues (terrain, proximité, qualification, procédure, étude) | Obligatoire | `dalila/traitement`, `dalila/harnais` | Partiel (outils terrain, proximité, procédures faits et testés ; qualification et étude : à faire ; 8 langues : avec le harnais) |
+| BF4 | Fonctions existantes dans les 8 langues (terrain, proximité, qualification, procédure, étude) | Obligatoire | `dalila/traitement`, `dalila/harnais` | Partiel (outils terrain, proximité et procédures présents; qualification/étude et validation des 8 langues restent à faire) |
 | BF5 | Garder zones cliquables et boutons de choix après reformulation | Obligatoire | `dalila/communication`, `dalila/harnais` | À faire |
 | BF6 | Dire quand l'information manque, orienter vers l'AFI | Obligatoire | `dalila/harnais` | Partiel (les manques sont connus : docs/limites.md) |
 | BF7 | Poser une question à la voix dans les 8 langues | Obligatoire | `dalila/voix`, `frontend` | À faire |
 | BF8 | Lire la réponse à voix haute | Obligatoire | `dalila/voix` | À faire |
 | BF9 | Activer ou couper micro et lecture | Obligatoire | `frontend` | À faire |
-| BF10 | Enchaîner plusieurs actions (agent à outils) | Souhaité | `dalila/harnais`, `dalila/traitement` | À faire |
+| BF10 | Enchaîner plusieurs actions (agent à outils) | Souhaité | `dalila/harnais`, `dalila/traitement` | Implémenté dans `harnais/agent.py`; intégration réelle à valider |
 | BF11 | Préparer une demande d'acquisition, sans dépôt sans confirmation | Souhaité | `dalila/traitement`, `dalila/harnais` | À faire |
 | BF12 | Lister pour l'AFI les questions en dialecte mal comprises | Souhaité | `dalila/apprentissage`, `dalila/administration` | À faire (table `agent_needs` créée) |
 | BF13 | Conversation vocale continue | Souhaité | `dalila/voix`, `frontend` | À faire |
@@ -29,25 +29,25 @@ Légende : **Fait** (vérifié), **Partiel** (une partie existe ou n'est pas mes
 | BF19 | Contrôler automatiquement puis publier ce qui est appris | Obligatoire | `dalila/apprentissage` | À faire (contrôles SHACL / OWL / requêtes déjà en place dans construire_abox) |
 | BF20 | Raisonner sur le graphe pour conseiller | Souhaité | `dalila/semantique` | Partiel (requête de test BF20 : pêche → APIA, port) |
 | BF21 | Journal de l'apprentissage et annulation a posteriori | Obligatoire | `dalila/apprentissage`, `dalila/administration` | À faire (graphes nommés `appris/<id>` prévus) |
-| BF22 | Guider vers le bon service par des questions à choix | Obligatoire | `dalila/harnais`, `dalila/traitement` | À faire |
-| BF23 | Conditions, pièces, frais, lieu de dépôt, lien de chacun des 8 services | Obligatoire | `dalila/traitement`, base de connaissances | Partiel : les 8 services ont conditions ou étapes, pièces et lien (réponses AFI 12 à 25, vérifiées le 2026-11-27, `db/reference/services_afi.csv`) ; manques publiés par l'AFI elle-même : voir docs/limites.md ; l'outil reste à faire |
+| BF22 | Guider vers le bon service par des questions à choix | Obligatoire | `dalila/harnais`, `dalila/traitement` | Partiel : l'outil `demarche` et les consignes de clarification existent; parcours conversationnel réel à valider |
+| BF23 | Conditions, pièces, frais, lieu de dépôt, lien de chacun des 8 services | Obligatoire | `dalila/traitement`, base de connaissances | Partiel : `demarche` et les 8 services existent; manques publiés par l'AFI elle-même dans docs/limites.md; intégration réelle à valider |
 | BF24 | Service non couvert : contact AFI, besoin enregistré | Obligatoire | `dalila/harnais` | À faire |
 
 ## Besoins non fonctionnels
 
 | Réf. | Besoin (résumé) | Cible | Module | État |
 |---|---|---|---|---|
-| BNF1 | Tout chiffre vient des données de l'AFI | 100 % | `dalila/harnais` (ancrage), vues `v_pub_*` | Partiel (données vérifiées ; ancrage de la réponse à faire) |
+| BNF1 | Tout chiffre vient des données de l'AFI | 100 % | `dalila/harnais` (ancrage), vues `v_pub_*` | Partiel : garde-fou d'ancrage implémenté; validation complète sur réponses réelles à faire |
 | BNF2 | Temps de réponse à l'écrit | ≤ 35 s | `dalila/harnais`, `dalila/moteurs` | À mesurer (sur processeur, sans carte graphique) |
 | BNF3 | Reconnaissance vocale | ≤ 4 s | `dalila/voix` | À faire |
-| BNF4 | Panne d'une API : réponse en texte quand même | aucune erreur brute | `dalila/harnais` | À faire |
+| BNF4 | Panne d'une API : réponse en texte quand même | aucune erreur brute | `dalila/harnais` | Repli textuel implémenté pour panne du moteur; test d'intégration et autres modes de panne à valider |
 | BNF5 | Français, anglais, arabe sans régression | jeu de test | `eval/` | Partiel (jeux de test en place) |
 | BNF6 | Ordinateur, tablette, téléphone ; droite à gauche | 3 formats | `frontend` | À faire |
 | BNF7 | Toute réponse vocale existe en texte | toutes | `dalila/voix`, `frontend` | À faire |
 | BNF8 | Consentement micro, audio non conservé | démonstration | `frontend`, `dalila/voix` | À faire |
 | BNF9 | Clés hors du code, HTTPS, aucune donnée personnelle vers un service externe | aucune clé | tous | Fait pour l'existant (modèles locaux uniquement, `.env` hors git) |
 | BNF10 | Moteurs interchangeables par configuration | sans code | `dalila/moteurs` | Partiel (modèle de recherche par `DALILA_MODELE`) |
-| BNF11 | Service à part avec une API HTTP, démarrage documenté | — | `dalila/communication`, README | À faire (démarrage de la base documenté) |
+| BNF11 | Service à part avec une API HTTP, démarrage documenté | — | `dalila/communication`, README | API FastAPI v1 et démarrage local documentés; contrat historique AFI et déploiement Compose de l'API restent à confirmer |
 | BNF12 | Licence et coût de chaque modèle déclarés | liste complète | `docs/` | À faire (modèles en place : e5, BGE-M3, Qwen3-Embedding, bge-reranker) |
 | BNF13 | Mêmes zones et chiffres dans les 8 langues | 100 % | `dalila/harnais`, `eval/` | À faire |
 | BNF14 | Seules les URL configurées ; page = donnée, jamais instruction | page piégée sans effet | `dalila/sources`, `dalila/harnais` | À faire |

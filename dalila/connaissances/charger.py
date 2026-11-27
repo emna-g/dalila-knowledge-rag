@@ -1,6 +1,7 @@
-"""Remplit les tables dalila_* : ce que l'AFI n'a pas dans sa base, et les corrections.
+"""Charge les tables dalila_* sans effacement par défaut.
 
-python -m dalila.connaissances.charger      (après dalila.connaissances.migrer ; afi.sql chargé tel quel)
+python -m dalila.connaissances.charger
+python -m dalila.connaissances.charger --replace-dalila-data --confirm-replace-dalila-data
 
 - Zones, lots, distances, équipements et services ne sont PAS copiés : les vues v_pub_* les lisent dans les tables AFI.
 - db/reference/ : gouvernorats et cahiers des charges ; db/corrections/ : corrections, lots à confirmer, noms
@@ -12,8 +13,16 @@ python -m dalila.connaissances.charger      (après dalila.connaissances.migrer 
   Les vecteurs sont ensuite calculés par dalila.connaissances.vectoriser.
 - Pas de comptes stockés : les nombres de lots par zone sont calculés par les vues.
 """
-import collections, csv, json, re
+import argparse
+import collections
+import csv
+import json
+import math
+import re
+import warnings
 from dalila.config import DONNEES, RACINE, db
+from dalila.connaissances.synchroniser_references import synchroniser as synchroniser_references
+from dalila.traitement.references import alias_zones, nom_gouvernorat
 
 REF, CORR = RACINE / "db" / "reference", RACINE / "db" / "corrections"
 SOURCE_KB = "base de connaissances de l'AFI (table chatbot_connaissances), lue au chargement"
@@ -46,11 +55,12 @@ def reponses_afi(cur):
 def fiches_zones(cur):
     """Une fiche par zone visible, sans chiffre : elle sert à retrouver la zone par son nom ou ses voisins."""
     noms = {"aeroport": "aéroport", "port": "port", "gare": "gare", "autoroute": "autoroute"}
-    cur.execute("SELECT zone_id, nom_fr, nom_ar, gouvernorat_fr, gouvernorat_ar, zone_developpement_regional dr "
+    cur.execute("SELECT zone_id, nom_fr, nom_ar, gouvernorat_code, zone_developpement_regional dr "
                 "FROM v_pub_zones ORDER BY zone_id")
     zones = cur.fetchall()
-    cur.execute("SELECT zone_id, GROUP_CONCAT(alias ORDER BY alias SEPARATOR ', ') a FROM dalila_zone_alias GROUP BY zone_id")
-    alias = {r["zone_id"]: r["a"] for r in cur.fetchall()}
+    alias = collections.defaultdict(list)
+    for valeur in alias_zones():
+        alias[valeur["zone_id"]].append(valeur["alias"])
     cur.execute("SELECT zone_id, type, nom FROM v_pub_zone_distances")
     proches = collections.defaultdict(list)
     for r in cur.fetchall():
@@ -58,13 +68,26 @@ def fiches_zones(cur):
             proches[r["zone_id"]].append(f"{noms[r['type']]} {r['nom']}")
     out = []
     for z in zones:
-        texte = (f"Zone industrielle {z['nom_fr']} ({z['nom_ar']}), gouvernorat de {z['gouvernorat_fr']} "
-                 f"({z['gouvernorat_ar']}). "
-                 + ("Zone de développement régional. " if z["dr"] else "Zone du littoral (hors développement régional). ")
-                 + (f"Autres noms : {alias[z['zone_id']]}. " if z["zone_id"] in alias else "")
-                 + (f"Infrastructures de référence : {', '.join(sorted(proches[z['zone_id']]))}. "
-                    if proches[z["zone_id"]] else "")
-                 + "Le prix au m², les lots disponibles et les distances sont lus en direct dans la base de l'AFI.")
+        nom_gouv = nom_gouvernorat(z["gouvernorat_code"])
+        nom_gouv_ar = nom_gouvernorat(z["gouvernorat_code"], "ar")
+        texte = f"Zone industrielle {z['nom_fr']}"
+        if z["nom_ar"]:
+            texte += f" ({z['nom_ar']})"
+        texte += ". "
+        if nom_gouv:
+            texte += f"Gouvernorat de {nom_gouv}"
+            if nom_gouv_ar:
+                texte += f" ({nom_gouv_ar})"
+            texte += ". "
+        if z["dr"] == 1:
+            texte += "Zone de développement régional. "
+        elif z["dr"] == 0:
+            texte += "Zone hors développement régional. "
+        if alias[z["zone_id"]]:
+            texte += f"Autres noms : {', '.join(sorted(alias[z['zone_id']]))}. "
+        if proches[z["zone_id"]]:
+            texte += f"Infrastructures de référence : {', '.join(sorted(proches[z['zone_id']]))}. "
+        texte += "Le prix au m², les lots disponibles et les distances sont lus en direct dans la base de l'AFI."
         out.append({"id": f"zone{z['zone_id']}"[:12], "type": "fiche_zone", "titre": f"Zone {z['nom_fr']}",
                     "texte": texte, "source_url": "base AFI (vues v_pub_*), lue en direct", "langue": "fr",
                     "zone_id": z["zone_id"]})
@@ -73,15 +96,42 @@ def fiches_zones(cur):
 
 def surfaces_contours(cur):
     """Surface couverte par les contours des lots de chaque zone (chevauchements comptés une fois), en m²."""
-    import math
     from shapely.geometry import Polygon
     from shapely.ops import unary_union
+
     cur.execute("SELECT TRIM(ZONE_ID) z, LOT_COORDINATES k FROM lots_kml")
     par = collections.defaultdict(list)
+    invalides = 0
     for r in cur.fetchall():
-        pts = [tuple(map(float, p.split(",")[:2])) for p in (r["k"] or "").split() if p.count(",") >= 1]
-        if len(pts) >= 3:
-            par[r["z"]].append(pts)
+        if not r["z"] or not r["k"]:
+            invalides += 1
+            continue
+        try:
+            pts = []
+            for point in r["k"].split():
+                coordonnees = point.split(",")
+                if len(coordonnees) < 2:
+                    raise ValueError
+                longitude, latitude = map(float, coordonnees[:2])
+                if not math.isfinite(longitude) or not math.isfinite(latitude):
+                    raise ValueError
+                if not -180 <= longitude <= 180 or not -90 <= latitude <= 90:
+                    raise ValueError
+                pts.append((longitude, latitude))
+        except ValueError:
+            invalides += 1
+            continue
+        if len(pts) < 3:
+            invalides += 1
+            continue
+        polygon = Polygon(pts).buffer(0)
+        if polygon.is_empty or polygon.area <= 0:
+            invalides += 1
+            continue
+        par[r["z"]].append(pts)
+    if invalides:
+        warnings.warn(f"{invalides} contour(s) KML absent(s) ou invalide(s) ignoré(s)", RuntimeWarning)
+
     out = []
     for z, polys in par.items():
         lat0 = math.radians(sum(p[1] for ps in polys for p in ps) / sum(len(ps) for ps in polys))
@@ -93,49 +143,113 @@ def surfaces_contours(cur):
     return out
 
 
-def main():
-    con = db("root")
-    cur = con.cursor()
-    for t in ("dalila_gouvernorats", "dalila_corrections", "dalila_lots_a_confirmer", "dalila_zone_alias",
-              "dalila_zone_groupe_dr", "dalila_prix_publies", "dalila_prix_site", "dalila_zone_surface_contours", "dalila_cahiers",
-              "dalila_sources"):
-        cur.execute(f"DELETE FROM {t}")
-    cur.executemany("INSERT INTO dalila_zone_surface_contours VALUES (%s,%s,%s)", surfaces_contours(cur))
-    cur.executemany("INSERT INTO dalila_prix_site VALUES (%s,%s,%s,%s,%s)",
-                    [(r["zone_id"], r["nom_sur_la_page"], r["prix_m2_dt"], r["prix_m2_subventionne_dt"], r["source"])
-                     for r in lire_csv(REF / "prix_site_afi.csv")])
-    cur.executemany("INSERT INTO dalila_prix_publies VALUES (%s,%s,%s)",
-                    [(r["zone_id"], r["prix_m2_dt"], r["source"]) for r in lire_csv(REF / "derniers_prix_publies.csv")])
-    cur.executemany("INSERT INTO dalila_zone_groupe_dr VALUES (%s,%s,%s,%s)",
-                    [(r["zone_id"], r["groupe"], r["delegation"], r["source"])
-                     for r in lire_csv(REF / "groupes_developpement_regional.csv")])
-    cur.executemany("INSERT INTO dalila_gouvernorats VALUES (%s,%s,%s,%s)",
-                    [(r["code"], r["nom_fr"], r["nom_ar"], "carte publique de l'AFI")
-                     for r in lire_csv(REF / "gouvernorats.csv")])
-    vide = lambda v: None if v == "" else v  # CSV : cellule vide = NULL
-    cur.executemany("INSERT INTO dalila_corrections (table_afi,cle,champ,valeur_afi,valeur_corrigee,appliquee,source,raison) "
-                    "VALUES (%s,%s,%s,%s,%s,%s,%s,%s)",
-                    [(r["table_afi"], r["cle"], r["champ"], vide(r["valeur_afi"]), vide(r["valeur_corrigee"]),
-                      int(r["appliquee"]), r["source"], r["raison"]) for r in lire_csv(CORR / "dalila_corrections.csv")])
-    cur.executemany("INSERT INTO dalila_lots_a_confirmer VALUES (%s,%s,%s,%s)",
-                    [(r["lot_id"], r["etape_afi"], r["raison"], r["source"]) for r in lire_csv(CORR / "lots_a_confirmer.csv")])
-    cur.executemany("INSERT INTO dalila_zone_alias VALUES (%s,%s,%s,%s)",
-                    [(r["zone_id"], r["alias"], r["langue"], r["source"]) for r in lire_csv(CORR / "alias_zones.csv")])
-    cur.executemany("INSERT INTO dalila_cahiers (zone_id,zone,annee,lecture,lien_pdf,remarque) VALUES (%s,%s,%s,%s,%s,%s)",
-                    [(r["zone_id"] or None, r["zone"], r["annee"], r["lecture"], r["lien_pdf"], r["remarque"])
-                     for r in lire_csv(REF / "cahiers.csv")])
+_TABLES_DALILA = (
+    "dalila_gouvernorats",
+    "dalila_corrections",
+    "dalila_lots_a_confirmer",
+    "dalila_zone_alias",
+    "dalila_zone_groupe_dr",
+    "dalila_prix_publies",
+    "dalila_prix_site",
+    "dalila_zone_surface_contours",
+    "dalila_echantillon_eval",
+    "dalila_cahiers",
+    "dalila_sources",
+    "dalila_passages",
+)
 
-    P = [json.loads(l) for l in open(DONNEES / "corpus" / "passages.jsonl", encoding="utf-8")]
-    P += reponses_afi(cur) + fiches_zones(cur)
-    # Mise à jour sans tout effacer : un passage dont le texte n'a pas changé garde ses vecteurs (longs à calculer) ;
-    # texte changé -> vecteurs remis à NULL (vectoriser les recalcule) ; passage disparu -> supprimé.
+
+def analyser_arguments(argv=None):
+    parser = argparse.ArgumentParser(description="Charge les données DALILA sans supprimer de lignes par défaut.")
+    parser.add_argument(
+        "--replace-dalila-data",
+        action="store_true",
+        help="effacer les données DALILA avant rechargement (destructif)",
+    )
+    parser.add_argument(
+        "--confirm-replace-dalila-data",
+        action="store_true",
+        help="confirmation obligatoire avec --replace-dalila-data",
+    )
+    parser.add_argument(
+        "--surfaces",
+        action="store_true",
+        help="recalculer les surfaces issues des contours KML AFI",
+    )
+    args = parser.parse_args(argv)
+    if args.replace_dalila_data != args.confirm_replace_dalila_data:
+        parser.error(
+            "--replace-dalila-data et --confirm-replace-dalila-data doivent être fournis ensemble."
+        )
+    return args
+
+
+def effacer_donnees_dalila(cur, confirmer=False):
+    if not confirmer:
+        raise ValueError("Effacement refusé sans confirmation explicite.")
+    for table in _TABLES_DALILA:
+        cur.execute(f"DELETE FROM {table}")
+
+
+def role_connexion(args):
+    return "root" if args.replace_dalila_data else "ingest"
+
+
+def _sources_passages(passages):
+    agregats = collections.defaultdict(lambda: [None, 0])
+    for passage in passages:
+        url = (passage.get("source_url") or "")[:700]
+        valeur = agregats[url]
+        date_source = passage.get("date_source")
+        if valeur[0] is not None and date_source is not None and valeur[0] != date_source:
+            raise ValueError(f"Dates de source contradictoires pour {url!r}.")
+        valeur[0] = valeur[0] or date_source
+        valeur[1] += 1
+
+    prefixes = {}
+    for url in agregats:
+        prefixe = url[:500].casefold()
+        precedent = prefixes.get(prefixe)
+        if precedent is not None and precedent != url:
+            raise ValueError("Deux URL de source partagent la clé unique de 500 caractères.")
+        prefixes[prefixe] = url
+
+    return [
+        (url, (re.search(r"https?://(?:www\.)?([^/]+)", url) or [None, "base AFI"])[1], date_source, nombre)
+        for url, (date_source, nombre) in agregats.items()
+    ]
+
+
+def _charger(cur, remplacer=False, surfaces=False):
+    if remplacer:
+        effacer_donnees_dalila(cur, confirmer=True)
+
+    synchroniser_references(cur, inclure_surfaces=surfaces)
+    vide = lambda v: None if v == "" else v
+    cur.executemany(
+        "INSERT INTO dalila_corrections "
+        "(table_afi,cle,champ,valeur_afi,valeur_corrigee,appliquee,source,raison) "
+        "VALUES (%s,%s,%s,%s,%s,%s,%s,%s) ON DUPLICATE KEY UPDATE "
+        "valeur_afi=VALUES(valeur_afi), valeur_corrigee=VALUES(valeur_corrigee), "
+        "appliquee=VALUES(appliquee), source=VALUES(source), raison=VALUES(raison)",
+        [(r["table_afi"], r["cle"], r["champ"], vide(r["valeur_afi"]), vide(r["valeur_corrigee"]),
+          int(r["appliquee"]), r["source"], r["raison"]) for r in lire_csv(CORR / "dalila_corrections.csv")],
+    )
+    for r in lire_csv(REF / "cahiers.csv"):
+        valeurs = (r["zone_id"] or None, r["zone"], r["annee"], r["lecture"], r["lien_pdf"], r["remarque"])
+        cur.execute(
+            "INSERT INTO dalila_cahiers (zone_id,zone,annee,lecture,lien_pdf,remarque) "
+            "SELECT %s,%s,%s,%s,%s,%s FROM DUAL WHERE NOT EXISTS ("
+            "SELECT 1 FROM dalila_cahiers WHERE zone_id <=> %s AND zone <=> %s AND annee <=> %s "
+            "AND lecture <=> %s AND lien_pdf <=> %s AND remarque <=> %s)",
+            valeurs + valeurs,
+        )
+
+    with open(DONNEES / "corpus" / "passages.jsonl", encoding="utf-8") as fichier:
+        passages = [json.loads(ligne) for ligne in fichier]
+    passages += reponses_afi(cur) + fiches_zones(cur)
     cols = [r["Field"] for r in (cur.execute("SHOW COLUMNS FROM dalila_passages LIKE 'embedding%%'"), cur.fetchall())[1]]
-    raz = ", ".join(f"{c} = IF(texte <=> VALUES(texte), {c}, NULL)" for c in cols)
-    cur.execute("CREATE TEMPORARY TABLE IF NOT EXISTS t_ids (id VARCHAR(12) PRIMARY KEY) "
-                "DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci")
-    cur.execute("DELETE FROM t_ids")
-    cur.executemany("INSERT IGNORE INTO t_ids VALUES (%s)", [(p["id"],) for p in P])
-    cur.execute("DELETE FROM dalila_passages WHERE id NOT IN (SELECT id FROM t_ids)")
+    raz = ", ".join(f"{col} = IF(texte <=> VALUES(texte), {col}, NULL)" for col in cols)
     cur.executemany(
         "INSERT INTO dalila_passages (id,type,titre,texte,source_url,date_source,langue,zone_id,page,article,texte_ocr,"
         "kb_id,pertinence,contient_chiffre,longueur) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s) "
@@ -146,24 +260,41 @@ def main():
         [(p["id"], p["type"], (p.get("titre") or "")[:500], p["texte"], (p.get("source_url") or "")[:700],
           p.get("date_source"), p.get("langue"), p.get("zone_id") or None, p.get("page"), p.get("article") or None,
           int(bool(p.get("texte_ocr"))), p.get("kb_id"), p.get("pertinence") or "principale",
-          int(bool(p.get("contient_chiffre"))), len(p["texte"])) for p in P])
-    src = collections.defaultdict(lambda: [None, 0])
-    for p in P:
-        s = src[(p.get("source_url") or "")[:700]]
-        s[0] = s[0] or p.get("date_source")
-        s[1] += 1
-    cur.executemany("INSERT INTO dalila_sources (source_url,organisme,lu_le,nb_passages) VALUES (%s,%s,%s,%s)",
-                    [(u, (re.search(r"https?://(?:www\.)?([^/]+)", u) or [None, "base AFI"])[1], d, n)
-                     for u, (d, n) in src.items()])
-    for t in ("v_pub_zones", "v_pub_lots", "v_pub_lots_disponibles", "dalila_passages", "dalila_sources"):
-        cur.execute(f"SELECT COUNT(*) AS n FROM {t}")
-        print(t, cur.fetchone()["n"])
-    cur.execute("SELECT type, pertinence, COUNT(*) n FROM dalila_passages GROUP BY 1, 2 ORDER BY 1, 2")
-    print("passages :", {f"{r['type']}/{r['pertinence']}": r["n"] for r in cur.fetchall()})
-    cur.execute("SELECT etat, COUNT(*) AS n FROM v_dalila_corrections_etat GROUP BY etat")
-    print("corrections :", {r["etat"]: r["n"] for r in cur.fetchall()})
-    cur.execute("SELECT " + ", ".join(f"SUM({c} IS NULL) AS {c}" for c in cols) + " FROM dalila_passages")
-    print("passages sans vecteur (à calculer par vectoriser) :", {k: int(v or 0) for k, v in cur.fetchone().items()})
+          int(bool(p.get("contient_chiffre"))), len(p["texte"])) for p in passages],
+    )
+    cur.executemany(
+        "INSERT INTO dalila_sources (source_url,organisme,lu_le,nb_passages) VALUES (%s,%s,%s,%s) "
+        "ON DUPLICATE KEY UPDATE organisme=VALUES(organisme), lu_le=VALUES(lu_le), nb_passages=VALUES(nb_passages)",
+        _sources_passages(passages),
+    )
+
+
+def main(argv=None):
+    args = analyser_arguments(argv)
+    con = db(role_connexion(args))
+    con.autocommit(False)
+    try:
+        with con.cursor() as cur:
+            _charger(cur, remplacer=args.replace_dalila_data, surfaces=args.surfaces)
+            cols = [r["Field"] for r in (cur.execute(
+                "SHOW COLUMNS FROM dalila_passages LIKE 'embedding%%'"
+            ), cur.fetchall())[1]]
+            for table in ("v_pub_zones", "v_pub_lots", "v_pub_lots_disponibles", "dalila_passages", "dalila_sources"):
+                cur.execute(f"SELECT COUNT(*) AS n FROM {table}")
+                print(table, cur.fetchone()["n"])
+            cur.execute("SELECT type, pertinence, COUNT(*) n FROM dalila_passages GROUP BY 1, 2 ORDER BY 1, 2")
+            print("passages :", {f"{r['type']}/{r['pertinence']}": r["n"] for r in cur.fetchall()})
+            cur.execute("SELECT etat, COUNT(*) AS n FROM v_dalila_corrections_etat GROUP BY etat")
+            print("corrections :", {r["etat"]: r["n"] for r in cur.fetchall()})
+            cur.execute("SELECT " + ", ".join(f"SUM({col} IS NULL) AS {col}" for col in cols) + " FROM dalila_passages")
+            print("passages sans vecteur (à calculer par vectoriser) :",
+                  {key: int(value or 0) for key, value in cur.fetchone().items()})
+            con.commit()
+    except Exception:
+        con.rollback()
+        raise
+    finally:
+        con.close()
 
 
 if __name__ == "__main__":

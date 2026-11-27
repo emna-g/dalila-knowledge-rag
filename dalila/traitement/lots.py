@@ -1,12 +1,17 @@
-"""Outil chercher_lots : lots disponibles selon le lieu, la surface, le prix, le budget, le régime et la proximité.
+"""Outil chercher_lots : lots disponibles selon le lieu, la surface, le tarif de zone, le budget et la proximité.
 
-Rend toujours le NOMBRE EXACT de lots (compte en base) et une liste courte, la moins chère d'abord. Les lieux sont donnés
-par leurs codes (obtenus avec resoudre_lieu). Un lot d'une zone dont le prix n'est pas publié n'a pas de prix total :
-il ne passe pas un filtre de prix ou de budget, et la zone est signalée.
+Rend toujours le NOMBRE EXACT de lots (compte en base) et une liste courte, la moins chère d'abord. Le prix au m² vient
+de la zone et le total calculé est une estimation, pas un prix propre au lot. Sans tarif publié, le total reste nul et
+le lot ne passe pas un filtre de prix ou de budget.
 """
+from datetime import date
 from typing import Literal
 from pydantic import BaseModel, Field
 from dalila.traitement.base import SOURCE_BASE, Source, nombre, q
+from dalila.traitement.references import (
+    groupe_developpement_regional,
+    nom_gouvernorat,
+)
 
 
 class EntreeLots(BaseModel):
@@ -14,8 +19,10 @@ class EntreeLots(BaseModel):
     zones: list[str] = Field(default_factory=list, description="codes des zones (resoudre_lieu)")
     surface_min_m2: float | None = Field(None, ge=0)
     surface_max_m2: float | None = Field(None, ge=0)
-    prix_max_m2_dt: float | None = Field(None, ge=0, description="prix au m² maximal, en dinars")
-    budget_max_dt: float | None = Field(None, ge=0, description="prix total du terrain maximal (surface × prix au m²)")
+    prix_max_m2_dt: float | None = Field(None, ge=0, description="tarif de zone maximal au m², en dinars")
+    budget_max_dt: float | None = Field(
+        None, ge=0, description="budget estimatif maximal (surface du lot × tarif au m² de la zone)"
+    )
     regime: Literal["developpement_regional", "littoral"] | None = None
     groupe_developpement_regional: Literal[1, 2] | None = None
     proche_de: Literal["aeroport", "port", "gare", "autoroute"] | None = None
@@ -29,12 +36,19 @@ class Lot(BaseModel):
     numero: str
     zone_id: str
     zone: str
-    gouvernorat: str
+    gouvernorat: str | None = Field(description="nom du gouvernorat du référentiel, nul si le code est inconnu")
     surface_m2: float
-    prix_m2_dt: float | None = Field(description="prix au m² utilisé (actuel, ou dernier publié : voir prix_selon)")
-    prix_total_dt: float | None
-    prix_selon: str | None = Field(description="« prix actuel de l'AFI », ou dernier prix publié (à confirmer) ; "
-                                               "vide : aucun prix publié")
+    prix_m2_dt: float | None = Field(
+        description="tarif au m² de la zone, pas un prix propre au lot; voir prix_selon"
+    )
+    prix_total_dt: float | None = Field(
+        description="estimation surface du lot × tarif de zone, pas un prix final publié pour ce lot"
+    )
+    prix_dernier_publie_source: str | None = None
+    prix_dernier_publie_date_source: date | None = None
+    prix_selon: str | None = Field(
+        description="origine du tarif de zone utilisé; vide si aucun tarif de zone n'est publié"
+    )
     a_confirmer: bool
 
 
@@ -49,7 +63,7 @@ class ResultatLots(BaseModel):
 def _zones_retenues(e):
     """Zones qui passent les filtres de lieu, de régime, de groupe et de proximité (50 zones : filtrées en Python)."""
     zones = q("SELECT zone_id, gouvernorat_code, zone_developpement_regional dr, groupe_developpement_regional g "
-              "FROM v_pub_zones")
+              "FROM v_pub_zones_v2")
     proches = None
     if e.proche_de:
         proches = {r["zone_id"] for r in q("SELECT zone_id FROM v_pub_zone_distances WHERE type = %s AND km <= %s",
@@ -60,7 +74,10 @@ def _zones_retenues(e):
             continue
         if e.regime and z["dr"] != (1 if e.regime == "developpement_regional" else 0):
             continue
-        if e.groupe_developpement_regional and z["g"] != e.groupe_developpement_regional:
+        groupe = groupe_developpement_regional(z["zone_id"], z["dr"])
+        if z["g"] is not None and int(z["g"]) != groupe:
+            raise ValueError(f"Divergence de groupe de développement régional pour la zone {z['zone_id']}")
+        if e.groupe_developpement_regional and groupe != e.groupe_developpement_regional:
             continue
         if proches is not None and z["zone_id"] not in proches:
             continue
@@ -75,8 +92,11 @@ def chercher_lots(e: EntreeLots) -> ResultatLots:
     zones = _zones_retenues(e)
     if not zones:
         return ResultatLots(nombre_total=0, lots=[], zones_prix_non_publie=[], filtres=filtres, sources=[SOURCE_BASE])
-    sql = " FROM v_pub_lots_disponibles l WHERE l.zone_id IN (" + ",".join(["%s"] * len(zones)) + ")"
-    prix = "COALESCE(l.prix_m2_dt, l.prix_m2_dernier_publie_dt)"  # prix actuel, sinon dernier prix publié par l'AFI
+    prix = "COALESCE(l.prix_m2_dt, l.prix_m2_dernier_publie_dt)"
+    sql = (
+        " FROM v_pub_lots_disponibles_v2 l WHERE l.zone_id IN ("
+        + ",".join(["%s"] * len(zones)) + ")"
+    )
     p = list(zones)
     for cond, val in (("l.surface_m2 >= %s", e.surface_min_m2), ("l.surface_m2 <= %s", e.surface_max_m2),
                       (f"{prix} <= %s", e.prix_max_m2_dt), (f"l.surface_m2 * {prix} <= %s", e.budget_max_dt)):
@@ -86,19 +106,40 @@ def chercher_lots(e: EntreeLots) -> ResultatLots:
     par_zone = q(f"SELECT l.zone_id, MAX({prix} IS NULL) sans_prix, COUNT(*) n" + sql + " GROUP BY l.zone_id", *p)
     ordre = {"prix_total": f"{prix} IS NULL, l.surface_m2 * {prix}, l.surface_m2",
              "prix_m2": f"{prix} IS NULL, {prix}, l.surface_m2", "surface": "l.surface_m2"}[e.tri]
-    rows = q("SELECT l.lot_id, l.lot_num, l.zone_id, l.zone_fr, l.surface_m2, l.prix_m2_dt, l.prix_m2_dernier_publie_dt, "
-             "l.a_confirmer" + sql
-             + f" ORDER BY {ordre} LIMIT %s", *p, e.limite)
-    gouv = {r["zone_id"]: r["gouvernorat_fr"] for r in q("SELECT zone_id, gouvernorat_fr FROM v_pub_zones")} if rows else {}
+    rows = q(
+        "SELECT l.lot_id, l.lot_num, l.zone_id, l.zone_fr, l.surface_m2, l.prix_m2_dt, "
+        "l.prix_m2_dernier_publie_dt, l.prix_dernier_publie_source, "
+        "l.prix_dernier_publie_date_source, l.a_confirmer" + sql
+        + f" ORDER BY {ordre} LIMIT %s",
+        *p, e.limite,
+    )
+    gouv = {}
+    if rows:
+        for r in q("SELECT zone_id, gouvernorat_code FROM v_pub_zones_v2"):
+            code = r["gouvernorat_code"]
+            gouv[r["zone_id"]] = nom_gouvernorat(code)
     lots = []
     for r in rows:
         pm2 = r["prix_m2_dt"] if r["prix_m2_dt"] is not None else r["prix_m2_dernier_publie_dt"]
-        selon = ("prix actuel de l'AFI" if r["prix_m2_dt"] is not None else
-                 "dernier prix publié par l'AFI (ancienne carte, 25/11/2026), à confirmer" if pm2 is not None else None)
+        selon = ("tarif actuel au m² de la zone, publié par l'AFI; total estimatif" if r["prix_m2_dt"] is not None else
+                 "dernier prix publié de la zone, à confirmer; total estimatif"
+                 if pm2 is not None else None)
         lots.append(Lot(lot_id=r["lot_id"], numero=r["lot_num"], zone_id=r["zone_id"], zone=r["zone_fr"],
-                        gouvernorat=gouv.get(r["zone_id"], ""), surface_m2=nombre(r["surface_m2"]), prix_m2_dt=nombre(pm2),
+                        gouvernorat=gouv.get(r["zone_id"]), surface_m2=nombre(r["surface_m2"]), prix_m2_dt=nombre(pm2),
                         prix_total_dt=nombre(r["surface_m2"] * pm2) if pm2 is not None else None, prix_selon=selon,
+                        prix_dernier_publie_source=(
+                            r.get("prix_dernier_publie_source") if r["prix_m2_dt"] is None else None
+                        ),
+                        prix_dernier_publie_date_source=(
+                            r.get("prix_dernier_publie_date_source") if r["prix_m2_dt"] is None else None
+                        ),
                         a_confirmer=bool(r["a_confirmer"])))
+    sources_prix = {}
+    for row in rows:
+        source = row.get("prix_dernier_publie_source")
+        if source and row["prix_m2_dt"] is None:
+            date_source = row.get("prix_dernier_publie_date_source")
+            sources_prix[(source, date_source)] = Source(titre=source, date_source=date_source)
     return ResultatLots(nombre_total=int(sum(r["n"] for r in par_zone)), lots=lots,
                         zones_prix_non_publie=[r["zone_id"] for r in par_zone if r["sans_prix"]],
-                        filtres=filtres, sources=[SOURCE_BASE])
+                        filtres=filtres, sources=[SOURCE_BASE, *sources_prix.values()])

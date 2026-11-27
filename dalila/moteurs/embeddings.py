@@ -4,8 +4,8 @@
     encoder_questions(["lot près du port"])      # vecteurs normalisés, avec le préfixe de question du modèle
     encoder_textes(["Pêche et aquaculture"])     # avec le préfixe de passage du modèle
 
-Le modèle est celui de la configuration (DALILA_MODELE, BGE-M3 par défaut, local). Carte graphique si elle est là,
-processeur sinon (le serveur de l'AFI n'en a pas : 77 ms par question avec BGE-M3, mesuré).
+Le modèle est celui de la configuration (DALILA_MODELE, E5 multilingue léger par défaut, local). Carte graphique si
+elle est là, processeur sinon. BGE-M3 et Qwen3 sont des choix explicites après validation sur échantillon.
 """
 from functools import lru_cache
 from dalila.config import MODELE, MODELES_RECHERCHE

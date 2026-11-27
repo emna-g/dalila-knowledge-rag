@@ -9,12 +9,17 @@ des zones) en tolérant les fautes. Il ne devine pas : un nom qui désigne plusi
 trop vague (« le sud ») ou inconnu revient vide, et l'agent pose alors une question à choix. Les régions sont seulement
 celles que définit une source (db/reference/regions.csv).
 """
-import csv, difflib, unicodedata
+import difflib
 from functools import lru_cache
 from typing import Literal
 from pydantic import BaseModel, Field
-from dalila.config import RACINE
 from dalila.traitement.base import SOURCE_BASE, Source, q
+from dalila.traitement.references import (
+    alias_zones_par_id,
+    gouvernorats_par_code,
+    normaliser_nom_lieu,
+    regions,
+)
 
 SEUIL = 0.8          # ressemblance minimale pour proposer un lieu
 ECART_AMBIGU = 0.05  # deux lieux de natures différentes à moins de cet écart : on ne choisit pas
@@ -42,27 +47,23 @@ class ResultatLieux(BaseModel):
 
 
 def _norm(t):
-    t = unicodedata.normalize("NFKD", str(t or "").lower())
-    t = "".join(c for c in t if not unicodedata.combining(c))
-    t = t.translate(str.maketrans("أإآٱةى", "اااايه"))  # variantes d'écriture des mêmes lettres arabes
-    return " ".join("".join(c if c.isalnum() else " " for c in t).split())
+    return normaliser_nom_lieu(t)
 
 
 @lru_cache(maxsize=1)
 def _candidats():
-    gouv = {r["code"]: r for r in q("SELECT code, nom_fr, nom_ar FROM dalila_gouvernorats")}
+    gouv = gouvernorats_par_code()
     par_nom = {_norm(g["nom_fr"]): c for c, g in gouv.items()}
     out = []
-    for z in q("SELECT zone_id, nom_fr, nom_ar, gouvernorat_code FROM v_pub_zones"):
-        noms = [z["nom_fr"], z["nom_ar"]] + [a["alias"] for a in q(
-            "SELECT alias FROM dalila_zone_alias WHERE zone_id = %s", z["zone_id"])]
+    zones = q("SELECT zone_id, nom_fr, nom_ar, gouvernorat_code FROM v_pub_zones")
+    alias = alias_zones_par_id()
+    for z in zones:
+        noms = [z["nom_fr"], z["nom_ar"]] + list(alias.get(str(z["zone_id"]), ()))
         out.append(("zone", z["zone_id"], z["nom_fr"], [z["gouvernorat_code"]], noms))
     for c, g in gouv.items():
         out.append(("gouvernorat", str(c), g["nom_fr"], [c], [g["nom_fr"], g["nom_ar"]]))
-    with open(RACINE / "db" / "reference" / "regions.csv", encoding="utf-8") as fh:
-        for r in csv.DictReader(fh):
-            codes = [par_nom[_norm(n)] for n in r["gouvernorats"].split(";")]
-            out.append(("region", r["region"], r["region"], codes, [r["region"]]))
+    for r in regions():
+        out.append(("region", r["region"], r["region"], list(r["gouvernorats"]), [r["region"]]))
     return out
 
 

@@ -1,85 +1,121 @@
-"""Outils chiffrés de Dalila : tout est lu dans les vues v_pub_* de MariaDB (compte lecture seule dalila_ro).
-Aucun chiffre n'est inventé : chaque résultat est une ligne de la base, avec sa source.
+"""Compatibility adapter for the historical fixed pipeline.
 
-    from dalila.traitement.outils import Outils
-    o = Outils()
-    o.chercher_lots(gouvernorat="Sfax")          # lots disponibles, du moins cher au plus cher
-    o.fiche_zone("930508")                       # prix, lots, distances, équipements, services proches, cahier
-    o.zones_proches("port", km_max=20)
+All data access and business rules are delegated to the current domain tools.
 """
-from dalila.config import db
+
+from dalila.traitement.lots import EntreeLots, chercher_lots
+from dalila.traitement.references import codes_gouvernorats_pour_nom
+from dalila.traitement.zones import (
+    EntreeFiche,
+    EntreeListeZones,
+    EntreeProximite,
+    fiche_zone as lire_fiche_zone,
+    lister_zones,
+    zones_proches as lire_zones_proches,
+)
+
+
+def _codes(gouvernorat):
+    if not gouvernorat:
+        return []
+    codes = codes_gouvernorats_pour_nom(gouvernorat)
+    if not codes:
+        raise ValueError(f"Gouvernorat ou région absent du référentiel: {gouvernorat!r}")
+    return list(codes)
+
+
+def _entree_lots(
+    gouvernorat=None,
+    zone_id=None,
+    surface_min=None,
+    surface_max=None,
+    prix_max_m2=None,
+    limite=20,
+):
+    return EntreeLots(
+        gouvernorats=_codes(gouvernorat),
+        zones=[str(zone_id)] if zone_id else [],
+        surface_min_m2=surface_min,
+        surface_max_m2=surface_max,
+        prix_max_m2_dt=prix_max_m2,
+        limite=limite,
+    )
 
 
 class Outils:
-    def __init__(self):
-        self.con = db("ro")
+    def chercher_lots(
+        self,
+        gouvernorat=None,
+        zone_id=None,
+        surface_min=None,
+        surface_max=None,
+        prix_max_m2=None,
+        limite=20,
+    ):
+        """Historical row-list shape, backed by the current lot search contract."""
+        result = chercher_lots(_entree_lots(
+            gouvernorat, zone_id, surface_min, surface_max, prix_max_m2, limite
+        ))
+        return [{
+            "lot_id": lot.lot_id,
+            "zone_id": lot.zone_id,
+            "zone_fr": lot.zone,
+            "lot_num": lot.numero,
+            "surface_m2": lot.surface_m2,
+            "prix_m2_dt": lot.prix_m2_dt,
+            "a_confirmer": lot.a_confirmer,
+            "gouvernorat_fr": lot.gouvernorat,
+            "prix_terrain_estime_dt": lot.prix_total_dt,
+            "prix_selon": lot.prix_selon,
+            "prix_dernier_publie_source": lot.prix_dernier_publie_source,
+            "prix_dernier_publie_date_source": lot.prix_dernier_publie_date_source,
+        } for lot in result.lots]
 
-    def _q(self, sql, *p):
-        with self.con.cursor() as cur:
-            cur.execute(sql, p)
-            return cur.fetchall()
-
-    @staticmethod
-    def _filtres_lots(gouvernorat=None, zone_id=None, surface_min=None, surface_max=None, prix_max_m2=None):
-        """Filtres communs à chercher_lots et compter_lots : les deux voient toujours les mêmes lots."""
-        sql = " FROM v_pub_lots_disponibles l JOIN v_pub_zones z USING (zone_id) WHERE 1=1"
-        p = []
-        if gouvernorat:
-            sql += " AND (z.gouvernorat_fr LIKE %s OR z.gouvernorat_ar LIKE %s)"
-            p += [f"%{gouvernorat}%"] * 2
-        if zone_id:
-            sql += " AND l.zone_id = %s"
-            p.append(str(zone_id))
-        if surface_min:
-            sql += " AND l.surface_m2 >= %s"
-            p.append(surface_min)
-        if surface_max:
-            sql += " AND l.surface_m2 <= %s"
-            p.append(surface_max)
-        if prix_max_m2:
-            sql += " AND l.prix_m2_dt <= %s"
-            p.append(prix_max_m2)
-        return sql, p
-
-    def chercher_lots(self, gouvernorat=None, zone_id=None, surface_min=None, surface_max=None, prix_max_m2=None,
-                      limite=20):
-        """Liste (limitée à `limite` lignes) des lots disponibles, du moins cher au plus cher. Pour un NOMBRE de lots,
-        utiliser compter_lots : la longueur de cette liste n'est pas un compte."""
-        filtres, p = self._filtres_lots(gouvernorat, zone_id, surface_min, surface_max, prix_max_m2)
-        sql = ("SELECT l.lot_id, l.zone_id, l.zone_fr, l.lot_num, l.surface_m2, l.prix_m2_dt, l.a_confirmer, "
-               "z.gouvernorat_fr, l.surface_m2 * l.prix_m2_dt AS prix_terrain_estime_dt" + filtres +
-               " ORDER BY l.prix_m2_dt IS NULL, l.prix_m2_dt, l.surface_m2 LIMIT %s")
-        return self._q(sql, *p, limite)
-
-    def compter_lots(self, gouvernorat=None, zone_id=None, surface_min=None, surface_max=None, prix_max_m2=None):
-        """Nombre de lots disponibles (COUNT dans la vue), avec les mêmes filtres que chercher_lots."""
-        filtres, p = self._filtres_lots(gouvernorat, zone_id, surface_min, surface_max, prix_max_m2)
-        return self._q("SELECT COUNT(*) AS n" + filtres, *p)[0]["n"]
+    def compter_lots(
+        self,
+        gouvernorat=None,
+        zone_id=None,
+        surface_min=None,
+        surface_max=None,
+        prix_max_m2=None,
+    ):
+        """Return the exact count from the same filters and tariff semantics as chercher_lots."""
+        result = chercher_lots(_entree_lots(
+            gouvernorat, zone_id, surface_min, surface_max, prix_max_m2, limite=1
+        ))
+        return result.nombre_total
 
     def fiche_zone(self, zone_id):
-        z = self._q("SELECT * FROM v_pub_zones WHERE zone_id = %s", str(zone_id))
-        if not z:
+        fiche = lire_fiche_zone(EntreeFiche(zone_id=str(zone_id)))
+        if fiche is None:
             return None
-        z = z[0]
-        z["distances"] = self._q("SELECT type, nom, km, source FROM v_pub_zone_distances WHERE zone_id=%s ORDER BY km",
-                                 str(zone_id))
-        z["equipements"] = self._q("SELECT type, valeur, unite, source FROM v_pub_zone_equipements WHERE zone_id=%s",
-                                   str(zone_id))
-        z["services_proches"] = self._q("SELECT categorie, nom, distance_km, source FROM v_pub_services_proches "
-                                        "WHERE zone_id=%s ORDER BY distance_km", str(zone_id))
-        z["cahiers_des_charges"] = self._q("SELECT annee, lien_pdf, remarque FROM v_pub_cahiers WHERE zone_id=%s",
-                                           str(zone_id))
-        z["plans_de_lotissement"] = self._q("SELECT nom, lien FROM v_pub_plans WHERE zone_id=%s", str(zone_id))
-        return z
+        resultat = fiche.model_dump()
+        resultat["zone_development_regional"] = resultat["developpement_regional"]
+        resultat["gouvernorat_fr"] = resultat["gouvernorat"]
+        return resultat
 
     def zones_proches(self, type_commodite, km_max):
-        return self._q("SELECT z.zone_id, z.nom_fr, z.gouvernorat_fr, d.nom, d.km FROM v_pub_zone_distances d "
-                       "JOIN v_pub_zones z USING (zone_id) WHERE d.type=%s AND d.km <= %s ORDER BY d.km",
-                       type_commodite, km_max)
+        resultat = lire_zones_proches(EntreeProximite(
+            type=type_commodite,
+            distance_max_km=km_max,
+            seulement_avec_lots_disponibles=False,
+        ))
+        return [{
+            "zone_id": zone.zone_id,
+            "nom_fr": zone.nom,
+            "gouvernorat_fr": zone.gouvernorat,
+            "nom": zone.infrastructure,
+            "km": zone.km,
+        } for zone in resultat.zones]
 
     def regime_gouvernorat(self, gouvernorat):
-        """'developpement_regional', 'littoral' ou None si les zones (avec lots disponibles) sont mélangées."""
-        r = self._q("SELECT DISTINCT z.zone_developpement_regional AS r FROM v_pub_zones z WHERE z.gouvernorat_fr LIKE %s "
-                    "AND z.lots_disponibles > 0", f"%{gouvernorat}%")
-        vals = {x["r"] for x in r}
-        return {frozenset({1}): "developpement_regional", frozenset({0}): "littoral"}.get(frozenset(vals))
+        """Return one regime only when all matching zones with available lots agree."""
+        codes = _codes(gouvernorat)
+        if not codes:
+            return None
+        resultat = lister_zones(EntreeListeZones(gouvernorats=codes))
+        regimes = {zone.developpement_regional for zone in resultat.zones}
+        return {
+            frozenset({True}): "developpement_regional",
+            frozenset({False}): "littoral",
+        }.get(frozenset(regimes))

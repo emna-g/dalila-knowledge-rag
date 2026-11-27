@@ -8,7 +8,7 @@ Les choix en vigueur et leurs preuves (2026-11-26). Les décisions sur chaque do
 | Décision | Preuve |
 |---|---|
 | **Base propre à Dalila (option b)** : MariaDB 11.8 avec une **copie** des tables de l'AFI (afi.sql), rafraîchie depuis la carte publique de l'AFI par `dalila.connaissances.rafraichir_copie_afi` ; Dalila ne touche pas à la base de l'AFI. | Rafraîchissement limité : la carte est protégée contre les robots (CAPTCHA le 2026-11-27 après ~200 requêtes). Le script s'arrête sans rien écrire ; pour un rafraîchissement régulier, accès ou export à demander à l'AFI. La base de connaissances de l'AFI n'est pas sur la carte : elle reste celle d'afi.sql. |
-| **MariaDB 11.8 LTS, source unique.** `afi.sql` chargé tel quel ; nos tables à côté. | Les vues donnent 673 lots disponibles, comme la carte publique de l'AFI (672) plus un lot à confirmer. `dalila_ro` ne peut pas lire `lots` (donc ni `LOT_PROMOTEUR`) ni les tables AFI. |
+| **MariaDB 11.8 LTS, source unique.** `afi.sql` chargé tel quel ; nos tables à côté. | Les vues donnent 673 lots disponibles, comme la carte publique de l'AFI (672) plus un lot à confirmer. `dalila_ro` n'a aucun accès à la table `lots` (donc ni à `LOT_PROMOTEUR`); les écritures de chargement utilisent le compte limité `dalila_ingest`. |
 | **Les données de l'AFI sont lues en direct, jamais copiées.** Les vues `v_pub_*` lisent zones, lots, distances, équipements et services ; les réponses validées de l'AFI sont relues à chaque chargement. | Un changement dans la base AFI (étape d'un lot, prix) se voit tout de suite dans les vues ; testé. |
 | **Corrections avec garde-fou.** Chaque correction garde la valeur AFI d'origine ; si l'AFI la change, la correction devient « périmée » et la valeur de l'AFI s'affiche (`v_dalila_corrections_etat`). | Testé : prix modifié dans la base → correction périmée, nouvelle valeur affichée. |
 | **Un chiffre n'est stocké qu'une fois** : comptes calculés par les vues ; ni prix, ni distance, ni compte dans le graphe ni dans les passages (fiches de zone sans chiffre). | Règle SHACL `PasDeChiffresMetier` : 0 violation. |
@@ -29,13 +29,27 @@ Les choix en vigueur et leurs preuves (2026-11-26). Les décisions sur chaque do
 | **Groupe 1 ou 2 de chaque zone de développement régional** ajouté (la base AFI dit seulement oui / non), visible seulement tant que l'AFI garde la zone en développement régional. | Carte de la FIPA (décret 2017-389), lue sur le PDF (couleurs) : 3 zones en groupe 1, 27 en groupe 2. |
 | **Plans de lotissement** : liens publics lus en direct dans la table AFI `zone_documents` (`v_pub_plans`). | Les 45 plans de la table répondent sur carte.afi.nat.tn/storage (vérifié le 2026-11-27). |
 
-## Orientations de l'équipe (à mettre en œuvre)
+## Fraîcheur des données (décisions de déploiement)
 
-| Décision | Ce que le code fait aujourd'hui | À faire |
+Chaque couche vieillit différemment; aucune ne doit être citée plus fraîche qu'elle ne l'est réellement.
+
+| Couche | Aujourd'hui | Décision |
 |---|---|---|
-| **RAG agentique avec des modèles locaux uniquement** (Ollama ; aucun service d'IA externe, aucune clé) : le modèle choisit lui-même ses sources (passages par le sens, graphe, chiffres des vues) par appels d'outils. Le serveur de l'AFI n'a pas de carte graphique (8 vCPU, 16 Go) : modèle assez petit pour répondre en 35 s au plus (BNF2). | `dalila/harnais/pipeline_fixe.py` enchaîne toujours les mêmes étapes (graphe → chiffres → passages). | Exposer `chercher_passages`, `interroger_graphe` et les fonctions de `outils.py` comme outils de l'agent ; `dalila.py` disparaît. |
-| **Pile propre à l'équipe, sans Laravel** : aucun code de l'application existante n'est fourni et l'équipe ne connaît pas Laravel. Service Python avec une API HTTP, interface libre. Le contrat `POST /carte/chatbot` (message, history, lang, contexte → message avec `[[ZONE]]`, `[[LOT]]`, `[[CHOIX]]`, `[[PDF]]`, log_id, source, action) est gardé pour que l'AFI puisse brancher le service plus tard (BNF11). | Pas d'API ni d'interface. | API HTTP (FastAPI) au contrat de `/carte/chatbot` ; interface choisie par l'équipe. |
-| **Dalila = un harnais d'agent** : boucle d'outils typés et bornés, garde-fous en entrée et en sortie, couches de sécurité, repli sans erreur brute. | — | Voir « Le harnais de l'agent » ci-dessous. |
+| **Base AFI** (lots, disponibilité, prix, zones, équipements) | Vues `v_pub_*` lues au moment de la question. Sur la copie DALILA, fraîcheur liée au dernier `rafraichir_copie_afi`. | Rafraîchir la copie chaque jour tant que DALILA n'est pas sur le serveur AFI. |
+| **Corrections DALILA** | Les corrections gardent la valeur AFI d'origine; si elle change, la correction est périmée et la valeur AFI l'emporte. | Garder ce mécanisme; relire les corrections périmées. |
+| **Réponses AFI** | Relues à chaque chargement; les vecteurs sont invalidés si leur texte change. | Garder ce mécanisme. |
+| **Références CSV** | Références sourcées, mais consultation ponctuelle; conflit de prix signalé. | La revérification périodique, l'empreinte de source et les alertes restent à implémenter. |
+| **Textes officiels** | Corpus relevé et vectorisé; la date de consultation est conservée quand elle existe. | Une veille automatique, la gestion de versions et la journalisation des échecs restent à implémenter. |
+| **Graphe** | Dérivé de la base et des règles sourcées; reconstruction manuelle par `construire_abox`. | Automatiser après rafraîchissement, avec les tests comme barrière, reste à faire. |
+| **carte.afi.nat.tn** | Protégée par CAPTCHA. | Pas de relecture automatique; ne jamais contourner le CAPTCHA. |
+
+## Orientations de l'équipe : état actuel
+
+| Décision | État du code | Limite restante |
+|---|---|---|
+| **RAG agentique avec des modèles locaux uniquement** (Ollama; aucun service d'IA externe, aucune clé) : le modèle choisit ses outils de passages, graphe et chiffres. | `dalila/harnais/agent.py` et `traitement/registre.py` implémentent la boucle et le registre borné. `pipeline_fixe.py` reste utilisé par les scripts et l'évaluation historique. | Valider le parcours agent complet sur base de test; l'évaluation actuelle mesure surtout la recherche historique. |
+| **Pile Python avec API HTTP** : séparer les DTO et le contrat réseau de la logique métier. | `POST /api/v1/chat` et routes cartographiques FastAPI documentés dans `dalila/communication/`. | Le contrat historique `/carte/chatbot` n'est pas implémenté comme alias; confirmer le format attendu par l'AFI avant intégration frontend. L'API est lancée sur l'hôte, pas par Compose. |
+| **Dalila = un harnais d'agent** : boucle d'outils typés et bornés, garde-fous d'entrée et de sortie, réponse de repli. | `agent.py`, `garde_fous.py` et `consignes.py` fournissent ces mécanismes. | Mesurer et valider sur des requêtes réelles; qualifications, étude de projet et actions restent incomplètes. |
 | **Pas de règles écrites à la main pour les langues** (pas d'expressions régulières ni de listes par langue). | `recherche.langue_de` (compte des lettres arabes), listes de mots vides (`comprendre.py`, `recherche.py`), normaliseur du lexique (`dalila/langue/lexique/`). | Laisser le modèle détecter la langue et reformuler la question ; un modèle de recherche multilingue (ajusté si besoin) remplace le lexique. |
 
 ## Ajustement des modèles (à faire, après mesure)
@@ -52,10 +66,14 @@ Les paraphrases dans les 8 langues sont produites par le modèle local à partir
 puis vérifiées automatiquement (retrouvent-elles leur cible ?) ; les corpus tunisiens (TArC, TUNIZI, TSAC) apportent
 l'écriture réelle (licences : démonstration seulement pour TArC).
 
-## Le harnais de l'agent (à construire)
+## Contrat cible du harnais de l'agent
 
-Le cahier des charges n'emploie pas le mot « harnais », mais il exige presque toutes ses couches. Chaque couche est
-testée par un jeu de questions dédié (dont des attaques), à chaque changement.
+La boucle, le registre d'outils, le contrôle d'ancrage et le repli sont présents
+dans le code. Ce tableau décrit le contrat fonctionnel visé; il ne signifie pas
+que toutes les exigences sont livrées ou validées en intégration. Les statuts
+courants figurent dans [exigences.md](exigences.md).
+
+Le cahier des charges n'emploie pas le mot « harnais », mais il exige presque toutes ses couches.
 
 | Couche | Ce qu'elle fait | Exigé par |
 |---|---|---|
@@ -72,7 +90,7 @@ testée par un jeu de questions dédié (dont des attaques), à chaque changemen
 
 ## Modèle de recherche
 
-**Choix : BGE-M3 (BAAI/bge-m3), sans reranker.** Mesuré le 2026-11-27 sur les 8 858 passages, mêmes questions, même
+**Meilleur résultat mesuré : BGE-M3 (BAAI/bge-m3), sans reranker.** Mesuré le 2026-11-27 sur les 8 858 passages, mêmes questions, même
 graphe (`python -m eval.comparer_modeles`, `python -m eval.vitesse_cpu`) :
 
 | Réglage | Vraies questions (15) | Tunisien (30) | 8 langues (16) | Question encodée sur processeur (8 fils) |
@@ -89,6 +107,8 @@ graphe (`python -m eval.comparer_modeles`, `python -m eval.vitesse_cpu`) :
 - Recherche exacte dans MariaDB : environ 1,7 s par question pour BGE-M3 (0,3 s pour Qwen3, même taille de vecteur :
   effet de stockage). Un index de vecteurs le ramènera à quelques millisecondes ; même sans, la réponse reste loin du
   budget de 35 s.
+- Le défaut runtime est désormais E5 afin de commencer par une indexation et une validation légères. La mesure qui
+  favorise BGE-M3 ne dispense pas de valider l'échantillon E5 avant de demander une indexation complète.
 
 ## Reporté
 

@@ -20,8 +20,10 @@ MOTS_VIDES = set("de la le les des du d l un une et a au aux en dans pour par su
 
 
 def norm(t):
-    t = unicodedata.normalize("NFKD", t or "").encode("ascii", "ignore").decode() if re.search(r"[A-Za-zÀ-ÿ]", t or "") \
-        else (t or "")
+    def normaliser_latin(m):
+        return unicodedata.normalize("NFKD", m.group()).encode("ascii", "ignore").decode()
+
+    t = re.sub(r"[A-Za-zÀ-ÿ]+", normaliser_latin, t or "")
     return re.sub(r"[^\w؀-ۿ]+", " ", t.lower()).strip()
 
 

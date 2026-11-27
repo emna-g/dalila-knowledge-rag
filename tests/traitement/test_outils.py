@@ -1,12 +1,30 @@
-"""Tests des outils de l'agent, sur de vraies questions de visiteurs (eval/testset/questions_reelles.csv).
+"""Intégration des outils avec des données et un graphe AFI initialisés.
 
-python -m tests.traitement.test_outils      (base de test chargée ; ou : python -m pytest tests)
+Requires a dedicated MariaDB test database loaded with the AFI schema, targeted
+migrations, references and corpus, plus the generated ontology/store for graph
+tests. Never point this module at a database containing data to preserve.
+It is intentionally excluded from the offline/unit test command.
+
+Questions: eval/testset/questions_reelles.csv. Each expected count is queried
+from the live public views, not hard-coded.
 
 Chaque vérité vient d'une requête directe sur les vues, pas d'une valeur écrite à la main : le test reste juste quand
 la base est rafraîchie.
 """
+import os
+
+import pytest
+
+_test_db = os.environ.get("DALILA_TEST_DB_NAME")
+if not _test_db:
+    pytest.skip("Set DALILA_TEST_DB_NAME to run AFI integration tests", allow_module_level=True)
+if not _test_db.startswith("dalila_test_"):
+    raise RuntimeError("DALILA_TEST_DB_NAME must name an isolated schema prefixed with 'dalila_test_'")
+os.environ["DB_NAME"] = _test_db
+
 from dalila.traitement.base import q
 from dalila.traitement.registre import appeler, definitions
+from dalila.traitement.references import gouvernorats_par_code
 
 COMPTE = "SELECT COUNT(*) n FROM v_pub_lots_disponibles l JOIN v_pub_zones z USING (zone_id) WHERE "
 
@@ -20,7 +38,7 @@ def lieu(texte):
 
 
 def code_gouv(nom):
-    return q("SELECT code FROM dalila_gouvernorats WHERE nom_fr = %s", nom)[0]["code"]
+    return next(code for code, gouv in gouvernorats_par_code().items() if gouv["nom_fr"] == nom)
 
 
 def test_lieux():
@@ -44,7 +62,7 @@ def test_lots_reels():
         ("un lot à moins 20dt à kairouan", {"gouvernorats": [kai], "prix_max_m2_dt": 20},
          verite("z.gouvernorat_code = %s AND l.prix_m2_dt <= 20", kai)),
         ("je veux un terrain a grand tunis", {"gouvernorats": gt},
-         verite("z.gouvernorat_fr IN ('Tunis','Ariana','Ben Arous','La Manouba')")),
+         verite("z.gouvernorat_code IN (" + ",".join(["%s"] * len(gt)) + ")", *gt)),
         ("lot dans zone subventionnée", {"regime": "developpement_regional"}, verite("z.zone_developpement_regional = 1")),
         ("Agba lot superier 15000 m2", {"zones": ["930403"], "surface_min_m2": 15000.01},
          verite("l.zone_id = '930403' AND l.surface_m2 > 15000")),
@@ -107,7 +125,7 @@ def test_graphe():
 def test_registre_robuste():
     assert "erreur" in appeler("supprimer_base", {})                    # outil hors liste
     assert "erreur" in appeler("chercher_lots", {"limite": 1000})        # borne dépassée
-    assert "erreur" in appeler("fiche_zone", {"zone_id": "1; DROP TABLE lots"}) or True  # paramètre lié, sans effet
+    assert appeler("fiche_zone", {"zone_id": "1; DROP TABLE lots"}) == {"resultat": None}
     assert q("SELECT COUNT(*) n FROM v_pub_zones")[0]["n"] == 50
     noms = {d["function"]["name"] for d in definitions()}
     assert noms == {"relier_concepts", "conseiller", "resoudre_lieu", "chercher_lots", "fiche_zone", "lister_zones",

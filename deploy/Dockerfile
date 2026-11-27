@@ -1,5 +1,5 @@
 # Image Python de Dalila : construction (ingest), évaluation et outils. torch CPU épinglé.
-# Pour une carte graphique NVIDIA : remplacer l'index cpu par cu124 et lancer avec --gpus all.
+# Pour une carte graphique NVIDIA : utiliser l'index CUDA correspondant à la version PyTorch documentée et lancer avec --gpus all.
 FROM python:3.12-slim
 
 ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 PYTHONIOENCODING=utf-8 \

@@ -10,26 +10,34 @@ import argparse, csv, random
 from dalila.config import LEXIQUE, db
 
 
-def main():
+def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("--taille", type=int, default=1500)
-    a = ap.parse_args()
-    con = db("root")
-    cur = con.cursor()
-    cur.execute("CREATE TABLE IF NOT EXISTS dalila_echantillon_eval (id VARCHAR(12) PRIMARY KEY) "
-                "DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci")
-    cur.execute("DELETE FROM dalila_echantillon_eval")
-    cur.execute("SELECT id, type, pertinence, longueur FROM dalila_passages")
-    P = cur.fetchall()
-    ids = {p["id"] for p in P if p["type"] in ("reponse_validee_afi", "fiche_zone", "formulaire", "procedure")}
-    for q in csv.DictReader(open(LEXIQUE / "tests/questions_test.csv", encoding="utf-8-sig")):
-        if q["passages_attendus"].startswith("ids:"):
-            ids |= set(q["passages_attendus"][4:].split(",")) & {p["id"] for p in P}
-    reste = sorted(p["id"] for p in P if p["id"] not in ids)
-    random.Random(42).shuffle(reste)
-    ids |= set(reste[: max(0, a.taille - len(ids))])
-    cur.executemany("INSERT INTO dalila_echantillon_eval VALUES (%s)", [(i,) for i in sorted(ids)])
-    print(len(ids), "passages dans l'échantillon")
+    a = ap.parse_args(argv)
+    if a.taille < 1:
+        ap.error("--taille doit être supérieure à zéro.")
+    con = db("ingest")
+    try:
+        with con.cursor() as cur:
+            cur.execute("DELETE FROM dalila_echantillon_eval")
+            cur.execute("SELECT id, type, pertinence, longueur FROM dalila_passages")
+            passages = cur.fetchall()
+            ids = {
+                passage["id"] for passage in passages
+                if passage["type"] in ("reponse_validee_afi", "fiche_zone", "formulaire", "procedure")
+            }
+            ids_disponibles = {passage["id"] for passage in passages}
+            with open(LEXIQUE / "tests" / "questions_test.csv", encoding="utf-8-sig", newline="") as fichier:
+                for question in csv.DictReader(fichier):
+                    if question["passages_attendus"].startswith("ids:"):
+                        ids.update(set(question["passages_attendus"][4:].split(",")) & ids_disponibles)
+            reste = sorted(ids_disponibles - ids)
+            random.Random(42).shuffle(reste)
+            ids.update(reste[: max(0, a.taille - len(ids))])
+            cur.executemany("INSERT INTO dalila_echantillon_eval VALUES (%s)", [(i,) for i in sorted(ids)])
+            print(len(ids), "passages dans l'échantillon")
+    finally:
+        con.close()
 
 
 if __name__ == "__main__":
