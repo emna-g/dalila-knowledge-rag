@@ -52,6 +52,31 @@ def test_lots_reels():
     for question, args, attendu in cas:
         r = appeler("chercher_lots", args)
         assert r["nombre_total"] == attendu, (question, r["nombre_total"], attendu)
+    # le lieu tel qu'écrit par le visiteur, résolu par l'outil lui-même (l'agent n'enchaîne pas deux outils)
+    assert appeler("chercher_lots", {"lieu": "jendouba", "surface_min_m2": 2000})["nombre_total"] == cas[0][2]
+    assert appeler("chercher_lots", {"lieu": "Grand Tunis"})["nombre_total"] == cas[2][2]
+    t = appeler("chercher_lots", {"lieu": "tunis"})  # gouvernorat ou région : pas de devinette
+    assert t["nombre_total"] is None and len(t["lieux_a_proposer"]) == 2
+    z = appeler("lister_zones", {"lieu": "Jendouba", "seulement_avec_lots_disponibles": False})
+    assert z["nombre"] == q("SELECT COUNT(*) n FROM v_pub_zones WHERE gouvernorat_code = %s", jen)[0]["n"] > 0
+    assert appeler("lister_zones", {"lieu": "tunis"})["lieux_a_proposer"]
+
+
+def test_vues_et_bloc():
+    """Le modèle lit une vue courte ; la liste, les balises et les liens sont écrits par le harnais (exacts)."""
+    from dalila.harnais.vues import TAILLE_VUE, bloc, vue
+    from dalila.harnais.garde_fous import verifier_ancrage
+    r = appeler("chercher_lots", {"lieu": "jendouba", "surface_min_m2": 2000})
+    b = bloc([("chercher_lots", r)])
+    assert b.count("[[LOT:") == min(5, len(r["lots"]))
+    assert verifier_ancrage(b, [r], "")["ok"]  # chaque nombre et balise du bloc vient du résultat
+    for nom, args in (("demarche", {"service": "acquisition"}), ("chercher_passages", {"question": "TIA"}),
+                      ("fiche_zone", {"zone_id": "931206"})):
+        assert len(vue(nom, appeler(nom, args))) <= TAILLE_VUE + 20
+    f = appeler("fiche_zone", {"zone_id": "931206"})
+    assert "[[ZONE:931206:" in bloc([("fiche_zone", f)]) and "[[PDF:" in bloc([("fiche_zone", f)])
+    assert "lister_zones" in vue("fiche_zone", appeler("fiche_zone", {"zone_id": "jendouba"}))
+    assert bloc([("chercher_lots", appeler("chercher_lots", {"lieu": "tunis"}))]).count("[[CHOIX:") == 2
 
 
 def test_lots_budget_et_proximite():

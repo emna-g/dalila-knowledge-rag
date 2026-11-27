@@ -2,50 +2,82 @@
 
     from dalila.harnais.agent import Agent
     Agent().repondre("lot de 2000 m² à Jendouba", historique=[], lang="fr", contexte=None)
-    -> {"reponse", "source", "outils", "ancrage", "etapes", "duree_s", "modele"}
+    -> {"reponse", "texte_modele", "source", "outils", "ancrage", "etapes", "duree_s", "modele", "erreur"}
 
 Boucle : le modèle lit la question -> appelle des outils du registre (liste fermée, arguments validés, lecture seule)
--> lit leurs résultats -> recommence ou répond. Bornes : nombre d'étapes, d'appels par étape et délai total (BNF2 : 35 s).
-La réponse finale passe la vérification d'ancrage (garde_fous) ; en cas d'échec le modèle est relancé une fois avec
-la liste de ce qui n'est pas justifié, puis le harnais répond par le repli. Le moteur arrêté donne aussi le repli.
+-> lit une vue courte de leurs résultats -> recommence ou répond. Bornes : nombre d'étapes, d'appels par étape, jetons
+écrits et délai total (BNF2 : 35 s).
+
+Le harnais fait ce qu'un petit modèle sur processeur fait lentement ou mal (mesures : docs/decisions.md) :
+- à la première étape, un outil est obligatoire : si le modèle commence à écrire sans données, il est arrêté aussitôt
+  et invité à appeler un outil (une seule fois : une question hors sujet reçoit alors une réponse sans outil) ;
+- les listes (lots, zones), balises, documents et sources sont écrits par le harnais à partir des résultats d'outils
+  (vues.bloc) et ajoutés sous les phrases du modèle, qui reste court ;
+- la réponse du modèle passe la vérification d'ancrage (garde_fous) ; en cas d'échec il est relancé une fois avec la
+  liste de ce qui n'est pas justifié, puis le harnais répond par le repli, suivi des faits trouvés s'il y en a.
 """
-import json, time
-from dalila.harnais.consignes import REPLI, systeme
+import json, re, time
+from dalila.harnais.consignes import RAPPEL_OUTIL, REPLI, systeme
 from dalila.harnais.garde_fous import nettoyer_entree, verifier_ancrage
+from dalila.harnais.vues import bloc, vue
 from dalila.moteurs.llm import MODELE_LLM, ErreurMoteur, discuter
 from dalila.traitement.registre import appeler, definitions
 
-TAILLE_RESULTAT = 6000  # caractères d'un résultat d'outil rendus au modèle (le contexte du modèle est limité)
+JETONS_ETAPE = 130          # un appel d'outil fait 20 à 50 jetons ; une réponse 60 mots au plus
+JETONS_MIN = 50             # de quoi écrire un appel d'outil
+JETONS_PAR_S = 4.0          # écriture mesurée sur processeur 8 fils (4,5 à 6 jetons/s) : valeur prudente
+CARACTERES_LUS_PAR_S = 200  # lecture de texte nouveau (≈ 70 jetons/s, 3 caractères par jeton)
+RAPPELS_MAX = 2
 
 
-def _sans_vides(v):
-    """Retire les champs vides (None, listes et dicts vides) : rien à lire pour le modèle, du temps en moins sur
-    processeur. Les zéros et les faux restent (ce sont des informations)."""
-    if isinstance(v, dict):
-        return {k: _sans_vides(x) for k, x in v.items() if x is not None and x != [] and x != {}}
-    if isinstance(v, list):
-        return [_sans_vides(x) for x in v]
-    return v
+def _jetons(reste, a_lire):
+    """Borne d'écriture tirée du temps qui reste, une fois lus les a_lire caractères nouveaux : la réponse finit,
+    phrases complètes, avant le délai (BNF2), au lieu d'être coupée par lui et remplacée par le repli."""
+    lecture = 1.0 + a_lire / CARACTERES_LUS_PAR_S
+    return max(JETONS_MIN, min(JETONS_ETAPE, int((reste - lecture) * JETONS_PAR_S)))
 
 
-def _compact(res):
-    texte = json.dumps(_sans_vides(res), ensure_ascii=False, separators=(",", ":"))
-    return texte if len(texte) <= TAILLE_RESULTAT else texte[:TAILLE_RESULTAT] + "…(tronqué)"
+HORS_SUJET = {"type": "function", "function": {
+    "name": "hors_sujet",
+    "description": "À appeler quand le message ne concerne ni l'AFI, ni ses zones et lots, ni l'investissement "
+                   "industriel en Tunisie (cuisine, politique, données personnelles, création de compte...), ou n'est "
+                   "qu'une salutation ou un remerciement. Toute question sur l'AFI elle-même n'est pas hors sujet.",
+    "parameters": {"type": "object", "properties": {}}}}
+CONSIGNE_HORS_SUJET = {"hors_sujet": True, "consigne": "Réponds poliment, sans aucune donnée : pour une salutation, "
+                       "salue ; sinon dis que tu ne peux pas aider pour cela. Rappelle en une phrase ce que tu sais faire "
+                       "(lots et zones industrielles, démarches de l'AFI, incitations, organismes d'investissement)."}
+# résolus à l'intérieur des outils : resoudre_lieu par ceux qui prennent un nom de lieu (une étape de moins) ;
+# relier_concepts, que le modèle appelait sans enchaîner ensuite (le graphe sert par conseiller)
+OUTILS_CACHES = {"resoudre_lieu", "relier_concepts"}
+FIN_PHRASE = re.compile(r"[.!?؟…\n](?=[^.!?؟…\n]*$)")
+
+
+def _phrases_completes(texte):
+    """Coupée par la borne de jetons, la réponse garde ses phrases complètes."""
+    m = FIN_PHRASE.search(texte)
+    return texte[:m.end()].strip() if m else texte.strip()
+
+
+def journal_outils(journal):
+    """Vrai dès qu'un outil (hors rappels) a été appelé pendant la question."""
+    return any(not j["outil"].startswith("(") for j in journal)
 
 
 class Agent:
     def __init__(self, modele=None, delai_s=35.0, etapes_max=6, appels_par_etape=4):
         self.modele = modele or MODELE_LLM
         self.delai_s, self.etapes_max, self.appels_par_etape = delai_s, etapes_max, appels_par_etape
-        self.outils = definitions()
+        self.outils = [d for d in definitions() if d["function"]["name"] not in OUTILS_CACHES] + [HORS_SUJET]
 
     def prechauffer(self):
-        """Au démarrage du service : charge le modèle de recherche (BGE-M3) et le modèle de langue en mémoire, pour
-        que la première question d'un visiteur ne paie pas le chargement."""
+        """Au démarrage du service : charge le modèle de recherche (BGE-M3) et le modèle de langue, et fait lire une
+        fois les consignes et les outils (≈ 3 500 jetons, 40 s sur processeur) : Ollama garde cette lecture en cache,
+        les questions des visiteurs ne la paient plus."""
         from dalila.moteurs.embeddings import encoder_questions
         encoder_questions(["préchauffage"])
         try:
-            discuter([{"role": "user", "content": "Bonjour"}], modele=self.modele, delai_s=300)
+            discuter([systeme(), {"role": "user", "content": "Bonjour"}], outils=self.outils, modele=self.modele,
+                     delai_s=300, jetons_max=1)
         except ErreurMoteur:
             pass
 
@@ -55,51 +87,84 @@ class Agent:
         message, historique = nettoyer_entree(message, historique)
         messages = [systeme(contexte), *historique, {"role": "user", "content": message}]
         journal, resultats, deja = [], [], {}
-        relance = False
+        relance, rappels, a_lire = False, 0, 0
 
-        def sortie(texte, source, ancrage=None, etape=0, erreur=None):
-            return {"reponse": texte, "source": source, "outils": journal, "ancrage": ancrage, "etapes": etape,
-                    "duree_s": round(time.time() - debut, 2), "modele": self.modele, "erreur": erreur}
+        def sortie(texte, source, ancrage=None, etape=0, erreur=None, texte_modele=None):
+            return {"reponse": texte, "texte_modele": texte_modele, "source": source, "outils": journal,
+                    "ancrage": ancrage, "etapes": etape, "duree_s": round(time.time() - debut, 2),
+                    "modele": self.modele, "erreur": erreur}
 
         repli = REPLI.get(lang or "fr", REPLI["fr"])
+
+        def sortie_repli(etape, erreur, ancrage=None):
+            faits = bloc(resultats)  # ce que les outils ont trouvé reste exact, même si la phrase du modèle ne l'est pas
+            return sortie(repli + ("\n\n" + faits if faits else ""), "repli", ancrage, etape, erreur)
+
         if not message:
             return sortie(repli, "repli", erreur="message vide")
 
         for etape in range(1, self.etapes_max + 1):
             reste = fin - time.time()
             if reste < 1:
-                return sortie(repli, "repli", etape=etape, erreur="délai dépassé")
+                return sortie_repli(etape, "délai dépassé")
             try:
-                r = discuter(messages, outils=self.outils, modele=self.modele, delai_s=reste)
+                r = discuter(messages, outils=self.outils, modele=self.modele, delai_s=reste,
+                             jetons_max=_jetons(reste, a_lire), arret_si_texte=not journal_outils(journal)
+                             and rappels < RAPPELS_MAX)
+                a_lire = 0
             except ErreurMoteur as ex:
-                return sortie(repli, "repli", etape=etape, erreur=str(ex))
+                return sortie_repli(etape, str(ex))
+
+            if r["interrompu"]:  # réponse commencée sans aucune donnée : un outil d'abord
+                rappels += 1
+                journal.append({"etape": etape, "outil": "(rappel : outil d'abord)", "arguments": {}, "erreur": None,
+                                "duree_s": 0, "duree_modele_s": r["duree_s"]})
+                messages.append({"role": "user", "content": RAPPEL_OUTIL})
+                continue
 
             if r["tool_calls"]:
+                appels = r["tool_calls"][:self.appels_par_etape]
                 messages.append({"role": "assistant", "content": r["content"],
                                  "tool_calls": [{"function": {"name": c["nom"], "arguments": c["arguments"]}}
-                                                for c in r["tool_calls"][:self.appels_par_etape]]})
-                for c in r["tool_calls"][:self.appels_par_etape]:
+                                                for c in appels]})
+                for c in appels:
                     cle = c["nom"] + json.dumps(c["arguments"], sort_keys=True, ensure_ascii=False)
                     t = time.time()
-                    res = deja[cle] if cle in deja else appeler(c["nom"], c["arguments"])
+                    if c["nom"] == "hors_sujet":
+                        res = CONSIGNE_HORS_SUJET
+                    elif cle in deja:
+                        res = deja[cle]
+                    elif c["nom"] in OUTILS_CACHES:
+                        res = {"erreur": f"outil inconnu : {c['nom']}"}
+                    else:
+                        res = appeler(c["nom"], c["arguments"])
+                    if cle not in deja and c["nom"] != "hors_sujet":
+                        resultats.append((c["nom"], res))
                     deja[cle] = res
-                    resultats.append(res)
                     journal.append({"etape": etape, "outil": c["nom"], "arguments": c["arguments"],
                                     "erreur": res.get("erreur"), "duree_s": round(time.time() - t, 2),
                                     "duree_modele_s": r["duree_s"]})
-                    messages.append({"role": "tool", "tool_name": c["nom"], "content": _compact(res)})
+                    contenu = vue(c["nom"], res)
+                    a_lire += len(contenu)
+                    messages.append({"role": "tool", "tool_name": c["nom"], "content": contenu})
                 continue
 
             texte = r["content"].strip()
-            ancrage = verifier_ancrage(texte, resultats, message)
+            if r["fin"] == "length":
+                texte = _phrases_completes(texte)
+            if texte.strip("`'\" ") in {d["function"]["name"] for d in self.outils}:
+                texte = ""  # le modèle a écrit le nom d'un outil au lieu de l'appeler : relancé comme non ancré
+            ancrage = verifier_ancrage(texte, [res for _, res in resultats], message)
             if ancrage["ok"] and texte:
-                return sortie(texte, "dalila", ancrage, etape)
+                faits = bloc(resultats)
+                return sortie(texte + ("\n\n" + faits if faits else ""), "dalila", ancrage, etape,
+                              texte_modele=texte)
             if relance:
-                return sortie(repli, "repli", ancrage, etape, erreur="réponse non ancrée")
+                return sortie_repli(etape, "réponse non ancrée", ancrage)
             relance = True
             messages.append({"role": "assistant", "content": texte})
             messages.append({"role": "user", "content":
                              "[Vérification automatique] Ces éléments de ta réponse ne viennent d'aucun résultat d'outil : "
                              f"nombres {ancrage['nombres_inconnus']}, balises {ancrage['balises_inconnues']}. "
                              "Appelle l'outil nécessaire, ou réécris la réponse sans ces éléments, dans la langue du visiteur."})
-        return sortie(repli, "repli", etape=self.etapes_max, erreur="trop d'étapes")
+        return sortie_repli(self.etapes_max, "trop d'étapes")

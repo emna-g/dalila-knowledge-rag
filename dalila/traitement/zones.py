@@ -2,12 +2,13 @@
 from typing import Literal
 from pydantic import BaseModel, Field
 from dalila.traitement.base import SOURCE_BASE, Source, nombre, q
+from dalila.traitement.lieux import LieuPossible, lieu_unique
 
 Infrastructure = Literal["aeroport", "port", "gare", "autoroute", "gazoduc"]
 
 
 class EntreeFiche(BaseModel):
-    zone_id: str = Field(..., max_length=20, description="code de la zone (resoudre_lieu)")
+    zone_id: str = Field(..., max_length=100, description="code de la zone, ou son nom tel que le visiteur l'a écrit")
 
 
 class Distance(BaseModel):
@@ -55,8 +56,12 @@ class FicheZone(BaseModel):
 
 def fiche_zone(e: EntreeFiche) -> FicheZone | None:
     z = q("SELECT * FROM v_pub_zones WHERE zone_id = %s", e.zone_id)
-    if not z:
-        return None
+    if not z:  # un nom plutôt qu'un code : résolu seulement s'il désigne une seule zone
+        from dalila.traitement.lieux import EntreeLieu, resoudre_lieu
+        zs = [l for l in resoudre_lieu(EntreeLieu(texte=e.zone_id)).lieux if l.type == "zone"]
+        if len(zs) != 1:
+            return None
+        z = q("SELECT * FROM v_pub_zones WHERE zone_id = %s", zs[0].id)
     z = z[0]
     zid = z["zone_id"]
     dist = [Distance(type=r["type"], nom=r["nom"], km=nombre(r["km"]))
@@ -88,7 +93,9 @@ def fiche_zone(e: EntreeFiche) -> FicheZone | None:
 
 
 class EntreeListeZones(BaseModel):
-    gouvernorats: list[int] = Field(default_factory=list, description="codes des gouvernorats (resoudre_lieu)")
+    lieu: str | None = Field(None, max_length=100, description="nom du gouvernorat ou de la région tel que le visiteur "
+                                                               "l'a écrit (fautes tolérées, français ou arabe)")
+    gouvernorats: list[int] = Field(default_factory=list, description="codes des gouvernorats")
     regime: Literal["developpement_regional", "littoral"] | None = None
     groupe_developpement_regional: Literal[1, 2] | None = None
     seulement_avec_lots_disponibles: bool = True
@@ -105,8 +112,12 @@ class ResumeZone(BaseModel):
 
 
 class ResultatZones(BaseModel):
-    nombre: int
+    nombre: int | None = Field(description="nombre exact de zones ; vide si le lieu est à préciser")
+    lots_disponibles_total: int | None = Field(None, description="nombre exact de lots disponibles dans ces zones")
     zones: list[ResumeZone]
+    lieu_retenu: str | None = None
+    lieux_a_proposer: list[LieuPossible] = Field(default_factory=list, description="lieu ambigu ou inconnu : options à "
+                                                                                   "proposer au visiteur")
     sources: list[Source]
 
 
@@ -118,6 +129,13 @@ def _resume(r):
 
 
 def lister_zones(e: EntreeListeZones) -> ResultatZones:
+    retenu = None
+    if e.lieu:  # le nom du lieu est résolu ici : l'agent n'enchaîne pas deux outils
+        l0, options = lieu_unique(e.lieu)
+        if l0 is None:
+            return ResultatZones(nombre=None, zones=[], lieux_a_proposer=options, sources=[SOURCE_BASE])
+        retenu = f"{l0.type} {l0.nom}"
+        e = e.model_copy(update={"gouvernorats": e.gouvernorats + l0.gouvernorats})
     sql, p = "SELECT * FROM v_pub_zones WHERE 1=1", []
     if e.gouvernorats:
         sql += " AND gouvernorat_code IN (" + ",".join(["%s"] * len(e.gouvernorats)) + ")"
@@ -131,7 +149,8 @@ def lister_zones(e: EntreeListeZones) -> ResultatZones:
     if e.seulement_avec_lots_disponibles:
         sql += " AND lots_disponibles > 0"
     rows = q(sql + " ORDER BY lots_disponibles DESC, nom_fr", *p)
-    return ResultatZones(nombre=len(rows), zones=[_resume(r) for r in rows], sources=[SOURCE_BASE])
+    return ResultatZones(nombre=len(rows), lots_disponibles_total=sum(r["lots_disponibles"] or 0 for r in rows),
+                         zones=[_resume(r) for r in rows], lieu_retenu=retenu, sources=[SOURCE_BASE])
 
 
 class EntreeProximite(BaseModel):

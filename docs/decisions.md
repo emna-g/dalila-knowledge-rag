@@ -69,7 +69,7 @@ Les paraphrases dans les 8 langues sont produites par le modèle local à partir
 puis vérifiées automatiquement (retrouvent-elles leur cible ?) ; les corpus tunisiens (TArC, TUNIZI, TSAC) apportent
 l'écriture réelle (licences : démonstration seulement pour TArC).
 
-## Le harnais de l'agent (à construire)
+## Le harnais de l'agent (en partie construit : `dalila/harnais/`)
 
 Le cahier des charges n'emploie pas le mot « harnais », mais il exige presque toutes ses couches. Chaque couche est
 testée par un jeu de questions dédié (dont des attaques), à chaque changement.
@@ -86,6 +86,50 @@ testée par un jeu de questions dédié (dont des attaques), à chaque changemen
 | **Repli** | Moteur ou voix en panne : réponse en texte depuis la base de connaissances ou les faits, jamais de message d'erreur brut. | BNF4, BNF7 |
 | **Apprentissage sûr** | Un ajout exige plusieurs conversations distinctes, une source vérifiable, un graphe cohérent (SHACL, OWL) et aucune baisse sur le jeu de test ; jamais un prix, une disponibilité ou une condition venus d'un visiteur ; journal, annulation, versions. | BF18, BF19, BF21, BNF15, BNF17, BNF18 |
 | **Journal et mesures** | Chaque tour (anonymisé) garde la langue, les outils appelés, les verdicts des garde-fous et le temps ; base du tableau de mesures des livrables. | Livrables, BF12 |
+
+## Modèle de l'agent (mesuré sur processeur, 8 fils, comme le serveur de l'AFI)
+
+Priorité : un modèle qui tient dans les contraintes du cahier des charges (modèle local, processeur seul, 16 Go,
+réponse en 35 s). Le modèle retenu est **Qwen3-4B-Instruct-2507** (`qwen3:4b-instruct`). Un seul modèle choisit les
+outils et écrit la réponse ; BGE-M3 reste le modèle de recherche. Le harnais compense ce qu'un petit modèle sur
+processeur fait lentement ou mal ; un modèle plus grand ne sera proposé que si ces corrections ne suffisent pas, avec
+les mesures à l'appui.
+
+Jeu : 40 vraies questions (`eval/agent_bench.py`, rapports dans `eval/reports/`).
+
+| Version | Réussies | Nombre de lots exact | Passage trouvé | Replis | Médiane | Au-delà de 35 s |
+|---|---|---|---|---|---|---|
+| Qwen3-1.7B | 4/35 | 1/16 | 0/15 | 11 | 11 s | 12 |
+| Qwen3-4B (variante « thinking ») | dépasse 90 s à chaque question : écarté | | | | | |
+| Qwen3-4B-Instruct, premier harnais | 9/35 | 4/16 | 5/15 | 14 | 54 s | 23 |
+| Qwen3-4B-Instruct, harnais corrigé | 15/35 | 7/16 | 6/15 | 3 | 22 s | 2 |
+| **Qwen3-4B-Instruct, outils corrigés** (*) | **23/35** | **11/16** | **8/15** | **1** | **21 s** | **1** |
+
+(*) Corrections d'outils : `relier_concepts` caché au modèle (il l'appelait sans enchaîner) ; `chercher_passages`
+accepte un nom de zone ; `lister_zones` rend le nombre exact de lots ; choix explicite `hors_sujet`, outil obligatoire
+à la première étape pour toutes les questions ; temps de lecture estimé sur la taille réelle des résultats. La notation
+accepte désormais le nombre exact de lots rendu par `lister_zones` ou `fiche_zone` (avant : `chercher_lots` seul) ;
+sans ce changement, 4 réponses justes (R07, R38, R39, R51) restaient comptées fausses.
+
+Ce qui a coûté le temps (mesuré pas à pas) : le modèle **écrit** 4 à 6 jetons par seconde ; une réponse de 200 à 340
+jetons prenait 50 à 120 s. La lecture n'est pas le problème une fois les consignes en cache (≈ 4 s par étape).
+Corrections du harnais, sans changer de modèle :
+
+| Correction | Effet |
+|---|---|
+| Les listes (lots, zones), balises, documents et sources sont écrits par le harnais à partir des résultats d'outils (`harnais/vues.py`) ; le modèle écrit 1 à 3 phrases. | Une centaine de jetons écrits en moins ; listes exactes par construction. |
+| Borne d'écriture tirée du temps restant (≈ 4 jetons/s), réponse coupée à la dernière phrase complète. | La réponse finit avant 35 s au lieu d'être remplacée par le repli. |
+| Vue courte de chaque résultat d'outil (2 000 caractères au plus au lieu de 6 000). | Moins de lecture à chaque étape. |
+| Outil obligatoire à la première étape : si le modèle commence à écrire sans données, il est arrêté (≈ 1 s) et invité à appeler un outil, une fois. | Fin des réponses écrites « de mémoire » ; le hors-sujet reste refusé sans outil. |
+| `resoudre_lieu` caché au modèle : `chercher_lots`, `lister_zones` et `fiche_zone` prennent le nom du lieu tel qu'écrit. | Une étape de moins ; fin des arrêts après la seule résolution du lieu. |
+| Préchauffage avec les vraies consignes et les outils. | La première question ne paie plus 40 à 60 s de lecture. |
+
+Reste à corriger, propre au modèle : des questions sur l'AFI prises pour hors sujet (R11, R29), un lieu réécrit au
+lieu d'être recopié (« Grand Tunis » → « tunis », R15), le mauvais outil pour un cahier des charges (R17) ; et 8/15
+passages trouvés. Sur les 7 manqués, 4 viennent de l'agent (pas de recherche, ou question mal reformulée) : avec
+les mots du visiteur, BGE-M3 trouve le passage attendu (rang 1 ou 2 pour R11, R17, R46 ; rang 7 pour R48). Seuls R29,
+R42 et R47 (tunisien, question vague) sont des manques de la recherche elle-même. Étapes suivantes, dans l'ordre : corrections d'outils
+ciblées, puis ajustement du modèle (paires question → appel d'outil), puis seulement la mesure d'un modèle plus grand.
 
 ## Modèle de recherche
 

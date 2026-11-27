@@ -1,17 +1,22 @@
 """Outil chercher_lots : lots disponibles selon le lieu, la surface, le prix, le budget, le régime et la proximité.
 
 Rend toujours le NOMBRE EXACT de lots (compte en base) et une liste courte, la moins chère d'abord. Les lieux sont donnés
-par leurs codes (obtenus avec resoudre_lieu). Un lot d'une zone dont le prix n'est pas publié n'a pas de prix total :
+par leur nom tel que le visiteur l'a écrit (champ lieu, résolu ici par resoudre_lieu : l'agent n'a pas à enchaîner deux
+outils) ou par leurs codes. Un lieu ambigu ou inconnu n'est pas deviné : le résultat rend les lieux possibles, à proposer
+au visiteur en question à choix. Un lot d'une zone dont le prix n'est pas publié n'a pas de prix total :
 il ne passe pas un filtre de prix ou de budget, et la zone est signalée.
 """
 from typing import Literal
 from pydantic import BaseModel, Field
 from dalila.traitement.base import SOURCE_BASE, Source, nombre, q
+from dalila.traitement.lieux import LieuPossible, lieu_unique
 
 
 class EntreeLots(BaseModel):
-    gouvernorats: list[int] = Field(default_factory=list, description="codes des gouvernorats (resoudre_lieu)")
-    zones: list[str] = Field(default_factory=list, description="codes des zones (resoudre_lieu)")
+    lieu: str | None = Field(None, max_length=100, description="nom du lieu tel que le visiteur l'a écrit (zone, "
+                                                               "gouvernorat ou région, toutes langues) ; résolu par l'outil")
+    gouvernorats: list[int] = Field(default_factory=list, description="codes des gouvernorats, si connus")
+    zones: list[str] = Field(default_factory=list, description="codes des zones, si connus")
     surface_min_m2: float | None = Field(None, ge=0)
     surface_max_m2: float | None = Field(None, ge=0)
     prix_max_m2_dt: float | None = Field(None, ge=0, description="prix au m² maximal, en dinars")
@@ -39,7 +44,11 @@ class Lot(BaseModel):
 
 
 class ResultatLots(BaseModel):
-    nombre_total: int = Field(description="nombre exact de lots disponibles qui répondent aux filtres")
+    nombre_total: int | None = Field(description="nombre exact de lots disponibles qui répondent aux filtres ; vide si "
+                                                 "le lieu est à préciser")
+    lieu_retenu: str | None = Field(None, description="le lieu cherché, tel que résolu")
+    lieux_a_proposer: list[LieuPossible] = Field(default_factory=list, description="lieu ambigu ou inconnu : options à "
+                                                 "proposer au visiteur ([[CHOIX]]) ; aucun lot cherché")
     lots: list[Lot]
     zones_prix_non_publie: list[str] = Field(description="zones du résultat sans aucun prix publié par l'AFI")
     filtres: dict
@@ -72,9 +81,19 @@ def chercher_lots(e: EntreeLots) -> ResultatLots:
     # Les zones sont choisies d'abord, puis les lots sont lus dans la seule vue des lots : joindre la vue des zones
     # (qui compte ses lots) ferait tout recalculer pour chaque lot.
     filtres = e.model_dump(exclude_none=True, exclude_defaults=True)
+    retenu = None
+    if e.lieu:
+        l0, options = lieu_unique(e.lieu)
+        if l0 is None:
+            return ResultatLots(nombre_total=None, lots=[], zones_prix_non_publie=[], filtres=filtres,
+                                lieux_a_proposer=options, sources=[SOURCE_BASE])
+        retenu = f"{l0.type} {l0.nom}"
+        e = e.model_copy(update={"zones": e.zones + ([l0.id] if l0.type == "zone" else []),
+                                 "gouvernorats": e.gouvernorats + (l0.gouvernorats if l0.type != "zone" else [])})
     zones = _zones_retenues(e)
     if not zones:
-        return ResultatLots(nombre_total=0, lots=[], zones_prix_non_publie=[], filtres=filtres, sources=[SOURCE_BASE])
+        return ResultatLots(nombre_total=0, lots=[], zones_prix_non_publie=[], filtres=filtres, lieu_retenu=retenu,
+                            sources=[SOURCE_BASE])
     sql = " FROM v_pub_lots_disponibles l WHERE l.zone_id IN (" + ",".join(["%s"] * len(zones)) + ")"
     prix = "COALESCE(l.prix_m2_dt, l.prix_m2_dernier_publie_dt)"  # prix actuel, sinon dernier prix publié par l'AFI
     p = list(zones)
@@ -101,4 +120,4 @@ def chercher_lots(e: EntreeLots) -> ResultatLots:
                         a_confirmer=bool(r["a_confirmer"])))
     return ResultatLots(nombre_total=int(sum(r["n"] for r in par_zone)), lots=lots,
                         zones_prix_non_publie=[r["zone_id"] for r in par_zone if r["sans_prix"]],
-                        filtres=filtres, sources=[SOURCE_BASE])
+                        filtres=filtres, lieu_retenu=retenu, sources=[SOURCE_BASE])

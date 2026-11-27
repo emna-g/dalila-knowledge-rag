@@ -41,6 +41,21 @@ class ResultatLieux(BaseModel):
     sources: list[Source]
 
 
+class LieuPossible(BaseModel):
+    """Un lieu à proposer au visiteur quand le nom qu'il a écrit est ambigu ou inconnu (question à choix)."""
+    type: str
+    id: str
+    nom: str
+
+
+def lieu_unique(texte):
+    """Pour les outils qui prennent un nom de lieu : (lieu retenu, None) ou (None, lieux à proposer). Jamais deviné."""
+    r = resoudre_lieu(EntreeLieu(texte=texte))
+    if not r.lieux or r.ambigu:
+        return None, [LieuPossible(type=l.type, id=l.id, nom=l.nom) for l in r.lieux]
+    return r.lieux[0], None
+
+
 def _norm(t):
     t = unicodedata.normalize("NFKD", str(t or "").lower())
     t = "".join(c for c in t if not unicodedata.combining(c))

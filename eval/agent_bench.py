@@ -40,8 +40,8 @@ def juger(x, r):
     if x["verite_sql"]:
         vrai = list(q(x["verite_sql"])[0].values())[0]
         j["verite"] = vrai
-        j["nombre_outil_ok"] = any(o["outil"] == "chercher_lots" for o in r["outils"]) and \
-            vrai in r.get("_nombres_outils", [])
+        # le nombre exact rendu par un outil de lots (chercher_lots, lister_zones ou fiche_zone)
+        j["nombre_outil_ok"] = vrai in r.get("_nombres_outils", [])
         j["nombre_reponse_ok"] = any(vrai in plein for plein, _ in nombres(texte)) or (vrai == 0 and j["nombre_outil_ok"])
         j["reussi"] = j["nombre_outil_ok"] and j["nombre_reponse_ok"] and not j["repli"]
     elif x["passages_attendus"].startswith("ids:"):
@@ -53,7 +53,7 @@ def juger(x, r):
     else:
         j["reussi"] = None  # à relire (projet, vague, hors données) : voir la réponse dans le CSV
     attendu_ar = x["langue"] == "ar"
-    j["langue_ok"] = (ecriture(texte) > 0.3) == attendu_ar if x["langue"] in ("ar", "fr") and not j["repli"] else None
+    j["langue_ok"] = (ecriture(r.get("texte_modele") or texte) > 0.3) == attendu_ar if x["langue"] in ("ar", "fr") and not j["repli"] else None
     return j
 
 
@@ -74,7 +74,9 @@ def lancer(modele, Q, delai):
     for x in Q:
         resultats_bruts.clear()
         r = ag.repondre(x["question"])
-        r["_nombres_outils"] = [res.get("nombre_total") for n, res in resultats_bruts if n == "chercher_lots"]
+        r["_nombres_outils"] = [res.get({"chercher_lots": "nombre_total", "lister_zones": "lots_disponibles_total",
+                                         "fiche_zone": "lots_disponibles"}[n]) for n, res in resultats_bruts
+                                if n in ("chercher_lots", "lister_zones", "fiche_zone")]
         r["_texte_outils"] = json.dumps([res for _, res in resultats_bruts], ensure_ascii=False)
         j = juger(x, r)
         lignes.append({"id": x["id"], "langue": x["langue"], "categorie": x["categorie"], "question": x["question"],

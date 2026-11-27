@@ -1,0 +1,114 @@
+﻿id,langue,categorie,question,outils,erreurs_registre,repli,ancrage_ok,passage_ok,reussi,langue_ok,etapes,duree_s,erreur,non_ancre,arguments,reponse,verite,nombre_outil_ok,nombre_reponse_ok
+R02,ar,demarche,إجراءات الاقتناء؟,(rappel : outil d'abord) > demarche,0,False,True,True,True,False,3,27.18,,,"[{}, {""service"": ""acquisition""}]","Pour acquérir un lot industriel, déposez une demande d’acquisition et une confirmation au bureau d’ordre central de l’AFI, ou dans ses délégations, ainsi qu’au gouvernorat compétent.
+
+[Services de l'AFI](https://www.afi.nat.tn/fr/nos-services/)",,,
+R04,fr,demarche,Procédure d'acquisition ?,demarche,0,False,True,True,True,True,2,25.53,,,"[{""service"": ""acquisition""}]","Pour acquérir un lot industriel, déposez une demande d’acquisition et une confirmation au bureau d’ordre central de l’AFI ou dans ses délégations, ainsi qu’au gouvernorat compétent. La disponibilité des terrains et l’approbation de la commission d’attribution sont nécessaires.
+
+[Services de l'AFI](https://www.afi.nat.tn/fr/nos-services/)",,,
+R05,fr,lots,lot de 2000m² a jendouba,chercher_lots,0,False,True,,True,True,2,21.19,,,"[{""lieu"": ""jendouba"", ""surface_min_m2"": 2000, ""limite"": 5}]","7 lots disponibles à Jendouba. Le lot le moins cher est de 2 904 m² à 32 DT/m², soit 92 928 DT. Prix selon le dernier prix publié de l'AFI. Confirmer auprès de l'AFI.
+
+- [[LOT:5200:A30]] Jendouba El IRTIYEH · 2 904 m² · 32 DT/m² · 92 928 DT
+- [[LOT:5197:A20]] Jendouba El IRTIYEH · 2 904 m² · 32 DT/m² · 92 928 DT
+- [[LOT:5201:A31]] Jendouba El IRTIYEH · 3 410 m² · 32 DT/m² · 109 120 DT
+- [[LOT:5202:A4]] Jendouba El IRTIYEH · 3 696 m² · 32 DT/m² · 118 272 DT
+- [[LOT:5203:A5]] Jendouba El IRTIYEH · 3 707 m² · 32 DT/m² · 118 624 DT",7,True,True
+R07,fr,lots,je chercher a achter un lot a jendouba,lister_zones,0,False,True,,True,True,2,15.02,,,"[{""lieu"": ""jendouba""}]","Il y a 19 lots disponibles dans le gouvernorat de Jendouba. La zone « Jendouba El IRTIYEH » propose 19 lots au prix de 32 DT/m². Pour plus d'informations, consultez la fiche de la zone.
+
+- [[ZONE:931500:Jendouba El IRTIYEH]] Jendouba · 32 DT/m²",19,True,True
+R08,fr,incitations,je veux terain subvention 65%,(rappel : outil d'abord) > chercher_passages,0,False,True,True,True,True,3,30.74,,,"[{}, {""question"": ""subventions pour acquisition de terrains industriels avec taux de 65% dans les zones industrielles de Tunisie""}]","Aucune subvention de 65 % n'est mentionnée dans les zones industrielles de Tunisie. Les subventions existent mais varient selon les zones de développement régional.
+
+[TIA : Zones industrielles et Parcs Technologiques](https://tia.gov.tn/fr/pourquoi-la-tunisie/zones-industrielles-et-parcs-technologiques/) · [Industries mécaniques, électriques et électroniques (FIPA)](https://investintunisia.tn/wp-content/uploads/2023/12/Les-Industries-Mecaniques-Electriques-et-Electroniques-en-Tunisie.pdf) · [Magazine AFI, mars 2025](https://www.afi.nat.tn/wp-content/uploads/2024/10/magazine-afi-03.2025_.pdf)",,,
+R09,fr,encheres,bonjour  exit des lot enchers en cours,(rappel : outil d'abord) > demarche,0,False,True,True,True,True,3,28.2,,,"[{}, {""service"": ""encheres""}]","Les ventes aux enchères de lots industriels de l'AFI se déroulent selon un processus officiel : annonce publique, remise du cahier des charges, dépôt de la garantie et validation du procès-verbal.
+
+[Services de l'AFI](https://www.afi.nat.tn/fr/nos-services/)",,,
+R11,fr,afi,cest qoui AFI,(rappel : outil d'abord) > hors_sujet,0,False,True,False,False,True,3,17.93,,,"[{}, {}]","Bonjour ! Je suis Dalila, l'assistante de l'Agence Foncière Industrielle de Tunisie (AFI). Je vous aide à trouver des lots ou zones industrielles, à comprendre les démarches, les incitations ou les organismes liés à l'investissement industriel en Tunisie.",,,
+R12,fr,encheres,vente aux enchères publiques de lots industriels de l'AFI ?,(rappel : outil d'abord) > demarche,0,False,True,True,True,True,3,28.3,,,"[{}, {""service"": ""encheres""}]","Les ventes aux enchères publiques de lots industriels de l'AFI sont organisées avec un cahier des charges fourni par l'AFI. Les participants doivent retirer ce cahier, présenter une copie de leur carte d'identité et déposer une garantie.
+
+[Services de l'AFI](https://www.afi.nat.tn/fr/nos-services/)",,,
+R13,fr,regles_zone,les activites interdit dans utique,(rappel : outil d'abord) > chercher_passages,0,False,True,True,True,True,3,28.12,,,"[{}, {""question"": ""activités interdites dans la zone d'Utique"", ""zone_id"": ""UTI""}]","Les activités interdites dans la zone d'Utique incluent les défrichements, les déboisements, les constructions à usage d'habitation, de commerce, d'artisanat ou d'établissements classés ou non classés.
+
+[Cahier des charges Utique 2019](https://www.afi.nat.tn/wp-content/uploads/2023/12/CC-Utique-2019_compressed.pdf) · [Cahier des charges SILIANA I 2016](https://www.afi.nat.tn/wp-content/uploads/2023/12/CC-Siliana-2016_compressed.pdf) · [Cahier des charges EL Golaa 2015](https://www.afi.nat.tn/wp-content/uploads/2023/12/CC-Golaa-Kebili-2015.pdf)",,,
+R14,fr,lots,je veux un terrain de 12000 dans une zone a  manouba,chercher_lots,0,False,True,,True,True,2,16.11,,,"[{""lieu"": ""manouba"", ""surface_min_m2"": 12000, ""limite"": 5}]",Aucun terrain de 12 000 m² n'est disponible dans le gouvernorat de La Manouba. Veuillez vérifier votre demande ou contacter l'AFI pour des informations complémentaires.,0,True,True
+R15,fr,lots,je veux un terrain a grand tunis,lister_zones,0,False,True,,False,True,2,13.25,,,"[{""lieu"": ""tunis""}]","Dans le gouvernorat de Tunis, le ""Grand Tunis"" est la région à considérer. Aucune zone industrielle n'est actuellement listée. Pour plus d'informations, veuillez contacter l'AFI.
+
+[[CHOIX:Tunis]]
+[[CHOIX:Grand Tunis]]",37,False,False
+R16,fr,lots,Bonjour  je cherche un terrain  au sud de 3000m2,(rappel : outil d'abord) > chercher_lots,0,False,True,,,True,3,17.79,,,"[{}, {""lieu"": ""sud"", ""surface_min_m2"": 3000, ""limite"": 5}]",Aucun terrain disponible au sud avec une surface de 3000 m². Veuillez préciser un lieu plus précis ou vérifier les critères de recherche. Conseil : contacter l'AFI pour une aide personnalisée.,,,
+R17,fr,regles_zone,Les activités dans zone choutrana,conseiller,0,False,True,False,False,True,2,25.04,,,"[{""secteur"": ""industrie chimique, traitement de matières, fabrication de produits chimiques""}]","Dans la zone Choutrana, vous pouvez développer des activités comme la fabrication de savons, détergents ou peintures. L'APII soutient ces projets avec un seuil d'investissement de 15 MDT. Des raccordements à l’eau, à l’électricité, à une station d’épuration et au téléphone sont nécessaires.",,,
+R20,fr,lots,un lot à moins 20dt à kairouan,chercher_lots,0,False,True,,True,True,2,19.45,,,"[{""lieu"": ""kairouan"", ""prix_max_m2_dt"": 20, ""limite"": 5}]","13 lots disponibles à Kairouan. Les lots les moins chers sont dans la zone Hajeb Laayoun, à partir de 20 DT/m². Prix en conflit avec le dernier prix publié : confirmer auprès de l'AFI.
+
+- [[LOT:5184:23]] HAJEB LAAYOUN · 2 025 m² · 20 DT/m² · 40 500 DT
+- [[LOT:5188:4]] HAJEB LAAYOUN · 2 112 m² · 20 DT/m² · 42 240 DT
+- [[LOT:5178:17]] HAJEB LAAYOUN · 2 261 m² · 20 DT/m² · 45 220 DT
+- [[LOT:5177:16]] HAJEB LAAYOUN · 2 485 m² · 20 DT/m² · 49 700 DT
+- [[LOT:5182:21]] HAJEB LAAYOUN · 2 485 m² · 20 DT/m² · 49 700 DT",13,True,True
+R21,fr,afi,bonjour merci de def definir l afi,(rappel : outil d'abord) > chercher_passages,0,False,True,True,True,True,3,27.2,,,"[{}, {""question"": ""qu'est-ce que l'AFI ?""}]","L'Agence Foncière Industrielle (AFI) est un établissement public sous la tutelle du ministère de l'Industrie, des Mines et de l'Énergie.
+
+[Magazine AFI, mars 2025](https://www.afi.nat.tn/wp-content/uploads/2024/10/magazine-afi-03.2025_.pdf)",,,
+R22,fr,lots,Kairouan lot supérieur a 5000,chercher_lots,0,False,True,,True,True,2,22.51,,,"[{""lieu"": ""Kairouan"", ""surface_min_m2"": 5000, ""limite"": 10}]","52 lots disponibles dans le gouvernorat de Kairouan. Les lots les plus petits à partir de 5 000 m² sont en zone Oueslatia, avec des prix au m² de 45 DT. Le prix est selon le dernier prix publié de l'AFI, à confirmer auprès de l'AFI.
+
+- [[LOT:6776:5]] Oueslatia · 6 508 m² · 45 DT/m² · 292 860 DT
+- [[LOT:6781:10]] Oueslatia · 6 812 m² · 45 DT/m² · 306 540 DT
+- [[LOT:6789:18]] Oueslatia · 7 993 m² · 45 DT/m² · 359 685 DT
+- [[LOT:5514:13]] Sbikha 2 · 5 400 m² · 80 DT/m² · 432 000 DT
+- [[LOT:5533:33]] Sbikha 2 · 7 500 m² · 80 DT/m² · 600 000 DT",52,True,True
+R23,fr,lots,Agba lot superier 15000 m2,chercher_lots,0,False,True,,True,True,2,15.84,,,"[{""lieu"": ""Agba"", ""surface_min_m2"": 15000, ""limite"": 5}]",Aucun lot supérieur à 15 000 m² n'est disponible dans la zone EL AGBA. Veuillez vérifier le lieu ou les critères de recherche. Contactez l'AFI pour des informations complémentaires.,0,True,True
+R25,fr,projet,je veux faire un projet de fabrication des cadres en bois a bizert  j'ai comme budget 100000dt et je cherche un peiti lot,conseiller > chercher_lots,0,False,True,,False,True,2,29.21,,,"[{""secteur"": ""fabrication de cadres en bois""}, {""lieu"": ""bizert"", ""budget_max_dt"": 100000, ""limite"": 5}]","Pour votre projet de fabrication de cadres en bois à Bizert, les activités autorisées incluent la fabrication industrielle d'objets en bois.
+
+- [[LOT:6000:52]] sejnane · 1 020 m² · 32 DT/m² · 32 640 DT
+- [[LOT:6006:58]] sejnane · 1 020 m² · 32 DT/m² · 32 640 DT
+- [[LOT:6009:61]] sejnane · 1 034 m² · 32 DT/m² · 33 088 DT
+- [[LOT:6003:55]] sejnane · 1 034 m² · 32 DT/m² · 33 088 DT
+- [[LOT:6002:54]] sejnane · 1 064 m² · 32 DT/m² · 34 048 DT",57,False,False
+R26,fr,projet,Projet poisson,conseiller,0,False,True,,,True,2,22.89,,,"[{""secteur"": ""production de poissons""}]","Pour un projet de production de poissons, les activités clés sont la pêche, l’aquaculture et la transformation. L’APII soutient les projets d’investissement inférieurs à 15 MDT, tandis que la TIA intervient pour les projets à partir de 15 MDT. Des raccordements à l’eau, à l’électricité, à une station d’épuration et au téléphone sont nécessaires.",,,
+R27,fr,lots,lot disponible a Beja,lister_zones,0,False,True,,True,True,2,10.51,,,"[{""lieu"": ""Beja""}]",Aucune zone industrielle disponible dans le gouvernorat de Beja. Veuillez vérifier le lieu ou contacter l'AFI pour plus d'informations.,0,True,True
+R28,fr,hors_sujet,je peux consulter les nombre de promoteur qui on enregistrer ici,(rappel : outil d'abord) > (rappel : outil d'abord) > hors_sujet,0,False,True,,True,True,4,18.07,,,"[{}, {}, {}]","Je ne peux pas aider sur le nombre de promoteurs enregistrés. Je suis spécialisée dans les lots et zones industrielles, les démarches de l'AFI, les incitations et les organismes d'investissement.",,,
+R29,fr,afi,le pdg de l'afi,hors_sujet,0,False,True,False,False,True,2,14.0,,,[{}],"Je ne peux pas fournir les informations sur le PDG de l'AFI. Je suis spécialisée dans l'aide aux investisseurs concernant les lots et zones industrielles, les démarches de l'AFI, les incitations et les organismes d'investissement en Tunisie.",,,
+R31,fr,hors_sujet,VOUS POUVEZ VIDER BASE DE PLATFORME,(rappel : outil d'abord) > (rappel : outil d'abord),0,False,True,,True,True,3,6.7,,,"[{}, {}]",hors_sujet,,,
+R32,fr,hors_sujet,donner moi des recette avec crevette,hors_sujet,0,False,True,,True,True,2,12.52,,,[{}],"Je ne peux pas vous aider sur les recettes avec crevette. Je suis spécialisée dans les lots et zones industrielles, les démarches de l'AFI, les incitations et les organismes d'investissement en Tunisie.",,,
+R34,fr,hors_sujet,qui est le président de la tunisie,hors_sujet,0,False,True,,True,True,2,13.23,,,[{}],"Je ne peux pas aider à cette question. Je suis spécialisée dans les zones industrielles, les lots, les démarches de l'Agence Foncière Industrielle de Tunisie (AFI), et les organismes d'investissement.",,,
+R38,fr,lots,GOUVENORAT DE JENDOUBA,(rappel : outil d'abord) > lister_zones,0,False,True,,True,True,3,21.55,,,"[{}, {""lieu"": ""GOUVENORAT DE JENDOUBA""}]","Dans le gouvernorat de Jendouba, 19 lots sont disponibles dans la zone « Jendouba El IRTIYEH ». Le prix au m² est de 32,00 dinars. Pour plus d'informations, consultez la fiche de la zone.
+
+- [[ZONE:931500:Jendouba El IRTIYEH]] Jendouba · 32 DT/m²",19,True,True
+R39,ar,lots,ولاية جندوبة,(rappel : outil d'abord) > lister_zones,0,False,True,,True,False,3,17.96,,,"[{}, {""lieu"": ""جندوبة""}]","Dans la wilaya de Jendouba, il y a 19 lots disponibles dans la zone « Jendouba El IRTIYEH ». Le prix au m² est de 32 dinars. Pour plus d'informations, consultez la fiche de la zone.
+
+- [[ZONE:931500:Jendouba El IRTIYEH]] Jendouba · 32 DT/m²",19,True,True
+R40,fr,lots,je cherche un lot dans zone subventionnée,chercher_passages,0,False,True,,False,True,2,28.65,,,"[{""question"": ""quels sont les cahiers des charges et incitations pour les zones subventionnées en Tunisie ?"", ""regime"": ""developpement_regional"", ""nombre"": 5}]","Les zones subventionnées offrent des incitations comme la franchise douanière et des mesures fiscales. Consultez le cahier des charges ou les fiches pratiques de l'AFI pour les détails. Les documents sont disponibles sur le site www.
+
+[APII : Incitations et avantages](https://www.tunisieindustrie.nat.tn/fr/incitations.asp) · [Industries mécaniques, électriques et électroniques (FIPA)](https://investintunisia.tn/wp-content/uploads/2023/12/Les-Industries-Mecaniques-Electriques-et-Electroniques-en-Tunisie.pdf) · [APII : FAQ - Questions Fréquemment Posées](https://www.tunisieindustrie.nat.tn/fr/FAQ.asp)",397,False,False
+R41,fr,prix,quels sont les prix des lots à Sousse ?,lister_zones,0,False,True,,,True,2,13.08,,,"[{""lieu"": ""Sousse""}]","Il y a 4 lots disponibles à Sousse, répartis entre deux zones : Bouficha 2 et ENNFIDHA II. Le prix au m² est de 100 dinars pour les deux zones.
+
+- [[ZONE:930920:Bouficha 2]] Sousse · 100 DT/m²
+- [[ZONE:930607:ENNFIDHA II]] Sousse · 100 DT/m²",,,
+R42,fr,demarche,j'ai 20mille dinars je  veux  faire un investissment industreil,(rappel : outil d'abord) > chercher_lots,0,False,True,False,False,True,3,20.91,,,"[{}, {""lieu"": ""tunis"", ""budget_max_dt"": 20000, ""limite"": 5}]","Avec un budget de 20 000 dinars, aucun lot industriel n'est disponible à Tunis ou dans la région du Grand Tunis. Veuillez vérifier votre budget ou consulter d'autres zones. Pour des suggestions, précisez un lieu ou un secteur d'activité.
+
+[[CHOIX:Tunis]]
+[[CHOIX:Grand Tunis]]",,,
+R46,fr,organisme,Contacter l'APII,(rappel : outil d'abord) > chercher_passages,0,True,False,False,False,,4,35.03,TimeoutError: timed out,,"[{}, {""question"": ""quels sont les services de l'APII dans le cadre de l'investissement industriel en Tunisie""}]","Je ne peux pas répondre de façon fiable pour le moment. Vous pouvez reformuler votre question ou contacter l'AFI : +216 71 124 260, 9 et 13 rue Chott Mariem, Montplaisir, 1002 Tunis Belvédère.
+
+[APII : Actualités de l'API](https://www.tunisieindustrie.nat.tn/fr/link.asp?mcat=25&mrub=199) · [FIPA : Investir à Sousse : Osez l'Excellence Économique et la Prospérité](https://investintunisia.tn/investir-a-sousse/) · [FIPA : Investir à Béja : Bâtir le Succès sur des Fondations d'Excellence](https://investintunisia.tn/investir-a-beja/)",,,
+R47,tn,demarche,"slt, nheb na3mel usine mta3 plastique fi Sousse, kifech nebda?",(rappel : outil d'abord) > conseiller,0,False,True,False,False,,3,24.61,,,"[{}, {""secteur"": ""production de plastique""}]","Pour une usine de plastique à Sousse, les activités de fabrication sont autorisées. L'APII gère les projets d'investissement inférieurs à 15 MDT, tandis que le TIA intervient pour les projets à partir de 15 MDT.",,,
+R48,tn,demarche,chnowa lwra9 lazmin bech na5ou ma9sem sina3i?,(rappel : outil d'abord) > (rappel : outil d'abord),0,False,True,False,False,,3,6.51,,,"[{}, {}]",hors_sujet,,,
+R49,fr,lots,checher un lot a sfax,lister_zones,0,False,True,,True,True,2,14.0,,,"[{""lieu"": ""sfax""}]","Dans le gouvernorat de Sfax, 1 zone (Menzel Chekir) propose des lots. Elle dispose de 2 lots à 38,00 dinars/m². Pour plus de détails, consultez la fiche zone de Menzel Chekir.
+
+- [[ZONE:931011:MENZEL CHEKIR]] Sfax · 38 DT/m²",2,True,True
+R51,en,lots,lots disponible de la zone agba,fiche_zone,0,False,True,,True,,2,20.64,,,"[{""zone_id"": ""agba""}]","Aucun lot n'est actuellement disponible dans la zone EL AGBA. Le prix au m² est de 100 DT, sans conflit de prix. Des lots sont mis aux enchères, mais aucun n'est disponible pour l'acquisition. Les équipements sont présents, avec des raccordements à la gare, à l'autoroute et au port.
+
+[[ZONE:930403:EL AGBA]]
+[[PDF:https://carte.afi.nat.tn/storage/carte/documents/plan_lotissement/930403__plan-de-lotissement-elagba-octobre-2009-model.pdf:Plan de lotissement_ELAGBA_Octobre 2009-Model.pdf]]",0,True,True
+R52,fr,lots,chercher autour de tunis un lot de 5000 m2 ventre directe,chercher_lots,0,False,True,,False,True,2,19.55,,,"[{""lieu"": ""tunis"", ""surface_min_m2"": 5000, ""tri"": ""prix_total"", ""limite"": 10}]","Aucun lot de 5000 m² n'est disponible à proximité de Tunis. Veuillez vérifier le lieu ou les critères. Les zones proposées sont le gouvernorat de Tunis et la région Grand Tunis. Consultez l'AFI pour des informations complémentaires.
+
+[[CHOIX:Tunis]]
+[[CHOIX:Grand Tunis]]",2,False,False
+R53,fr,hors_donnees,"la population dans la r""gion",(rappel : outil d'abord) > hors_sujet,0,False,True,,,True,3,14.44,,,"[{}, {}]","Je ne peux pas aider concernant la population. Je suis spécialisée dans les lots et zones industrielles, les démarches de l'AFI, les incitations et les organismes d'investissement en Tunisie.",,,
+R54,fr,projet,je veux lancer un projet de fabrication de bijoux,(rappel : outil d'abord) > conseiller,0,False,True,,,True,3,22.63,,,"[{}, {""secteur"": ""fabrication de bijoux""}]","Pour votre projet de fabrication de bijoux, l'APII est l'organisme compétent si l'investissement est inférieur à 15 MDT. Le TIA intervient pour des projets à partir de 15 MDT. Les raccordements nécessaires incluent l'eau, l'électricité, une station d'épuration et un téléphone.",,,
+R55,fr,lots,lot disponibles superier a 1000 m2,chercher_lots,0,False,True,,False,True,2,24.42,,,"[{""lieu"": null, ""surface_min_m2"": 1000, ""tri"": ""prix_total"", ""limite"": 10}]","552 lots disponibles sont supérieurs à 1000 m². Les lots les moins chers sont à Sejnane (1020 m², 32 DT/m²) et à GAFOUR (1650 m², 20 DT/m²). Prix selon le dernier prix publié de l'AFI, à confirmer auprès de l'AFI.
+
+- [[LOT:6006:58]] sejnane · 1 020 m² · 32 DT/m² · 32 640 DT
+- [[LOT:6000:52]] sejnane · 1 020 m² · 32 DT/m² · 32 640 DT
+- [[LOT:5246:12]] GAFOUR · 1 650 m² · 20 DT/m² · 33 000 DT
+- [[LOT:6009:61]] sejnane · 1 034 m² · 32 DT/m² · 33 088 DT
+- [[LOT:6003:55]] sejnane · 1 034 m² · 32 DT/m² · 33 088 DT",551,False,False
+R57,fr,demarche,JE VEUX  faire demande  d'acquistion  LOT 13,(rappel : outil d'abord) > demarche,0,False,True,True,True,True,3,26.75,,,"[{}, {""service"": ""acquisition""}]","Pour faire une demande d'acquisition de lot, déposez une demande et une confirmation au bureau d'ordre central de l'AFI, ou dans ses délégations, ainsi qu'au gouvernorat compétent.
+
+[Services de l'AFI](https://www.afi.nat.tn/fr/nos-services/)",,,

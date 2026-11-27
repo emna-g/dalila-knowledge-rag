@@ -31,18 +31,20 @@ OUTILS = {
     # ---- base MariaDB : chiffres (vues v_pub_*) et textes à citer
     "resoudre_lieu": (resoudre_lieu, EntreeLieu,
                       "Trouve la zone, le gouvernorat ou la région correspondant à un nom de lieu écrit par le visiteur "
-                      "(fautes tolérées, français ou arabe). À appeler avant toute recherche par lieu. Si le résultat est "
-                      "ambigu ou vide, poser une question à choix au visiteur."),
+                      "(fautes tolérées, français ou arabe). Si le résultat est ambigu ou vide, poser une question à "
+                      "choix au visiteur. Utilisé à l'intérieur des autres outils ; le harnais ne le montre pas au "
+                      "modèle (une étape de moins)."),
     "chercher_lots": (chercher_lots, EntreeLots,
-                      "Lots disponibles selon le lieu (codes), la surface, le prix au m², le budget total, le régime, le "
-                      "groupe de développement régional et la proximité d'un aéroport, port, gare ou autoroute. Donne le "
-                      "nombre exact et les lots les moins chers."),
+                      "Lots disponibles selon le lieu (son nom tel qu'écrit par le visiteur, dans le champ lieu), la "
+                      "surface, le prix au m², le budget total, le régime, le groupe de développement régional et la "
+                      "proximité d'un aéroport, port, gare ou autoroute. Donne le nombre exact et les lots les moins chers ; "
+                      "si le lieu est ambigu, rend les lieux à proposer au visiteur."),
     "fiche_zone": (fiche_zone, EntreeFiche,
                    "Tout sur une zone : prix, surfaces, lots disponibles, régime et groupe, distances, équipements, "
                    "services proches, cahier des charges et plan de lotissement (liens)."),
     "lister_zones": (lister_zones, EntreeListeZones,
-                     "Zones d'un ou plusieurs gouvernorats, d'un régime ou d'un groupe, avec leurs lots disponibles et "
-                     "leur prix."),
+                     "Zones d'un lieu (gouvernorat ou région, son nom tel qu'écrit par le visiteur, dans le champ lieu), "
+                     "d'un régime ou d'un groupe, avec leurs lots disponibles et leur prix."),
     "zones_proches": (zones_proches, EntreeProximite,
                       "Zones les plus proches d'un aéroport, port, gare, autoroute ou gazoduc, avec la distance."),
     "demarche": (demarche, EntreeDemarche,
