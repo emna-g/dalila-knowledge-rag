@@ -397,6 +397,11 @@ def _ecriture_ok(lang, texte):
     return True
 
 
+NOMS_LANGUE = {"en": "anglais", "de": "allemand", "tr": "turc", "ar": "arabe standard",
+               "aeb_ar": "dialecte tunisien écrit en lettres arabes", "aeb_lat": "dialecte tunisien écrit en lettres latines (arabizi)",
+               "arq_lat": "dialecte algérien écrit en lettres latines (arabizi)", "ayl_ar": "dialecte libyen écrit en lettres arabes"}
+
+
 def ex_enseignant():
     from dalila.moteurs.llm import discuter
     from dalila.traitement.registre import appeler
@@ -404,9 +409,14 @@ def ex_enseignant():
     cas = [("demarche", {"service": s}, t) for s, t in SERVICES.items()] + \
           [("chercher_passages", {"question": qfr}, t) for qfr, t in PASSAGES.items()]
     out, rejetes = [], 0
+
+    def controle(texte, res, question, lang):
+        return verifier_ancrage(texte, [res], question)["ok"] and not degenere(texte) and _ecriture_ok(lang, texte)
+
     for nom, args, textes in cas:
         res = appeler(nom, args)
-        for lang in LANGUES:
+        francais = None
+        for lang in LANGUES:  # le français d'abord : sa réponse sert de base aux traductions
             question = textes[lang]
             ex = _conv(question, lang, nom, args, res, "")
             garde = None
@@ -415,9 +425,20 @@ def ex_enseignant():
                 texte = r["content"].strip()
                 if r["tool_calls"] or not texte or r["fin"] == "length":
                     continue
-                if verifier_ancrage(texte, [res], question)["ok"] and not degenere(texte) and _ecriture_ok(lang, texte):
+                if controle(texte, res, question, lang):
                     garde = texte
                     break
+            if not garde and francais and lang in NOMS_LANGUE:  # répondre est trop dur : traduire la réponse française
+                for temperature in (0.0, 0.4):
+                    r = discuter([{"role": "user", "content": f"Traduis ce texte en {NOMS_LANGUE[lang]}. Garde les nombres, "
+                                   f"les sigles et les noms propres tels quels. Écris seulement la traduction.\n\n{francais}"}],
+                                 delai_s=180, temperature=temperature, jetons_max=200)
+                    texte = r["content"].strip()
+                    if texte and r["fin"] != "length" and controle(texte, res, question, lang):
+                        garde = texte
+                        break
+            if lang == "fr":
+                francais = garde
             if garde:
                 ex["messages"][-1]["content"] = garde
                 out.append(ex)
