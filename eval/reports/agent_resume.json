@@ -1,0 +1,17 @@
+{
+ "qwen3:1.7b": {
+  "questions": 40,
+  "reussies": "4/35",
+  "nombre_lots_exact": "1/16",
+  "nombre_dans_reponse": "0/16",
+  "passage_trouve": "0/15",
+  "langue_ok": "26/27",
+  "replis": 11,
+  "erreurs_registre": 0,
+  "duree_mediane_s": 11.1,
+  "duree_p95_s": 78.9,
+  "au_dela_35s": 12,
+  "materiel": "CPU 8 fils",
+  "duree_totale_min": 17.3
+ }
+}

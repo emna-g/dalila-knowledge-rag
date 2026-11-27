@@ -1,0 +1,52 @@
+{
+ "reglage": "qwen3_complet_questions_claude_a_relire",
+ "questions": 24,
+ "rappel@5": "16/16",
+ "MRR": 0.865,
+ "par_langue": {
+  "fr": {
+   "rappel@5": "2/2",
+   "MRR": 1.0
+  },
+  "en": {
+   "rappel@5": "2/2",
+   "MRR": 1.0
+  },
+  "ar": {
+   "rappel@5": "2/2",
+   "MRR": 0.75
+  },
+  "de": {
+   "rappel@5": "2/2",
+   "MRR": 1.0
+  },
+  "tr": {
+   "rappel@5": "2/2",
+   "MRR": 0.75
+  },
+  "tn": {
+   "rappel@5": "2/2",
+   "MRR": 1.0
+  },
+  "dz": {
+   "rappel@5": "2/2",
+   "MRR": 0.75
+  },
+  "ly": {
+   "rappel@5": "2/2",
+   "MRR": 0.667
+  }
+ },
+ "chiffres_exacts": {
+  "fr": "1/1",
+  "en": "1/1",
+  "ar": "1/1",
+  "de": "1/1",
+  "tr": "1/1",
+  "tn": "1/1",
+  "dz": "1/1",
+  "ly": "1/1"
+ },
+ "temps_median_s": 0.6,
+ "temps_p95_s": 1.79
+}

@@ -1,0 +1,27 @@
+{
+ "reglage": "qwen3_reranker_complet_questions_reelles",
+ "questions": 31,
+ "rappel@5": "10/15",
+ "MRR": 0.547,
+ "par_langue": {
+  "ar": {
+   "rappel@5": "1/1",
+   "MRR": 1.0
+  },
+  "fr": {
+   "rappel@5": "9/12",
+   "MRR": 0.6
+  },
+  "tn": {
+   "rappel@5": "0/2",
+   "MRR": 0.0
+  }
+ },
+ "chiffres_exacts": {
+  "fr": "3/14",
+  "ar": "0/1",
+  "en": "0/1"
+ },
+ "temps_median_s": 1.7,
+ "temps_p95_s": 3.0
+}

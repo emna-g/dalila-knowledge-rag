@@ -1,0 +1,32 @@
+﻿id,question,langue,rang,zones,intention,top1
+R02,إجراءات الاقتناء؟,ar,1,,demarche,kb0092 إجراءات الاقتناء؟
+R04,Procédure d'acquisition ?,fr,1,,demarche,kb0016 Quelles sont les étapes pour acquérir un lot industriel (dép
+R05,lot de 2000m² a jendouba,fr,,"chiffre attendu 7, obtenu 0",lots,
+R07,je chercher a achter un lot a jendouba,fr,,"chiffre attendu 19, obtenu None",demarche,
+R08,je veux terain subvention 65%,fr,1,,general,p002429 TIA : Package d’incitations
+R09,bonjour  exit des lot enchers en cours,fr,1,,demarche,kb0024 Comment se déroule une vente aux enchères publiques de lots 
+R11,cest qoui AFI,fr,1,,general,kb0039 Qu'est-ce que l'Agence Foncière Industrielle (AFI) ?
+R12,vente aux enchères publiques de lots industriels de l'AFI ?,fr,1,,demarche,kb0024 Comment se déroule une vente aux enchères publiques de lots 
+R13,les activites interdit dans utique,fr,2,Utique,regles_zone,zone930918 Zone Utique
+R14,je veux un terrain de 12000 dans une zone a  manouba,fr,,"chiffre attendu 0, obtenu None",general,
+R15,je veux un terrain a grand tunis,fr,,"chiffre attendu 37, obtenu 0",lots,
+R17,Les activités dans zone choutrana,fr,2,CHOUTRANA,regles_zone,zone930303 Zone CHOUTRANA
+R20,un lot à moins 20dt à kairouan,fr,,"chiffre attendu 13, obtenu 83",lots,
+R21,bonjour merci de def definir l afi,fr,1,,general,kb0040 Quelles sont les missions et les objectifs de l'AFI ?
+R22,Kairouan lot supérieur a 5000,fr,,"chiffre attendu 52, obtenu 83",lots,
+R23,Agba lot superier 15000 m2,fr,,"chiffre attendu 0, obtenu None",general,
+R25,je veux faire un projet de fabrication des cadres en bois a bizert  j'ai comme budget 100000dt et je cherche un peiti lot,fr,,"chiffre attendu 57, obtenu 57",lots,
+R27,lot disponible a Beja,fr,,"chiffre attendu 0, obtenu 0",lots,
+R29,le pdg de l'afi,fr,,,general,kb0024 Comment se déroule une vente aux enchères publiques de lots 
+R38,GOUVENORAT DE JENDOUBA,fr,,"chiffre attendu 19, obtenu 0",lots,
+R39,ولاية جندوبة,ar,,"chiffre attendu 19, obtenu 0",lots,
+R40,je cherche un lot dans zone subventionnée,fr,,"chiffre attendu 397, obtenu None",general,
+R42,j'ai 20mille dinars je  veux  faire un investissment industreil,fr,,,general,p000723 APII : Nouveau cadre juridique de linvestissement
+R46,Contacter l'APII,fr,2,,general,kb0026 Comment contacter l'Agence Foncière Industrielle (AFI) ?
+R47,"slt, nheb na3mel usine mta3 plastique fi Sousse, kifech nebda?",tn,,,lots,p001110 APII : Gouvernorat de Sousse
+R48,chnowa lwra9 lazmin bech na5ou ma9sem sina3i?,tn,1,,demarche,kb0016 Quelles sont les étapes pour acquérir un lot industriel (dép
+R49,checher un lot a sfax,fr,,"chiffre attendu 2, obtenu 2",lots,
+R51,lots disponible de la zone agba,en,,"chiffre attendu 0, obtenu None",general,
+R52,chercher autour de tunis un lot de 5000 m2 ventre directe,fr,,"chiffre attendu 2, obtenu 0",lots,
+R55,lot disponibles superier a 1000 m2,fr,,"chiffre attendu 551, obtenu None",general,
+R57,JE VEUX  faire demande  d'acquistion  LOT 13,fr,1,,demarche,kb0016 Quelles sont les étapes pour acquérir un lot industriel (dép

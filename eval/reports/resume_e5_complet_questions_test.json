@@ -1,0 +1,23 @@
+{
+ "reglage": "e5_complet_questions_test",
+ "questions": 30,
+ "rappel@5": "20/30",
+ "MRR": 0.521,
+ "par_langue": {
+  "tn": {
+   "rappel@5": "16/25",
+   "MRR": 0.465
+  },
+  "fr": {
+   "rappel@5": "2/3",
+   "MRR": 0.667
+  },
+  "ar": {
+   "rappel@5": "2/2",
+   "MRR": 1.0
+  }
+ },
+ "chiffres_exacts": {},
+ "temps_median_s": 0.2,
+ "temps_p95_s": 1.49
+}

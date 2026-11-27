@@ -1,0 +1,27 @@
+{
+ "reglage": "bge_complet_questions_reelles",
+ "questions": 31,
+ "rappel@5": "12/15",
+ "MRR": 0.7,
+ "par_langue": {
+  "ar": {
+   "rappel@5": "1/1",
+   "MRR": 1.0
+  },
+  "fr": {
+   "rappel@5": "10/12",
+   "MRR": 0.708
+  },
+  "tn": {
+   "rappel@5": "1/2",
+   "MRR": 0.5
+  }
+ },
+ "chiffres_exacts": {
+  "fr": "3/14",
+  "ar": "0/1",
+  "en": "0/1"
+ },
+ "temps_median_s": 1.99,
+ "temps_p95_s": 3.3
+}

@@ -1,0 +1,23 @@
+{
+ "reglage": "bge_complet_questions_test",
+ "questions": 30,
+ "rappel@5": "22/30",
+ "MRR": 0.603,
+ "par_langue": {
+  "tn": {
+   "rappel@5": "18/25",
+   "MRR": 0.583
+  },
+  "fr": {
+   "rappel@5": "2/3",
+   "MRR": 0.5
+  },
+  "ar": {
+   "rappel@5": "2/2",
+   "MRR": 1.0
+  }
+ },
+ "chiffres_exacts": {},
+ "temps_median_s": 1.99,
+ "temps_p95_s": 3.28
+}

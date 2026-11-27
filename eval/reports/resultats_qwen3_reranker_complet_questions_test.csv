@@ -1,0 +1,31 @@
+﻿id,question,langue,rang,zones,intention,top1
+R1,"slt, nheb na3mel usine mta3 plastique fi Sousse, kifech nebda?",tn,1,,lots,kb0082 Quelles sont les données industrielles du gouvernorat de Sou
+R2,chnowa lwra9 lazmin bech na5ou ma9sem sina3i?,tn,,,demarche,"p007628 Magazine AFI, mars 2025"
+R3,n7eb terrain f Sfax,tn,1,,lots,p001087 APII : Gouvernorat de Sfax
+R4,3andi projet sardine,tn,,,general,p000123 TIA : TIA
+R5,عندي مشروع سردين,tn,,,general,"p007686 Guide de l'investisseur (APII, FR)"
+H1,"mosna3 9rib l port, b9adech, w fi 9adech wa9t ?",tn,1,,general,zone930902 Zone GHEZALA
+F1,Procédure d'acquisition ?,fr,2,,demarche,"p007607 Magazine AFI, mars 2025"
+F2,je cherche un lot dans zone subventionnée,fr,1,,general,kb0014 Quels documents fournir pour acheter un lot dans une zone de
+F3,إجراءات الاقتناء؟,ar,1,,demarche,kb0092 إجراءات الاقتناء؟
+F4,أسعار المقسم؟,ar,1,,general,p007579 Loi de création de l'AFI (AR)
+F6,comment avoir l'attestation des suvention regional,fr,5,,general,p000260 SICAD : Attestation de possibilité d'assainissement du terra
+C1,9adech soum el metre fi zone Sfax?,tn,1,,lots,zone931009 Zone EL MAHRES
+C2,famma 9at3a mawjouda 9rib mel port?,tn,1,,general,p003865 Cahier des charges GABES 2005
+C3,"n7eb nechri ma9sem fi Bizerte, chnowa lwra9?",tn,,,demarche,"p001714 FIPA : Investir à Bizerte : Infrastructures d'Excellence, Su"
+C4,kifech na3mel demande bech na5ou terrain?,tn,3,,demarche,"p007624 Magazine AFI, mars 2025"
+C5,famma min7a ken na3mel machrou3 fi Kasserine?,tn,3,KASSERINE,lots,kb0071 Quelles sont les données industrielles du gouvernorat de Kas
+C6,wa9tech nal9a el contrat?,tn,,,general,p006499 Cahier des charges SILIANA I 2016
+C7,kifech nechri fi el batta mta3 AFI?,tn,,,demarche,kb0039 Qu'est-ce que l'Agence Foncière Industrielle (AFI) ?
+C8,"3andi machrou3 mta3 5iyata, win nal9a blasa?",tn,,,general,p007789 Manuel des procédures 2016 (APII)
+C9,lazem nebni fi 9adech mel wa9t ba3d ma na5ou el ma9sem?,tn,,,general,p002887 Cahier des charges BEJA NORD 2003
+C10,"n7eb credit mel banka, kifech na5ou attestation?",tn,4,,demarche,p007799 Manuel des procédures 2016 (APII)
+C11,شنوة الوراق اللازمين باش ناخو مقسم صناعي؟,tn,,,general,p000525 AFI : خدماتنا
+C12,قداش السوم متاع المتر في جندوبة؟,tn,1,JENDOUBA,lots,p000408 AFI : المناطق المهيئة
+C13,فما قطعة أرض قريبة من المطار؟,tn,1,,general,zone930301 Zone ARIANA AEROPORT
+C14,كيفاش نعمل باش نشري مقسم؟,tn,,,demarche,p007579 Loi de création de l'AFI (AR)
+C15,نحب نعمل معمل متاع بلاستيك في سوسة,tn,1,,lots,p000410 AFI : المناطق المبرمجة
+C16,"3aslema, n7eb na3ref chnowa el avantages fi zone de developpement regional",tn,1,,general,p007834 Manuel des procédures 2016 (APII)
+C17,fama lot disponible fi Gabes?,tn,1,,lots,zone88888 Zone Gabes I & II & III
+C18,barcha flous el terrain? n7eb 7aja r5isa,tn,,,general,p003873 Cahier des charges GABES 2005
+C19,el ma wel dhaw mawjoudin fil zone?,tn,,,general,zone931009 Zone EL MAHRES

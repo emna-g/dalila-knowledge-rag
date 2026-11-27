@@ -1,0 +1,25 @@
+﻿id,question,langue,rang,zones,intention,top1
+C-fr-01,Quels papiers faut-il pour acheter un lot industriel ?,fr,1,,demarche,kb0017 Quels documents fournir pour acheter un lot dans une zone li
+C-fr-02,Quels services y a-t-il autour de la zone de Sidi Achour Borj El Amri ?,fr,1,Sidi Achour Borj El Amri,commodites,zone930508 Zone Sidi Achour Borj El Amri
+C-fr-03,Combien de lots sont disponibles à Sfax ?,fr,,"chiffre attendu 2, obtenu 2",lots,
+C-en-01,What documents do I need to buy an industrial plot?,en,1,,demarche,kb0017 Quels documents fournir pour acheter un lot dans une zone li
+C-en-02,What amenities are near the Sidi Achour Borj El Amri industrial zone?,en,1,Sidi Achour Borj El Amri,commodites,zone930508 Zone Sidi Achour Borj El Amri
+C-en-03,How many plots are available in Sfax?,en,,"chiffre attendu 2, obtenu 2",lots,
+C-ar-01,ما هي الوثائق المطلوبة لاقتناء مقسم صناعي؟,ar,1,,demarche,kb0014 Quels documents fournir pour acheter un lot dans une zone de
+C-ar-02,ما هي المرافق القريبة من المنطقة الصناعية سيدي عاشور برج العامري؟,ar,2,Sidi Achour Borj El Amri,lots,p000409 AFI : في طور التهيئة
+C-ar-03,كم عدد المقاسم المتاحة في صفاقس؟,ar,,"chiffre attendu 2, obtenu 2",lots,
+C-de-01,"Welche Unterlagen brauche ich, um ein Industriegrundstück zu kaufen?",de,1,,general,kb0012 Conditions de vente  des lots industriels dans les zones de 
+C-de-02,Welche Einrichtungen gibt es in der Nähe der Industriezone Sidi Achour Borj El Amri?,de,1,Sidi Achour Borj El Amri,lots,zone930508 Zone Sidi Achour Borj El Amri
+C-de-03,Wie viele Grundstücke sind in Sfax verfügbar?,de,,"chiffre attendu 2, obtenu 2",lots,
+C-tr-01,Sanayi parseli satın almak için hangi belgeler gerekiyor?,tr,1,,general,kb0012 Conditions de vente  des lots industriels dans les zones de 
+C-tr-02,Sidi Achour Borj El Amri sanayi bölgesinin yakınında hangi hizmetler var?,tr,1,Sidi Achour Borj El Amri,lots,zone930508 Zone Sidi Achour Borj El Amri
+C-tr-03,Sfax'ta kaç parsel müsait?,tr,,"chiffre attendu 2, obtenu 2",lots,
+C-tn-01,chnowa el wra9 eli lazmin bech nechri ma9sem?,tn,1,,demarche,kb0017 Quels documents fournir pour acheter un lot dans une zone li
+C-tn-02,chnowa famma 9rib mel zone Sidi Achour Borj El Amri?,tn,1,Sidi Achour Borj El Amri,commodites,zone930508 Zone Sidi Achour Borj El Amri
+C-tn-03,9addech mn ma9sem mawjoud fi Sfax?,tn,,"chiffre attendu 2, obtenu 2",lots,
+C-dz-01,wach rahom lwra9 li lazem bach nechri terrain sina3i?,dz,1,,demarche,kb0017 Quels documents fournir pour acheter un lot dans une zone li
+C-dz-02,wach kayen qrib mel zone Sidi Achour Borj El Amri?,dz,1,Sidi Achour Borj El Amri,lots,zone930508 Zone Sidi Achour Borj El Amri
+C-dz-03,chhal kayen men terrain disponible f Sfax?,dz,,"chiffre attendu 2, obtenu 2",lots,
+C-ly-01,شن الأوراق اللي لازمة باش نشري قطعة أرض صناعية؟,ly,1,,demarche,kb0017 Quels documents fournir pour acheter un lot dans une zone li
+C-ly-02,شن فيه قريب من المنطقة الصناعية سيدي عاشور برج العامري؟,ly,3,Sidi Achour Borj El Amri,commodites,kb0034 Quelles sont les zones industrielles aménagées par l'AFI dan
+C-ly-03,قداش فيه قطع أرض متاحة في صفاقس؟,ly,,"chiffre attendu 2, obtenu 2",lots,

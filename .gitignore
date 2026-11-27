@@ -20,7 +20,6 @@ __pycache__/
 
 # Sorties générées
 resultat.html
-eval/reports/
 ontology/store/
 ontology/store.new/
 ontology/store.prev/

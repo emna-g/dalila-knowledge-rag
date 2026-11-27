@@ -1,0 +1,111 @@
+﻿id,langue,categorie,question,outils,erreurs_registre,repli,ancrage_ok,passage_ok,reussi,langue_ok,etapes,duree_s,erreur,non_ancre,arguments,reponse,verite,nombre_outil_ok,nombre_reponse_ok
+R02,ar,demarche,إجراءات الاقتناء؟,,0,False,True,False,False,False,1,5.93,,,[],"Je ne peux pas répondre à cette question car je ne dispose pas des informations nécessaires pour évaluer les démarches d'acquisition. Je recommande de consulter l'Agence Foncière Industrielle de Tunisie (AFI) pour obtenir des informations sur les lots disponibles, les conditions d'acquisition, les frais associés et les services nécessaires.",,,
+R04,fr,demarche,Procédure d'acquisition ?,,0,False,True,False,False,True,2,6.4,,,[],"Je ne peux pas fournir de nombres ou de balises sans résultats d'outils. Appelle l'outil ""demarche"" pour obtenir les services de l'AFI et les conditions associées.",,,
+R05,fr,lots,lot de 2000m² a jendouba,resoudre_lieu,0,False,True,,False,True,2,12.13,,,"[{""texte"": ""jendouba""}]","Le lieu ""Jendouba"" correspond au gouvernorat Jendouba, contenant les zones suivantes :
+
+- [[ZONE:931500:Jendouba El IRTIYEH]]
+- [[ZONE:931501:JENDOUBA]]
+
+Il est recommandé de choisir une zone parmi ces options. Si vous souhaitez obtenir des informations sur un lot spécifique, veuillez préciser le nom de la zone ou le code de la zone.",7,False,False
+R07,fr,lots,je chercher a achter un lot a jendouba,resoudre_lieu,0,False,True,,False,True,2,10.59,,,"[{""texte"": ""Jendouba""}]","Le lieu ""Jendouba"" correspond au gouvernorat Jendouba, contenant les zones suivantes :
+- [[ZONE:931500:Jendouba El IRTIYEH]]
+- [[ZONE:931501:JENDOUBA]]
+
+Il est recommandé de choisir une zone parmi ces options à partir desquelles vous pouvez rechercher des lots industriels.",19,False,False
+R08,fr,incitations,je veux terain subvention 65%,,0,False,True,False,False,True,1,10.55,,,[],"Je ne peux pas vous aider à obtenir une subvention, car cela relève du domaine des politiques publiques et des décisions des autorités publiques. Cependant, je peux vous aider à trouver des zones industrielles disponibles, à comprendre les caractéristiques des zones et des lots, et à faire des démarches auprès de l'AFI.
+
+Pour cela, je peux :
+- Trouver les zones industrielles disponibles dans votre région.
+- Comprendre les caractéristiques des zones et des lots.
+- Faire des démarches auprès de l'AFI.
+
+Si vous souhaitez, je peux vous aider à trouver des zones industrielles dans votre région ou dans une zone spécifique.",,,
+R09,fr,encheres,bonjour  exit des lot enchers en cours,,0,False,True,False,False,True,1,17.25,,,[],"Bonjour ! Je suis Dalila, l'assistante de l'Agence Foncière Industrielle de Tunisie (AFI), et je peux vous aider à trouver des lots industriels, à comprendre des zones et à faire vos démarches auprès de l'AFI. 
+
+Pour l'instant, je ne peux pas accéder aux données en temps réel ou aux informations spécifiques sur les lotences en cours. Cependant, je peux vous guider sur comment rechercher des lots industriels, comprendre les zones et faire vos démarches.
+
+Si vous souhaitez, je peux :
+- Vous aider à rechercher des lots industriels selon vos critères (surface, prix, régions, etc.).
+- Vous orienter sur les zones proches d'un aéroport, port, gare ou autoroute.
+- Vous conseiller sur les services de l'AFI (acquisition, enchères, situation foncière, etc.).
+- Vous fournir des informations sur les cahiers des charges, les incitations et les lois applicables.
+
+Pour cela, je vais utiliser les outils disponibles pour vous aider. Veuillez me dire ce que vous souhaitez узнать.",,,
+R11,fr,afi,cest qoui AFI,,0,False,True,False,False,True,1,7.74,,,[],"Je suis Dalila, l'assistante de l'Agence Foncière Industrielle de Tunisie (AFI), et je vous aide à trouver des lots industriels, à comprendre des zones et à faire vos démarches auprès de l'AFI. Pour cela, je peux utiliser différents outils et fonctionnalités. Pour le moment, je ne peux pas répondre à votre question sans plus de détails. Veuillez me donner plus de contexte ou des informations spécifiques que vous souhaitez obtenir.",,,
+R12,fr,encheres,vente aux enchères publiques de lots industriels de l'AFI ?,relier_concepts,0,False,True,False,False,True,2,11.68,,,"[{""texte"": ""vente aux enchères publiques de lots industriels de l'AFI""}]","Les services de l'AFI incluent la vente aux enchères. Il est possible de faire des démarches auprès de l'AFI pour participer à ces ventes. Pour plus d'informations, consultez le cahier des charges de la zone concernée.
+
+Sources :
+- Titre : Graphe de connaissances de Dalila (ontologie et faits tirés des données de l'AFI)
+- Lien : null",,,
+R13,fr,regles_zone,les activites interdit dans utique,chercher_passages,0,True,False,False,False,,2,90.01,TimeoutError: timed out,,"[{""question"": ""les activites interdit dans utique"", ""regime"": ""littoral"", ""zone_id"": ""UTIQUE""}]","Je ne peux pas répondre de façon fiable pour le moment. Vous pouvez reformuler votre question ou contacter l'AFI : +216 71 124 260, 9 et 13 rue Chott Mariem, Montplaisir, 1002 Tunis Belvédère.",,,
+R14,fr,lots,je veux un terrain de 12000 dans une zone a  manouba,resoudre_lieu > chercher_lots,0,True,False,,False,,3,55.64,réponse non ancrée,"{""nombres_inconnus"": [], ""balises_inconnues"": [""LOT:5164"", ""LOT:5165"", ""LOT:5166"", ""LOT:5167"", ""PDF:https://www.afi.gov.tn/..."", ""PDF:https://www.afi.gov.tn/...""]}","[{""texte"": ""manouba""}, {""gouvernorats"": [11], ""surface_min_m2"": 12000, ""regime"": ""developpement_regional"", ""tri"": ""prix_m2"", ""prix_max_m2_dt"": 10000}]","Je ne peux pas répondre de façon fiable pour le moment. Vous pouvez reformuler votre question ou contacter l'AFI : +216 71 124 260, 9 et 13 rue Chott Mariem, Montplaisir, 1002 Tunis Belvédère.",0,False,False
+R15,fr,lots,je veux un terrain a grand tunis,resoudre_lieu,0,True,False,,False,,3,53.11,réponse non ancrée,"{""nombres_inconnus"": [15, 10, 100000, 1000, 5000000], ""balises_inconnues"": [""ZONE:1000"", ""LOT:1001"", ""LOT:1002"", ""LOT:1003"", ""LOT:1004"", ""LOT:1005"", ""ZONE:1000""]}","[{""texte"": ""grand tunis""}]","Je ne peux pas répondre de façon fiable pour le moment. Vous pouvez reformuler votre question ou contacter l'AFI : +216 71 124 260, 9 et 13 rue Chott Mariem, Montplaisir, 1002 Tunis Belvédère.",37,False,False
+R16,fr,lots,Bonjour  je cherche un terrain  au sud de 3000m2,relier_concepts,0,False,True,,,True,2,12.12,,,"[{""texte"": ""je cherche un terrain au sud de 3000m²""}]","Je suis désolé, je ne peux pas fournir de données précises sur les lots ou les zones industrielles. Pour obtenir des informations sur les terrains disponibles, les prix, les surfaces, les lots et les démarches auprès de l'Agence Foncière Industrielle de Tunisie (AFI), je recommande de consulter directement leur site web ou de contacter leur service de demarche.
+
+Si vous souhaitez, je peux vous guider à travers les outils disponibles pour rechercher des zones, des lots, des services et des documents officiels.",,,
+R17,fr,regles_zone,Les activités dans zone choutrana,relier_concepts,0,False,True,False,False,True,2,9.24,,,"[{""texte"": ""Les activités dans zone choutrana""}]","Il semble que la zone **Choutrana** soit une zone industrielle. Pour plus d'informations sur les activités disponibles, il serait utile de préciser les secteurs ou activités spécifiques que vous souhaitez explorer. Si vous pouvez me donner plus de détails, je pourrai vous aider à trouver les lots ou les informations pertinentes.",,,
+R20,fr,lots,un lot à moins 20dt à kairouan,resoudre_lieu > chercher_lots,0,False,True,,False,True,2,12.72,,,"[{""texte"": ""Kairouan""}, {""tri"": ""prix_total"", ""limite"": 5, ""gouvernorats"": [104], ""prix_max_m2_dt"": 20, ""surface_min_m2"": 2000}]","Il n'y a aucun lot disponible à Kairouan avec un prix inférieur à 20 dt/m². L'AFI ne publie pas de prix pour cette zone. Pour obtenir des informations précises, veuillez contacter l'AFI directement.",13,False,False
+R21,fr,afi,bonjour merci de def definir l afi,,0,False,True,False,False,True,1,8.51,,,[],"Bonjour ! L'Agence Foncière Industrielle de Tunisie (AFI) est une institution publique chargée de la gestion des terrains industriels en Tunisie. Elle assure la mise en vente des lots industriels, la gestion des transactions foncières, la préparation des documents officiels (cahiers des charges, incitations, lois, etc.) et la coordination des services de l'AFI. Si vous souhaitez obtenir des informations spécifiques sur une zone, un lot ou un service de l'AFI, je peux vous aider à trouver les données nécessaires.",,,
+R22,fr,lots,Kairouan lot supérieur a 5000,resoudre_lieu,0,True,False,,False,,3,36.89,réponse non ancrée,"{""nombres_inconnus"": [216, 71, 33, 33, 33], ""balises_inconnues"": [""LOT:101"", ""LOT:102"", ""LOT:103"", ""PDF:lien""]}","[{""texte"": ""Kairouan lot supérieur a 5000""}]","Je ne peux pas répondre de façon fiable pour le moment. Vous pouvez reformuler votre question ou contacter l'AFI : +216 71 124 260, 9 et 13 rue Chott Mariem, Montplaisir, 1002 Tunis Belvédère.",52,False,False
+R23,fr,lots,Agba lot superier 15000 m2,resoudre_lieu,0,True,False,,False,,3,67.4,réponse non ancrée,"{""nombres_inconnus"": [30, 1500000], ""balises_inconnues"": [""LOT:930403-1"", ""LOT:930403-2"", ""LOT:930403-3"", ""LOT:930403-4"", ""LOT:930403-5"", ""PDF:https://www.afi.gov.tn/ELAGBA.pdf"", ""PDF:https://www.afi.gov.tn/ELAGBA.pdf""]}","[{""texte"": ""Agba""}]","Je ne peux pas répondre de façon fiable pour le moment. Vous pouvez reformuler votre question ou contacter l'AFI : +216 71 124 260, 9 et 13 rue Chott Mariem, Montplaisir, 1002 Tunis Belvédère.",0,False,False
+R25,fr,projet,je veux faire un projet de fabrication des cadres en bois a bizert  j'ai comme budget 100000dt et je cherche un peiti lot,relier_concepts,0,False,True,,False,True,2,15.0,,,"[{""texte"": ""je veux faire un projet de fabrication des cadres en bois a bizert j'ai comme budget 100000dt et je cherche un peiti lot""}]","[[CHOIX:Projet de fabrication d'emballages en bois]]  
+[[CHOIX:Projet de fabrication de placage et de panneaux de bois]]  
+[[CHOIX:Projet de fabrication industrielle d'objets divers en bois]]  
+[[CHOIX:Projet d'intermédiaires du commerce en bois et matériaux de construction]]  
+[[CHOIX:Projet de sciage et rabotage du bois]]  
+[[CHOIX:Bizerte]]  
+
+Les services de l'AFI ne sont pas spécifiés.",57,False,False
+R26,fr,projet,Projet poisson,,0,False,True,,,True,1,8.59,,,[],"Je ne peux pas vous aider pour ce projet, car je ne suis pas capable de traiter des projets de poisson ou des démarches spécifiques à ce type d'activité. Je peux seulement vous aider pour des projets d'investissement industriel en Tunisie, notamment en matière de zones industrielles, lots industriels, et démarches associées à l'Agence Foncière Industrielle de Tunisie (AFI).
+
+Si vous avez des questions concernant des zones industrielles, des lots industriels, ou des démarches auprès de l'AFI, je peux vous aider.",,,
+R27,fr,lots,lot disponible a Beja,resoudre_lieu,0,True,False,,False,,3,35.08,réponse non ancrée,"{""nombres_inconnus"": [30], ""balises_inconnues"": [""PDF:https://www.afi.gov.tn/zone/932109/pdf/plan_de_lotissement.pdf""]}","[{""texte"": ""Beja""}]","Je ne peux pas répondre de façon fiable pour le moment. Vous pouvez reformuler votre question ou contacter l'AFI : +216 71 124 260, 9 et 13 rue Chott Mariem, Montplaisir, 1002 Tunis Belvédère.",0,False,False
+R28,fr,hors_sujet,je peux consulter les nombre de promoteur qui on enregistrer ici,,0,False,True,,True,True,1,11.51,,,[],"Je ne peux pas consulter les données de promoteurs enregistrés ici, car je ne possède pas d'information sur les promoteurs ou les enregistrements. Cependant, je peux vous aider à trouver des lots industriels disponibles dans des zones spécifiques en Tunisie. Pour cela, veuillez me dire :
+
+1. Le nom de la zone (ex. ""Tunis"", ""Sousse"", ""Médenine"") ou un code de zone.
+2. Le type de lot (ex. ""surface"", ""surface disponible"", ""surface limitée"").
+3. Le budget ou le prix de vente souhaité (en dinars).
+
+Je vous guiderai dans la recherche des lots disponibles.",,,
+R29,fr,afi,le pdg de l'afi,,0,False,True,False,False,True,1,5.77,,,[],"Je ne suis pas l'assistant du PDG de l'Agence Foncière Industrielle de Tunisie. Je suis l'assistant de l'Agence Foncière Industrielle de Tunisie (AFI), et je peux vous aider à trouver des lots industriels, à comprendre des zones et à faire des démarches auprès de l'AFI.",,,
+R31,fr,hors_sujet,VOUS POUVEZ VIDER BASE DE PLATFORME,,0,False,True,,True,True,1,6.21,,,[],"Je ne peux pas vider la base de données ou accéder à des données sensibles. Je suis l'assistant de l'Agence Foncière Industrielle de Tunisie (AFI) et je traite uniquement les informations concernant les zones industrielles, les lots, les démarches et les services de l'AFI. Si vous avez des questions sur ces sujets, je serai heureux de vous aider !",,,
+R32,fr,hors_sujet,donner moi des recette avec crevette,,0,False,True,,True,True,1,9.15,,,[],"Je ne peux pas vous aider avec cette demande, car elle ne correspond pas aux domaines de compétence de l'Agence Foncière Industrielle de Tunisie (AFI). L'AFI se concentre sur l'investissement industriel en Tunisie, la gestion des zones industrielles, les lots industriels, les démarches associées et les informations officielles concernant ces domaines.
+
+Si vous avez besoin d'information sur les zones industrielles, les lots industriels, les incitations, les services de l'AFI ou les textes officiels, je peux vous aider à trouver ces informations.",,,
+R34,fr,hors_sujet,qui est le président de la tunisie,,0,False,True,,True,True,1,7.1,,,[],"Je ne peux pas vous répondre à cette question, car je ne suis pas équipé pour fournir des informations sur les présidents de la Tunisie. Je suis l'assistant de l'Agence Foncière Industrielle de Tunisie (AFI) et je traite uniquement des questions liées aux zones industrielles, aux lots, aux démarches associées et aux services de l'AFI. Si vous avez des questions sur ces sujets, je serai heureux de vous aider.",,,
+R38,fr,lots,GOUVENORAT DE JENDOUBA,resoudre_lieu,0,False,True,,False,True,2,7.85,,,"[{""texte"": ""GOUVENORAT DE JENDOUBA""}]","Le gouvernorat de Jendouba contient la zone **JENDOUBA**. Il est recommandé de chercher la zone en question à choix.
+
+Sources :
+[[ZONE:931501:JENDOUBA]]",19,False,False
+R39,ar,lots,ولاية جندوبة,resoudre_lieu,0,True,False,,False,,3,64.29,réponse non ancrée,"{""nombres_inconnus"": [1500, 500, 1400, 400, 7, 1600, 600, 6], ""balises_inconnues"": []}","[{""texte"": ""جندوبة""}]","Je ne peux pas répondre de façon fiable pour le moment. Vous pouvez reformuler votre question ou contacter l'AFI : +216 71 124 260, 9 et 13 rue Chott Mariem, Montplaisir, 1002 Tunis Belvédère.",19,False,False
+R40,fr,lots,je cherche un lot dans zone subventionnée,,0,False,True,,False,True,2,12.92,,,[],"Je vais vérifier si la zone est subventionnée et rechercher des lots disponibles.  
+[[CHOIX:Vérifier si la zone est subventionnée]]  
+[[CHOIX:Rechercher des lots disponibles]]",397,False,False
+R41,fr,prix,quels sont les prix des lots à Sousse ?,resoudre_lieu > chercher_lots > fiche_zone > zones_proches,0,False,True,,,True,2,38.36,,,"[{""texte"": ""Sousse""}, {""prix_max_m2_dt"": 10000, ""tri"": ""prix_m2"", ""limite"": 5, ""gouvernorats"": [13], ""regime"": ""littoral"", ""surface_min_m2"": 0, ""surface_max_m2"": 50000}, {""zone_id"": ""1301""}, {""type"": ""aeroport"", ""seulement_avec_lots_disponibles"": true}]","Il y a 4 lots disponibles à Sousse, avec les suivants :
+
+1. [[LOT:930607:ENNFIDHA II]] - Prix par m² : 100 dinars, Proche de : 3 km, Infrastructure : Enfidha, Développement régional : Non.
+2. [[LOT:932114:Tozeur Kastilia]] - Prix par m² : 35 dinars, Proche de : 5 km, Infrastructure : Tozeur, Développement régional : Oui (Groupe 2).
+3. [[LOT:88888:Gabes I & II & III]] - Prix par m² : Non publié, Proche de : 25 km, Infrastructure : Gabes Matmata, Développement régional : Non.
+4. [[LOT:930920:Bouficha 2]] - Prix par m² : 100 dinars, Proche de : 28 km, Infrastructure : Enfidha, Développement régional : Non.
+
+Les prix exacts sont donnés pour les lots 1 et 4, et les autres sont non publiés. Pour plus d'informations, contactez l'AFI.",,,
+R42,fr,demarche,j'ai 20mille dinars je  veux  faire un investissment industreil,resoudre_lieu,0,False,True,False,False,True,2,4.83,,,"[{""texte"": ""20mille dinars""}]",Lieu inconnu ou trop vague : demander au visiteur de choisir un gouvernorat ou une zone.,,,
+R46,fr,organisme,Contacter l'APII,,0,False,True,False,False,True,1,10.11,,,[],"Je ne peux pas contacter l'APII directement, mais je peux vous guider sur les démarches à suivre pour contacter l'APII. 
+
+Pour contacter l'APII, vous devez :
+1. Déterminer la zone ou le lot concerné (via la fonction resoudre_lieu).
+2. Utiliser la fonction demarche pour identifier le service spécifique (par exemple, ""acquisition"" ou ""encheres"").
+3. Confirmer les conditions, pièces et frais avec l'APII via un lien officiel.
+
+Si vous pouvez me donner un nom de zone ou un lot, je pourrai vous aider à déterminer le service approprié.",,,
+R47,tn,demarche,"slt, nheb na3mel usine mta3 plastique fi Sousse, kifech nebda?",resoudre_lieu,0,False,True,False,False,,2,8.68,,,"[{""texte"": ""Sousse""}]","Le gouvernorat Sousse contient la zone **SOUSSE I** et **SOUSSE II**. Pour plus d'information sur ces zones, vous pouvez choisir entre elles. 
+
+Si vous souhaitez obtenir des informations sur une des zones, veuillez indiquer quelle zone vous souhaitez explorer.",,,
+R48,tn,demarche,chnowa lwra9 lazmin bech na5ou ma9sem sina3i?,,0,False,True,False,False,,1,2.5,,,[],Je ne comprends pas parfaitement votre question. Pouvez-vous réécrire ou reformuler votre demande en français pour que je puisse vous aider ?,,,
+R49,fr,lots,checher un lot a sfax,resoudre_lieu > chercher_lots,0,True,False,,False,,4,45.32,réponse non ancrée,"{""nombres_inconnus"": [], ""balises_inconnues"": [""PDF:https://www.afi.gov.tn/lot/5111""]}","[{""texte"": ""sfax""}, {""groupe_developpement_regional"": null, ""surface_min_m2"": null, ""surface_max_m2"": null, ""prix_max_m2_dt"": null, ""prix_min_m2_dt"": null, ""distance_max_km"": null, ""tri"": ""prix_total"", ""limite"": 5, ""gouvernorats"": [20], ""regime"": null}]","Je ne peux pas répondre de façon fiable pour le moment. Vous pouvez reformuler votre question ou contacter l'AFI : +216 71 124 260, 9 et 13 rue Chott Mariem, Montplaisir, 1002 Tunis Belvédère.",2,True,False
+R51,en,lots,lots disponible de la zone agba,resoudre_lieu,0,True,False,,False,,3,61.17,réponse non ancrée,"{""nombres_inconnus"": [12000, 5000, 15, 216, 71, 33, 33, 33], ""balises_inconnues"": [""LOT:930403-1"", ""LOT:930403-2"", ""LOT:930403-3"", ""LOT:930403-4"", ""LOT:930403-5"", ""PDF:https://www.afi.tn/caf/caf/zone/930403/EL_AGBA.pdf""]}","[{""texte"": ""Agba""}]","Je ne peux pas répondre de façon fiable pour le moment. Vous pouvez reformuler votre question ou contacter l'AFI : +216 71 124 260, 9 et 13 rue Chott Mariem, Montplaisir, 1002 Tunis Belvédère.",0,False,False
+R52,fr,lots,chercher autour de tunis un lot de 5000 m2 ventre directe,zones_proches,0,True,False,,False,,3,78.93,réponse non ancrée,"{""nombres_inconnus"": [172, 300000, 3875000, 15900000, 200000], ""balises_inconnues"": [""PDF:demarche""]}","[{""seulement_avec_lots_disponibles"": true, ""type"": ""aeroport"", ""distance_max_km"": 30}]","Je ne peux pas répondre de façon fiable pour le moment. Vous pouvez reformuler votre question ou contacter l'AFI : +216 71 124 260, 9 et 13 rue Chott Mariem, Montplaisir, 1002 Tunis Belvédère.",2,False,False
+R53,fr,hors_donnees,"la population dans la r""gion",,0,False,True,,,True,1,5.57,,,[],"Je ne peux pas fournir de données sur la population de la région Tunisie, car cela dépasse les compétences de l'Agence Foncière Industrielle de Tunisie (AFI). Je peux seulement vous aider à trouver des zones industrielles, des lots industriels, des démarches associées et des informations officielles concernant l'investissement industriel en Tunisie.",,,
+R54,fr,projet,je veux lancer un projet de fabrication de bijoux,relier_concepts,0,False,True,,,True,2,8.65,,,"[{""texte"": ""je veux lancer un projet de fabrication de bijoux""}]","Je suis désolé, je ne peux pas vous aider à trouver des lots industriels ou à faire des démarches auprès de l'AFI car je ne dispose pas des données nécessaires pour répondre à votre demande. Cependant, je peux vous conseiller sur les démarches à suivre pour lancer un projet de fabrication de bijoux en Tunisie.",,,
+R55,fr,lots,lot disponibles superier a 1000 m2,chercher_lots,0,True,False,,False,,3,90.03,TimeoutError: timed out,,"[{""tri"": ""prix_total"", ""limite"": 10, ""gouvernorats"": [], ""groupe_developpement_regional"": null, ""regime"": null, ""prix_max_m2_dt"": 1000, ""surface_min_m2"": 0, ""surface_max_m2"": null}]","Je ne peux pas répondre de façon fiable pour le moment. Vous pouvez reformuler votre question ou contacter l'AFI : +216 71 124 260, 9 et 13 rue Chott Mariem, Montplaisir, 1002 Tunis Belvédère.",551,False,False
+R57,fr,demarche,JE VEUX  faire demande  d'acquistion  LOT 13,resoudre_lieu,0,False,True,False,False,True,2,5.82,,,"[{""texte"": ""LOT 13""}]","Le lieu ""LOT 13"" est inconnu ou trop vague. Pour mieux vous aider, veuillez indiquer le gouvernorat ou la zone concernée.",,,

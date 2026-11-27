@@ -1,0 +1,19 @@
+{
+ "fils": 8,
+ "e5": {
+  "mediane_ms": 10,
+  "p95_ms": 15
+ },
+ "bge": {
+  "mediane_ms": 77,
+  "p95_ms": 86
+ },
+ "qwen3": {
+  "mediane_ms": 532,
+  "p95_ms": 701
+ },
+ "reranker_20_passages": {
+  "mediane_ms": 15176,
+  "p95_ms": 15627
+ }
+}
