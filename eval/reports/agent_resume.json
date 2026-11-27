@@ -20,13 +20,13 @@
   "nombre_lots_exact": "11/16",
   "nombre_dans_reponse": "11/16",
   "passage_trouve": "8/15",
-  "langue_ok": "34/36",
-  "replis": 1,
+  "langue_ok": "35/37",
+  "replis": 0,
   "erreurs_registre": 0,
-  "duree_mediane_s": 20.8,
-  "duree_p95_s": 29.2,
-  "au_dela_35s": 1,
+  "duree_mediane_s": 23.1,
+  "duree_p95_s": 31.5,
+  "au_dela_35s": 0,
   "materiel": "CPU 8 fils",
-  "duree_totale_min": 15.0
+  "duree_totale_min": 15.4
  }
 }

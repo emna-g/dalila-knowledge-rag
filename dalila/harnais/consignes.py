@@ -43,6 +43,14 @@ def systeme(contexte=None):
 RAPPEL_OUTIL = ("[Harnais] Tu as commencé à répondre sans données. Appelle d'abord l'outil qui convient ; si le "
                 "message ne concerne ni l'AFI ni l'investissement industriel, appelle hors_sujet.")
 
+RAPPEL_LANGUE = ("[Harnais] Les résultats des outils sont souvent en français, mais ta réponse doit être écrite dans "
+                 "la langue et l'écriture de ce message du visiteur{interface} : « {message} ». Les noms de zones restent "
+                 "tels quels.")
+
+RAPPEL_BOUCLE = ("[Vérification automatique] Ta réponse répète les mêmes mots en boucle. Réécris-la en 2 phrases simples, "
+                 "dans la langue du visiteur ; si son dialecte est difficile à écrire, utilise la langue standard la plus "
+                 "proche.")
+
 REPLI = {  # quand le moteur ne répond pas ou que la réponse n'est pas vérifiable (BNF4)
     "fr": "Je ne peux pas répondre de façon fiable pour le moment. Vous pouvez reformuler votre question ou contacter "
           "l'AFI : +216 71 124 260, 9 et 13 rue Chott Mariem, Montplaisir, 1002 Tunis Belvédère.",
@@ -50,4 +58,8 @@ REPLI = {  # quand le moteur ne répond pas ou que la réponse n'est pas vérifi
           "+216 71 124 260، 9 و13 نهج شط مريم، مونبليزير، 1002 تونس البلفيدير.",
     "en": "I can't give a reliable answer right now. Please rephrase your question or contact AFI: +216 71 124 260, "
           "9 & 13 rue Chott Mariem, Montplaisir, 1002 Tunis Belvédère.",
+    "de": "Ich kann im Moment keine verlässliche Antwort geben. Bitte formulieren Sie Ihre Frage neu oder kontaktieren "
+          "Sie die AFI: +216 71 124 260, 9 & 13 rue Chott Mariem, Montplaisir, 1002 Tunis Belvédère.",
+    "tr": "Şu anda güvenilir bir yanıt veremiyorum. Lütfen sorunuzu yeniden ifade edin veya AFI ile iletişime geçin: "
+          "+216 71 124 260, 9 & 13 rue Chott Mariem, Montplaisir, 1002 Tunis Belvédère.",
 }

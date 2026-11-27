@@ -82,8 +82,31 @@ Pour revoir les décisions sur les données (rarement) :
 .venv\Scripts\python -m dalila.connaissances.extraire_corrections  réécrit db/corrections/ et DESACCORDS.md
 ```
 
+## Lancer l'agent (API `POST /carte/chatbot`)
+
+1. **Ollama** (https://ollama.com), puis le modèle de l'agent (2,5 Go) : `ollama pull qwen3:4b-instruct`.
+2. Le service (le premier démarrage lit les consignes une fois : 40 à 60 s sur processeur) :
+   ```
+   .venv\Scripts\python -m uvicorn dalila.communication.api:app --host 0.0.0.0 --port 8000
+   ```
+3. `GET /sante` rend `{"pret": true, "base": true}` quand le service est prêt. Exemple :
+   ```
+   curl -X POST http://localhost:8000/carte/chatbot -H "Content-Type: application/json" ^
+        -d "{\"message\": \"lot de 2000 m² à Jendouba\", \"lang\": \"fr\"}"
+   ```
+   Réponse : `message` (avec les balises `[[ZONE]]`, `[[LOT]]`, `[[CHOIX]]`, `[[PDF]]`), `log_id`, `source`
+   (`dalila` ou `repli`), `action` (`choix` si des boutons sont proposés), `duree_s`. Avis : `POST /carte/chatbot/avis`
+   `{"log_id": 12, "utile": true}`. Documentation interactive : http://localhost:8000/docs.
+
+Réglages dans `.env` : `DALILA_LLM` (modèle, défaut `qwen3:4b-instruct`), `DALILA_LLM_CPU=1` (processeur seul, comme
+le serveur de l'AFI), `DALILA_CORS` (origines autorisées, séparées par des virgules ; défaut `*`).
+Les tours sont journalisés anonymisés dans `agent_turns` ; les questions sans réponse fiable dans `agent_needs`.
+
 ## Tester
 
+- `.venv\Scripts\python -m tests.traitement.test_outils` : outils et harnais sur de vraies questions (base chargée).
+- `.venv\Scripts\python -m eval.agent_bench --delai 35` : banc d'essai de l'agent (40 vraies questions, processeur
+  seul) ; rapports dans `eval/reports/`.
 - `scripts/tester.bat` (double-clic) : pose une question, une page s'ouvre avec ce que Dalila a trouvé.
 - `.venv\Scripts\python -m eval.run_eval` : jeu de 30 questions du lexique ; `--questions eval/testset/<fichier>.csv` pour un autre jeu.
 - `.venv\Scripts\python -m dalila.langue.lexique.tests.tester_lexique` : tests du lexique tunisien.

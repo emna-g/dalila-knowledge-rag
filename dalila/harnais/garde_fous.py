@@ -34,6 +34,8 @@ def nettoyer_entree(message, historique=()):
 _ARABES = str.maketrans("٠١٢٣٤٥٦٧٨٩۰۱۲۳۴۵۶۷۸۹", "01234567890123456789")
 _NOMBRE = re.compile(r"\d+(?:[   ]\d{3})*(?:[.,]\d+)?")
 _PUCE = re.compile(r"(?m)^\s*\d{1,2}[.)]\s")
+# un chiffre seul collé à des lettres est une lettre en arabizi (« wa7ed », « 9addech », « 3andi ») : pas un nombre
+_CHIFFRE_LETTRE = re.compile(r"(?<=[^\W\d_])\d(?![\d.,   ])|(?<![\d.,   ])\d(?=[^\W\d_])")
 _BALISE = re.compile(r"\[\[(ZONE|LOT):([^:\]]+):[^\]]*\]\]")
 _PDF = re.compile(r"\[\[PDF:(.+?):([^:\]]*)\]\]")
 
@@ -54,7 +56,7 @@ def _norm(s):
 
 
 def nombres(texte):
-    texte = _PUCE.sub(" ", str(texte).translate(_ARABES))
+    texte = _CHIFFRE_LETTRE.sub("x", _PUCE.sub(" ", str(texte).translate(_ARABES)))
     return [_valeurs(j) for j in _NOMBRE.findall(texte)]
 
 

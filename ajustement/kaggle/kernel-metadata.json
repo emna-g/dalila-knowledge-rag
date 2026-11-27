@@ -1,0 +1,13 @@
+{
+  "id": "fidamarzouk/dalila-ajustement-qwen3-4b",
+  "title": "dalila-ajustement-qwen3-4b",
+  "code_file": "entrainer.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": true,
+  "dataset_sources": ["fidamarzouk/dalila-ajustement"],
+  "competition_sources": [],
+  "kernel_sources": []
+}

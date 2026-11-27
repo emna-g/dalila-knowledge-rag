@@ -62,6 +62,18 @@ def test_lots_reels():
     assert appeler("lister_zones", {"lieu": "tunis"})["lieux_a_proposer"]
 
 
+def test_lieu_reecrit_par_le_modele():
+    """Un lieu réécrit (« Qassrin ») ou qui n'en est pas un (« port ») ne devient jamais « aucune zone »."""
+    from dalila.harnais.agent import appeler_avec_lieu
+    r, args = appeler_avec_lieu("lister_zones", {"lieu": "Qassrin"}, "في أراضي صناعية في القصرين؟")
+    assert r["lieu_retenu"] == "gouvernorat Kasserine" and r["lots_disponibles_total"] > 0
+    r, args = appeler_avec_lieu("chercher_lots", {"lieu": "port", "proche_de": "port", "budget_max_dt": 100000},
+                                "Industrial lots near a port under 100000 DT?")
+    assert "lieu" not in args and r["nombre_total"] > 0
+    r, args = appeler_avec_lieu("chercher_lots", {"lieu": "tunis"}, "un lot à tunis")  # ambigu : rien n'est changé
+    assert args == {"lieu": "tunis"} and len(r["lieux_a_proposer"]) == 2
+
+
 def test_vues_et_bloc():
     """Le modèle lit une vue courte ; la liste, les balises et les liens sont écrits par le harnais (exacts)."""
     from dalila.harnais.vues import TAILLE_VUE, bloc, vue

@@ -17,7 +17,7 @@ Le harnais fait ce qu'un petit modèle sur processeur fait lentement ou mal (mes
   liste de ce qui n'est pas justifié, puis le harnais répond par le repli, suivi des faits trouvés s'il y en a.
 """
 import json, re, time
-from dalila.harnais.consignes import RAPPEL_OUTIL, REPLI, systeme
+from dalila.harnais.consignes import RAPPEL_BOUCLE, RAPPEL_LANGUE, RAPPEL_OUTIL, REPLI, systeme
 from dalila.harnais.garde_fous import nettoyer_entree, verifier_ancrage
 from dalila.harnais.vues import bloc, vue
 from dalila.moteurs.llm import MODELE_LLM, ErreurMoteur, discuter
@@ -55,7 +55,41 @@ FIN_PHRASE = re.compile(r"[.!?؟…\n](?=[^.!?؟…\n]*$)")
 def _phrases_completes(texte):
     """Coupée par la borne de jetons, la réponse garde ses phrases complètes."""
     m = FIN_PHRASE.search(texte)
-    return texte[:m.end()].strip() if m else texte.strip()
+    if m:
+        return texte[:m.end()].strip()
+    return texte.rsplit(" ", 1)[0].rstrip("،,;:") + "…"  # aucune fin de phrase : au moins pas de mot coupé
+
+
+LANGUES = {"fr": "français", "en": "anglais", "ar": "arabe", "de": "allemand", "tr": "turc",
+           "aeb": "tunisien", "arq": "algérien", "ayl": "libyen"}  # codes du contrat /carte/chatbot (champ lang)
+DIALECTES = {"aeb", "arq", "ayl", "tn"}
+
+
+def degenere(texte, n=3, fois=3):
+    """Réponse qui boucle (le modèle répète la même suite de mots, vu en tunisien écrit en arabe) : jamais montrée."""
+    mots = texte.split()
+    suites = [tuple(mots[i:i + n]) for i in range(len(mots) - n + 1)]
+    return any(suites.count(s) >= fois for s in set(suites))
+
+
+def _lieu_inconnu(res):
+    """Le lieu passé à l'outil n'a rien donné : ni lieu retenu, ni lieu à proposer."""
+    return isinstance(res, dict) and "erreur" not in res and not res.get("lieux_a_proposer") and         res.get("nombre_total", res.get("nombre", 0)) is None
+
+
+def appeler_avec_lieu(nom, arguments, message):
+    """Le modèle réécrit parfois le lieu (« القصرين » -> « Qassrin ») ou met autre chose qu'un lieu (« port ») : un lieu
+    inconnu ne doit jamais devenir « aucune zone ». Le lieu est alors cherché dans le message du visiteur lui-même ;
+    si le message ne nomme aucun lieu connu, le champ lieu n'était pas un lieu et la recherche se fait sans lui.
+    -> (résultat, arguments réellement utilisés)"""
+    res = appeler(nom, arguments)
+    if "lieu" not in (arguments or {}) or not _lieu_inconnu(res):
+        return res, arguments
+    for essai in ({**arguments, "lieu": message[:100]}, {k: v for k, v in arguments.items() if k != "lieu"}):
+        res2 = appeler(nom, essai)
+        if not _lieu_inconnu(res2):
+            return res2, essai
+    return res, arguments
 
 
 def journal_outils(journal):
@@ -94,7 +128,10 @@ class Agent:
                     "ancrage": ancrage, "etapes": etape, "duree_s": round(time.time() - debut, 2),
                     "modele": self.modele, "erreur": erreur}
 
-        repli = REPLI.get(lang or "fr", REPLI["fr"])
+        code = (lang or "").strip().lower()
+        repli = REPLI.get(code) or REPLI.get(code[:2]) or (REPLI["ar"] if code in DIALECTES else REPLI["fr"])
+        rappel_langue = {"role": "user", "content": RAPPEL_LANGUE.format(
+            message=message[:200], interface=f" (langue de l'interface : {LANGUES[code]})" if code in LANGUES else "")}
 
         def sortie_repli(etape, erreur, ancrage=None):
             faits = bloc(resultats)  # ce que les outils ont trouvé reste exact, même si la phrase du modèle ne l'est pas
@@ -108,7 +145,8 @@ class Agent:
             if reste < 1:
                 return sortie_repli(etape, "délai dépassé")
             try:
-                r = discuter(messages, outils=self.outils, modele=self.modele, delai_s=reste,
+                # avant d'écrire, après des résultats en français : rappel de la langue du visiteur, non gardé
+                r = discuter(messages + ([rappel_langue] if journal_outils(journal) else []), outils=self.outils, modele=self.modele, delai_s=reste,
                              jetons_max=_jetons(reste, a_lire), arret_si_texte=not journal_outils(journal)
                              and rappels < RAPPELS_MAX)
                 a_lire = 0
@@ -137,7 +175,7 @@ class Agent:
                     elif c["nom"] in OUTILS_CACHES:
                         res = {"erreur": f"outil inconnu : {c['nom']}"}
                     else:
-                        res = appeler(c["nom"], c["arguments"])
+                        res, c["arguments"] = appeler_avec_lieu(c["nom"], c["arguments"], message)
                     if cle not in deja and c["nom"] != "hors_sujet":
                         resultats.append((c["nom"], res))
                     deja[cle] = res
@@ -155,15 +193,16 @@ class Agent:
             if texte.strip("`'\" ") in {d["function"]["name"] for d in self.outils}:
                 texte = ""  # le modèle a écrit le nom d'un outil au lieu de l'appeler : relancé comme non ancré
             ancrage = verifier_ancrage(texte, [res for _, res in resultats], message)
-            if ancrage["ok"] and texte:
+            boucle = degenere(texte)
+            if ancrage["ok"] and texte and not boucle:
                 faits = bloc(resultats)
                 return sortie(texte + ("\n\n" + faits if faits else ""), "dalila", ancrage, etape,
                               texte_modele=texte)
             if relance:
-                return sortie_repli(etape, "réponse non ancrée", ancrage)
+                return sortie_repli(etape, "réponse qui se répète" if boucle else "réponse non ancrée", ancrage)
             relance = True
             messages.append({"role": "assistant", "content": texte})
-            messages.append({"role": "user", "content":
+            messages.append({"role": "user", "content": RAPPEL_BOUCLE if boucle else
                              "[Vérification automatique] Ces éléments de ta réponse ne viennent d'aucun résultat d'outil : "
                              f"nombres {ancrage['nombres_inconnus']}, balises {ancrage['balises_inconnues']}. "
                              "Appelle l'outil nécessaire, ou réécris la réponse sans ces éléments, dans la langue du visiteur."})
