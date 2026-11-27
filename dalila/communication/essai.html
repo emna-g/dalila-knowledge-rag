@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dalila – essai voix</title>
+<style>
+  :root { --fond:#f6f7f9; --carte:#fff; --texte:#1d2330; --doux:#5b6475; --accent:#0b6e4f; --erreur:#b42318; --bord:#d9dde5; }
+  @media (prefers-color-scheme: dark) { :root { --fond:#12151b; --carte:#1b2029; --texte:#e7eaf0; --doux:#9aa3b5; --accent:#3ccf9a; --erreur:#ff8a80; --bord:#2c3340; } }
+  * { box-sizing: border-box; }
+  body { margin:0; font:16px/1.5 system-ui, sans-serif; background:var(--fond); color:var(--texte); }
+  main { max-width:760px; margin:0 auto; padding:24px 16px; }
+  h1 { font-size:1.4rem; margin:0 0 4px; } p.aide { color:var(--doux); margin:0 0 20px; }
+  .ligne { display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-bottom:16px; }
+  select, button, textarea { font:inherit; color:inherit; background:var(--carte); border:1px solid var(--bord); border-radius:8px; padding:8px 12px; }
+  button { cursor:pointer; } button.principal { background:var(--accent); color:#fff; border-color:var(--accent); font-weight:600; }
+  button.enreg { background:var(--erreur); border-color:var(--erreur); }
+  textarea { width:100%; min-height:64px; }
+  .carte { background:var(--carte); border:1px solid var(--bord); border-radius:10px; padding:14px; margin-bottom:14px; white-space:pre-wrap; overflow-wrap:anywhere; }
+  .meta { color:var(--doux); font-size:.85rem; margin-top:6px; }
+  .erreur { color:var(--erreur); }
+  [dir=rtl] { text-align:right; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Dalila – essai de la voix</h1>
+  <p class="aide">Page d'essai locale : parler, vérifier le texte reconnu, envoyer ; la réponse s'affiche et est lue. L'audio n'est ni écrit ni gardé par le service.</p>
+  <div class="ligne">
+    <label>Langue de l'interface (pas de la parole : détectée)
+      <select id="lang">
+        <option value="fr">Français</option><option value="en">English</option><option value="ar">العربية</option>
+        <option value="de">Deutsch</option><option value="tr">Türkçe</option><option value="aeb">Tunisien</option>
+        <option value="arq">Algérien</option><option value="ayl">Libyen</option>
+      </select></label>
+    <label><input type="checkbox" id="lecture" checked> lire la réponse</label>
+  </div>
+  <div class="ligne">
+    <button id="micro" class="principal">🎤 Parler</button>
+    <span id="etat" class="meta"></span>
+  </div>
+  <textarea id="question" placeholder="Texte reconnu (modifiable), ou tapez une question"></textarea>
+  <div class="ligne" style="margin-top:10px"><button id="envoyer" class="principal">Envoyer à Dalila</button></div>
+  <div id="sortie"></div>
+</main>
+<script>
+const $ = id => document.getElementById(id);
+let enregistreur = null, morceaux = [], consenti = false;
+
+function etat(t, erreur) { $("etat").textContent = t; $("etat").className = erreur ? "meta erreur" : "meta"; }
+function carte(texte, meta) {
+  const d = document.createElement("div"); d.className = "carte"; d.dir = "auto"; d.textContent = texte;
+  if (meta) { const m = document.createElement("div"); m.className = "meta"; m.textContent = meta; d.appendChild(m); }
+  $("sortie").prepend(d);
+}
+
+$("micro").onclick = async () => {
+  if (enregistreur && enregistreur.state === "recording") { enregistreur.stop(); return; }
+  if (!consenti && !confirm("Autoriser le micro ? L'enregistrement sert seulement à reconnaître votre question ; il n'est pas gardé.")) return;
+  consenti = true;
+  try {
+    const flux = await navigator.mediaDevices.getUserMedia({ audio: true });
+    morceaux = []; enregistreur = new MediaRecorder(flux);
+    enregistreur.ondataavailable = e => morceaux.push(e.data);
+    enregistreur.onstop = async () => {
+      flux.getTracks().forEach(t => t.stop());
+      $("micro").textContent = "🎤 Parler"; $("micro").classList.remove("enreg");
+      const audio = new Blob(morceaux, { type: enregistreur.mimeType });
+      const f = new FormData(); f.append("audio", audio, "question.webm");  // langue détectée par le service, jamais choisie
+      etat("Reconnaissance…"); const t0 = performance.now();
+      const r = await fetch("/carte/voix/transcrire", { method: "POST", body: f });
+      const j = await r.json();
+      if (!r.ok) { etat("Erreur : " + (j.detail || r.status), true); return; }
+      $("question").value = j.texte;
+      etat(`Reconnu en ${j.duree_s} s (langue détectée : ${j.langue}, audio ${j.duree_audio_s} s ; aller-retour ${((performance.now()-t0)/1000).toFixed(1)} s). Vérifiez puis envoyez.`);
+    };
+    enregistreur.start(); etat("Enregistrement… cliquez de nouveau pour arrêter.");
+    $("micro").textContent = "⏹ Arrêter"; $("micro").classList.add("enreg");
+  } catch (e) { etat("Micro indisponible : " + e.message, true); }
+};
+
+$("envoyer").onclick = async () => {
+  const message = $("question").value.trim(); if (!message) return;
+  const lang = $("lang").value; etat("Dalila réfléchit…");
+  try {
+    const r = await fetch("/carte/chatbot", { method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message, lang, session_id: "essai-voix" }) });
+    const j = await r.json();
+    carte(j.message, `source : ${j.source} · ${j.duree_s} s · question : ${message}`);
+    etat("");
+    if ($("lecture").checked) {
+      const a = await fetch("/carte/voix/lire", { method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ texte: j.message, lang }) });
+      if (a.status === 200) new Audio(URL.createObjectURL(await a.blob())).play();
+      else etat("Pas de voix pour cette écriture (arabizi) : la réponse reste en texte.");
+    }
+  } catch (e) { etat("Erreur : " + e.message, true); }
+};
+</script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+{
+ "materiel": "CPU 8 fils",
+ "source_audio": "voix de synthèse Piper",
+ "synthese": {
+  "reponse_fr_s": 0.33,
+  "reponse_fr_audio_s": 13.05,
+  "par_langue_s": {
+   "fr": 0.75,
+   "en": 0.72,
+   "de": 0.7,
+   "tr": 0.68,
+   "ar": 1.04
+  }
+ },
+ "reconnaissance": {
+  "small": {
+   "duree_mediane_s": 3.01,
+   "duree_max_s": 3.09,
+   "au_dela_4s": 0,
+   "langue_ok": "5/5",
+   "exactitude_moyenne": 0.85,
+   "details": [
+    {
+     "langue": "fr",
+     "detectee": "fr",
+     "duree_s": 3.01,
+     "audio_s": 3.75,
+     "exactitude": 0.87,
+     "texte": "Je cherche un lot industriel de 2000 mètres carrés à Jendouba."
+    },
+    {
+     "langue": "en",
+     "detectee": "en",
+     "duree_s": 2.99,
+     "audio_s": 2.98,
+     "exactitude": 1.0,
+     "texte": "I am looking for an industrial lot near the port of Sfax"
+    },
+    {
+     "langue": "de",
+     "detectee": "de",
+     "duree_s": 2.97,
+     "audio_s": 2.28,
+     "exactitude": 0.83,
+     "texte": "Ich suche ein Industriegrundstück in Suße"
+    },
+    {
+     "langue": "tr",
+     "detectee": "tr",
+     "duree_s": 3.04,
+     "audio_s": 2.09,
+     "exactitude": 0.67,
+     "texte": "Bizerte'de sanayi arsası varma"
+    },
+    {
+     "langue": "ar",
+     "detectee": "ar",
+     "duree_s": 3.09,
+     "audio_s": 4.37,
+     "exactitude": 0.86,
+     "texte": "أبحث عن مقسم صناعي في ولاية القصر"
+    }
+   ]
+  }
+ }
+}

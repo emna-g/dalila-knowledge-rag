@@ -98,6 +98,10 @@ Pour revoir les décisions sur les données (rarement) :
    (`dalila` ou `repli`), `action` (`choix` si des boutons sont proposés), `duree_s`. Avis : `POST /carte/chatbot/avis`
    `{"log_id": 12, "utile": true}`. Documentation interactive : http://localhost:8000/docs.
 
+Voix : `POST /carte/voix/transcrire` (fichier `audio` envoyé par le micro du navigateur, `lang`) rend le texte reconnu,
+à afficher puis envoyer à `/carte/chatbot` ; `POST /carte/voix/lire` (`texte`, `lang`) rend la réponse lue (WAV).
+Modèles de voix à installer une fois : voir `dalila/voix/README.md`.
+
 Réglages dans `.env` : `DALILA_LLM` (modèle, défaut `qwen3:4b-instruct`), `DALILA_LLM_CPU=1` (processeur seul, comme
 le serveur de l'AFI), `DALILA_CORS` (origines autorisées, séparées par des virgules ; défaut `*`).
 Les tours sont journalisés anonymisés dans `agent_turns` ; les questions sans réponse fiable dans `agent_needs`.

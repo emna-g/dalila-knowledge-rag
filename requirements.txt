@@ -13,3 +13,7 @@ pydantic==2.14.4
 shapely==2.2.0
 fastapi==0.165.0
 uvicorn==0.54.0
+faster-whisper==1.2.1
+piper-tts==1.8.0
+python-multipart==0.0.34
+av==19.0.2

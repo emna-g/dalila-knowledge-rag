@@ -10,14 +10,14 @@ Légende : **Fait** (vérifié), **Partiel** (une partie existe ou n'est pas mes
 |---|---|---|---|---|
 | BF1 | Détecter la langue parmi les 8, distinguer tunisien, algérien, libyen, arabe standard | Obligatoire | `dalila/langue` | À faire (le lexique détecte le tunisien : 31/32 sur son jeu ; règle écrite à la main, à remplacer) |
 | BF2 | Comprendre le tunisien, mêlé de français, sans orthographe fixe | Obligatoire | `dalila/langue`, `dalila/semantique` | Partiel (lexique attesté ; recherche 20/30 sur le jeu tunisien) |
-| BF3 | Répondre dans la langue et l'écriture du visiteur | Obligatoire | `dalila/langue` | À faire |
+| BF3 | Répondre dans la langue et l'écriture du visiteur | Obligatoire | `dalila/langue` | Fait (fr, en, ar, de, tr, dialectes en lettres arabes : rappel de langue du harnais ; langue juste 35/37 au banc d'essai) ; arabizi faible |
 | BF4 | Fonctions existantes dans les 8 langues (terrain, proximité, qualification, procédure, étude) | Obligatoire | `dalila/traitement`, `dalila/harnais` | Partiel (outils terrain, proximité, procédures faits et testés ; qualification et étude : à faire ; 8 langues : avec le harnais) |
-| BF5 | Garder zones cliquables et boutons de choix après reformulation | Obligatoire | `dalila/communication`, `dalila/harnais` | À faire |
-| BF6 | Dire quand l'information manque, orienter vers l'AFI | Obligatoire | `dalila/harnais` | Partiel (les manques sont connus : docs/limites.md) |
-| BF7 | Poser une question à la voix dans les 8 langues | Obligatoire | `dalila/voix`, `frontend` | À faire |
-| BF8 | Lire la réponse à voix haute | Obligatoire | `dalila/voix` | À faire |
+| BF5 | Garder zones cliquables et boutons de choix après reformulation | Obligatoire | `dalila/communication`, `dalila/harnais` | Fait (balises écrites par le harnais à partir des résultats d'outils, `harnais/vues.py`) |
+| BF6 | Dire quand l'information manque, orienter vers l'AFI | Obligatoire | `dalila/harnais` | Fait (repli avec le contact de l'AFI ; lieu inconnu jamais pris pour « aucune zone ») |
+| BF7 | Poser une question à la voix dans les 8 langues | Obligatoire | `dalila/voix`, `frontend` | Fait côté service (`POST /carte/voix/transcrire`, Whisper small, fr/en/ar/de/tr ; dialectes : voir decisions.md) ; micro : interface |
+| BF8 | Lire la réponse à voix haute | Obligatoire | `dalila/voix` | Fait (`POST /carte/voix/lire`, Piper : fr, en, de, tr, ar ; arabizi : texte seulement) |
 | BF9 | Activer ou couper micro et lecture | Obligatoire | `frontend` | À faire |
-| BF10 | Enchaîner plusieurs actions (agent à outils) | Souhaité | `dalila/harnais`, `dalila/traitement` | À faire |
+| BF10 | Enchaîner plusieurs actions (agent à outils) | Souhaité | `dalila/harnais`, `dalila/traitement` | Fait (agent à outils : `dalila/harnais/agent.py`) |
 | BF11 | Préparer une demande d'acquisition, sans dépôt sans confirmation | Souhaité | `dalila/traitement`, `dalila/harnais` | À faire |
 | BF12 | Lister pour l'AFI les questions en dialecte mal comprises | Souhaité | `dalila/apprentissage`, `dalila/administration` | À faire (table `agent_needs` créée) |
 | BF13 | Conversation vocale continue | Souhaité | `dalila/voix`, `frontend` | À faire |
@@ -29,25 +29,25 @@ Légende : **Fait** (vérifié), **Partiel** (une partie existe ou n'est pas mes
 | BF19 | Contrôler automatiquement puis publier ce qui est appris | Obligatoire | `dalila/apprentissage` | À faire (contrôles SHACL / OWL / requêtes déjà en place dans construire_abox) |
 | BF20 | Raisonner sur le graphe pour conseiller | Souhaité | `dalila/semantique` | Partiel (requête de test BF20 : pêche → APIA, port) |
 | BF21 | Journal de l'apprentissage et annulation a posteriori | Obligatoire | `dalila/apprentissage`, `dalila/administration` | À faire (graphes nommés `appris/<id>` prévus) |
-| BF22 | Guider vers le bon service par des questions à choix | Obligatoire | `dalila/harnais`, `dalila/traitement` | À faire |
-| BF23 | Conditions, pièces, frais, lieu de dépôt, lien de chacun des 8 services | Obligatoire | `dalila/traitement`, base de connaissances | Partiel : les 8 services ont conditions ou étapes, pièces et lien (réponses AFI 12 à 25, vérifiées le 2026-11-27, `db/reference/services_afi.csv`) ; manques publiés par l'AFI elle-même : voir docs/limites.md ; l'outil reste à faire |
-| BF24 | Service non couvert : contact AFI, besoin enregistré | Obligatoire | `dalila/harnais` | À faire |
+| BF22 | Guider vers le bon service par des questions à choix | Obligatoire | `dalila/harnais`, `dalila/traitement` | Fait (outil `demarche` et lieux à proposer : balises `[[CHOIX]]`) |
+| BF23 | Conditions, pièces, frais, lieu de dépôt, lien de chacun des 8 services | Obligatoire | `dalila/traitement`, base de connaissances | Fait (outil `demarche` : les 8 services, réponses validées de l'AFI, lien, contact) |
+| BF24 | Service non couvert : contact AFI, besoin enregistré | Obligatoire | `dalila/harnais` | Fait (repli avec contact ; question gardée dans `agent_needs` par l'API) |
 
 ## Besoins non fonctionnels
 
 | Réf. | Besoin (résumé) | Cible | Module | État |
 |---|---|---|---|---|
-| BNF1 | Tout chiffre vient des données de l'AFI | 100 % | `dalila/harnais` (ancrage), vues `v_pub_*` | Partiel (données vérifiées ; ancrage de la réponse à faire) |
-| BNF2 | Temps de réponse à l'écrit | ≤ 35 s | `dalila/harnais`, `dalila/moteurs` | À mesurer (sur processeur, sans carte graphique) |
-| BNF3 | Reconnaissance vocale | ≤ 4 s | `dalila/voix` | À faire |
-| BNF4 | Panne d'une API : réponse en texte quand même | aucune erreur brute | `dalila/harnais` | À faire |
+| BNF1 | Tout chiffre vient des données de l'AFI | 100 % | `dalila/harnais` (ancrage), vues `v_pub_*` | Fait (vérification d'ancrage de chaque nombre et balise ; listes écrites par le harnais) |
+| BNF2 | Temps de réponse à l'écrit | ≤ 35 s | `dalila/harnais`, `dalila/moteurs` | Fait (banc d'essai, processeur 8 fils : médiane 23 s, aucune réponse au-delà de 35 s) |
+| BNF3 | Reconnaissance vocale | ≤ 4 s | `dalila/voix` | Fait (Whisper small : ≈ 3 s, `eval/reports/voix_resume.json`) ; à remesurer sur de vrais enregistrements |
+| BNF4 | Panne d'une API : réponse en texte quand même | aucune erreur brute | `dalila/harnais` | Fait (moteur arrêté, délai, base injoignable : réponse en texte ; tests du harnais) |
 | BNF5 | Français, anglais, arabe sans régression | jeu de test | `eval/` | Partiel (jeux de test en place) |
 | BNF6 | Ordinateur, tablette, téléphone ; droite à gauche | 3 formats | `frontend` | À faire |
-| BNF7 | Toute réponse vocale existe en texte | toutes | `dalila/voix`, `frontend` | À faire |
-| BNF8 | Consentement micro, audio non conservé | démonstration | `frontend`, `dalila/voix` | À faire |
+| BNF7 | Toute réponse vocale existe en texte | toutes | `dalila/voix`, `frontend` | Fait (la réponse est toujours du texte ; la voix en est la lecture) |
+| BNF8 | Consentement micro, audio non conservé | démonstration | `frontend`, `dalila/voix` | Fait côté service (audio décodé en mémoire, jamais écrit ni gardé) ; consentement : interface |
 | BNF9 | Clés hors du code, HTTPS, aucune donnée personnelle vers un service externe | aucune clé | tous | Fait pour l'existant (modèles locaux uniquement, `.env` hors git) |
 | BNF10 | Moteurs interchangeables par configuration | sans code | `dalila/moteurs` | Partiel (modèle de recherche par `DALILA_MODELE`) |
-| BNF11 | Service à part avec une API HTTP, démarrage documenté | — | `dalila/communication`, README | À faire (démarrage de la base documenté) |
+| BNF11 | Service à part avec une API HTTP, démarrage documenté | — | `dalila/communication`, README | Fait (`dalila/communication/api.py`, démarrage dans le README) |
 | BNF12 | Licence et coût de chaque modèle déclarés | liste complète | `docs/` | À faire (modèles en place : e5, BGE-M3, Qwen3-Embedding, bge-reranker) |
 | BNF13 | Mêmes zones et chiffres dans les 8 langues | 100 % | `dalila/harnais`, `eval/` | À faire |
 | BNF14 | Seules les URL configurées ; page = donnée, jamais instruction | page piégée sans effet | `dalila/sources`, `dalila/harnais` | À faire |

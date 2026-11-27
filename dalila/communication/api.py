@@ -5,7 +5,13 @@
 POST /carte/chatbot        {message, history, lang, contexte, session_id}
                            -> {message, log_id, source, action, duree_s}
 POST /carte/chatbot/avis   {log_id, utile}  -> {ok}
+POST /carte/voix/transcrire  fichier « audio » (webm, ogg, wav...) + lang facultatif -> {texte, langue, confiance, duree_s}
+POST /carte/voix/lire       {texte, lang} -> audio/wav (204 si aucune voix ne convient : arabizi ; le texte reste affiché)
 GET  /sante                -> état du service (modèle prêt, base joignable)
+
+Voix (dalila/voix) : l'audio du visiteur est décodé en mémoire, jamais écrit ni gardé (BNF8) ; le texte reconnu est
+rendu à l'interface, qui l'affiche avant de l'envoyer à /carte/chatbot. Le consentement au micro est demandé par
+l'interface avant le premier enregistrement.
 
 Le message rendu porte les balises [[ZONE:id:nom]], [[LOT:id:nom]], [[CHOIX:texte]], [[PDF:url:libellé]] que la carte
 rend cliquables. source : "dalila" (réponse vérifiée) ou "repli" (réponse de secours, contact de l'AFI). action :
@@ -18,7 +24,8 @@ hors délai.
 """
 import json, logging, os, threading
 from contextlib import asynccontextmanager
-from fastapi import FastAPI
+from fastapi import FastAPI, File, Form, HTTPException, UploadFile
+from fastapi.responses import Response
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 from dalila.config import db
@@ -30,6 +37,7 @@ log = logging.getLogger("dalila.api")
 AGENT = Agent()
 _CALCUL = threading.Lock()
 _ETAT = {"pret": False}
+_VOIX = threading.Lock()  # la voix ne passe pas derrière une réponse écrite (BNF3 : 4 s) ; un enregistrement à la fois
 
 
 @asynccontextmanager
@@ -134,3 +142,43 @@ def sante():
     except Exception:  # noqa: BLE001
         base = False
     return {"pret": _ETAT["pret"], "base": base, "modele": AGENT.modele}
+
+
+class Lecture(BaseModel):
+    texte: str = Field(..., max_length=4000)
+    lang: str | None = Field(None, max_length=10)
+
+
+@app.post("/carte/voix/transcrire")
+async def voix_transcrire(audio: UploadFile = File(...), lang: str | None = Form(None)):
+    from dalila.voix.reconnaissance import TAILLE_MAX, AudioInvalide, transcrire
+    octets = await audio.read(TAILLE_MAX + 1)  # en mémoire seulement : rien n'est écrit sur disque (BNF8)
+    try:
+        with _VOIX:
+            return transcrire(octets, lang)
+    except AudioInvalide as ex:
+        raise HTTPException(422, str(ex)) from ex
+    finally:
+        del octets
+
+
+@app.post("/carte/voix/lire")
+def voix_lire(l: Lecture):
+    from dalila.voix.synthese import lire
+    try:
+        with _VOIX:
+            wav = lire(l.texte, l.lang)
+    except Exception:  # noqa: BLE001  (BNF7 : la réponse reste affichée en texte)
+        log.exception("synthèse")
+        wav = None
+    return Response(content=wav, media_type="audio/wav") if wav else Response(status_code=204)
+
+
+@app.get("/essai", include_in_schema=False)
+def essai():
+    """Page d'essai locale de la voix et du chat (micro autorisé sur localhost sans HTTPS). DALILA_ESSAI=0 la retire."""
+    from fastapi.responses import HTMLResponse
+    from pathlib import Path
+    if os.environ.get("DALILA_ESSAI", "1") != "1":
+        raise HTTPException(404)
+    return HTMLResponse((Path(__file__).parent / "essai.html").read_text(encoding="utf-8"))

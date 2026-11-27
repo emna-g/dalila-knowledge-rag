@@ -131,6 +131,28 @@ les mots du visiteur, BGE-M3 trouve le passage attendu (rang 1 ou 2 pour R11, R1
 R42 et R47 (tunisien, question vague) sont des manques de la recherche elle-même. Étapes suivantes, dans l'ordre : corrections d'outils
 ciblées, puis ajustement du modèle (paires question → appel d'outil), puis seulement la mesure d'un modèle plus grand.
 
+## Voix (mesurée sur processeur, 8 fils)
+
+| Rôle | Choix | Licence | Pourquoi |
+|---|---|---|---|
+| Voix vers texte | **faster-whisper `small`** (int8) | MIT (modèle Whisper : MIT) | 3,0 s de médiane pour une question de 2 à 5 s (cible BNF3 : 4 s) ; langue détectée 5/5 ; exactitude 0,85 à 0,88 sur les mots. `large-v3-turbo` est plus exact (0,87) mais prend 16 s : écarté sur processeur. |
+| Texte vers voix | **Piper** (voix fr, en, de, tr, ar) | MIT | 0,7 à 0,9 s pour une réponse ; seul moteur local rapide qui couvre ces 5 langues. Kokoro (sans arabe, allemand, turc), XTTS-v2 et MMS-TTS (licences non commerciales, lents sur processeur) écartés. |
+
+En français, anglais, allemand et turc seulement, les noms des gouvernorats de la base sont donnés à Whisper comme mots
+favorisés (pas en arabe ni en dialecte : sur du tunisien mal compris, ils devenaient des suggestions, « عسلامة كيفاش
+تنجم تعاوني » reconnu « lot Sfax Sidi Bouzid ») : « Janduba », « S-Fax », « Biz ertede »
+deviennent Jendouba, Sfax, Bizerte (exactitude 0,78 -> 0,88, sans coût de temps mesurable). L'outil de lieu tolère
+aussi les fautes restantes. Mesure faite avec des voix de synthèse (optimiste) : `eval/voix_bench.py --dossier` mesure
+de vrais enregistrements dès qu'il y en a.
+
+Dialectes maghrébins : Whisper les comprend mal (le tunisien écrit en lettres arabes, lu par la voix arabe, est bien
+reconnu ; l'arabizi n'a pas de voix, la réponse reste en texte). Modèles spécialisés à mesurer ensuite sur de vrais
+enregistrements, convertis pour faster-whisper : [FarukSTT](https://huggingface.co/medyas/FarukSTT) (Whisper large-v3
+ajusté sur le tunisien, WER annoncé 32 % contre plus de 50 % pour la base ; trop lent sur processeur tel quel) et
+[whisper-large-v3-arabic-dialectal-v2](https://huggingface.co/oddadmix/whisper-large-v3-arabic-dialectal-v2) (libyen et
+algérien, chiffres sur très peu d'exemples). Un ajustement de Whisper `small` sur les jeux tunisiens ouverts (LinTO,
+CC BY 4.0) garderait la vitesse.
+
 ## Modèle de recherche
 
 **Choix : BGE-M3 (BAAI/bge-m3), sans reranker.** Mesuré le 2026-11-27 sur les 8 858 passages, mêmes questions, même
