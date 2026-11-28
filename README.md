@@ -31,7 +31,7 @@ frontend/               carte interactive et fenêtre de Dalila              à 
 eval/                   jeux de questions, évaluation, comparaison des modèles
 tests/                  tests automatiques : outils et harnais, sources, voix
 ajustement/             ajustement de l'agent : jeu d'entraînement, script Kaggle, Modelfile
-deploy/                 Docker Compose (MariaDB, Oxigraph, service)
+deploy/                 image Docker, préparation, scripts de la base et d'Ollama (docker-compose.yml à la racine)
 scripts/                page de test (tester.bat)
 docs/                   architecture, décisions, limites, exigences
 donnees/  modeles/      hors git : afi.sql et corpus, modèles téléchargés
@@ -129,15 +129,12 @@ Les tours sont journalisés anonymisés dans `agent_turns` ; les questions sans 
 - `.venv\Scripts\python -m eval.run_eval` : jeu de 30 questions du lexique ; `--questions eval/testset/<fichier>.csv` pour un autre jeu.
 - `.venv\Scripts\python -m dalila.langue.lexique.tests.tester_lexique` : tests du lexique tunisien.
 
-## Avec Docker
+## Avec Docker (recommandé)
 
-Depuis `deploy/`, avec le `.env` de la racine ; `afi.sql` dans `donnees/afi.sql`, le corpus dans `donnees/corpus/` :
+Une commande depuis la racine, avec `.env` rempli et la base exportée dans `donnees/dalila_base.sql.gz` (et si possible
+le modèle ajusté) : tout est expliqué dans **[docs/docker.md](docs/docker.md)**.
 ```
-docker compose --env-file ../.env up -d db                         MariaDB 11.8 ; afi.sql chargé tel quel au 1er démarrage
-docker compose --env-file ../.env --profile build run --rm ingest  tables, vues, graphe, vecteurs
-docker compose --env-file ../.env run --rm kg load --location /data --file /graphe/dalila.trig
-docker compose --env-file ../.env up -d kg                         graphe dans Oxigraph, SPARQL : http://localhost:7878
-docker compose --env-file ../.env --profile eval run --rm eval     évaluation, rapports dans eval/reports/
+docker compose up --build -d        puis http://127.0.0.1:8000/
 ```
 
 ## Règles
@@ -147,4 +144,4 @@ docker compose --env-file ../.env --profile eval run --rm eval     évaluation, 
 - Les données de l'AFI ne sont jamais copiées : une correction garde la valeur AFI d'origine et cesse de s'appliquer si l'AFI la change.
 - Les libellés non vérifiés (allemand, turc, algérien, libyen, formes tunisiennes non attestées) sont dans le graphe nommé **a-valider**.
 - Lexique : `translitteration_arabizi_tarc.csv` et `variantes_arabizi_tarc.csv` dérivent du corpus TArC (CC BY-NC-SA 4.0) : **démo seulement**.
-- `afi.sql` et le corpus ne sont jamais dans git ni dans l'image Docker : ils sont montés en lecture seule.
+- `afi.sql`, `dalila_base.sql.gz` et le corpus ne sont jamais dans git ni dans l'image Docker : ils sont montés au lancement.

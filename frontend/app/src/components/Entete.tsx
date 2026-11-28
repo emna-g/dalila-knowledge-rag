@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { Check, ChevronDown, Gavel, Globe, Home, MapPin, Scale } from 'lucide-react'
+import { Check, ChevronDown, Gavel, Globe, Home, LogIn, MapPin, Scale } from 'lucide-react'
 import clsx from 'clsx'
 import logo from '../assets/afi/logo.png'
 import { useLangue } from '../langue'
@@ -65,6 +65,11 @@ export function Entete({ encheres, onEncheres, nbComparer, onComparer, onAccueil
             {nbComparer > 0 && <span className="grid size-5 place-items-center rounded-full bg-marine text-[11px] font-bold text-white">{nbComparer}</span>}
           </button>
           <ChoixLangue />
+          <a href="/connexion/" className="flex min-h-10 items-center gap-2 rounded-xl border border-trait px-3 font-medium text-marine transition hover:bg-fond"
+            aria-label={langue === 'ar' ? 'تسجيل الدخول' : langue === 'en' ? 'Sign in' : 'Connexion'}>
+            <LogIn size={18} aria-hidden className="rtl:rotate-180" />
+            <span className="hidden lg:inline">{langue === 'ar' ? 'تسجيل الدخول' : langue === 'en' ? 'Sign in' : 'Connexion'}</span>
+          </a>
         </div>
       </nav>
     </header>

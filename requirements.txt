@@ -20,3 +20,10 @@ av==19.0.2
 fpdf2==2.9.0
 uharfbuzz==0.57.0
 sentencepiece==0.2.3
+# utilisés directement (avant : seulement installés par d'autres paquets ou à la main)
+transformers==5.24.1
+huggingface_hub==2.5.0
+Jinja2==3.1.6
+joblib==1.6.0
+scikit-learn==1.9.1
+pypdfium2==5.15.2

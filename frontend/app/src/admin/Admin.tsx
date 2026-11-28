@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState, type ReactNode } from 'react'
-import { AlertTriangle, ArrowLeft, Brain, Check, Download, ExternalLink, Globe2, KeyRound, MessageCircleQuestion, RefreshCw, Search, Undo2, X } from 'lucide-react'
+import { AlertTriangle, ArrowLeft, Brain, Check, Download, ExternalLink, Globe2, LogOut, MessageCircleQuestion, RefreshCw, Search, ShieldAlert, Undo2, UserRound, X } from 'lucide-react'
 import clsx from 'clsx'
 import logo from '../assets/afi/logo.png'
 
@@ -20,12 +20,10 @@ class ErreurAdmin extends Error {
   constructor(statut: number, message: string) { super(message); this.statut = statut }
 }
 
-const CLE = 'dalila_cle_admin'
-function lireCle() { try { return sessionStorage.getItem(CLE) ?? '' } catch { return '' } }
-
+// La session est un cookie HttpOnly posé par /auth/connexion : le navigateur l'envoie seul, la page ne le voit jamais.
 async function appel<T>(chemin: string, options: RequestInit = {}): Promise<T> {
-  const cle = lireCle()
-  const r = await fetch(chemin, { ...options, headers: { 'Content-Type': 'application/json', ...(cle ? { 'X-Cle-Admin': cle } : {}), ...options.headers } })
+  const r = await fetch(chemin, { ...options, credentials: 'same-origin', headers: { 'Content-Type': 'application/json', ...options.headers } })
+  if (r.status === 401) { location.replace('/connexion/'); throw new ErreurAdmin(401, 'connexion nécessaire') }
   if (!r.ok) {
     let detail = `Erreur ${r.status}`
     try { detail = (await r.json()).detail ?? detail } catch { /* corps vide */ }
@@ -57,9 +55,18 @@ type Onglet = 'questions' | 'apprentissage' | 'sources'
 
 export function Admin() {
   const [onglet, setOnglet] = useState<Onglet>(() => (['questions', 'apprentissage', 'sources'].includes(location.hash.slice(1)) ? location.hash.slice(1) as Onglet : 'questions'))
-  const [cle, setCle] = useState(lireCle)
+  const [compte, setCompte] = useState<{ identifiant: string; nom: string | null; role: string } | null>(null)
   const [refus, setRefus] = useState<string | null>(null)
   useEffect(() => { history.replaceState(null, '', `#${onglet}`) }, [onglet])
+  useEffect(() => {   // pas connecté : page de connexion ; connecté sans le rôle : message
+    appel<{ identifiant: string; nom: string | null; role: string }>('/auth/moi')
+      .then((c) => { if (c.role !== 'admin') setRefus("Ce compte n'a pas accès à l'administration."); setCompte(c) })
+      .catch(() => { /* 401 : déjà redirigé */ })
+  }, [])
+  const deconnecter = async () => {
+    try { await fetch('/auth/deconnexion', { method: 'POST', credentials: 'same-origin' }) } finally { location.replace('/connexion/') }
+  }
+  if (!compte) return <div className="min-h-full bg-fond" aria-busy="true" />
 
   const onglets: { id: Onglet; titre: string; sous: string; Icone: typeof Brain }[] = [
     { id: 'questions', titre: 'Questions mal traitées', sous: 'BF12', Icone: MessageCircleQuestion },
@@ -76,9 +83,15 @@ export function Admin() {
             <h1 className="text-xl font-bold text-marine">Administration de Dalila</h1>
             <p className="text-sm text-doux">Pour l'agent de l'AFI : ce que Dalila traite mal, ce qu'elle apprend, l'état de ses sources.</p>
           </div>
-          <a href="/" className="ms-auto flex min-h-10 shrink-0 items-center gap-2 rounded-xl border border-trait px-3 text-sm font-semibold text-marine hover:bg-fond">
+          <span className="ms-auto flex shrink-0 items-center gap-2 text-sm text-doux max-md:hidden">
+            <UserRound size={16} aria-hidden /> {compte.nom || compte.identifiant}
+          </span>
+          <a href="/" className="flex min-h-10 shrink-0 items-center gap-2 rounded-xl border border-trait px-3 text-sm font-semibold text-marine hover:bg-fond max-md:ms-auto">
             <ArrowLeft size={16} aria-hidden /> <span className="max-sm:hidden">Retour à la carte</span>
           </a>
+          <button type="button" onClick={deconnecter} className="flex min-h-10 shrink-0 items-center gap-2 rounded-xl border border-trait px-3 text-sm font-semibold text-marine hover:bg-fond">
+            <LogOut size={16} aria-hidden /> <span className="max-sm:hidden">Se déconnecter</span>
+          </button>
         </div>
         <nav className="mx-auto flex max-w-7xl gap-1 overflow-x-auto px-4 sm:px-6" role="tablist" aria-label="Écrans d'administration">
           {onglets.map(({ id, titre, sous, Icone }) => (
@@ -93,9 +106,9 @@ export function Admin() {
 
       <main className="mx-auto max-w-7xl px-4 py-6 sm:px-6">
         {refus != null ? (
-          <FormulaireCle message={refus} valeur={cle} onValider={(c) => { try { sessionStorage.setItem(CLE, c) } catch { /* navigation privée */ } setCle(c); setRefus(null) }} />
+          <Refus message={refus} onDeconnecter={deconnecter} />
         ) : (
-          <div key={cle}>
+          <div>
             {onglet === 'questions' && <Questions onRefus={setRefus} />}
             {onglet === 'apprentissage' && <Apprentissage onRefus={setRefus} />}
             {onglet === 'sources' && <SourcesEcran onRefus={setRefus} />}
@@ -107,24 +120,20 @@ export function Admin() {
 }
 
 /* ------------------------------------------------------------------ éléments communs */
-function FormulaireCle({ message, valeur, onValider }: { message: string; valeur: string; onValider: (c: string) => void }) {
-  const [c, setC] = useState(valeur)
+function Refus({ message, onDeconnecter }: { message: string; onDeconnecter: () => void }) {
   return (
-    <form onSubmit={(e) => { e.preventDefault(); onValider(c.trim()) }} className="mx-auto mt-10 max-w-md rounded-2xl border border-trait bg-white p-6 shadow-carte">
-      <KeyRound className="text-marine" aria-hidden />
-      <h2 className="mt-3 text-lg font-bold text-marine">Clé d'administration</h2>
+    <div className="mx-auto mt-10 max-w-md rounded-2xl border border-trait bg-white p-6 shadow-carte" role="alert">
+      <ShieldAlert className="text-alerte" aria-hidden />
+      <h2 className="mt-3 text-lg font-bold text-marine">Accès refusé</h2>
       <p className="mt-1 text-sm text-doux">{message}</p>
-      <label className="mt-4 block text-sm font-medium" htmlFor="cle">Clé (DALILA_ADMIN_CLE du serveur)</label>
-      <input id="cle" type="password" autoComplete="current-password" value={c} onChange={(e) => setC(e.target.value)}
-        className="mt-1 w-full rounded-xl border border-trait bg-fond px-3 py-2.5 focus:border-marine focus:outline-none" />
-      <button type="submit" className="mt-4 min-h-11 w-full rounded-xl bg-marine font-semibold text-white hover:bg-marine-fonce">Ouvrir</button>
-    </form>
+      <button type="button" onClick={onDeconnecter} className="mt-4 min-h-11 w-full rounded-xl bg-marine font-semibold text-white hover:bg-marine-fonce">Se connecter avec un autre compte</button>
+    </div>
   )
 }
 
 function useRefus<T>(r: ReturnType<typeof useDonnees<T>>, onRefus: (m: string) => void) {
   useEffect(() => {
-    if (r.erreur && (r.erreur.statut === 401 || r.erreur.statut === 403)) onRefus(r.erreur.message)
+    if (r.erreur && r.erreur.statut === 403) onRefus(r.erreur.message)   // 401 : renvoyé à la page de connexion
   }, [r.erreur, onRefus])
 }
 
@@ -274,7 +283,7 @@ function Apprentissage({ onRefus }: { onRefus: (m: string) => void }) {
   const annuler = async (a: Appris) => {
     setConfirmer(null)
     try {
-      await appel(`/admin/api/apprentissage/${a.genre}/${a.appris_id}/annuler`, { method: 'POST', body: JSON.stringify({ par: 'administrateur' }) })
+      await appel(`/admin/api/apprentissage/${a.genre}/${a.appris_id}/annuler`, { method: 'POST' })   // signé du compte connecté, côté serveur
       setMessage({ ok: true, texte: `« ${a.terme} » est annulé : Dalila ne l'utilise plus. Le journal garde la trace.` })
       r.recharger()
     } catch (e) {

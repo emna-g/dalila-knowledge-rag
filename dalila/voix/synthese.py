@@ -45,6 +45,7 @@ def texte_a_lire(texte, code):
     t = re.sub(r"\[\[(?:ZONE|LOT):[^:\]]*:([^\]]*)\]\]", r"\1", texte)   # [[LOT:5200:A30]] -> A30
     t = re.sub(r"\[\[CHOIX:([^\]]*)\]\]", r"\1.", t)
     t = re.sub(r"\[\[PDF:.*?\]\]", "", t)
+    t = t.replace("[[DEMANDE]]", "")                                       # bouton de l'interface (BF11) : pas lu
     t = re.sub(r"\[([^\]]+)\]\(https?://[^)]+\)", "", t)                    # sources : affichées, pas lues
     t = re.sub(r"https?://\S+", "", t)
     for symbole, mots in UNITES.get(code, []):

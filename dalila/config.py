@@ -4,6 +4,7 @@ Variables (fichier .env à la racine du dépôt, jamais dans git ; voir .env.exa
   DB_HOST, DB_PORT, DB_NAME, DB_ROOT_PASSWORD, DB_RO_USER, DB_RO_PASSWORD, DB_RW_USER, DB_RW_PASSWORD
   DALILA_DONNEES   dossier des données hors git (défaut : donnees/ ; le corpus est dans donnees/corpus/)
   DALILA_MODELES   dossier des modèles d'embeddings (défaut : modeles/)
+  DALILA_GRAPHE    dossier du graphe construit (store/, abox/ ; défaut : ontology/ ; Docker : un volume)
   DALILA_MODELE    modèle de recherche : "e5" (multilingual-e5-small), "bge" (BGE-M3) ou "qwen3" (Qwen3-Embedding-0.6B) ;
                    ses vecteurs doivent être calculés (dalila.connaissances.vectoriser). Choix : DECISIONS.md.
   DALILA_RERANKER  0 (défaut) ; 1 : reclassement par bge-reranker-v2-m3
@@ -28,6 +29,7 @@ MODELES = pathlib.Path(os.environ.get("DALILA_MODELES", RACINE / "modeles"))
 os.environ.setdefault("HF_HOME", str(MODELES))
 LEXIQUE = RACINE / "dalila" / "langue" / "lexique"
 ONTOLOGIE = RACINE / "ontology"
+GRAPHE = pathlib.Path(os.environ.get("DALILA_GRAPHE", ONTOLOGIE))  # sorties de construire_abox
 MODELES_RECHERCHE = {
     "e5": {"nom": "intfloat/multilingual-e5-small", "colonne": "embedding_e5", "dim": 384,
            "prefixe_question": "query: ", "prefixe_passage": "passage: "},

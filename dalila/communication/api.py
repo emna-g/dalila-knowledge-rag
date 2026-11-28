@@ -13,6 +13,7 @@ GET  /carte/demande?lot_id=&session_id=  -> demande d'acquisition préremplie (l
 POST /carte/demande/pdf    brouillon de la demande en PDF, seulement si confirme = true ; rien n'est déposé ni gardé (BF11)
 GET  /sante                -> état du service (modèle prêt, base joignable)
 GET  /admin/api/...         administration (questions mal traitées, apprentissage, sources) : voir admin.py
+POST /auth/connexion, /auth/deconnexion ; GET /auth/moi   comptes et sessions : voir comptes.py
 
 Voix (dalila/voix) : l'audio du visiteur est décodé en mémoire, jamais écrit ni gardé (BNF8) ; le texte reconnu est
 rendu à l'interface, qui l'affiche avant de l'envoyer à /carte/chatbot. Le consentement au micro est demandé par
@@ -70,6 +71,8 @@ app.add_middleware(CORSMiddleware, allow_origins=os.environ.get("DALILA_CORS", "
 
 from dalila.communication.admin import routeur as _admin  # noqa: E402  (BF12, BF15, BF21 : écrans d'administration)
 app.include_router(_admin)
+from dalila.communication.comptes import routeur as _comptes  # noqa: E402  (connexion des comptes)
+app.include_router(_comptes)
 
 
 class Message(BaseModel):

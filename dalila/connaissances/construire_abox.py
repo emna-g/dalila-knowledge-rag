@@ -15,7 +15,7 @@ le rapport donne la raison et le script sort avec le code 1. Le graphe précéde
 import gc, json, re, datetime, pathlib, shutil, sys
 from rdflib import Dataset, Graph, Namespace, Literal, URIRef, RDF, RDFS
 from rdflib.namespace import SKOS, DCTERMS, XSD, OWL
-from dalila.config import DONNEES, ONTOLOGIE, LEXIQUE, db
+from dalila.config import DONNEES, GRAPHE, ONTOLOGIE, LEXIQUE, RACINE, db
 
 DAL = Namespace("https://afi.nat.tn/ontology/dalila#")
 D = Namespace("https://afi.nat.tn/ontology/dalila/donnees/")
@@ -153,8 +153,11 @@ def main():
             abox.add((n, DCTERMS.source, src))
 
     # ---------------- Secteurs et activités : nomenclature de l'APII (page lue le 25/11)
-    nomen = None
-    for l in open(DONNEES / "corpus" / "pages_web.jsonl", encoding="utf-8"):
+    # page publique gardée dans db/reference/ (le graphe se construit sans le corpus) ; le corpus, s'il est là et plus
+    # récent, la remplace
+    nomen = json.load(open(RACINE / "db" / "reference" / "nomenclature_apii.json", encoding="utf-8"))["texte"]
+    pages = DONNEES / "corpus" / "pages_web.jsonl"
+    for l in (open(pages, encoding="utf-8") if pages.exists() else []):
         p = json.loads(l)
         if "mcat=12&mrub=213" in p["url"] and "/fr/" in p["url"]:
             nomen = p["texte"]
@@ -350,7 +353,7 @@ def main():
     # ---------------- Écriture, Oxigraph, contrôles
     # Tout est d'abord construit à côté (dalila.new.trig, store.new) ; le graphe en service (dalila.trig, store)
     # n'est remplacé QUE si tous les contrôles passent. Sinon il reste en place et le script sort en erreur.
-    out = ONTOLOGIE / "abox"
+    out = GRAPHE / "abox"
     out.mkdir(exist_ok=True)
     trig_new, trig = out / "dalila.new.trig", out / "dalila.trig"
     ds.serialize(trig_new, format="trig")
@@ -381,7 +384,7 @@ def main():
     owlrl.DeductiveClosure(owlrl.OWLRL_Semantics).expand(ferme)
     erreurs = [str(o) for o in ferme.objects(None, URIRef("http://www.daml.org/2002/03/agents/agent-ont#error"))]
     import pyoxigraph as ox
-    store_dir, store_new, store_prev = (ONTOLOGIE / n for n in ("store", "store.new", "store.prev"))
+    store_dir, store_new, store_prev = (GRAPHE / n for n in ("store", "store.new", "store.prev"))
     if store_new.exists():
         shutil.rmtree(store_new)  # reste d'une construction précédente interrompue
     store = ox.Store(str(store_new))

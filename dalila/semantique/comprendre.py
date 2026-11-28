@@ -11,7 +11,7 @@
 """
 import difflib, re, unicodedata
 import pyoxigraph as ox
-from dalila.config import ONTOLOGIE
+from dalila.config import GRAPHE
 
 DAL = "https://afi.nat.tn/ontology/dalila#"
 G = "https://afi.nat.tn/ontology/dalila/graphe/"
@@ -26,7 +26,7 @@ def norm(t):
 
 
 class Comprendre:
-    def __init__(self, store=ONTOLOGIE / "store"):
+    def __init__(self, store=GRAPHE / "store"):
         self.store = ox.Store.read_only(str(store))
         q = f"""SELECT ?s ?l ?type WHERE {{
           GRAPH ?g {{ ?s <http://www.w3.org/2004/02/skos/core#prefLabel>|<http://www.w3.org/2004/02/skos/core#altLabel>|<http://www.w3.org/2004/02/skos/core#hiddenLabel> ?l }}

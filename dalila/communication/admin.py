@@ -6,26 +6,15 @@ GET  /admin/api/apprentissage             journal de l'apprentissage : noms de l
 POST /admin/api/apprentissage/{genre}/{id}/annuler   genre : « lieu » ou « synonyme » ; le journal garde la trace
 GET  /admin/api/sources                   état de chaque URL de la configuration (lue, en erreur, à relire, en retard)
 
-Accès : avec DALILA_ADMIN_CLE dans .env, l'en-tête X-Cle-Admin doit la porter ; sans clé, seulement depuis la machine
-elle-même (127.0.0.1). Les questions affichées sont celles du journal, déjà anonymisées (BNF16).
+Accès : un compte « admin » connecté (dalila/communication/comptes.py : session par cookie HttpOnly, rôle relu dans
+la base à chaque requête) ; « Annuler » est signé du compte connecté. Les questions affichées sont celles du journal,
+déjà anonymisées (BNF16).
 """
-import datetime as dt, hmac, json, os
-from fastapi import APIRouter, Depends, Header, HTTPException, Request
-from pydantic import BaseModel, Field
+import datetime as dt, json
+from fastapi import APIRouter, Depends, HTTPException
+from dalila.communication.comptes import exiger
 
-LOCAL = {"127.0.0.1", "::1", "localhost", "testclient"}
-
-
-def autoriser(request: Request, x_cle_admin: str | None = Header(None)):
-    cle = os.environ.get("DALILA_ADMIN_CLE", "").strip()
-    if cle:
-        if not x_cle_admin or not hmac.compare_digest(x_cle_admin.encode(), cle.encode()):
-            raise HTTPException(401, "clé d'administration absente ou fausse")
-    elif (request.client.host if request.client else "") not in LOCAL:
-        raise HTTPException(403, "administration ouverte seulement depuis le serveur (ou avec DALILA_ADMIN_CLE)")
-
-
-routeur = APIRouter(prefix="/admin/api", tags=["administration"], dependencies=[Depends(autoriser)])
+routeur = APIRouter(prefix="/admin/api", tags=["administration"], dependencies=[Depends(exiger("admin"))])
 
 
 def _texte(v):
@@ -110,12 +99,8 @@ def journal_apprentissage():
     return sortie
 
 
-class Annulation(BaseModel):
-    par: str = Field("administrateur", max_length=80)
-
-
 @routeur.post("/apprentissage/{genre}/{appris_id}/annuler")
-def annuler(genre: str, appris_id: int, a: Annulation | None = None):
+def annuler(genre: str, appris_id: int, compte: dict = Depends(exiger("admin"))):
     if genre == "lieu":
         from dalila.apprentissage.lieux_appris import annuler as faire
     elif genre == "synonyme":
@@ -123,7 +108,7 @@ def annuler(genre: str, appris_id: int, a: Annulation | None = None):
     else:
         raise HTTPException(404, "genre inconnu : « lieu » ou « synonyme »")
     try:
-        ok = faire(appris_id, par=(a.par.strip() if a and a.par.strip() else "administrateur"))
+        ok = faire(appris_id, par=compte["identifiant"])   # le compte connecté, pas un nom saisi
     except Exception as ex:  # noqa: BLE001
         raise _base_indisponible(ex)
     if not ok:

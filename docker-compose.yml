@@ -1,0 +1,78 @@
+# Dalila avec Docker : tout se lance avec une commande, depuis la racine du dépôt (mode d'emploi : docs/docker.md).
+#
+#   docker compose up --build -d        puis http://127.0.0.1:8000/
+#
+# Avant : .env (copie de .env.example, mots de passe remplis) ; dans donnees/ : dalila_base.sql.gz (notre base exportée)
+# ajustement/modele/dalila.Q4_K_M.gguf (le modèle de l'agent) et langue_latin.joblib (détection de la langue).
+# Premier lancement : téléchargement des modèles (≈ 6 Go) ; les suivants démarrent en une minute environ.
+
+name: dalila
+
+x-dalila: &dalila
+  build: {context: ., dockerfile: deploy/Dockerfile}
+  image: dalila:latest
+  env_file: .env
+  environment:
+    DB_HOST: db
+    DB_PORT: "3306"
+    DALILA_LLM_URL: http://ollama:11434
+  volumes:
+    - modeles:/models
+    - graphe:/graphe
+    - ./donnees:/data
+
+services:
+  db:
+    image: mariadb:11.8
+    environment:
+      MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:?mettre DB_ROOT_PASSWORD dans .env}
+      MARIADB_DATABASE: afi
+    command: ["--character-set-server=utf8mb4", "--collation-server=utf8mb4_general_ci", "--max-allowed-packet=256M"]
+    volumes:
+      - base:/var/lib/mysql
+      - ./deploy/initdb.sh:/docker-entrypoint-initdb.d/00_dalila.sh:ro
+      - ./donnees:/donnees:ro
+    ports:
+      - "127.0.0.1:${DB_PORT_HOTE:-33062}:3306"   # pour les outils de la machine (facultatif)
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
+      retries: 60
+      start_period: 5m   # premier démarrage : chargement de la base
+
+  ollama:
+    image: ollama/ollama:0.40.17
+    entrypoint: ["/bin/sh", "/deploy/ollama.sh"]
+    environment:
+      OLLAMA_KEEP_ALIVE: "-1"   # le modèle reste chargé : pas d'attente à la première question
+      DALILA_LLM: ${DALILA_LLM:-}
+    volumes:
+      - ollama:/root/.ollama
+      - ./deploy/ollama.sh:/deploy/ollama.sh:ro
+      - ./ajustement:/work/ajustement:ro
+      - ./donnees/ajustement/modele:/work/donnees/ajustement/modele:ro
+    healthcheck:
+      test: ["CMD", "test", "-f", "/tmp/pret"]
+      interval: 10s
+      retries: 30
+      start_period: 60m  # premier démarrage : installation du modèle
+
+  # tables, vues, comptes, graphe et modèles : une fois, puis rien à refaire (chaque étape est sautée si déjà faite)
+  preparer:
+    <<: *dalila
+    command: ["python", "-m", "deploy.preparer"]
+    depends_on:
+      db: {condition: service_healthy}
+    restart: "no"
+
+  dalila:
+    <<: *dalila
+    ports:
+      - "127.0.0.1:8000:8000"
+    depends_on:
+      db: {condition: service_healthy}
+      ollama: {condition: service_healthy}
+      preparer: {condition: service_completed_successfully}
+    restart: unless-stopped
+
+volumes: {base: {}, ollama: {}, modeles: {}, graphe: {}}

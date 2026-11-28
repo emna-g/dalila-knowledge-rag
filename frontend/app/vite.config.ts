@@ -11,11 +11,11 @@ export default defineConfig({
   plugins: [react(), tailwindcss()],
   server: {
     port: 5173,
-    proxy: { '/carte': API, '/sante': API, '/dalila': API, '/admin/api': API },
+    proxy: { '/carte': API, '/sante': API, '/dalila': API, '/admin/api': API, '/auth': API },
   },
   build: {
     chunkSizeWarningLimit: 1500,
-    // deux pages : la carte (/) et l'administration (/admin/)
-    rollupOptions: { input: { carte: resolve(__dirname, 'index.html'), admin: resolve(__dirname, 'admin/index.html') } },
+    // trois pages : la carte (/), l'administration (/admin/) et la connexion (/connexion/)
+    rollupOptions: { input: { carte: resolve(__dirname, 'index.html'), admin: resolve(__dirname, 'admin/index.html'), connexion: resolve(__dirname, 'connexion/index.html') } },
   },
 })

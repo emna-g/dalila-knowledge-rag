@@ -8,8 +8,8 @@ from dalila.voix import reconnaissance, synthese
 
 def test_texte_a_lire():
     t = synthese.texte_a_lire("7 lots. 2 904 m² à 32 DT/m².\n- [[LOT:5200:A30]] Zone · [[CHOIX:Tunis]] "
-                              "[[PDF:https://x/y.pdf:Plan]] [AFI](https://www.afi.nat.tn/)", "fr")
-    assert "[[" not in t and "http" not in t and "A30" in t and "Tunis" in t  # balises lues par leur libellé
+                              "[[PDF:https://x/y.pdf:Plan]] [AFI](https://www.afi.nat.tn/) [[DEMANDE]]", "fr")
+    assert "[[" not in t and "DEMANDE" not in t and "http" not in t and "A30" in t and "Tunis" in t  # balises lues par leur libellé
     assert "2904 mètres carrés" in t and "32 dinars le mètre carré" in t      # unités dites en mots
 
 

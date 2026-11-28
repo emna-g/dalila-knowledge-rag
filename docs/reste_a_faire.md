@@ -13,6 +13,8 @@ Pour chaque point : ce qui manque, où se trouve le code utile, comment s'y pren
 | **Livrable 3** | Fait : [mesures.md](mesures.md) (2026-11-28). | | |
 | **Livrable 5** | Fait : [note_limites.md](note_limites.md) (2026-11-28). | | |
 | **BF11** | Fait : demande d'acquisition préremplie, PDF après confirmation (`dalila/traitement/demande.py`, `GET /carte/demande`, `POST /carte/demande/pdf`). | Tests : `python -m tests.communication.test_demande`. | |
+| **Docker** | Le premier lancement complet n'est **pas encore validé de bout en bout**. Vérifié dans les conteneurs : chargement de `dalila_base.sql.gz`, migrations, textes à citer (8 858, vecteurs gardés), graphe, voix Piper. Non vérifié : fin du téléchargement des modèles Hugging Face, installation du modèle ajusté dans Ollama (erreur « cannot allocate memory » avec 8 Go donnés à Docker), réponse du service. | `docker-compose.yml`, `deploy/`, [docker.md](docker.md) | Donner 12 Go à Docker, `docker compose up --build -d`, suivre `docker compose logs -f`, poser une question ; corriger ce qui casse. |
+| **BF35** (souhaité) | **Mémoire par utilisateur** : comptes promoteurs, conversations gardées, résumé de chaque projet (activité, lieu, surface, budget, emplois, lots vus) construit à partir des appels d'outils, donné à l'agent au début de chaque message. Fait : la connexion (comptes, sessions). | `dalila/communication/comptes.py` (comptes, sessions), `dalila/harnais/agent.py` (`note_contexte` : même place que le contexte de la carte) | Rôle `promoteur` ; tables des conversations et des projets ; rangement de chaque échange dans un projet par proximité de l'activité ; écran « Mes projets ». Tester sur des conversations qui sautent d'un projet à l'autre. |
 | **BF13** (souhaité) | **Conversation vocale continue**, sans bouton à chaque tour. | Interface : `frontend/app/src/dalila/Dalila.tsx` (micro, lecture) ; service : `/carte/voix/transcrire`, `/carte/voix/lire`. | Côté interface : après la lecture d'une réponse, rouvrir le micro ; arrêt sur silence (détection d'activité vocale dans le navigateur) ; garder l'affichage du texte reconnu (BF7). |
 | **Voix tunisienne** (objectif du cahier) | Une **voix tunisienne** pour lire le tunisien. Aujourd'hui : voix arabe standard, en le signalant (BF8 respecté). | `dalila/voix/synthese.py` | Candidat : TunArTTS (Elyadata, Apache 2.0, ESPnet) ; il demande un texte entièrement vocalisé (tashkeel) : trouver ou entraîner un vocaliseur tunisien, puis mesurer à l'écoute. Autres : silma-tts-derja, tunisian-xtts-v1 (cités par le cahier, non évalués). |
 
@@ -38,7 +40,7 @@ Le jury apportera ses propres questions : à vérifier en priorité.
 | **BNF6** | Démontrer ordinateur, tablette, téléphone et l'arabe de droite à gauche. | À vérifier sur les 3 formats. |
 | **BNF9** | HTTPS en production (le micro du navigateur l'exige). | Nginx du serveur de l'AFI. |
 | **BF9** | Couper ou activer la lecture vocale **à tout moment** (aujourd'hui : bouton par réponse). | Un interrupteur global. |
-| **BF12, BF21, BF15** | Fait : http://127.0.0.1:8000/admin/ (3 écrans) ; routes `/admin/api/...` (`dalila/communication/admin.py`) ; accès par `DALILA_ADMIN_CLE` ou depuis le serveur seulement. | Tests : `python -m tests.communication.test_admin`. |
+| **BF12, BF21, BF15** | Fait : http://127.0.0.1:8000/admin/ (3 écrans) ; routes `/admin/api/...` (`dalila/communication/admin.py`) ; accès par un compte administrateur connecté (`/connexion/`, `dalila/communication/comptes.py`). | Tests : `python -m tests.communication.test_admin`, `test_comptes`. |
 | — | Afficher la note de lecture d'un dialecte et le commentaire d'avis | Fait (commit 5c52345). |
 
 ## 4. Points faibles mesurés (pour la suite)
@@ -50,10 +52,10 @@ Le jury apportera ses propres questions : à vérifier en priorité.
 
 ## 5. Mise en route sur une autre machine
 
-1. Base : migrations `db/migrations/004` à `008` à passer sur toute copie existante (avis, apprentissage, réponse journalisée, commentaire d'avis, synonymes).
-2. `.env` à la racine (copie de `.env.example`, jamais dans git).
-3. Modèle de l'agent : le fichier `dalila.Q4_K_M.gguf` (2,5 Go, sortie du carnet Kaggle privé `dalila-ajustement-qwen3-4b`) dans `donnees/ajustement/modele/`, puis `ollama create dalila-qwen3-4b -f ajustement/Modelfile` ; sinon `ollama pull qwen3:4b-instruct` (utilisé seul).
-4. Voix : `dalila/voix/README.md` (voix Piper à télécharger ; Whisper, le modèle tunisien, la détection de langue et le modèle des noms se téléchargent au premier appel dans `modeles/`).
-5. Détection de la langue : `python -m dalila.langue.entrainer_detection` (crée `modeles/langue_latin.joblib`).
-6. Lancer : `.venv\Scripts\python -m uvicorn frontend.serveur:app --host 127.0.0.1 --port 8000`, puis http://127.0.0.1:8000/.
-7. Tests : `tests/traitement`, `tests/apprentissage`, `tests/voix`, `tests/langue`, `tests/harnais`, `tests/sources`, `tests/communication` (chacun : `python -m tests.<dossier>.<fichier>`).
+Avec Docker, une commande : **[docker.md](docker.md)** (le dépôt, `.env`, les trois fichiers de `donnees/` reçus d'un
+membre de l'équipe, puis `docker compose up --build -d`). Sans Docker : le README, section « Installer (Windows, sans
+Docker) », puis les migrations `db/migrations/004` à `008` sur toute base existante.
+
+Tests : `tests/traitement`, `tests/apprentissage`, `tests/voix`, `tests/langue`, `tests/harnais`, `tests/sources`,
+`tests/communication` (chacun : `python -m tests.<dossier>.<fichier>` ; avec Docker :
+`docker compose run --rm preparer python -m tests.<dossier>.<fichier>`).

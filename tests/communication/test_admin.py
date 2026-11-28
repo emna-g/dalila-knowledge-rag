@@ -2,7 +2,7 @@
 
 python -m tests.communication.test_admin
 
-Les tests avec la base posent des données de test (puis les effacent) ; sans base, ils sont sautés et le disent.
+Les tests avec la base posent des données de test et un compte administrateur de test (puis les effacent).
 """
 import datetime as dt, json, os
 
@@ -12,23 +12,26 @@ from dalila.communication.api import app  # noqa: E402
 from dalila.communication.admin import etat_source, ligne_journal  # noqa: E402
 from dalila.config import db  # noqa: E402
 
-LOCAL = TestClient(app)                                  # depuis le serveur lui-même
-DISTANT = TestClient(app, client=("10.1.2.3", 50000))    # depuis une autre machine
+from dalila.communication import comptes  # noqa: E402
+
 SESSION = "test-admin"
 ALIAS = "Qassrinn-admin-test"
+COMPTE, MOT = "test-admin-ecrans", "mot de passe des tests admin"
+ORIGINE = {"Origin": "http://testserver"}
+LOCAL = TestClient(app, headers=ORIGINE)        # un administrateur connecté (voir _connecter), même depuis le serveur
+
+
+def _connecter():
+    _root("DELETE FROM agent_comptes WHERE identifiant = %s", COMPTE)
+    comptes.creer(COMPTE, "admin", MOT)
+    assert LOCAL.post("/auth/connexion", json={"identifiant": COMPTE, "mot_de_passe": MOT}).status_code == 200
 
 
 def test_acces():
-    os.environ.pop("DALILA_ADMIN_CLE", None)
-    assert DISTANT.get("/admin/api/sources").status_code == 403          # sans clé : seulement en local
+    anonyme = TestClient(app)                   # même depuis la machine : sans compte, rien (plus d'exception « local »)
+    assert anonyme.get("/admin/api/sources").status_code == 401
+    assert anonyme.get("/admin/api/besoins").status_code == 401
     assert LOCAL.get("/admin/api/sources").status_code == 200
-    os.environ["DALILA_ADMIN_CLE"] = "cle-de-test"
-    try:
-        assert LOCAL.get("/admin/api/sources").status_code == 401        # avec une clé : même en local, il la faut
-        assert DISTANT.get("/admin/api/sources", headers={"X-Cle-Admin": "fausse"}).status_code == 401
-        assert DISTANT.get("/admin/api/sources", headers={"X-Cle-Admin": "cle-de-test"}).status_code == 200
-    finally:
-        os.environ.pop("DALILA_ADMIN_CLE", None)
     assert LOCAL.post("/admin/api/apprentissage/prix/1/annuler").status_code == 404   # rien d'autre ne s'annule
 
 
@@ -100,22 +103,23 @@ def test_avec_la_base():
               cid, '{"lieu_existe": true}', f"agent_appris_lieux/{lid}")
         a = next(x for x in LOCAL.get("/admin/api/apprentissage").json() if x["candidat"] == cid)
         assert a["annulable"] and a["appris_id"] == lid and a["conversations"] == 2
-        assert LOCAL.post(f"/admin/api/apprentissage/lieu/{lid}/annuler", json={"par": "test admin"}).json() == {"ok": True}
+        assert LOCAL.post(f"/admin/api/apprentissage/lieu/{lid}/annuler").json() == {"ok": True}
         a = next(x for x in LOCAL.get("/admin/api/apprentissage").json() if x["candidat"] == cid)
-        assert a["statut"] == "annule" and not a["actif"] and not a["annulable"] and a["annule_par"] == "test admin"
+        assert a["statut"] == "annule" and not a["actif"] and not a["annulable"] and a["annule_par"] == COMPTE   # signé
         assert LOCAL.post("/admin/api/apprentissage/lieu/999999999/annuler").status_code == 404
     finally:
         _nettoyer()
 
 
 if __name__ == "__main__":
-    for t in (test_acces, test_etat_source, test_route_sources, test_ligne_journal):
-        t()
-        print("ok", t.__name__)
+    test_etat_source()
+    print("ok test_etat_source")
+    test_ligne_journal()
+    print("ok test_ligne_journal")
+    _connecter()   # base nécessaire : les écrans demandent un compte
     try:
-        db("rw").close()
-    except Exception:  # noqa: BLE001
-        print("sauté test_avec_la_base : base injoignable (docker start dalila-db)")
-    else:
-        test_avec_la_base()
-        print("ok test_avec_la_base")
+        for t in (test_acces, test_route_sources, test_avec_la_base):
+            t()
+            print("ok", t.__name__)
+    finally:
+        _root("DELETE FROM agent_comptes WHERE identifiant = %s", COMPTE)
