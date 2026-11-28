@@ -48,7 +48,13 @@ export interface ReponseDalila {
   source: 'dalila' | 'repli' | string
   action: string | null
   duree_s: number
+  /** langue détectée du message (codes du contrat : fr, en, ar, de, tr, tn, dz, ly) et son écriture */
+  langue?: string | null
+  ecriture?: 'arabe' | 'latin' | string | null
+  /** session à renvoyer : sert à suivre une étude de projet guidée */
+  session_id?: string | null
 }
 
 export type LangueUI = 'fr' | 'ar' | 'en'
-export type LangueDalila = 'fr' | 'ar' | 'aeb' | 'arq' | 'ayl' | 'en' | 'de' | 'tr'
+// codes du contrat /carte/chatbot (cahier des charges, IV.3) : tunisien tn, algérien dz, libyen ly
+export type LangueDalila = 'fr' | 'ar' | 'tn' | 'dz' | 'ly' | 'en' | 'de' | 'tr'

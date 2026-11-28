@@ -50,12 +50,24 @@ export const api = {
     if (!r.ok) throw new Error(`HTTP ${r.status}`)
     return (await r.json()) as ReponseDalila
   },
-  avis: (log_id: number, utile: boolean) => envoyer('/carte/chatbot/avis', { log_id, utile }, 15000),
+  /** Avis, avec un commentaire facultatif (flux F06). */
+  avis: (log_id: number, utile: boolean, commentaire?: string) =>
+    envoyer('/carte/chatbot/avis', { log_id, utile, commentaire: commentaire?.trim() || null }, 15000),
 
-  /** POST /carte/voix/lire : WAV, ou null (204 : pas de voix pour cette écriture, la réponse reste en texte). */
-  async voix(texte: string, lang: string): Promise<Blob | null> {
+  /** POST /carte/etude : première question de l'étude de projet guidée (10 questions, puis PDF). */
+  async etude(session_id: string, lang: string) {
+    const r = await envoyer('/carte/etude', { session_id, lang }, 30000)
+    if (!r.ok) throw new Error(`HTTP ${r.status}`)
+    return (await r.json()) as ReponseDalila
+  },
+
+  /** POST /carte/voix/lire : WAV, ou null (204 : pas de voix, la réponse reste en texte) ; note : un dialecte lu par
+   *  la voix arabe est signalé par l'API (en-tête X-Dalila-Lecture, BF8). */
+  async voix(texte: string, lang: string): Promise<{ wav: Blob | null; note: string | null }> {
     const r = await envoyer('/carte/voix/lire', { texte, lang }, 45000)
-    return r.status === 200 ? await r.blob() : null
+    const brut = r.headers.get('X-Dalila-Lecture')
+    const note = brut ? new DOMParser().parseFromString(brut, 'text/html').documentElement.textContent : null
+    return { wav: r.status === 200 ? await r.blob() : null, note }
   },
 
   /** POST /carte/voix/transcrire : l'audio n'est ni écrit ni gardé par le service. */

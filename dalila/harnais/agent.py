@@ -43,6 +43,11 @@ HORS_SUJET = {"type": "function", "function": {
                    "industriel en Tunisie (cuisine, politique, données personnelles, création de compte...), ou n'est "
                    "qu'une salutation ou un remerciement. Toute question sur l'AFI elle-même n'est pas hors sujet.",
     "parameters": {"type": "object", "properties": {}}}}
+ETUDE = {"type": "function", "function": {
+    "name": "etude_de_projet",
+    "description": "Commencer l'étude de projet guidée : 10 questions, puis une étude en PDF. À appeler quand le "
+                   "visiteur demande une étude, un dossier, un plan ou un rapport sur son projet.",
+    "parameters": {"type": "object", "properties": {}}}}
 CONSIGNE_HORS_SUJET = {"hors_sujet": True, "consigne": "Réponds poliment, sans aucune donnée : pour une salutation, "
                        "salue ; sinon dis que tu ne peux pas aider pour cela. Rappelle en une phrase ce que tu sais faire "
                        "(lots et zones industrielles, démarches de l'AFI, incitations, organismes d'investissement)."}
@@ -112,7 +117,7 @@ class Agent:
     def __init__(self, modele=None, delai_s=35.0, etapes_max=6, appels_par_etape=4):
         self.modele = modele or MODELE_LLM
         self.delai_s, self.etapes_max, self.appels_par_etape = delai_s, etapes_max, appels_par_etape
-        self.outils = [d for d in definitions() if d["function"]["name"] not in OUTILS_CACHES] + [HORS_SUJET]
+        self.outils = [d for d in definitions() if d["function"]["name"] not in OUTILS_CACHES] + [HORS_SUJET, ETUDE]
 
     def prechauffer(self):
         """Au démarrage du service : charge le modèle de recherche (BGE-M3) et le modèle de langue, et fait lire une
@@ -183,6 +188,10 @@ class Agent:
                 for c in appels:
                     cle = c["nom"] + json.dumps(c["arguments"], sort_keys=True, ensure_ascii=False)
                     t = time.time()
+                    if c["nom"] == "etude_de_projet":  # l'entretien est mené par le code (API, traitement/etude.py)
+                        journal.append({"etape": etape, "outil": c["nom"], "arguments": {}, "erreur": None, "duree_s": 0,
+                                        "duree_modele_s": r["duree_s"]})
+                        return sortie("", "etude_demandee", etape=etape)
                     if c["nom"] == "hors_sujet":
                         res = CONSIGNE_HORS_SUJET
                     elif cle in deja:

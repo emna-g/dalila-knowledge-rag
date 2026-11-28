@@ -105,6 +105,10 @@ Pour revoir les décisions sur les données (rarement) :
    (fr, en, ar, de, tr, tn, dz, ly : codes du contrat) et `ecriture` (arabe ou latin). Avis : `POST /carte/chatbot/avis`
    `{"log_id": 12, "utile": true, "commentaire": "facultatif"}`. Documentation interactive : http://localhost:8000/docs.
 
+Étude de projet guidée (10 questions, puis PDF) : `POST /carte/etude` `{session_id, lang}`, ou à la demande du
+visiteur dans le chat ; tant qu'elle dure, `/carte/chatbot` reçoit les réponses (même `session_id`) ; le PDF :
+`GET /carte/etude/{id}.pdf` (dossier `donnees/etudes/`, hors git).
+
 Voix : `POST /carte/voix/transcrire` (fichier `audio` envoyé par le micro du navigateur, `lang`) rend le texte reconnu,
 à afficher puis envoyer à `/carte/chatbot` ; `POST /carte/voix/lire` (`texte`, `lang`) rend la réponse lue (WAV).
 Modèles de voix à installer une fois : voir `dalila/voix/README.md`.

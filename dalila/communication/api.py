@@ -7,6 +7,8 @@ POST /carte/chatbot        {message, history, lang, contexte, session_id}
 POST /carte/chatbot/avis   {log_id, utile, commentaire facultatif}  -> {ok}
 POST /carte/voix/transcrire  fichier « audio » (webm, ogg, wav...) + lang facultatif -> {texte, langue, confiance, duree_s}
 POST /carte/voix/lire       {texte, lang} -> audio/wav ; dialecte lu par la voix arabe : en-tête X-Dalila-Lecture (BF8)
+POST /carte/etude           {session_id, lang} -> première question de l'étude de projet guidée (10 questions, PDF)
+GET  /carte/etude/{id}.pdf  -> l'étude en PDF ; pendant une étude, /carte/chatbot reçoit les réponses aux questions
 GET  /sante                -> état du service (modèle prêt, base joignable)
 
 Voix (dalila/voix) : l'audio du visiteur est décodé en mémoire, jamais écrit ni gardé (BNF8) ; le texte reconnu est
@@ -82,8 +84,9 @@ class Reponse(BaseModel):
     source: str
     action: str | None
     duree_s: float
-    langue: str | None = Field(None, description="langue détectée du message : fr, en, ar, de, tr, aeb (tunisien), "
-                                                 "arq (algérien), ayl (libyen)")
+    langue: str | None = Field(None, description="langue détectée du message : fr, en, ar, de, tr, tn (tunisien), "
+                                                 "dz (algérien), ly (libyen)")
+    session_id: str | None = Field(None, description="session (créée si absente : à renvoyer pour suivre une étude)")
     ecriture: str | None = Field(None, description="arabe ou latin")
 
 
@@ -111,6 +114,10 @@ def _ecrire(sql, *p):
 @app.post("/carte/chatbot", response_model=Reponse)
 def chatbot(q: Question):
     lang = (q.lang or "fr").strip().lower()[:10]
+    from dalila.traitement import etude
+    session = q.session_id or __import__("secrets").token_hex(8)
+    if q.session_id and etude.en_cours(q.session_id):  # étude guidée en cours : la réponse va à l'entretien, sans modèle
+        return _reponse_etude(etude.repondre(q.session_id, q.message), session, q, lang)
     try:
         with _CALCUL:
             r = AGENT.repondre(q.message, historique=[m.model_dump() for m in q.history], lang=lang,
@@ -119,8 +126,10 @@ def chatbot(q: Question):
         log.exception("agent")
         r = {"reponse": REPLI.get(lang[:2], REPLI["fr"]), "source": "repli", "outils": [], "duree_s": 0.0,
              "erreur": type(ex).__name__}
-    texte = masquer((q.message or "").strip()[:500])
     det = r.get("langue_detectee") or {}
+    if r["source"] == "etude_demandee":  # le modèle a reconnu une demande d'étude : l'entretien commence
+        return _reponse_etude(etude.commencer(session, det.get("langue") or lang, q.message), session, q, lang, det)
+    texte = masquer((q.message or "").strip()[:500])
     langue = det.get("langue") or lang
     outils = [{"outil": o["outil"], "arguments": o.get("arguments"), **({"arguments_modele": o["arguments_modele"]}
               if o.get("arguments_modele") else {})} for o in r["outils"]]  # lieu inconnu : pour l'apprentissage
@@ -134,7 +143,39 @@ def chatbot(q: Question):
                 texte, langue, (r.get("erreur") or "repli")[:60])
     return Reponse(message=r["reponse"], log_id=log_id, source=r["source"],
                    action="choix" if "[[CHOIX:" in r["reponse"] else None, duree_s=r["duree_s"],
-                   langue=det.get("langue"), ecriture=det.get("ecriture"))
+                   langue=det.get("langue"), ecriture=det.get("ecriture"), session_id=session)
+
+
+def _reponse_etude(e, session, q, lang, det=None):
+    det = det or {}
+    log_id = _ecrire("INSERT INTO agent_turns (session_id, texte_anonymise, langue, outils, garde_faits, latence_ms, "
+                     "source) VALUES (%s, %s, %s, %s, %s, %s, %s)", session, masquer((q.message or "")[:500]),
+                     det.get("langue") or lang, json.dumps([{"outil": "etude_de_projet"}]), "etude", 0, "etude")
+    return Reponse(message=e["message"], log_id=log_id, source="etude",
+                   action="choix" if "[[CHOIX:" in e["message"] else ("etude_pdf" if e.get("pdf") else None),
+                   duree_s=0.0, langue=det.get("langue"), ecriture=det.get("ecriture"), session_id=session)
+
+
+class DebutEtude(BaseModel):
+    session_id: str = Field(..., max_length=64)
+    lang: str | None = Field(None, max_length=10)
+
+
+@app.post("/carte/etude", response_model=Reponse)
+def etude_commencer(d: DebutEtude):
+    from dalila.traitement import etude
+    q = Question(message="", lang=d.lang, session_id=d.session_id)
+    return _reponse_etude(etude.commencer(d.session_id, d.lang or "fr"), d.session_id, q, d.lang or "fr")
+
+
+@app.get("/carte/etude/{jeton}.pdf")
+def etude_pdf(jeton: str):
+    from fastapi.responses import FileResponse
+    from dalila.traitement import etude
+    p = etude.chemin_pdf(jeton)
+    if not p:
+        raise HTTPException(404)
+    return FileResponse(p, media_type="application/pdf", filename="etude-de-projet-dalila.pdf")
 
 
 @app.post("/carte/chatbot/avis")

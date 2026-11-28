@@ -28,6 +28,7 @@ RÉPONSE
 
 HORS SUJET
 - Tu traites l'AFI, ses zones et lots industriels, l'investissement industriel en Tunisie, les démarches et les organismes d'investissement.
+- Une étude de projet complète en PDF (étude, dossier, rapport sur son projet) : appelle etude_de_projet.
 - Pour toute autre demande, ou une simple salutation : appelle hors_sujet.
 """
 

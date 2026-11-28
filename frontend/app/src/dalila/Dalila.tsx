@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import {
-  BadgePercent, ChevronDown, FileCheck2, MapPinned, Mic, Minus, RotateCcw, SendHorizontal, Square, ThumbsDown, ThumbsUp,
+  BadgePercent, ChevronDown, ClipboardList, FileCheck2, MapPinned, Mic, Minus, RotateCcw, SendHorizontal, Square, ThumbsDown, ThumbsUp,
   Volume2, X, AlertTriangle,
 } from 'lucide-react'
 import clsx from 'clsx'
@@ -23,6 +23,8 @@ interface Message {
   reponse?: ReponseDalila
   analyse?: Analyse
   avis?: boolean
+  commentaire?: string
+  commentaireEnvoye?: boolean
   parVoix?: boolean
 }
 
@@ -42,7 +44,11 @@ let suivant = 1
 
 export function Dalila({ ouvert, onFermer, demande, contexte, onRetirerContexte, onZone, onLot, onCiter }: Props) {
   const { t: tUI, langue } = useLangue()
-  const [lang, setLang] = useState<LangueDalila>(() => (localStorage.getItem('dalila_lang') as LangueDalila) || langue)
+  const [lang, setLang] = useState<LangueDalila>(() => {
+    const v = localStorage.getItem('dalila_lang') ?? ''
+    const anciens: Record<string, LangueDalila> = { aeb: 'tn', arq: 'dz', ayl: 'ly' }  // codes d'avant le contrat
+    return anciens[v] ?? ((v as LangueDalila) || langue)
+  })
   const [messages, setMessages] = useState<Message[]>([])
   const [saisie, setSaisie] = useState('')
   const [occupe, setOccupe] = useState(false)
@@ -54,7 +60,7 @@ export function Dalila({ ouvert, onFermer, demande, contexte, onRetirerContexte,
   const [consentement, setConsentement] = useState(false)
   const [lecture, setLecture] = useState<number | null>(null)
   const [menuLangue, setMenuLangue] = useState(false)
-  const session = useRef(crypto.randomUUID?.() ?? String(Date.now()))
+  const session = useRef<string>(crypto.randomUUID?.() ?? String(Date.now()))
   const fil = useRef<HTMLDivElement>(null)
   const champ = useRef<HTMLTextAreaElement>(null)
   const audio = useRef<HTMLAudioElement | null>(null)
@@ -66,7 +72,7 @@ export function Dalila({ ouvert, onFermer, demande, contexte, onRetirerContexte,
 
   useEffect(() => { localStorage.setItem('dalila_lang', lang) }, [lang])
   // l'interface change de langue : Dalila suit, sauf si le visiteur a choisi un dialecte
-  useEffect(() => { setLang((l) => (['aeb', 'arq', 'ayl'].includes(l) && langue === 'ar' ? l : langue)) }, [langue])
+  useEffect(() => { setLang((l) => (['tn', 'dz', 'ly'].includes(l) && langue === 'ar' ? l : langue)) }, [langue])
 
   /* service prêt ? */
   useEffect(() => {
@@ -113,8 +119,9 @@ export function Dalila({ ouvert, onFermer, demande, contexte, onRetirerContexte,
     arreterLecture()
     setLecture(m.id)
     try {
-      const wav = await api.voix(m.texte, m.lang)
+      const { wav, note: noteLecture } = await api.voix(m.texte, m.lang)
       if (!wav) { setLecture(null); setNote({ texte: t.dlPasDeVoix }); return }
+      if (noteLecture) setNote({ texte: noteLecture })   // BF8 : dialecte lu par la voix arabe, signalé
       const url = URL.createObjectURL(wav)
       const a = new Audio(url)
       audio.current = a
@@ -138,6 +145,7 @@ export function Dalila({ ouvert, onFermer, demande, contexte, onRetirerContexte,
     } catch (e) {
       r = { message: (e as Error).name === 'AbortError' ? t.dlDelai : t.dlHorsService, log_id: null, source: 'repli', action: null, duree_s: 0 }
     }
+    if (r.session_id) session.current = r.session_id
     const a = analyser(r.message)
     const msg: Message = { id: suivant++, role: 'dalila', texte: r.message, lang: langEnvoi, reponse: r, analyse: a, parVoix }
     setMessages((ms) => [...ms, msg])
@@ -188,6 +196,24 @@ export function Dalila({ ouvert, onFermer, demande, contexte, onRetirerContexte,
     api.avis(m.reponse.log_id, utile).catch(() => {})
     setMessages((ms) => ms.map((x) => (x.id === m.id ? { ...x, avis: utile } : x)))
   }
+  /* commentaire facultatif après « pas utile » (flux F06) */
+  const commenter = (m: Message) => {
+    if (m.reponse?.log_id == null || !m.commentaire?.trim()) return
+    api.avis(m.reponse.log_id, false, m.commentaire).catch(() => {})
+    setMessages((ms) => ms.map((x) => (x.id === m.id ? { ...x, commentaireEnvoye: true } : x)))
+  }
+
+  /* étude de projet guidée : 10 questions, puis l'étude en PDF (les réponses passent ensuite par le chat) */
+  const commencerEtude = async () => {
+    if (occupe) return
+    setNote(null); setOccupe(true); setEtat('recherche')
+    try {
+      const r = await api.etude(session.current, lang)
+      if (r.session_id) session.current = r.session_id
+      setMessages((ms) => [...ms, { id: suivant++, role: 'dalila', texte: r.message, lang, reponse: r, analyse: analyser(r.message) }])
+    } catch { setNote({ texte: t.dlHorsService, erreur: true }) }
+    setOccupe(false); setEtat('repos')
+  }
 
   const nouvelle = () => { arreterLecture(); setMessages([]); setNote(null); onCiter([]); session.current = crypto.randomUUID?.() ?? String(Date.now()) }
   const cas = useMemo(() => [MapPinned, BadgePercent, FileCheck2], [])
@@ -199,7 +225,7 @@ export function Dalila({ ouvert, onFermer, demande, contexte, onRetirerContexte,
         <motion.aside initial={{ x: rtl ? -40 : 40, opacity: 0 }} animate={{ x: 0, opacity: 1 }} exit={{ x: rtl ? -40 : 40, opacity: 0 }}
           transition={{ type: 'spring', stiffness: 320, damping: 32 }}
           className="fixed inset-0 z-40 flex flex-col bg-white lg:static lg:inset-auto lg:z-auto lg:h-full lg:w-[440px] lg:shrink-0 lg:border-s lg:border-trait"
-          aria-label={t.dlNom} dir={rtl ? 'rtl' : 'ltr'} lang={['aeb', 'arq', 'ayl'].includes(lang) ? 'ar' : lang}
+          aria-label={t.dlNom} dir={rtl ? 'rtl' : 'ltr'} lang={['tn', 'dz', 'ly'].includes(lang) ? 'ar' : lang}
           onKeyDown={(e) => { if (e.key === 'Escape') onFermer() }}>
 
           {/* en-tête */}
@@ -305,7 +331,14 @@ export function Dalila({ ouvert, onFermer, demande, contexte, onRetirerContexte,
                     </div>
                   )}
                   <div className="mt-3 flex items-center gap-1 border-t border-brume pt-2 text-xs text-doux">
-                    <span className="me-auto">{m.avis != null ? t.dlMerci : m.reponse?.duree_s ? `${Math.round(m.reponse.duree_s)} ${t.dlSecondes}` : ''}</span>
+                    <span className="me-auto">
+                      {m.avis != null ? t.dlMerci : m.reponse?.duree_s ? `${Math.round(m.reponse.duree_s)} ${t.dlSecondes}` : ''}
+                      {m.reponse?.langue && (
+                        <span className="ms-2 rounded-md bg-fond px-1.5 py-0.5" title={t.dlLangueDetectee}>
+                          {LANGUES_DALILA.find((l) => l.code === m.reponse?.langue)?.nom.split(' · ')[0] ?? m.reponse.langue}
+                        </span>
+                      )}
+                    </span>
                     <Icone etiquette={lecture === m.id ? t.dlStop : t.dlLire} actif={lecture === m.id} onClick={() => lire(m)}>
                       {lecture === m.id ? <Square size={15} aria-hidden /> : <Volume2 size={16} aria-hidden />}
                     </Icone>
@@ -314,6 +347,15 @@ export function Dalila({ ouvert, onFermer, demande, contexte, onRetirerContexte,
                       <Icone etiquette={t.dlPasUtile} actif={m.avis === false} onClick={() => avis(m, false)}><ThumbsDown size={15} aria-hidden /></Icone>
                     </>)}
                   </div>
+                  {m.avis === false && !m.commentaireEnvoye && (
+                    <form className="mt-2 flex gap-1.5" onSubmit={(e) => { e.preventDefault(); commenter(m) }}>
+                      <input value={m.commentaire ?? ''} maxLength={500} dir="auto" placeholder={t.dlCommentaire} aria-label={t.dlCommentaire}
+                        onChange={(e) => setMessages((ms) => ms.map((x) => (x.id === m.id ? { ...x, commentaire: e.target.value } : x)))}
+                        className="min-h-9 min-w-0 flex-1 rounded-lg border border-trait px-2.5 text-[13px] outline-none focus:border-lien" />
+                      <button type="submit" disabled={!m.commentaire?.trim()}
+                        className="min-h-9 rounded-lg bg-marine px-3 text-[13px] font-semibold text-white disabled:opacity-40">{t.dlCommentaireEnvoyer}</button>
+                    </form>
+                  )}
                 </div>
               </motion.div>
             ))}
@@ -359,6 +401,12 @@ export function Dalila({ ouvert, onFermer, demande, contexte, onRetirerContexte,
 
           {/* saisie */}
           <form className="border-t border-trait bg-white p-3" onSubmit={(e) => { e.preventDefault(); envoyer(saisie) }}>
+            <div className="mb-2 flex">
+              <button type="button" onClick={commencerEtude} disabled={occupe || service === 'absent'}
+                className="flex min-h-9 items-center gap-1.5 rounded-xl border border-marine/20 bg-marine/[0.03] px-3 text-[13px] font-semibold text-marine transition hover:border-marine hover:bg-marine hover:text-white disabled:opacity-40">
+                <ClipboardList size={15} aria-hidden /> {t.dlEtude}
+              </button>
+            </div>
             <div className={clsx('flex items-end gap-2 rounded-2xl border bg-fond/60 p-1.5 transition focus-within:border-lien focus-within:bg-white focus-within:ring-2 focus-within:ring-lien/20',
               etat === 'ecoute' ? 'border-ciel ring-2 ring-ciel/30' : 'border-trait')}>
               <label htmlFor="dalila-champ" className="sr-only">{t.dlPlaceholder}</label>

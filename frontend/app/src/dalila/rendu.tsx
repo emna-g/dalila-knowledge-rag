@@ -27,7 +27,9 @@ export interface Analyse {
 type Morceau = { t: 'texte'; v: string } | { t: 'gras'; v: string } | { t: 'zone'; id: number; nom: string } | { t: 'lot'; id: number; numero: string } | { t: 'lien'; url: string; v: string }
 type Bloc = { t: 'p'; lignes: Morceau[][] } | { t: 'liste'; items: Morceau[][] }
 
-const sur = (u: string) => (/^https?:\/\//i.test(u) ? u : null)
+// liens absolus, ou chemins du service (« /carte/etude/….pdf » : l'étude de projet) servis par l'API
+const API = ((import.meta.env.VITE_API as string | undefined) ?? '').replace(/\/+$/, '')
+const sur = (u: string) => (/^https?:\/\//i.test(u) ? u : /^\/carte\/[\w/.-]+$/.test(u) ? API + u : null)
 function couper(v: string, aLaFin = false): [string, string] {
   const i = aLaFin ? v.lastIndexOf(':') : v.indexOf(':')
   return i < 0 ? [v, v] : [v.slice(0, i), v.slice(i + 1)]
