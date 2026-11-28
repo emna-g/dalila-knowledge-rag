@@ -3,6 +3,20 @@
 Les choix en vigueur et leurs preuves (2026-11-26). Les décisions sur chaque donnée (prix, distance, lot…) sont dans
 [db/corrections/DESACCORDS.md](../db/corrections/DESACCORDS.md).
 
+## Algérien et libyen abandonnés (2026-11-28)
+
+Décision de l'équipe : Dalila ne propose plus l'algérien ni le libyen ; langues retenues : français, anglais, arabe
+standard, allemand, turc, tunisien (lettres arabes et arabizi). Retirés : le choix de langue de l'interface, les codes
+`dz` et `ly` du contrat, les libellés `@arq` et `@ayl` du graphe, les exemples du générateur d'ajustement, les questions
+de test.
+
+Un message algérien ou libyen reste compris, rendu comme **tunisien**, la variété voisine, et non comme arabe standard :
+le modèle des dialectes arabes (MADAR-26) confond souvent ces voisins. Mesuré : un message tunisien du lexique lu
+« Alger » est maintenant juste (lexique tunisien 30/32 -> 31/32) ; aucun autre jeu ne change (vraies questions 54/57).
+Le classifieur des lettres latines garde sa classe « arabizi algérien », rendue comme tunisien (pas de réentraînement :
+le modèle mesuré reste en service). Le modèle ajusté de l'agent a vu quelques exemples algériens et libyens à
+l'entraînement ; le prochain ajustement n'en aura plus.
+
 ## Architecture
 
 | Décision | Preuve |

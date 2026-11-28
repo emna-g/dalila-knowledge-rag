@@ -79,4 +79,4 @@ OCR illisible marqué « secondaire ».
 - **Démarches** : services de l'AFI, procédures, étapes, pièces à fournir et frais (réponses validées de l'AFI).
 - **Incitations** : avantages des zones 1 et 2 du développement régional, cités mot pour mot depuis la TIA.
 - **Organismes** : AFI, APII, TIA, FIPA, APIA, SICAD, ANPE, GMG.
-- **Libellés** : français partout ; formes tunisiennes attestées ; traductions en 8 langues **à valider**.
+- **Libellés** : français partout ; formes tunisiennes attestées ; traductions en 6 langues **à valider**.

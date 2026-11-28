@@ -2,7 +2,7 @@
 
 La carte interactive des zones industrielles de l'AFI (version 2.0) avec Dalila intégrée : recherche et filtres, fiche
 complète de chaque zone, lots dessinés sur la carte avec leur état, vue satellite, comparateur de zones, conversation
-en 8 langues avec la voix, arabe de droite à gauche. Pas de Laravel (docs/decisions.md, « Pile propre à l'équipe »).
+en 6 langues avec la voix, arabe de droite à gauche. Pas de Laravel (docs/decisions.md, « Pile propre à l'équipe »).
 
 | | |
 |---|---|
@@ -39,7 +39,7 @@ React 19, TypeScript, Vite, Tailwind CSS 4, MapLibre GL 6 (fond OpenFreeMap, sat
 | Carte | `Carte.tsx` | Zones regroupées (nombre de lots disponibles), couleur selon l'état ; lots d'une zone dessinés (couleur + motif + mot dans la légende) ; lot choisi en jaune ; plan / satellite ; noms des lieux dans la langue de l'interface ; zones citées par Dalila qui pulsent. |
 | Fiche de zone | `FicheZone.tsx` | Prix et prix après subvention, lots disponibles, surfaces ; onglets : aperçu (lots par état), lots (liste filtrable, fiche du lot avec prix du terrain), infrastructures (accès, réseaux, services proches), documents (cahiers des charges, plans). « Demander à Dalila » envoie la question avec la zone ou le lot en contexte. |
 | Comparateur | `Comparateur.tsx` | 2 ou 3 zones côte à côte : prix, lots, surfaces, accès, réseaux ; le meilleur est signalé. |
-| Dalila | `app/src/dalila/` | Mascotte et 3 cas d'usage à l'accueil ; réponses en fiches (`[[ZONE]]`, `[[LOT]]` → la carte s'y rend, `[[PDF]]` → document, `[[CHOIX]]` → boutons, sources) ; attente avec étapes et secondes ; micro avec consentement, texte reconnu vérifié avant l'envoi ; lecture à voix haute ; avis utile / pas utile ; 8 langues (fr, ar, tunisien, algérien, libyen, en, de, tr) ; contexte de la carte. |
+| Dalila | `app/src/dalila/` | Mascotte et 3 cas d'usage à l'accueil ; réponses en fiches (`[[ZONE]]`, `[[LOT]]` → la carte s'y rend, `[[PDF]]` → document, `[[CHOIX]]` → boutons, sources) ; attente avec étapes et secondes ; micro avec consentement, texte reconnu vérifié avant l'envoi ; lecture à voix haute ; avis utile / pas utile ; 6 langues (fr, ar, tunisien, en, de, tr) ; contexte de la carte. |
 | Données | `serveur.py` | `GET /carte/zones`, `/carte/zones/{id}` (fiche), `/carte/zones/{id}/lots` (contours), `/carte/lots/{id}`. |
 
 La fenêtre de Dalila existe aussi seule (`public/dalila/dalila.js`, sans React), pour l'ajouter à la carte actuelle de

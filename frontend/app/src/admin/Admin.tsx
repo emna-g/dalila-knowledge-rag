@@ -48,7 +48,7 @@ function useDonnees<T>(chemin: string) {
 }
 
 const date = (s: string | null) => s ? new Date(s.replace(' ', 'T')).toLocaleString('fr-FR', { dateStyle: 'short', timeStyle: 'short' }) : '—'
-const LANGUES: Record<string, string> = { fr: 'Français', en: 'Anglais', ar: 'Arabe', aeb: 'Tunisien', tn: 'Tunisien', arq: 'Algérien', dz: 'Algérien', ayl: 'Libyen', ly: 'Libyen', de: 'Allemand', tr: 'Turc' }
+const LANGUES: Record<string, string> = { fr: 'Français', en: 'Anglais', ar: 'Arabe', aeb: 'Tunisien', tn: 'Tunisien', de: 'Allemand', tr: 'Turc' }
 
 /* ------------------------------------------------------------------ page */
 type Onglet = 'questions' | 'apprentissage' | 'sources'

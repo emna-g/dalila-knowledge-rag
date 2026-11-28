@@ -102,7 +102,7 @@ Pour revoir les décisions sur les données (rarement) :
    ```
    Réponse : `message` (avec les balises `[[ZONE]]`, `[[LOT]]`, `[[CHOIX]]`, `[[PDF]]`), `log_id`, `source`
    (`dalila` ou `repli`), `action` (`choix` si des boutons sont proposés), `duree_s`, `langue` détectée
-   (fr, en, ar, de, tr, tn, dz, ly : codes du contrat) et `ecriture` (arabe ou latin). Avis : `POST /carte/chatbot/avis`
+   (fr, en, ar, de, tr, tn : codes du contrat) et `ecriture` (arabe ou latin). Avis : `POST /carte/chatbot/avis`
    `{"log_id": 12, "utile": true, "commentaire": "facultatif"}`. Documentation interactive : http://localhost:8000/docs.
 
 Étude de projet guidée (10 questions, puis PDF) : `POST /carte/etude` `{session_id, lang}`, ou à la demande du
@@ -142,6 +142,6 @@ docker compose up --build -d        puis http://127.0.0.1:8000/
 - Un chiffre (prix, surface, disponibilité, distance) vient **toujours** des vues `v_pub_*`, jamais d'un passage ni du graphe.
 - Le compte `dalila_ro` ne lit que les vues publiques : les noms des acquéreurs (`LOT_PROMOTEUR`) et les contrats lui sont inaccessibles.
 - Les données de l'AFI ne sont jamais copiées : une correction garde la valeur AFI d'origine et cesse de s'appliquer si l'AFI la change.
-- Les libellés non vérifiés (allemand, turc, algérien, libyen, formes tunisiennes non attestées) sont dans le graphe nommé **a-valider**.
+- Les libellés non vérifiés (allemand, turc, formes tunisiennes non attestées) sont dans le graphe nommé **a-valider**.
 - Lexique : `translitteration_arabizi_tarc.csv` et `variantes_arabizi_tarc.csv` dérivent du corpus TArC (CC BY-NC-SA 4.0) : **démo seulement**.
 - `afi.sql`, `dalila_base.sql.gz` et le corpus ne sont jamais dans git ni dans l'image Docker : ils sont montés au lancement.

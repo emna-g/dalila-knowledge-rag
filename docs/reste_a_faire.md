@@ -26,8 +26,8 @@ Le jury apportera ses propres questions : à vérifier en priorité.
 |---|---|---|
 | **BF2** | « 3andi projet sardine » et « عندي مشروع سردين » donnent le même résultat. | Deux appels à `/carte/chatbot` ; comparer les outils appelés et les activités rendues. |
 | **BF17** | « terrain », « plot », « أرض », « 9at3a » mènent au même concept ; une question reformulée trouve la même connaissance. | Outil `relier_concepts` (caché à l'agent, encore dans le registre) et `chercher_passages` sur des paraphrases. |
-| **BF4** | Chaque fonction (terrain, proximité, qualification, procédure, étude) se déclenche **dans chaque langue**. | Comme `eval/bf22_langues.py` (fait pour la procédure : 9/9) ; à étendre aux autres fonctions. |
-| **BNF13** | Même question = mêmes zones et mêmes chiffres dans les 8 langues (cible 100 %). | Même question en 8 langues ; comparer les identifiants `[[ZONE]]`, `[[LOT]]` et les nombres rendus. |
+| **BF4** | Chaque fonction (terrain, proximité, qualification, procédure, étude) se déclenche **dans chaque langue**. | Comme `eval/bf22_langues.py` (fait pour la procédure : 7/7) ; à étendre aux autres fonctions. |
+| **BNF13** | Même question = mêmes zones et mêmes chiffres dans les 6 langues (cible 100 %). | Même question en 6 langues ; comparer les identifiants `[[ZONE]]`, `[[LOT]]` et les nombres rendus. |
 | **BNF14** | Une page piégée (« ignore tes consignes… ») ne change pas le comportement de Dalila. | Ajouter une page piégée au corpus de test, poser une question qui la ramène, vérifier la réponse. |
 | **BF14** | Une URL ajoutée à la configuration alimente une réponse, sans modifier le code. | `dalila/sources/config_sources.csv`, puis `scripts/rafraichir_sources.bat` ; poser une question sur la page ajoutée. |
 | **BNF5** | Français, anglais, arabe : aucune régression. | Le jeu de test réel est surtout en français (49/57) : ajouter des questions en anglais et en arabe, puis `eval/agent_bench.py`. |
@@ -45,7 +45,14 @@ Le jury apportera ses propres questions : à vérifier en priorité.
 
 ## 4. Points faibles mesurés (pour la suite)
 
-- **Algérien parlé** : 93 % de mots faux, avec tous les modèles essayés. Piste : ajuster Whisper `small` sur CAFE (35 h, algérien mêlé de français, ouvert), sur Kaggle comme l'agent.
+- **Style algérien ou libyen encore produit par le modèle ajusté** (vu le 2026-11-28, après l'abandon de ces
+  dialectes) : une question tunisienne écrite à l'algérienne (« n7eb terrain f Sousse ») reçoit la tournure algérienne
+  apprise à l'entraînement (« Kayen 4 lots… Li r5as… l metro ») ; une phrase libyenne, la tournure libyenne (« فيه 4 قطع »).
+  Langue détectée et chiffres justes ; seule la tournure change. Avec « fi », 5 questions tunisiennes sur 5 reçoivent
+  du tunisien. Correction : un nouvel ajustement (le générateur ne produit plus ces exemples) ; pas de remplacement de
+  mots écrit à la main.
+- **Projet inventé** : « 3andi projet, nlawej 3la ma9sem fi Nabeul » (aucune activité donnée) a reçu « Construction de
+  véhicules automobiles… 3 emplois » ; Dalila devrait demander l'activité. À mettre dans les tests de bout en bout.
 - **Tunisien brut dans la recherche de passages** : 17/30 sans les anciennes règles (21/30 avec). Piste : ajuster BGE-M3 sur des paires question tunisienne -> passage.
 - **Modèle ajusté de l'agent** : questions sur les textes de l'AFI parfois envoyées vers les lots (peu d'exemples de démarches à l'entraînement : 73 sur 816). Piste : un second ajustement avec plus d'exemples, et les conversations réelles exportées (`python -m dalila.apprentissage.exporter`).
 - **Arabizi lu à voix haute** : converti en lettres arabes par le dictionnaire du lexique ; les mots inconnus restent en lettres latines et sont mal prononcés.

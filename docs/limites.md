@@ -82,7 +82,7 @@ acte de précision ou contrat final : 150 DT ; copie conforme : 15 DT par copie.
 ## 6. Langues
 
 - Les réponses validées de l'AFI sont presque toutes en français : traduire la présentation, jamais les chiffres.
-- Traductions des familles du graphe en allemand, turc, algérien et libyen : écrites par Claude, **à relire**
+- Traductions des familles du graphe en allemand et turc : écrites par Claude, **à relire**
   (graphe nommé `a-valider`).
 
 ## 7. Agent (Qwen3-4B sur processeur)
@@ -91,15 +91,15 @@ acte de précision ou contrat final : 150 DT ; copie conforme : 15 DT par copie.
   sujet, un lieu réécrit au lieu d'être recopié, le mauvais outil pour un cahier des charges, un nom d'outil écrit au
   lieu d'être appelé (le harnais répond alors par le repli, avec le contact de l'AFI).
 - Démarches demandées en allemand ou en turc : réponse en partie en français (les réponses de l'AFI sont en français).
-- Jeu de test surtout en français (49 questions sur 57) : allemand, turc, algérien et libyen vérifiés à la main
+- Jeu de test surtout en français (49 questions sur 57) : allemand et turc vérifiés à la main
   seulement.
 - Ajustement du modèle en cours (Kaggle) : adopté seulement s'il fait mieux au même banc d'essai.
 
 ## 8. Voix
 
 - Dialectes : le tunisien est transcrit par un modèle tunisien (38 % de mots faux sur de vrais extraits, contre 69 %
-  pour Whisper seul) ; le libyen y perd un peu (46 % de mots faux contre 33 % avec Whisper seul) ; l'algérien spontané
-  est mal reconnu par les deux modèles (93 à 94 % de mots faux) : ajustement nécessaire (jeu CAFE, ouvert).
+  pour Whisper seul). L'algérien et le libyen ne sont plus proposés (2026-11-28) : parlés, ils sont transcrits par le
+  modèle tunisien, sans garantie (mesuré avant l'abandon : 93 % de mots faux en algérien, 46 % en libyen).
 - Une phrase de plus de 6 à 8 s en tunisien peut dépasser 4 s de reconnaissance (deux modèles : détection, puis
   transcription).
 - Noms de lieux dits dans une phrase anglaise, allemande ou turque : parfois mal reconnus (« Sousse » -> « sauce »).

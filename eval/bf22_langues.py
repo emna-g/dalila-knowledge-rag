@@ -1,4 +1,4 @@
-"""Test d'acceptation BF22 dans les 8 langues du cahier des charges :
+"""Test d'acceptation BF22 dans les 6 langues retenues (tunisien en arabizi et en lettres arabes) :
 « La banque me demande un papier pour mon prêt » mène, éventuellement après une question à choix, à l'attestation
 d'insertion d'hypothèque.
 
@@ -20,8 +20,6 @@ QUESTIONS = {
     "tr": "Banka kredim için benden bir belge istiyor",
     "tn (arabizi)": "el banka tlabet menni war9a 3al crédit mte3i",
     "tn (lettres arabes)": "البنكة طلبت مني ورقة على الكريدي متاعي",
-    "dz": "la banque tlab menni war9a 3la le crédit ta3i",
-    "ly": "المصرف طلب مني ورقة عشان القرض متاعي",
 }
 
 

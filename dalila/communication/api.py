@@ -94,8 +94,7 @@ class Reponse(BaseModel):
     source: str
     action: str | None
     duree_s: float
-    langue: str | None = Field(None, description="langue détectée du message : fr, en, ar, de, tr, tn (tunisien), "
-                                                 "dz (algérien), ly (libyen)")
+    langue: str | None = Field(None, description="langue détectée du message : fr, en, ar, de, tr, tn (tunisien)")
     session_id: str | None = Field(None, description="session (créée si absente : à renvoyer pour suivre une étude)")
     ecriture: str | None = Field(None, description="arabe ou latin")
 

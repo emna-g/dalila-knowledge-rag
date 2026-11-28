@@ -11,8 +11,8 @@ commande indiquée (depuis la racine du projet, avec `.venv\Scripts\python`).
 | **BNF1** : chiffres exacts, tous tirés des données de l'AFI | 100 % | Le harnais vérifie chaque nombre et chaque zone ou lot cité avant l'envoi ; nombre de lots juste dans **10 réponses sur 16** au banc d'essai (voir § 2) | Vérification en place ; exactitude du modèle à améliorer |
 | **BNF2** : temps de réponse à l'écrit | ≤ 35 s | Médiane **19,5 s**, 95 % des réponses en moins de **31,9 s**, **aucune** au-delà de 35 s (40 questions) | Atteint |
 | **BNF3** : reconnaissance de la voix | ≤ 4 s | Médiane **3,0 s** (fr, en, de, tr, ar) ; **3,7 s** en tunisien sur de vrais extraits | Atteint, sauf phrases tunisiennes de plus de 6 à 8 s |
-| **BF22** : démarche trouvée dans les 8 langues | 8 langues | **9 sur 9** (8 langues, tunisien écrit en lettres latines et en lettres arabes) | Atteint |
-| Détection de la langue | 8 langues | **24 sur 24** sur le jeu des 8 langues ; **54 sur 57** sur de vraies questions | Atteint |
+| **BF22** : démarche trouvée dans chaque langue | 6 langues | **7 sur 7** (6 langues, tunisien écrit en lettres latines et en lettres arabes ; mesuré sur 9 avant l'abandon de l'algérien et du libyen, tous justes) | Atteint |
+| Détection de la langue | 6 langues | **18 sur 18** sur le jeu des 6 langues ; **54 sur 57** sur de vraies questions ; **31 sur 32** sur le lexique tunisien | Atteint |
 
 ## 2. L'agent (réponses écrites)
 
@@ -56,7 +56,7 @@ Le 1.7b est écarté : trop d'erreurs et de réponses trop lentes.
 
 Test BF22 (une démarche, « la banque me demande un papier pour mon prêt », dans chaque langue) :
 `python -m eval.bf22_langues` -> `bf22_langues.json`. Bon service trouvé **9 fois sur 9** (fr, en, ar, de, tr, tunisien en
-lettres latines et arabes, algérien, libyen), en **28 s environ** chaque fois.
+lettres latines et arabes, et algérien, libyen avant leur abandon le 2026-11-28), en **28 s environ** chaque fois.
 
 ## 3. La voix
 
@@ -79,8 +79,8 @@ Commande : `python -m eval.voix_bench` -> `voix_resume.json` ; sur de vrais enre
 | | Whisper `small` seul | Réglage retenu (modèle tunisien pour l'arabe) |
 |---|---|---|
 | Tunisien (LinTO, 25 extraits) | 69 % / 28 % | **38 % / 19 %** (médiane 3,7 s) |
-| Libyen (lahgtna, 20 extraits) | 33 % / 12 % | 46 % / 18 % |
-| Algérien (télévision, 20 extraits) | 94 % / 54 % | 93 % / 53 % |
+
+L'algérien et le libyen ne sont plus proposés (2026-11-28) ; mesurés avant : libyen 46 % / 18 %, algérien 93 % / 53 %.
 
 **Lecture (texte -> voix)**, Piper : une réponse est prête à être lue en **0,7 s** (fr, en, de, tr) et **1,0 s** (arabe).
 
@@ -90,9 +90,9 @@ Détection de la langue : `python -m dalila.langue.detection --mesurer` -> `dete
 
 | Jeu de test | Justes |
 |---|---|
-| 8 langues (3 phrases chacune) | **24 / 24** |
+| 6 langues (3 phrases chacune) | **18 / 18** |
 | Vraies questions des visiteurs | **54 / 57** |
-| Lexique tunisien | **30 / 32** |
+| Lexique tunisien | **31 / 32** (un message tunisien lu « Alger » est maintenant rendu comme tunisien) |
 
 Recherche des passages dans les textes de l'AFI (le bon passage parmi les 5 premiers) : `python -m eval.recherche_bench`
 -> `recherche_regles.json` ; comparaison des modèles : `python -m eval.comparer_modeles` et `python -m eval.vitesse_cpu`.
@@ -101,7 +101,7 @@ Recherche des passages dans les textes de l'AFI (le bon passage parmi les 5 prem
 |---|---|---|
 | Vraies questions | 10 / 15 | 2,0 s |
 | Questions en tunisien | 17 / 30 | 1,9 s |
-| 8 langues | 14 / 16 | 1,9 s |
+| 8 langues (mesuré avant le retrait des questions algériennes et libyennes) | 14 / 16 | 1,9 s |
 
 Modèle retenu : BGE-M3, sans reranker (le reranker n'améliore rien et ajoute 15 s sur processeur). Détail des
 6 réglages comparés : `docs/decisions.md`, section « Modèle de recherche ».

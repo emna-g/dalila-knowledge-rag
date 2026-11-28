@@ -47,7 +47,7 @@ export function Dalila({ ouvert, onFermer, demande, contexte, onRetirerContexte,
   const { t: tUI, langue } = useLangue()
   const [lang, setLang] = useState<LangueDalila>(() => {
     const v = localStorage.getItem('dalila_lang') ?? ''
-    const anciens: Record<string, LangueDalila> = { aeb: 'tn', arq: 'dz', ayl: 'ly' }  // codes d'avant le contrat
+    const anciens: Record<string, LangueDalila> = { aeb: 'tn', arq: 'tn', ayl: 'tn', dz: 'tn', ly: 'tn' }  // anciens codes ; algérien et libyen abandonnés
     return anciens[v] ?? ((v as LangueDalila) || langue)
   })
   const [messages, setMessages] = useState<Message[]>([])
@@ -73,7 +73,7 @@ export function Dalila({ ouvert, onFermer, demande, contexte, onRetirerContexte,
 
   useEffect(() => { localStorage.setItem('dalila_lang', lang) }, [lang])
   // l'interface change de langue : Dalila suit, sauf si le visiteur a choisi un dialecte
-  useEffect(() => { setLang((l) => (['tn', 'dz', 'ly'].includes(l) && langue === 'ar' ? l : langue)) }, [langue])
+  useEffect(() => { setLang((l) => (l === 'tn' && langue === 'ar' ? l : langue)) }, [langue])
 
   /* service prêt ? */
   useEffect(() => {
@@ -226,7 +226,7 @@ export function Dalila({ ouvert, onFermer, demande, contexte, onRetirerContexte,
         <motion.aside initial={{ x: rtl ? -40 : 40, opacity: 0 }} animate={{ x: 0, opacity: 1 }} exit={{ x: rtl ? -40 : 40, opacity: 0 }}
           transition={{ type: 'spring', stiffness: 320, damping: 32 }}
           className="fixed inset-0 z-40 flex flex-col bg-white lg:static lg:inset-auto lg:z-auto lg:h-full lg:w-[440px] lg:shrink-0 lg:border-s lg:border-trait"
-          aria-label={t.dlNom} dir={rtl ? 'rtl' : 'ltr'} lang={['tn', 'dz', 'ly'].includes(lang) ? 'ar' : lang}
+          aria-label={t.dlNom} dir={rtl ? 'rtl' : 'ltr'} lang={lang === 'tn' ? 'ar' : lang}
           onKeyDown={(e) => { if (e.key === 'Escape') onFermer() }}>
 
           {/* en-tête */}

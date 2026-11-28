@@ -14,7 +14,7 @@ import type { LangueUI } from '../types'
 
 const TEXTES: Record<LangueUI, Record<string, string>> = {
   fr: {
-    espace: 'Espace de gestion', titreMarque: 'Pilotez Dalila', sousMarque: "L'assistante de la carte interactive de l'AFI, en 8 langues.",
+    espace: 'Espace de gestion', titreMarque: 'Pilotez Dalila', sousMarque: "L'assistante de la carte interactive de l'AFI, en 6 langues.",
     p1: 'Questions mal traitées', p1d: 'Ce que les visiteurs demandent et que Dalila comprend mal, par langue.',
     p2: 'Apprentissage', p2d: 'Les mots et les lieux appris, contrôlés, à annuler en un clic.',
     p3: 'Sources', p3d: "L'état de chaque page officielle lue par Dalila.",
@@ -27,7 +27,7 @@ const TEXTES: Record<LangueUI, Record<string, string>> = {
     ministere: "Ministère de l'Industrie, des Mines et de l'Énergie",
   },
   ar: {
-    espace: 'فضاء التسيير', titreMarque: 'إدارة دليلة', sousMarque: 'مساعدة الخريطة التفاعلية للوكالة العقارية الصناعية، بثماني لغات.',
+    espace: 'فضاء التسيير', titreMarque: 'إدارة دليلة', sousMarque: 'مساعدة الخريطة التفاعلية للوكالة العقارية الصناعية، بست لغات.',
     p1: 'الأسئلة غير المفهومة', p1d: 'ما يسأل عنه الزوار ولا تفهمه دليلة جيدًا، حسب اللغة.',
     p2: 'التعلّم', p2d: 'الكلمات والأماكن المتعلَّمة، مراقبة، ويمكن إلغاؤها بنقرة.',
     p3: 'المصادر', p3d: 'حالة كل صفحة رسمية تقرؤها دليلة.',
@@ -40,7 +40,7 @@ const TEXTES: Record<LangueUI, Record<string, string>> = {
     ministere: 'وزارة الصناعة والمناجم والطاقة',
   },
   en: {
-    espace: 'Management area', titreMarque: 'Run Dalila', sousMarque: "The assistant of AFI's interactive map, in 8 languages.",
+    espace: 'Management area', titreMarque: 'Run Dalila', sousMarque: "The assistant of AFI's interactive map, in 6 languages.",
     p1: 'Poorly handled questions', p1d: 'What visitors ask and Dalila misunderstands, by language.',
     p2: 'Learning', p2d: 'Words and places learned, checked, undone in one click.',
     p3: 'Sources', p3d: 'The state of every official page Dalila reads.',

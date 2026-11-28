@@ -6,7 +6,7 @@
 L'audio (webm, ogg, mp3, wav... tel qu'envoyé par le navigateur) est décodé EN MÉMOIRE et jamais écrit sur disque ni
 gardé (BNF8). Le texte reconnu est rendu à l'interface, qui l'affiche avant de l'envoyer à /carte/chatbot (le visiteur
 peut le corriger). Whisper détecte la langue ; si l'interface donne une langue qu'il connaît, elle est imposée
-(plus rapide et plus sûr). Les dialectes (tunisien, algérien, libyen) sont laissés à la détection.
+(plus rapide et plus sûr). Le tunisien est laissé à la détection.
 
 Deux modèles : Whisper `small` détecte la langue et transcrit fr, en, de, tr ; l'arabe et les dialectes sont transcrits
 par whisper-small-tunisian-derja-ct2 (le modèle « whisper-tn-ct2 » du cahier des charges, Apache 2.0) : sur 28 vrais
@@ -22,7 +22,7 @@ from dalila.config import MODELES
 MODELE_STT = os.environ.get("DALILA_STT", "small")
 MODELE_ARABE = os.environ.get("DALILA_STT_ARABE", "TheBiggyBang/whisper-small-tunisian-derja-ct2") or MODELE_STT
 LANGUES_WHISPER = {"fr", "en", "ar", "de", "tr"}
-DIALECTES = {"aeb", "arq", "ayl", "tn", "dz", "ly"}
+DIALECTES = {"aeb", "tn"}
 TAILLE_MAX = 5 * 1024 * 1024   # octets : ~1 min de parole compressée
 DUREE_MAX_S = 60
 PART_ARABE = 0.15      # probabilité de l'arabe au-delà de laquelle le modèle tunisien transcrit (français mêlé compris)

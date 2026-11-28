@@ -115,7 +115,7 @@ AVERTISSEMENT = {"fr": "Chiffres tirés de la base de l'AFI et des textes cités
                  "ar": "الأرقام مأخوذة من قاعدة بيانات الوكالة والنصوص المذكورة؛ يجب التأكد منها لدى الوكالة (+216 71 124 260).",
                  "de": "Zahlen aus der AFI-Datenbank und den zitierten Texten; bei der AFI zu bestätigen (+216 71 124 260).",
                  "tr": "Rakamlar AFI veritabanından ve alıntılanan metinlerden alınmıştır; AFI ile teyit edilmelidir (+216 71 124 260)."}
-DIALECTES = {"aeb", "arq", "ayl", "tn", "dz", "ly"}
+DIALECTES = {"aeb", "tn"}
 
 
 def langue_etude(lang, texte=""):

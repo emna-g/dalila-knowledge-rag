@@ -1,24 +1,27 @@
-"""Langue du visiteur parmi les 8 du cahier des charges (BF1), par des modèles, sans règle écrite à la main.
+"""Langue du visiteur parmi les 6 retenues (BF1), par des modèles, sans règle écrite à la main.
 
     from dalila.langue.detection import detecter
     detecter("n7eb terrain f Sfax") -> {"langue": "tn", "ecriture": "latin", "confiance": 0.9}
 
+Langues retenues (décision de l'équipe, 2026-11-28) : fr, en, ar (arabe standard), de, tr, tn (tunisien, en lettres
+arabes ou en arabizi). L'algérien et le libyen ne sont plus proposés.
 - Lettres arabes : CAMeL-Lab/bert-base-arabic-camelbert-mix-did-madar-corpus26 (Apache 2.0) distingue 25 villes et
-  l'arabe standard ; Tunis et Sfax -> tunisien (aeb), Alger -> algérien (arq), Tripoli et Benghazi -> libyen (ayl),
-  arabe standard -> ar ; les autres villes (Caire, Beyrouth...) -> ar (dialectes hors du cahier des charges).
+  l'arabe standard. Tunis et Sfax -> tunisien ; Alger, Tripoli et Benghazi -> tunisien aussi : la variété proche que
+  Dalila parle, et le modèle confond souvent ces voisins (un message tunisien du lexique était lu « Alger ») ; arabe
+  standard et autres villes (Caire, Beyrouth...) -> ar.
 - Lettres latines : classifieur de n-grammes de caractères (dalila/langue/entrainer_detection.py) : fr, en, de, tr,
-  tunisien et algérien en arabizi. Pas de libyen en arabizi : aucune donnée ouverte.
-Codes rendus, ceux du contrat /carte/chatbot : fr, en, ar, de, tr, tn (tunisien), dz (algérien), ly (libyen).
-L'écriture (arabe, latine) est lue sur les lettres elles-mêmes (propriété Unicode). Codes : fr, en, ar, de, tr, aeb, arq,
-ayl. Mesure : python -m dalila.langue.detection --mesurer -> eval/reports/detection_langue.json.
+  tunisien en arabizi ; sa classe « arabizi algérien » est rendue comme tunisien, pour la même raison.
+Codes rendus, ceux du contrat /carte/chatbot : fr, en, ar, de, tr, tn. L'écriture (arabe, latine) est lue sur les
+lettres elles-mêmes (propriété Unicode). Mesure : python -m dalila.langue.detection --mesurer ->
+eval/reports/detection_langue.json.
 """
 import argparse, collections, csv, json, sys, threading
 from dalila.config import LEXIQUE, MODELES, RACINE
 
 MADAR = "CAMeL-Lab/bert-base-arabic-camelbert-mix-did-madar-corpus26"
-# codes rendus : ceux du contrat /carte/chatbot (cahier des charges, IV.3) : fr, en, ar, de, tr, tn, dz, ly
-VILLES = {"TUN": "tn", "SFX": "tn", "ALG": "dz", "TRI": "ly", "BEN": "ly", "MSA": "ar"}
-CONTRAT = {"aeb": "tn", "arq": "dz", "ayl": "ly"}  # classes du classifieur (codes ISO) -> codes du contrat
+# codes rendus : fr, en, ar, de, tr, tn (algérien et libyen abandonnés : rendus comme la variété voisine, le tunisien)
+VILLES = {"TUN": "tn", "SFX": "tn", "ALG": "tn", "TRI": "tn", "BEN": "tn", "MSA": "ar"}
+CONTRAT = {"aeb": "tn", "arq": "tn"}  # classes du classifieur (codes ISO) -> codes du contrat
 CODES_JEUX = {}
 _m, _verrou = {}, threading.Lock()
 
@@ -58,7 +61,7 @@ def detecter(texte):
 
 
 def mesurer():
-    jeux = {"8 langues": (RACINE / "eval/testset/questions_claude_a_relire.csv", "langue"),
+    jeux = {"6 langues": (RACINE / "eval/testset/questions_claude_a_relire.csv", "langue"),
             "vraies questions": (RACINE / "eval/testset/questions_reelles.csv", "langue"),
             "lexique tunisien": (LEXIQUE / "tests/questions_test.csv", "langue_attendue")}
     rapport = {}

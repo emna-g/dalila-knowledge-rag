@@ -66,8 +66,8 @@ def _phrases_completes(texte):
 
 
 LANGUES = {"fr": "français", "en": "anglais", "ar": "arabe", "de": "allemand", "tr": "turc",
-           "aeb": "tunisien", "arq": "algérien", "ayl": "libyen", "tn": "tunisien", "dz": "algérien", "ly": "libyen"}  # codes du contrat /carte/chatbot (champ lang)
-DIALECTES = {"aeb", "arq", "ayl", "tn", "dz", "ly"}  # codes du contrat (tn, dz, ly) et ISO
+           "aeb": "tunisien", "tn": "tunisien"}  # codes du contrat /carte/chatbot (champ lang) ; algérien et libyen abandonnés
+DIALECTES = {"aeb", "tn"}  # code du contrat (tn) et ISO
 
 
 def degenere(texte, n=3, fois=3):

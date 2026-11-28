@@ -17,9 +17,3 @@ C-tr-03,tr,Sfax'ta kaç parsel müsait?,claude,a_relire,lots,,SELECT COUNT(*) FR
 C-tn-01,tn,chnowa el wra9 eli lazmin bech nechri ma9sem?,claude,a_relire,demarche,regex:documents requis|pièces|إجراءات الاقتناء|مطلب اقتناء,,fiches AFI : documents requis
 C-tn-02,tn,chnowa famma 9rib mel zone Sidi Achour Borj El Amri?,claude,a_relire,zone_commodites,regex:Sidi Achour,,fiche de zone Sidi Achour + services proches
 C-tn-03,tn,9addech mn ma9sem mawjoud fi Sfax?,claude,a_relire,lots,,SELECT COUNT(*) FROM v_pub_lots_disponibles l JOIN v_pub_zones z USING(zone_id) WHERE z.gouvernorat_fr='Sfax',2
-C-dz-01,dz,wach rahom lwra9 li lazem bach nechri terrain sina3i?,claude,a_relire,demarche,regex:documents requis|pièces|إجراءات الاقتناء|مطلب اقتناء,,fiches AFI : documents requis
-C-dz-02,dz,wach kayen qrib mel zone Sidi Achour Borj El Amri?,claude,a_relire,zone_commodites,regex:Sidi Achour,,fiche de zone Sidi Achour + services proches
-C-dz-03,dz,chhal kayen men terrain disponible f Sfax?,claude,a_relire,lots,,SELECT COUNT(*) FROM v_pub_lots_disponibles l JOIN v_pub_zones z USING(zone_id) WHERE z.gouvernorat_fr='Sfax',2
-C-ly-01,ly,شن الأوراق اللي لازمة باش نشري قطعة أرض صناعية؟,claude,a_relire,demarche,regex:documents requis|pièces|إجراءات الاقتناء|مطلب اقتناء,,fiches AFI : documents requis
-C-ly-02,ly,شن فيه قريب من المنطقة الصناعية سيدي عاشور برج العامري؟,claude,a_relire,zone_commodites,regex:Sidi Achour,,fiche de zone Sidi Achour + services proches
-C-ly-03,ly,قداش فيه قطع أرض متاحة في صفاقس؟,claude,a_relire,lots,,SELECT COUNT(*) FROM v_pub_lots_disponibles l JOIN v_pub_zones z USING(zone_id) WHERE z.gouvernorat_fr='Sfax',2

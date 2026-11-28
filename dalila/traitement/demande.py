@@ -176,7 +176,7 @@ def _n(x, d=0):
 
 def produire_pdf(d: Demande) -> bytes:
     from fpdf import FPDF
-    lang = d.lang if d.lang in T else ("ar" if d.lang in ("aeb", "arq", "ayl", "tn", "dz", "ly") else "fr")
+    lang = d.lang if d.lang in T else ("ar" if d.lang in ("aeb", "tn") else "fr")
     t = T[lang]
     pre = preremplir(lot_id=d.lot_id)
     lot, zone = pre["lot"], pre["zone"]

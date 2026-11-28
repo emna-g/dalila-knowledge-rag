@@ -2,7 +2,8 @@
 
     .venv\\Scripts\\python -m dalila.langue.entrainer_detection      -> modeles/langue_latin.joblib
 
-Classes : fr, en, de, tr, aeb (tunisien en arabizi), arq (algérien en arabizi). Données ouvertes :
+Classes : fr, en, de, tr, aeb (tunisien en arabizi), arq (algérien en arabizi ; depuis le 2026-11-28, rendu comme tunisien
+par dalila/langue/detection.py : l'algérien n'est plus proposé). Données ouvertes :
 - papluca/language-identification (MIT) : phrases fr, en, de, tr ;
 - arbml/TUNIZI : commentaires tunisiens en arabizi ;
 - touati-kamel/Algerian-Youtube-Comments (MIT) : commentaires algériens ; pour la classe « algérien en arabizi »,

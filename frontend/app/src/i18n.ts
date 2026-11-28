@@ -102,7 +102,7 @@ const fr = {
   erreurZones: "Les zones n'ont pas pu être chargées. Le service de Dalila est-il démarré ?",
   pasDePlan: 'Pas de plan des lots pour cette zone dans la base.',
   dlNom: 'Dalila',
-  huitLangues: '8 langues',
+  huitLangues: '6 langues',
   dlRole: "Conseillère de l'AFI",
   dlOuvrir: 'Demander à Dalila',
   dlBonjour: 'Bonjour, je suis Dalila',
@@ -254,7 +254,7 @@ const ar: Dico = {
   erreurZones: 'تعذّر تحميل المناطق. هل خدمة دليلة تعمل؟',
   pasDePlan: 'لا يوجد مثال للمقاسم لهذه المنطقة.',
   dlNom: 'دليلة',
-  huitLangues: '8 لغات',
+  huitLangues: '6 لغات',
   dlRole: 'مستشارة الوكالة',
   dlOuvrir: 'اسأل دليلة',
   dlBonjour: 'مرحبًا، أنا دليلة',
@@ -403,7 +403,7 @@ const en: Dico = {
   erreurZones: 'Zones could not be loaded. Is the Dalila service running?',
   pasDePlan: 'No lot plan for this zone in the database.',
   dlRole: 'AFI advisor',
-  huitLangues: '8 languages',
+  huitLangues: '6 languages',
   dlOuvrir: 'Ask Dalila',
   dlBonjour: "Hello, I'm Dalila",
   dlIntro: 'I help you with your investment project: choosing a lot, incentives, procedures. Every figure comes from the AFI database.',
@@ -456,7 +456,7 @@ const de: Dico = {
   lot: 'Grundstück',
   dlNom: 'Dalila',
   dlRole: 'Beraterin der AFI',
-  huitLangues: '8 Sprachen',
+  huitLangues: '6 Sprachen',
   dlOuvrir: 'Dalila fragen',
   dlBonjour: 'Hallo, ich bin Dalila',
   dlIntro: 'Ich begleite Sie bei Ihrem Ansiedlungsprojekt: Wahl des Grundstücks, Förderungen, Verfahren. Jede Zahl stammt aus der AFI-Datenbank.',
@@ -508,7 +508,7 @@ const tr: Dico = {
   lot: 'Arsa',
   dlNom: 'Dalila',
   dlRole: 'AFI danışmanı',
-  huitLangues: '8 dil',
+  huitLangues: '6 dil',
   dlOuvrir: "Dalila'ya sor",
   dlBonjour: 'Merhaba, ben Dalila',
   dlIntro: 'Yatırım projenizde size eşlik ediyorum: arsa seçimi, teşvikler, işlemler. Her rakam AFI veritabanından gelir.',
@@ -555,16 +555,14 @@ const tr: Dico = {
   ],
 }
 
-/** Textes du panneau de Dalila selon la langue choisie pour elle (8 langues ; dialectes : textes en arabe). */
-export const DICOS_DALILA: Record<string, Dico> = { fr, en, ar, tn: ar, dz: ar, ly: ar, de, tr }
+/** Textes du panneau de Dalila selon la langue choisie pour elle (6 langues ; tunisien : textes en arabe). */
+export const DICOS_DALILA: Record<string, Dico> = { fr, en, ar, tn: ar, de, tr }
 export type { Dico }
 
 export const LANGUES_DALILA: { code: LangueDalila; nom: string; rtl: boolean }[] = [
   { code: 'fr', nom: 'Français', rtl: false },
   { code: 'ar', nom: 'العربية', rtl: true },
   { code: 'tn', nom: 'تونسي · Tounsi', rtl: true },
-  { code: 'dz', nom: 'دزيري · Dziri', rtl: true },
-  { code: 'ly', nom: 'ليبي · Libyen', rtl: true },
   { code: 'en', nom: 'English', rtl: false },
   { code: 'de', nom: 'Deutsch', rtl: false },
   { code: 'tr', nom: 'Türkçe', rtl: false },

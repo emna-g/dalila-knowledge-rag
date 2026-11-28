@@ -2,7 +2,7 @@
 
 Le jeu principal est `questions_reelles.csv` (vraies questions de visiteurs). Le jeu du lexique (30 questions,
 `dalila/langue/lexique/tests/questions_test.csv`) teste surtout le tunisien. Pour agrandir l'évaluation, **les nouvelles questions
-doivent être écrites par d'autres membres de l'équipe**, dans les 8 langues, sans regarder les passages avant d'écrire.
+doivent être écrites par d'autres membres de l'équipe**, dans les 6 langues, sans regarder les passages avant d'écrire.
 
 ## Fichiers
 
@@ -17,7 +17,7 @@ doivent être écrites par d'autres membres de l'équipe**, dans les 8 langues, 
 | Colonne | Contenu |
 |---|---|
 | `id` | Identifiant unique (ex. `E-fr-01`). |
-| `langue` | `fr`, `en`, `ar`, `de`, `tr`, `tn` (tunisien, lettres arabes ou arabizi), `dz` (algérien), `ly` (libyen). |
+| `langue` | `fr`, `en`, `ar`, `de`, `tr`, `tn` (tunisien, lettres arabes ou arabizi). L'algérien et le libyen ne sont plus proposés (2026-11-28). |
 | `question` | La question telle qu'un investisseur l'écrirait, fautes comprises. |
 | `ecrite_par` | `equipe:<prénom>` ou `claude`. |
 | `statut_relecture` | `a_relire` ou `relue`. |

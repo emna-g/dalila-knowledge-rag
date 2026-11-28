@@ -48,7 +48,7 @@ export interface ReponseDalila {
   source: 'dalila' | 'repli' | string
   action: string | null
   duree_s: number
-  /** langue détectée du message (codes du contrat : fr, en, ar, de, tr, tn, dz, ly) et son écriture */
+  /** langue détectée du message (codes du contrat : fr, en, ar, de, tr, tn) et son écriture */
   langue?: string | null
   ecriture?: 'arabe' | 'latin' | string | null
   /** session à renvoyer : sert à suivre une étude de projet guidée */
@@ -56,8 +56,8 @@ export interface ReponseDalila {
 }
 
 export type LangueUI = 'fr' | 'ar' | 'en'
-// codes du contrat /carte/chatbot (cahier des charges, IV.3) : tunisien tn, algérien dz, libyen ly
-export type LangueDalila = 'fr' | 'ar' | 'tn' | 'dz' | 'ly' | 'en' | 'de' | 'tr'
+// codes du contrat /carte/chatbot : tunisien tn (algérien et libyen abandonnés le 2026-11-28)
+export type LangueDalila = 'fr' | 'ar' | 'tn' | 'en' | 'de' | 'tr'
 
 /** GET /carte/demande : demande d'acquisition préremplie (BF11). Lot et prix relus dans la base de l'AFI. */
 export interface DemandePreremplie {

@@ -4,7 +4,7 @@
     lire("7 lots disponibles à Jendouba...", lang="fr") -> octets WAV, ou None si aucune voix ne convient
 
 Voix (modeles/piper/, téléchargées par `python -m piper.download_voices`) : français, anglais, allemand, turc, arabe.
-BF8 : un dialecte sans voix adaptée (tunisien, algérien, libyen) est lu par la voix arabe, EN LE SIGNALANT (lire_avec_note
+BF8 : le tunisien, sans voix adaptée, est lu par la voix arabe, EN LE SIGNALANT (lire_avec_note
 rend la note, l'API la met dans l'en-tête X-Dalila-Lecture) ; l'arabizi est d'abord converti en lettres arabes
 (dictionnaire du lexique tunisien, cahier des charges : « l'arabizi doit être converti en lettres arabes avant la
 synthèse vocale »). Les mots français mêlés restent tels quels. Avant lecture, les balises de la carte sont remplacées
@@ -15,7 +15,7 @@ from dalila.config import MODELES
 
 VOIX = {"fr": "fr_FR-siwis-medium", "en": "en_US-ljspeech-medium", "de": "de_DE-thorsten-medium",
         "tr": "tr_TR-dfki-medium", "ar": "ar_JO-kareem-medium"}
-DIALECTES_ARABES = {"aeb", "arq", "ayl", "tn", "dz", "ly"}
+DIALECTES_ARABES = {"aeb", "tn"}
 UNITES = {  # ce que la voix doit dire à la place des symboles
     "fr": [("DT/m²", " dinars le mètre carré"), ("m²", " mètres carrés"), ("m2", " mètres carrés"), ("DT", " dinars"), ("km", " kilomètres")],
     "en": [("DT/m²", " dinars per square meter"), ("m²", " square meters"), ("m2", " square meters"), ("DT", " dinars"), ("km", " kilometers")],
@@ -65,7 +65,7 @@ def _charger(code):
 
 _normaliseur = {}
 NOTE_DIALECTE = "dialecte lu avec la voix arabe standard (pas de voix {nom} disponible)"
-NOMS = {"tn": "tunisienne", "aeb": "tunisienne", "dz": "algérienne", "arq": "algérienne", "ly": "libyenne", "ayl": "libyenne"}
+NOMS = {"tn": "tunisienne", "aeb": "tunisienne"}
 
 
 def _en_lettres_arabes(texte):

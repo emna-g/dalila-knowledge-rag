@@ -2,7 +2,7 @@
 
     .venv\Scripts\python -m eval.recherche_bench
 
-Jeux : vraies questions (eval/testset), lexique tunisien, 8 langues ; seules les questions dont les passages attendus
+Jeux : vraies questions (eval/testset), lexique tunisien, 6 langues ; seules les questions dont les passages attendus
 sont donnés (« ids:… » ou « regex:… ») comptent. Mesure : passage attendu dans les 5 premiers (rappel@5) et MRR.
 Rapport : eval/reports/recherche_regles.json.
 """
@@ -12,7 +12,7 @@ from dalila.semantique.recherche import Recherche
 
 JEUX = {"vraies questions": RACINE / "eval/testset/questions_reelles.csv",
         "lexique tunisien": LEXIQUE / "tests/questions_test.csv",
-        "8 langues": RACINE / "eval/testset/questions_claude_a_relire.csv"}
+        "6 langues": RACINE / "eval/testset/questions_claude_a_relire.csv"}
 
 
 def touche(p, attendu):

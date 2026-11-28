@@ -1,24 +1,21 @@
-# Libellés des 9 familles dans les 8 langues du cahier des charges (fr en ar de tr aeb arq ayl).
+# Libellés des 9 familles dans les 6 langues retenues (fr en ar de tr aeb ; algérien et libyen abandonnés le 2026-11-28).
 # ATTENTION : ces traductions ont été écrites par Claude (assistant IA), pas tirées d'une source attestée.
 # Elles sont chargées dans le graphe nommé « a-valider » et doivent être relues par des locuteurs
-# (allemand, turc, tunisien « aeb », algérien « arq », libyen « ayl ») avant d'être considérées comme sûres.
+# (allemand, turc, tunisien « aeb ») avant d'être considérées comme sûres.
 # Les formes tunisiennes ATTESTÉES (corpus, conversations AFI) sont ailleurs : graphe nommé « lexique ».
 
 @prefix dal:  <https://afi.nat.tn/ontology/dalila#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 
-dal:Lieu skos:prefLabel "Place"@en , "مكان"@ar , "Ort"@de , "Yer"@tr , "بلاصة"@aeb , "بلاصة"@arq , "مكان"@ayl .
-dal:Lot skos:prefLabel "Plot"@en , "مقسم"@ar , "Grundstück"@de , "Parsel"@tr , "مقسم"@aeb , "قطعة أرض"@arq , "قطعة أرض"@ayl .
+dal:Lieu skos:prefLabel "Place"@en , "مكان"@ar , "Ort"@de , "Yer"@tr , "بلاصة"@aeb .
+dal:Lot skos:prefLabel "Plot"@en , "مقسم"@ar , "Grundstück"@de , "Parsel"@tr , "مقسم"@aeb .
 dal:SecteurActivite skos:prefLabel "Business sector"@en , "قطاع النشاط"@ar , "Wirtschaftszweig"@de , "Faaliyet sektörü"@tr ,
-    "قطاع"@aeb , "قطاع النشاط"@arq , "قطاع النشاط"@ayl .
+    "قطاع"@aeb .
 dal:Commodite skos:prefLabel "Amenities and proximity"@en , "المرافق والقرب"@ar , "Infrastruktur und Nähe"@de ,
-    "Altyapı ve yakınlık"@tr , "المرافق"@aeb , "المرافق"@arq , "المرافق"@ayl .
-dal:Demarche skos:prefLabel "Procedure"@en , "إجراء"@ar , "Verfahren"@de , "Prosedür"@tr , "الإجراءات"@aeb ,
-    "الإجراءات"@arq , "الإجراءات"@ayl .
-dal:Incitation skos:prefLabel "Incentive"@en , "حافز"@ar , "Förderung"@de , "Teşvik"@tr , "الامتيازات"@aeb ,
-    "الامتيازات"@arq , "الحوافز"@ayl .
-dal:Organisme skos:prefLabel "Organisation"@en , "هيكل"@ar , "Behörde"@de , "Kurum"@tr , "إدارة"@aeb , "إدارة"@arq ,
-    "جهة"@ayl .
-dal:Projet skos:prefLabel "Project"@en , "مشروع"@ar , "Projekt"@de , "Proje"@tr , "مشروع"@aeb , "مشروع"@arq , "مشروع"@ayl .
+    "Altyapı ve yakınlık"@tr , "المرافق"@aeb .
+dal:Demarche skos:prefLabel "Procedure"@en , "إجراء"@ar , "Verfahren"@de , "Prosedür"@tr , "الإجراءات"@aeb .
+dal:Incitation skos:prefLabel "Incentive"@en , "حافز"@ar , "Förderung"@de , "Teşvik"@tr , "الامتيازات"@aeb .
+dal:Organisme skos:prefLabel "Organisation"@en , "هيكل"@ar , "Behörde"@de , "Kurum"@tr , "إدارة"@aeb .
+dal:Projet skos:prefLabel "Project"@en , "مشروع"@ar , "Projekt"@de , "Proje"@tr , "مشروع"@aeb .
 dal:ServiceAFI skos:prefLabel "AFI service"@en , "خدمة الوكالة العقارية الصناعية"@ar , "Dienstleistung der AFI"@de ,
-    "AFI hizmeti"@tr , "خدمة متاع الوكالة"@aeb , "خدمة الوكالة"@arq , "خدمة الوكالة"@ayl .
+    "AFI hizmeti"@tr , "خدمة متاع الوكالة"@aeb .

@@ -98,7 +98,7 @@ Un clic sur une zone (carte ou liste) ouvre sa fiche, et la carte va dessus.
 - Un panneau à côté de la carte (ou une bulle avec la mascotte quand il est réduit).
 - Accueil avec les 3 cas d'usage de l'AFI et des questions prêtes à cliquer :
     1) choix du lot, 2) avantages fiscaux et financiers, 3) procédures administratives.
-- 8 langues : français, arabe, tunisien, algérien, libyen, anglais, allemand, turc.
+- 6 langues : français, arabe, tunisien, anglais, allemand, turc (algérien et libyen abandonnés le 2026-11-28).
   L'arabe et les dialectes s'affichent de droite à gauche.
 - Les réponses sont présentées en fiches :
     - les zones et les lots cités sont des boutons : un clic les montre sur la carte ;

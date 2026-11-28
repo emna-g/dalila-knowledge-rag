@@ -11,7 +11,7 @@ from dalila.config import LEXIQUE, RACINE
 
 JEUX = {"reelles": RACINE / "eval/testset/questions_reelles.csv",
         "lexique (tunisien)": LEXIQUE / "tests/questions_test.csv",
-        "8 langues (Claude)": RACINE / "eval/testset/questions_claude_a_relire.csv"}
+        "6 langues (Claude)": RACINE / "eval/testset/questions_claude_a_relire.csv"}
 
 
 def main():

@@ -3,7 +3,7 @@
     relier_concepts("chnowa lwra9 lazmin bech na5ou ma9sem")  -> pièces à fournir, lot ; service « acquisition »
     conseiller("projet de pêche")                              -> APIA (organisme compétent), port (commodité utile)
 
-Le graphe relie les mots du visiteur aux concepts de l'ontologie dans les 8 langues (libellés, formes tunisiennes
+Le graphe relie les mots du visiteur aux concepts de l'ontologie dans les 6 langues (libellés, formes tunisiennes
 attestées, synonymes appris) (BF17) et raisonne sur ses relations (BF20). Les chiffres et les textes à citer restent
 dans MariaDB (autres outils). L'intention de la question n'est pas devinée ici : c'est l'agent qui décide.
 """

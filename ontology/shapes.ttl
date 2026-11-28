@@ -29,7 +29,7 @@ shp:Cite a sh:NodeShape ;
   sh:property [ sh:path dcterms:source ; sh:minCount 1 ] ;
   sh:property [ sh:path skos:prefLabel ; sh:minCount 1 ] .
 
-# Les 9 familles : un libellé dans chacune des 8 langues du cahier des charges.
+# Les 9 familles : un libellé dans chacune des 6 langues retenues.
 shp:Famille a sh:NodeShape ;
   sh:targetNode dal:Lieu , dal:Lot , dal:SecteurActivite , dal:Commodite , dal:Demarche , dal:Incitation ,
                 dal:Organisme , dal:Projet , dal:ServiceAFI ;
@@ -38,9 +38,7 @@ shp:Famille a sh:NodeShape ;
   sh:property [ sh:path skos:prefLabel ; sh:qualifiedValueShape [ sh:languageIn ( "ar" ) ] ; sh:qualifiedMinCount 1 ] ;
   sh:property [ sh:path skos:prefLabel ; sh:qualifiedValueShape [ sh:languageIn ( "de" ) ] ; sh:qualifiedMinCount 1 ] ;
   sh:property [ sh:path skos:prefLabel ; sh:qualifiedValueShape [ sh:languageIn ( "tr" ) ] ; sh:qualifiedMinCount 1 ] ;
-  sh:property [ sh:path skos:prefLabel ; sh:qualifiedValueShape [ sh:languageIn ( "aeb" ) ] ; sh:qualifiedMinCount 1 ] ;
-  sh:property [ sh:path skos:prefLabel ; sh:qualifiedValueShape [ sh:languageIn ( "arq" ) ] ; sh:qualifiedMinCount 1 ] ;
-  sh:property [ sh:path skos:prefLabel ; sh:qualifiedValueShape [ sh:languageIn ( "ayl" ) ] ; sh:qualifiedMinCount 1 ] .
+  sh:property [ sh:path skos:prefLabel ; sh:qualifiedValueShape [ sh:languageIn ( "aeb" ) ] ; sh:qualifiedMinCount 1 ] .
 
 # Pas de chiffre dans les synonymes (une forme apprise ne doit jamais porter un prix ou une surface).
 shp:SynonymeSansChiffre a sh:NodeShape ; sh:targetSubjectsOf skos:altLabel ;

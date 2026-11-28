@@ -1,10 +1,10 @@
 {
- "genere_le": "2026-11-27T10:09",
+ "genere_le": "2026-11-28T16:12",
  "triplets": {
   "core": 249,
-  "abox": 13504,
+  "abox": 13201,
   "lexique": 319,
-  "a-valider": 435
+  "a-valider": 417
  },
  "activites_nomenclature_APII": 484,
  "etapes": 44,
@@ -14,7 +14,7 @@
   "fr": [
    137,
    0,
-   884
+   823
   ],
   "en": [
    24,
@@ -47,16 +47,6 @@
    0
   ],
   "tr": [
-   0,
-   9,
-   0
-  ],
-  "arq": [
-   0,
-   9,
-   0
-  ],
-  "ayl": [
    0,
    9,
    0
