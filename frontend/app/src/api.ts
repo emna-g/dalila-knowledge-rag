@@ -1,4 +1,4 @@
-import type { FicheZone, Lot, ReponseDalila, Zone } from './types'
+import type { DemandeEnvoyee, DemandePreremplie, FicheZone, Lot, ReponseDalila, Zone } from './types'
 
 // Même adresse que l'API (frontend/serveur.py), ou VITE_API pour un service ailleurs.
 const API = (import.meta.env.VITE_API as string | undefined)?.replace(/\/+$/, '') ?? ''
@@ -59,6 +59,16 @@ export const api = {
     const r = await envoyer('/carte/etude', { session_id, lang }, 30000)
     if (!r.ok) throw new Error(`HTTP ${r.status}`)
     return (await r.json()) as ReponseDalila
+  },
+
+  /** BF11 : demande d'acquisition préremplie (lot, zone, projet de l'étude de cette conversation, pièces). */
+  demandePreremplie: (lot_id: number, session_id?: string | null) =>
+    lire<DemandePreremplie>(`/carte/demande?lot_id=${lot_id}${session_id ? `&session_id=${encodeURIComponent(session_id)}` : ''}`),
+  /** Le brouillon en PDF : produit seulement avec confirme = true ; ni déposé ni gardé par le service. */
+  async demandePdf(corps: DemandeEnvoyee): Promise<Blob> {
+    const r = await envoyer('/carte/demande/pdf', corps, 60000)
+    if (!r.ok) throw new Error(`HTTP ${r.status}`)
+    return r.blob()
   },
 
   /** POST /carte/voix/lire : WAV, ou null (204 : pas de voix, la réponse reste en texte) ; note : un dialecte lu par

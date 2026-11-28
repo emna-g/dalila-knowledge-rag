@@ -102,3 +102,23 @@ L. SI QUELQUE CHOSE NE RÉPOND PAS
         disponible ».
 [ ] 63. Service arrêté, recharger la page → message « Les zones n'ont pas pu être chargées »
         en haut de la carte. Relancer le service ensuite.
+
+M. ADMINISTRATION (http://127.0.0.1:8000/admin/ , base démarrée)
+[ ] 64. La page s'ouvre avec 3 onglets : Questions mal traitées, Apprentissage, Sources.
+[ ] 65. Poser à Dalila une question hors sujet, la noter « pas utile » → elle apparaît dans « Questions mal
+        traitées » (Actualiser). Filtre « Depuis le » et « Exporter (CSV) ».
+[ ] 66. Onglet « Sources » : les compteurs (à jour, en erreur…) ; cliquer « En erreur » → seules ces adresses ;
+        chercher « FIPA ».
+[ ] 67. Onglet « Apprentissage » : un élément publié a un bouton « Annuler » ; l'annuler → message vert,
+        statut « Annulé », date et auteur affichés ; le bouton disparaît.
+[ ] 68. Base arrêtée : message « La base de données ne répond pas », pas de chiffres faux.
+
+N. DEMANDE D'ACQUISITION
+[ ] 69. Ouvrir Kairouan II, cliquer le lot 83 → « Préparer ma demande d'acquisition » : le lot, 1 823 m², 32 DT/m²
+        et 58 336 DT sont déjà remplis.
+[ ] 70. Le bouton « Télécharger le brouillon » reste grisé tant que la case « J'ai vérifié » n'est pas cochée et que
+        le nom et l'activité ne sont pas remplis.
+[ ] 71. Cocher, télécharger → le PDF s'ouvre : « BROUILLON », le lot, le projet, où déposer, les pièces.
+[ ] 72. Refaire en arabe (globe → العربية) : formulaire et PDF de droite à gauche.
+[ ] 73. Faire l'étude de projet guidée, puis ouvrir la demande : l'activité est préremplie.
+[ ] 74. Avec le modèle : demander « comment acheter ce lot ? » → bouton « Préparer ma demande » sous la réponse.

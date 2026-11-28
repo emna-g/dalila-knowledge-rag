@@ -8,6 +8,7 @@ import { joliNom } from '../i18n'
  *   [[LOT:id:numéro]] -> bouton qui montre le lot
  *   [[PDF:url:titre]] -> carte « document »
  *   [[CHOIX:texte]]   -> bouton de réponse rapide sous la réponse
+ *   [[DEMANDE]]       -> bouton « Préparer ma demande d'acquisition » (BF11)
  *   « - … »           -> ligne d'une liste (fiche)
  *   [titre](url)      -> lien ; une ligne qui n'a que des liens = les sources
  * Le texte reste du texte (jamais du HTML) ; seuls les liens http(s) sont rendus. Les nombres avec unité en gras.
@@ -23,6 +24,7 @@ export interface Analyse {
   sources: { url: string; titre: string }[]
   zones: { id: number; nom: string }[]
   lots: { id: number; numero: string }[]
+  demande: boolean   // [[DEMANDE]] : proposer de préparer la demande d'acquisition (BF11)
 }
 type Morceau = { t: 'texte'; v: string } | { t: 'gras'; v: string } | { t: 'zone'; id: number; nom: string } | { t: 'lot'; id: number; numero: string } | { t: 'lien'; url: string; v: string }
 type Bloc = { t: 'p'; lignes: Morceau[][] } | { t: 'liste'; items: Morceau[][] }
@@ -36,9 +38,9 @@ function couper(v: string, aLaFin = false): [string, string] {
 }
 
 export function analyser(texte: string): Analyse {
-  const a: Analyse = { blocs: [], choix: [], documents: [], sources: [], zones: [], lots: [] }
+  const a: Analyse = { blocs: [], choix: [], documents: [], sources: [], zones: [], lots: [], demande: /\[\[DEMANDE\]\]/.test(texte || '') }
   let courant: Bloc | null = null
-  for (const brute of (texte || '').split(/\r?\n/)) {
+  for (const brute of (texte || '').replace(/\[\[DEMANDE\]\]/g, '').split(/\r?\n/)) {
     const ligne = brute.trim()
     if (!ligne) { courant = null; continue }
     if (SOURCE.test(ligne)) {

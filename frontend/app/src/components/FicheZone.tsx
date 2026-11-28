@@ -1,9 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import {
-  ArrowLeft, ArrowRight, Building, Droplets, ExternalLink, FileText, Flame, Gavel, Landmark, MessageCircle, Phone, Plane,
-  Recycle, Route, Scale, Ship, TrainFront, Zap, Fuel, X,
-} from 'lucide-react'
+import { ArrowLeft, ArrowRight, Building, Droplets, ExternalLink, FileSignature, FileText, Flame, Fuel, Gavel, Landmark, MessageCircle, Phone, Plane, Recycle, Route, Scale, Ship, TrainFront, X, Zap } from 'lucide-react'
 import clsx from 'clsx'
 import { api } from '../api'
 import { DISTANCES, EQUIPEMENTS, ETATS, SERVICES, nombre, unite } from '../i18n'
@@ -20,11 +17,12 @@ interface Props {
   onLot: (id: number | null) => void
   onRetour: () => void
   onDemander: (texte: string, contexte: object) => void
+  onPreparerDemande: (lotId: number) => void
   comparee: boolean
   basculerComparer: () => void
 }
 
-export function FicheZone({ zone, lots, lotChoisi, onLot, onRetour, onDemander, comparee, basculerComparer }: Props) {
+export function FicheZone({ zone, lots, lotChoisi, onLot, onRetour, onDemander, onPreparerDemande, comparee, basculerComparer }: Props) {
   const { t, langue, rtl } = useLangue()
   const nom = useNom()
   const [fiche, setFiche] = useState<Fiche | null>(null)
@@ -165,6 +163,10 @@ export function FicheZone({ zone, lots, lotChoisi, onLot, onRetour, onDemander, 
                       { zone: zone.zone_id, lot: lot.lot_id, nom: `${t.lot} ${lot.numero} · ${zone.nom}` })}
                       className="mt-3 flex min-h-11 w-full items-center justify-center gap-2 rounded-xl bg-marine font-semibold text-white hover:bg-marine-fonce">
                       <MessageCircle size={17} aria-hidden /> {t.demanderZone}
+                    </button>
+                    <button type="button" onClick={() => onPreparerDemande(lot.lot_id)}
+                      className="mt-2 flex min-h-11 w-full items-center justify-center gap-2 rounded-xl border border-marine bg-white font-semibold text-marine hover:bg-marine/5">
+                      <FileSignature size={17} aria-hidden /> {t.daBouton}
                     </button>
                   </motion.div>
                 )}
