@@ -189,14 +189,14 @@ def _valeur(i, texte, lang):
 
 
 def repondre(session_id, texte):
-    from dalila.harnais.garde_fous import masquer
+    from dalila.harnais.garde_fous import anonymiser
     slots, _, lang = _lire(session_id)
     lang = lang or "fr"
     if _norm(texte) in {_norm(a) for a in ARRET.values()}:
         _ecrire(session_id, {}, None, lang)
         return {"message": TEXTES["arret"][lang], "fin": True}
     i = slots.get("etape", 0)
-    valeur, lu = _valeur(i, masquer(texte)[:300], lang)
+    valeur, lu = _valeur(i, anonymiser(texte)[:300], lang)
     slots["reponses"][QUESTIONS[i][0]] = {"valeur": valeur, "texte": lu}
     slots["etape"] = i + 1
     if i + 1 < len(QUESTIONS):

@@ -354,8 +354,20 @@ def main():
     out.mkdir(exist_ok=True)
     trig_new, trig = out / "dalila.new.trig", out / "dalila.trig"
     ds.serialize(trig_new, format="trig")
+    # synonymes appris des conversations (BF18, BF19) : un graphe nommé appris/<id> par ajout, contrôlé avec le reste
+    # (SHACL, OWL RL) ; un ajout annulé (actif = 0) n'y entre plus (BF21)
+    appris = []
+    try:
+        for r in q("SELECT id, terme, concept_uri FROM agent_appris_synonymes WHERE actif = 1"):
+            ga = ds.graph(G[f"appris/{r['id']}"])
+            ga.add((URIRef(r["concept_uri"]), SKOS.altLabel, Literal(r["terme"])))
+            appris.append(ga)
+    except Exception:  # noqa: BLE001  (table pas encore créée : rien d'appris)
+        pass
+    if appris:
+        ds.serialize(trig_new, format="trig")
     union = Graph()
-    for gr in (core, abox, lex, aval):
+    for gr in (core, abox, lex, aval, *appris):
         for t in gr:
             union.add(t)
     import pyshacl, owlrl

@@ -12,13 +12,51 @@ LONGUEUR_MAX, HISTORIQUE_MAX = 500, 20
 
 _COURRIEL = re.compile(r"[\w.+-]+@[\w-]+\.[\w.-]+")
 _TEL_216 = re.compile(r"(?:\+|00)216[\s.-]?\d{2}[\s.-]?\d{3}[\s.-]?\d{3}")
-_HUIT_CHIFFRES = re.compile(r"(?<![\d.,])\d{8}(?![\d.,])")  # téléphone tunisien ou CIN écrit d'un bloc
+_HUIT_CHIFFRES = re.compile(r"(?<![\d.,])\d{8}(?!\d|[.,]\d)")  # téléphone tunisien ou CIN d'un bloc (« CIN 09876543, »)
+
+
+_TEL_LOCAL = re.compile(r"(?<![\d.,])[2-9]\d[\s.-]\d{3}[\s.-]\d{3}(?!\d|[.,]\d)")  # 98 123 456
+# identifiant du Registre national des entreprises / matricule fiscal : 7 chiffres et une lettre (« 1234567A »), parfois
+# suivis du code TVA, de la catégorie et de l'établissement (« 1234567/A/M/000 »)
+_RNE = re.compile(r"(?<![\w.,])\d{7}\s*[/-]?\s*[A-Za-z](?:(?:\s*[/-]?\s*[A-Za-z]){1,2}\s*[/-]?\s*\d{3})?(?!\w)")
 
 
 def masquer(texte):
+    """Formats de données personnelles (courriel, téléphone, CIN, RNE) : avant le modèle et dans les journaux."""
     texte = _COURRIEL.sub("[courriel masqué]", texte)
     texte = _TEL_216.sub("[téléphone masqué]", texte)
+    texte = _RNE.sub("[RNE masqué]", texte)
+    texte = _TEL_LOCAL.sub("[téléphone masqué]", texte)
     return _HUIT_CHIFFRES.sub("[numéro masqué]", texte)
+
+
+_ner = {}
+MODELE_NOMS = "Davlan/xlm-roberta-base-ner-hrl"   # AFL-3.0 ; noms de personnes en arabe, français, anglais, allemand…
+
+
+def anonymiser(texte):
+    """BNF16 : texte gardé au journal et utilisé par l'apprentissage, sans donnée personnelle. En plus des formats
+    (masquer), les noms de personnes sont retirés par un modèle de reconnaissance d'entités ; un nom qui désigne un lieu
+    connu de la base (« Sidi Achour ») est gardé. Modèle indisponible : seulement les formats (jamais d'erreur)."""
+    texte = masquer(texte or "")
+    if not texte.strip():
+        return texte
+    try:
+        if "m" not in _ner:
+            from transformers import pipeline
+            from dalila.config import MODELES
+            _ner["m"] = pipeline("token-classification", model=MODELE_NOMS, aggregation_strategy="simple", device=-1,
+                                 model_kwargs={"cache_dir": str(MODELES)})
+        entites = [e for e in _ner["m"](texte[:512]) if e["entity_group"] == "PER" and e["score"] >= 0.6]
+    except Exception:  # noqa: BLE001
+        return texte
+    from dalila.traitement.registre import appeler
+    for e in sorted(entites, key=lambda e: -e["start"]):
+        nom = texte[e["start"]:e["end"]]
+        if len(nom.strip()) < 2 or appeler("resoudre_lieu", {"texte": nom[:100]}).get("lieux"):
+            continue  # un lieu (zone, gouvernorat) n'est pas une personne
+        texte = texte[:e["start"]] + "[nom masqué]" + texte[e["end"]:]
+    return texte
 
 
 def nettoyer_entree(message, historique=()):

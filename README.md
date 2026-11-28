@@ -44,7 +44,7 @@ donnees/  modeles/      hors git : afi.sql et corpus, modèles téléchargés
 | **Évaluation** | `eval/` | Rappel@5, MRR, chiffres exacts, temps de réponse, sur de vraies questions de visiteurs. |
 
 À lire aussi : **[docs/architecture.md](docs/architecture.md)** (la mécanique, fichier par fichier), **[docs/decisions.md](docs/decisions.md)** (les choix
-et leurs preuves), **[docs/limites.md](docs/limites.md)** (ce qui manque), **[docs/exigences.md](docs/exigences.md)** (chaque exigence du cahier des charges, son module et son état), **[db/corrections/DESACCORDS.md](db/corrections/DESACCORDS.md)**
+et leurs preuves), **[docs/limites.md](docs/limites.md)** (ce qui manque), **[docs/exigences.md](docs/exigences.md)** (chaque exigence du cahier des charges, son module et son état), **[docs/reste_a_faire.md](docs/reste_a_faire.md)** (où reprendre), **[db/corrections/DESACCORDS.md](db/corrections/DESACCORDS.md)**
 (chaque décision sur les données, avec les deux valeurs).
 
 ## Installer (Windows, sans Docker)

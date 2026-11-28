@@ -16,7 +16,7 @@ import csv, json, re, sys
 from dalila.config import DONNEES, RACINE, db
 from dalila.harnais.agent import CONSIGNE_HORS_SUJET, degenere
 from dalila.harnais.consignes import RAPPEL_LANGUE, systeme
-from dalila.harnais.garde_fous import masquer, verifier_ancrage
+from dalila.harnais.garde_fous import anonymiser, masquer, verifier_ancrage
 from dalila.harnais.vues import vue
 from dalila.traitement.registre import appeler
 
@@ -46,7 +46,7 @@ def _tours():
 
 def exemple(tour, test=frozenset()):
     """-> (exemple, None) ou (None, raison du rejet)"""
-    question, reponse = masquer(tour["texte_anonymise"] or ""), masquer(tour["reponse"] or "")
+    question, reponse = anonymiser(tour["texte_anonymise"] or ""), masquer(tour["reponse"] or "")
     if not question or not reponse:
         return None, "vide"
     if _norm(question) in test:

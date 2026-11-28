@@ -126,6 +126,7 @@ class Agent:
         from dalila.moteurs.embeddings import encoder_questions
         encoder_questions(["préchauffage"])
         _langue("préchauffage")
+        __import__("dalila.harnais.garde_fous", fromlist=["anonymiser"]).anonymiser("Bonjour Sami")  # noms (BNF16)
         appeler("conseiller", {"secteur": "préchauffage", "lieu": "Sfax"})  # index des activités, recherche de passages
         try:
             discuter([systeme(), {"role": "user", "content": "Bonjour"}], outils=self.outils, modele=self.modele,

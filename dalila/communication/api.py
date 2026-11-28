@@ -33,7 +33,7 @@ from pydantic import BaseModel, Field
 from dalila.config import db
 from dalila.harnais.agent import Agent
 from dalila.harnais.consignes import REPLI
-from dalila.harnais.garde_fous import masquer
+from dalila.harnais.garde_fous import anonymiser, masquer
 
 log = logging.getLogger("dalila.api")
 AGENT = Agent()
@@ -129,7 +129,7 @@ def chatbot(q: Question):
     det = r.get("langue_detectee") or {}
     if r["source"] == "etude_demandee":  # le modèle a reconnu une demande d'étude : l'entretien commence
         return _reponse_etude(etude.commencer(session, det.get("langue") or lang, q.message), session, q, lang, det)
-    texte = masquer((q.message or "").strip()[:500])
+    texte = anonymiser((q.message or "").strip()[:500])  # BNF16 : formats et noms
     langue = det.get("langue") or lang
     outils = [{"outil": o["outil"], "arguments": o.get("arguments"), **({"arguments_modele": o["arguments_modele"]}
               if o.get("arguments_modele") else {})} for o in r["outils"]]  # lieu inconnu : pour l'apprentissage
@@ -149,7 +149,7 @@ def chatbot(q: Question):
 def _reponse_etude(e, session, q, lang, det=None):
     det = det or {}
     log_id = _ecrire("INSERT INTO agent_turns (session_id, texte_anonymise, langue, outils, garde_faits, latence_ms, "
-                     "source) VALUES (%s, %s, %s, %s, %s, %s, %s)", session, masquer((q.message or "")[:500]),
+                     "source) VALUES (%s, %s, %s, %s, %s, %s, %s)", session, anonymiser((q.message or "")[:500]),
                      det.get("langue") or lang, json.dumps([{"outil": "etude_de_projet"}]), "etude", 0, "etude")
     return Reponse(message=e["message"], log_id=log_id, source="etude",
                    action="choix" if "[[CHOIX:" in e["message"] else ("etude_pdf" if e.get("pdf") else None),
@@ -181,7 +181,7 @@ def etude_pdf(jeton: str):
 @app.post("/carte/chatbot/avis")
 def avis(a: Avis):
     ok = bool(_ecrire("UPDATE agent_turns SET avis = %s, avis_commentaire = %s WHERE id = %s", 1 if a.utile else 0,
-                      masquer(a.commentaire.strip())[:500] if a.commentaire and a.commentaire.strip() else None, a.log_id))
+                      anonymiser(a.commentaire.strip())[:500] if a.commentaire and a.commentaire.strip() else None, a.log_id))
     return {"ok": ok}
 
 

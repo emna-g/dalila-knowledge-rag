@@ -157,12 +157,51 @@ def _index_activites():
     return noeuds, libelles, secteurs, encoder_textes(textes)
 
 
+def _synonymes_appris():
+    """Synonymes appris des conversations (dalila/apprentissage/synonymes_appris.py), actifs : ((terme, noeud), …) et
+    une version qui change à chaque publication ou annulation. Table absente : rien."""
+    try:
+        from dalila.traitement.base import q
+        lignes = q("SELECT terme, concept_uri FROM agent_appris_synonymes WHERE actif = 1 ORDER BY id")
+        v = q("SELECT COUNT(*) n, MAX(modifie_le) m FROM agent_appris_synonymes")[0]
+        return tuple((l["terme"], l["concept_uri"]) for l in lignes), (v["n"], str(v["m"]))
+    except Exception:  # noqa: BLE001
+        return (), None
+
+
+@lru_cache(maxsize=2)
+def _index_appris(appris, version):
+    """Chaque synonyme appris devient une entrée de plus de l'index : le terme du visiteur mène à son activité."""
+    if not appris:
+        return [], [], [], None
+    from dalila.moteurs.embeddings import encoder_textes
+    noeuds, libelles, secteurs, _ = _index_activites()
+    pos = {n: i for i, n in enumerate(noeuds)}
+    garde = [(t, n) for t, n in appris if n in pos]
+    if not garde:
+        return [], [], [], None
+    return ([n for _, n in garde], [libelles[pos[n]] for _, n in garde], [secteurs[pos[n]] for _, n in garde],
+            encoder_textes([t for t, _ in garde]))
+
+
 def _activites(texte, k=NB_CANDIDATES):
-    """Les k activités ou secteurs les plus proches PAR LE SENS : (noeud, libellé, secteur, proximité)."""
+    """Les k activités ou secteurs les plus proches PAR LE SENS : (noeud, libellé, secteur, proximité). Les synonymes
+    appris sont des entrées de plus ; une activité n'est rendue qu'une fois (sa meilleure proximité)."""
+    import numpy as np
     from dalila.moteurs.embeddings import encoder_questions
     noeuds, libelles, secteurs, vecs = _index_activites()
+    an, al, asec, avecs = _index_appris(*_synonymes_appris())
+    if avecs is not None:
+        noeuds, libelles, secteurs, vecs = noeuds + an, libelles + al, secteurs + asec, np.vstack([vecs, avecs])
     sims = vecs @ encoder_questions([texte])[0]
-    return [(noeuds[i], libelles[i], secteurs[i], float(sims[i])) for i in sims.argsort()[::-1][:k]]
+    out, vus = [], set()
+    for i in sims.argsort()[::-1]:
+        if noeuds[i] not in vus:
+            vus.add(noeuds[i])
+            out.append((noeuds[i], libelles[i], secteurs[i], float(sims[i])))
+        if len(out) == k:
+            break
+    return out
 
 
 def conseiller(e: EntreeConseil) -> ResultatConseil:

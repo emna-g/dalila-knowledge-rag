@@ -19,7 +19,10 @@ Repère les questions mal comprises, fréquentes ou mal notées ; prépare synon
    jamais une question du jeu de test, jamais une réponse notée « pas utile ».
 4. **Ajustement mesuré** : `python -m ajustement.generer --enseignant --reel`, entraînement sur Kaggle, puis le même banc
    d'essai ; le nouveau modèle n'est adopté que s'il fait mieux (BNF17), l'ancien reste disponible (retour arrière).
-5. **En direct, les noms de lieux** : `python -m dalila.apprentissage.lieux_appris` (au moins 2 conversations, contrôles,
+5. **En direct, les synonymes** : `python -m dalila.apprentissage.synonymes_appris` : un mot des visiteurs vers une
+   activité de l'ontologie (au moins 2 conversations, 80 % d'accord, contrôles, journal, `--annuler`) ; lu en direct par
+   la recherche des activités, ajouté au graphe (graphe nommé `appris/<id>`, SHACL et OWL RL) à chaque construction.
+6. **En direct, les noms de lieux** : `python -m dalila.apprentissage.lieux_appris` (au moins 2 conversations, contrôles,
    journal, `--annuler`).
 
 Tests : `python -m tests.apprentissage.test_apprentissage` et `python -m tests.apprentissage.test_besoins_export`.
