@@ -61,9 +61,13 @@ def vue(nom, res):
             r["reponses_afi"] = [{"question": x.get("question"), "texte": _couper(x.get("texte"), n)}
                                  for x, n in zip(r.get("reponses_afi", []), (700, 300))]
             r["contact_afi"] = [_couper(x.get("texte"), 200) for x in r.get("contact_afi", [])]
-        elif nom == "conseiller":
-            r.pop("explication", None)
-            r["activites"] = [a.get("libelle") for a in r.get("activites", [])[:3]]
+        elif nom == "conseiller":  # l'essentiel : liens, documents et sources sont ajoutés par le harnais
+            r = _garder(r, ("organisme_competent", "raison_organisme", "lieux_a_proposer", "note", "emplois"))                  | {"activite": (res.get("activites") or [{}])[0].get("libelle"),
+                   "zones": [_garder(z, ("nom", "gouvernorat", "lots_adaptes", "prix_m2_dt", "prix_m2_subventionne_dt",
+                                         "developpement_regional", "km")) for z in res.get("zones") or []],
+                   "incitations": [i.get("titre") for i in (res.get("incitations") or [])[:2]],
+                   "depot_de_la_demande": _couper(res.get("demarche_lieu_depot") or "", 160)}
+            r = sans_vides(r)
     texte = json.dumps(r, ensure_ascii=False, separators=(",", ":"))
     return texte if len(texte) <= TAILLE_VUE else texte[:TAILLE_VUE] + "…(tronqué)"
 
@@ -91,6 +95,17 @@ def _lignes(nom, r):
         yield f"[[ZONE:{r['zone_id']}:{r['nom']}]]"
         for d in (r.get("cahiers_des_charges") or []) + (r.get("plans_de_lotissement") or []):
             yield f"[[PDF:{d['lien']}:{d['titre']}]]"
+    elif nom == "conseiller":
+        for z in r.get("zones", []):
+            prix = f" · {_n(z['prix_m2_dt'])} DT/m²" if z.get("prix_m2_dt") is not None else ""
+            sub = f" (subventionné : {_n(z['prix_m2_subventionne_dt'])} DT/m²)" if z.get("prix_m2_subventionne_dt") else ""
+            yield f"- [[ZONE:{z['zone_id']}:{z['nom']}]] {z['gouvernorat']} · {z['lots_adaptes']} lots{prix}{sub}"
+        for z in r.get("zones", []):
+            if z.get("cahier_des_charges"):
+                yield f"[[PDF:{z['cahier_des_charges']}:Cahier des charges {z['nom']}]]"
+        for i in r.get("incitations", [])[:2]:
+            if i.get("lien"):
+                yield f"[{i.get('titre') or 'Incitations'}]({i['lien']})"
     elif nom == "demarche":
         for s in r.get("services", []):
             yield f"[[CHOIX:{s['besoin']}]]"

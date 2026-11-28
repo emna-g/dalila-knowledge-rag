@@ -9,7 +9,8 @@ une erreur est rendue comme un message court, jamais comme une exception brute (
 seule (compte dalila_ro). Ajouter un outil : l'écrire dans ce dossier, puis l'ajouter à OUTILS.
 """
 from pydantic import ValidationError
-from dalila.traitement.graphe import EntreeConcepts, EntreeConseil, conseiller, relier_concepts
+from dalila.traitement.graphe import EntreeConcepts, relier_concepts
+from dalila.traitement.projet import EntreeProjet, conseiller
 from dalila.traitement.lieux import EntreeLieu, resoudre_lieu
 from dalila.traitement.lots import EntreeLots, chercher_lots
 from dalila.traitement.passages import EntreePassages, chercher_passages
@@ -23,11 +24,11 @@ OUTILS = {
                         "Relie les mots de la question (toutes langues, tunisien et arabizi compris) aux concepts de "
                         "l'ontologie : lieux, lots, secteurs, commodités, démarches, incitations, organismes, services de "
                         "l'AFI. Donne aussi les services reconnus, à passer à l'outil demarche."),
-    "conseiller": (conseiller, EntreeConseil,
-                   "Pour un projet décrit avec les mots du visiteur : activités de la nomenclature les plus proches par "
-                   "le sens, secteur, organismes compétents avec leur rôle (seuils d'investissement), infrastructures "
-                   "utiles (à passer à zones_proches) et raccordements nécessaires, avec l'explication de chaque lien. "
-                   "Ne rien ajouter que le graphe ne donne pas."),
+    "conseiller": (conseiller, EntreeProjet,
+                   "Pour un projet décrit par le visiteur : guide complet et sourcé. Activité de la nomenclature et "
+                   "secteur, organisme compétent (selon le montant s'il est donné), jusqu'à 3 zones avec des lots de la "
+                   "surface voulue dans le lieu voulu (prix, développement régional, prix subventionné), incitations "
+                   "et démarche d'acquisition de l'AFI. Passer aussi lieu, surface, montant et emplois s'ils sont donnés."),
     # ---- base MariaDB : chiffres (vues v_pub_*) et textes à citer
     "resoudre_lieu": (resoudre_lieu, EntreeLieu,
                       "Trouve la zone, le gouvernorat ou la région correspondant à un nom de lieu écrit par le visiteur "

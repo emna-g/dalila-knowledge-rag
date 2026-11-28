@@ -17,7 +17,7 @@ Le harnais fait ce qu'un petit modèle sur processeur fait lentement ou mal (mes
   liste de ce qui n'est pas justifié, puis le harnais répond par le repli, suivi des faits trouvés s'il y en a.
 """
 import json, re, time
-from dalila.harnais.consignes import RAPPEL_BOUCLE, RAPPEL_LANGUE, RAPPEL_OUTIL, REPLI, systeme
+from dalila.harnais.consignes import RAPPEL_BOUCLE, RAPPEL_LANGUE, RAPPEL_OUTIL, REPLI, note_contexte, systeme
 from dalila.harnais.garde_fous import nettoyer_entree, verifier_ancrage
 from dalila.harnais.vues import bloc, vue
 from dalila.moteurs.llm import MODELE_LLM, ErreurMoteur, discuter
@@ -82,6 +82,8 @@ def appeler_avec_lieu(nom, arguments, message):
     inconnu ne doit jamais devenir « aucune zone ». Le lieu est alors cherché dans le message du visiteur lui-même ;
     si le message ne nomme aucun lieu connu, le champ lieu n'était pas un lieu et la recherche se fait sans lui.
     -> (résultat, arguments réellement utilisés)"""
+    if (arguments or {}).get("lieu") and not appeler("resoudre_lieu", {"texte": message[:100]}).get("lieux"):
+        arguments = {k: v for k, v in arguments.items() if k != "lieu"}  # aucun lieu dans le message : lieu inventé
     res = appeler(nom, arguments)
     if "lieu" not in (arguments or {}) or not _lieu_inconnu(res):
         return res, arguments
@@ -119,6 +121,7 @@ class Agent:
         from dalila.moteurs.embeddings import encoder_questions
         encoder_questions(["préchauffage"])
         _langue("préchauffage")
+        appeler("conseiller", {"secteur": "préchauffage", "lieu": "Sfax"})  # index des activités, recherche de passages
         try:
             discuter([systeme(), {"role": "user", "content": "Bonjour"}], outils=self.outils, modele=self.modele,
                      delai_s=300, jetons_max=1)
@@ -129,7 +132,7 @@ class Agent:
         debut = time.time()
         fin = debut + self.delai_s
         message, historique = nettoyer_entree(message, historique)
-        messages = [systeme(contexte), *historique, {"role": "user", "content": message}]
+        messages = [systeme(), *historique, {"role": "user", "content": message + note_contexte(contexte)}]
         journal, resultats, deja = [], [], {}
         relance, rappels, a_lire = False, 0, 0
 

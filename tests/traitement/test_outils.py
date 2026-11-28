@@ -141,6 +141,20 @@ def test_graphe():
     assert all(o["role"] for o in t["organismes"])  # chaque organisme a son rôle sourcé (seuil, secteur)
 
 
+def test_guide_de_projet():
+    """BF31 : un projet décrit obtient un guide complet et sourcé (exemple du cahier des charges, section 8.2)."""
+    g = appeler("conseiller", {"secteur": "transformation d'huile d'olive", "lieu": "Sfax", "surface_m2": 3000,
+                               "investissement_dt": 2000000, "emplois": 20})
+    assert "huile" in g["activites"][0]["libelle"].lower() and g["organisme_competent"][0] == "APII"
+    assert g["zones"] and all(z["gouvernorat"] == "Sfax" and z["lots_adaptes"] > 0 for z in g["zones"])
+    vrai = verite("z.gouvernorat_fr = 'Sfax' AND l.zone_id = %s AND l.surface_m2 >= 2400", g["zones"][0]["zone_id"])
+    assert g["zones"][0]["lots_adaptes"] == vrai                         # compté en base, jamais estimé
+    assert g["incitations"] and g["demarche_lieu_depot"] and "emploi" in g["demarche_criteres"].lower()
+    assert any("tia.gov.tn" in (s["url"] or "") for s in g["sources"])  # le seuil APII / TIA est sourcé
+    assert appeler("conseiller", {"secteur": "cimenterie", "investissement_dt": 20000000})["organisme_competent"][0] == "TIA"
+    assert appeler("conseiller", {"secteur": "huile d'olive", "lieu": "tunis"})["lieux_a_proposer"]  # pas de devinette
+
+
 def test_registre_robuste():
     assert "erreur" in appeler("supprimer_base", {})                    # outil hors liste
     assert "erreur" in appeler("chercher_lots", {"limite": 1000})        # borne dépassée
