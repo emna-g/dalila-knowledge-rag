@@ -58,3 +58,25 @@ export interface ReponseDalila {
 export type LangueUI = 'fr' | 'ar' | 'en'
 // codes du contrat /carte/chatbot (cahier des charges, IV.3) : tunisien tn, algérien dz, libyen ly
 export type LangueDalila = 'fr' | 'ar' | 'tn' | 'dz' | 'ly' | 'en' | 'de' | 'tr'
+
+/** GET /carte/demande : demande d'acquisition préremplie (BF11). Lot et prix relus dans la base de l'AFI. */
+export interface DemandePreremplie {
+  lot: { lot_id: number; numero: string; surface_m2: number | null; statut: Statut; libelle_statut: string; a_confirmer: boolean
+    prix_m2_dt: number | null; prix_m2_a_confirmer: boolean; prix_terrain_dt: number | null } | null
+  zone: { zone_id: number; nom: string; nom_ar: string | null; gouvernorat: string; gouvernorat_ar: string | null
+    developpement_regional: boolean; groupe: string | null } | null
+  projet: { activite?: string; produits?: string; investissement_texte?: string; emplois_texte?: string; surface_texte?: string }
+  lot_disponible: boolean
+  lieu_depot: string
+  pieces: { id: string; titre: string; texte: string }[]
+  formulaire_officiel: string
+}
+
+export interface DemandeEnvoyee {
+  lot_id: number
+  demandeur: { nom: string; forme_juridique: string; representant: string; telephone: string; courriel: string; adresse: string }
+  projet: { activite: string; produits: string; investissement_dt: number | null; emplois: number | null; dont_cadres: number | null
+    delai_realisation_mois: number | null; justification_surface: string }
+  confirme: boolean
+  lang: string
+}

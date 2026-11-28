@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import {
-  BadgePercent, ChevronDown, ClipboardList, FileCheck2, MapPinned, Mic, Minus, RotateCcw, SendHorizontal, Square, ThumbsDown, ThumbsUp,
+  BadgePercent, ChevronDown, ClipboardList, FileCheck2, FileSignature, MapPinned, Mic, Minus, RotateCcw, SendHorizontal, Square, ThumbsDown, ThumbsUp,
   Volume2, X, AlertTriangle,
 } from 'lucide-react'
 import clsx from 'clsx'
@@ -37,12 +37,13 @@ interface Props {
   onZone: (id: number) => void
   onLot: (id: number) => void
   onCiter: (ids: number[]) => void
+  onPreparerDemande: (sessionId: string) => void
 }
 
 const HISTORIQUE = 20
 let suivant = 1
 
-export function Dalila({ ouvert, onFermer, demande, contexte, onRetirerContexte, onZone, onLot, onCiter }: Props) {
+export function Dalila({ ouvert, onFermer, demande, contexte, onRetirerContexte, onZone, onLot, onCiter, onPreparerDemande }: Props) {
   const { t: tUI, langue } = useLangue()
   const [lang, setLang] = useState<LangueDalila>(() => {
     const v = localStorage.getItem('dalila_lang') ?? ''
@@ -329,6 +330,12 @@ export function Dalila({ ouvert, onFermer, demande, contexte, onRetirerContexte,
                         </button>
                       ))}
                     </div>
+                  )}
+                  {m.analyse!.demande && (
+                    <button type="button" onClick={() => onPreparerDemande(session.current)}
+                      className="mt-3 flex min-h-11 w-full items-center justify-center gap-2 rounded-xl bg-marine px-4 text-sm font-semibold text-white transition hover:bg-marine-fonce">
+                      <FileSignature size={17} aria-hidden /> {t.daBouton}
+                    </button>
                   )}
                   <div className="mt-3 flex items-center gap-1 border-t border-brume pt-2 text-xs text-doux">
                     <span className="me-auto">

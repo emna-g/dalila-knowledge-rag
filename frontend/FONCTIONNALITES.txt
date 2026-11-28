@@ -71,6 +71,18 @@ Un clic sur une zone (carte ou liste) ouvre sa fiche, et la carte va dessus.
     - bouton « Demander à Dalila » sur ce lot (comment l'acheter, quels documents).
 
 
+4 bis. PRÉPARER UNE DEMANDE D'ACQUISITION
+-----------------------------------------
+- Bouton « Préparer ma demande d'acquisition » sur la fiche d'un lot, et sous une réponse de Dalila qui parle
+  d'acheter un lot.
+- Le formulaire est prérempli : le lot, sa surface, son prix et le prix du terrain (relus dans la base de l'AFI), et
+  le projet si le visiteur a fait l'étude de projet guidée.
+- Le visiteur complète (nom ou société, contact, investissement, emplois, délai, pourquoi cette surface).
+- Il doit cocher « J'ai vérifié… » : sans cette case, aucun PDF.
+- Il télécharge un BROUILLON en PDF (français, arabe ou anglais) avec le lieu de dépôt et les pièces à joindre.
+- Dalila ne dépose rien et ne garde rien : le visiteur dépose lui-même son dossier à l'AFI.
+
+
 5. COMPARER DES ZONES
 ---------------------
 - Choisir 2 ou 3 zones (icône de balance sur chaque zone, ou bouton « Comparer » de la fiche).

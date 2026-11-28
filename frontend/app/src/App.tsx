@@ -10,6 +10,7 @@ import { Carte } from './components/Carte'
 import { Recherche, FILTRES_VIDES, filtrer, type Filtres } from './components/Recherche'
 import { FicheZone } from './components/FicheZone'
 import { Comparateur } from './components/Comparateur'
+import { DemandeAcquisition } from './components/DemandeAcquisition'
 import { Dalila, Anneau, type Demande } from './dalila/Dalila'
 
 /** Lien partageable : #zone=931402&lot=261 */
@@ -38,6 +39,8 @@ export default function App() {
   const [panneauMobile, setPanneauMobile] = useState(false)
   const [survol, setSurvol] = useState<number | null>(null)
   const [cadrage, setCadrage] = useState(0)
+  const [demandeAcq, setDemandeAcq] = useState<{ lotId: number | null; session: string | null } | null>(null)
+  const sessionDalila = useRef<string | null>(null)
   const premierFiltre = useRef(true)
 
   const choisirZone = useCallback((id: number | null, lot: number | null = null) => {
@@ -114,7 +117,7 @@ export default function App() {
               {zone ? (
                 <motion.div key={`z${zone.zone_id}`} className="h-full" initial={{ opacity: 0, x: 16 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -16 }} transition={{ duration: 0.2 }}>
                   <FicheZone zone={zone} lots={lots} lotChoisi={lotId} onLot={setLotId} onRetour={() => choisirZone(null)}
-                    onDemander={demander} comparee={comparer.includes(zone.zone_id)} basculerComparer={() => basculerComparer(zone.zone_id)} />
+                    onDemander={demander} onPreparerDemande={(id) => setDemandeAcq({ lotId: id, session: sessionDalila.current })} comparee={comparer.includes(zone.zone_id)} basculerComparer={() => basculerComparer(zone.zone_id)} />
                 </motion.div>
               ) : (
                 <motion.div key="recherche" className="h-full" initial={{ opacity: 0, x: -16 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 16 }} transition={{ duration: 0.2 }}>
@@ -179,13 +182,18 @@ export default function App() {
         <Dalila ouvert={dalila} onFermer={() => setDalila(false)} demande={demande} contexte={contexte} onRetirerContexte={() => setContexte(null)}
           onZone={(id) => { choisirZone(id); if (mobile()) setDalila(false) }}
           onLot={(id) => { allerAuLot(id); if (mobile()) setDalila(false) }}
-          onCiter={setCitees} />
+          onCiter={setCitees}
+          onPreparerDemande={(s) => { sessionDalila.current = s; setDemandeAcq({ lotId: lotId ?? (typeof contexte?.lot === 'number' ? contexte.lot : null), session: s }) }} />
       </main>
 
       <footer className="hidden h-9 items-center border-t border-trait bg-white px-6 text-xs text-doux md:flex">
         {t.droits}
         <span className="ms-auto">{t.source}</span>
       </footer>
+
+      <AnimatePresence>
+        {demandeAcq && <DemandeAcquisition key={`${demandeAcq.lotId}`} lotId={demandeAcq.lotId} sessionId={demandeAcq.session} onFermer={() => setDemandeAcq(null)} />}
+      </AnimatePresence>
 
       <AnimatePresence>
         {comparateur && comparer.length >= 2 && (

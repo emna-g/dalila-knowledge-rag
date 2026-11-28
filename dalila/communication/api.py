@@ -9,6 +9,8 @@ POST /carte/voix/transcrire  fichier « audio » (webm, ogg, wav...) + lang facu
 POST /carte/voix/lire       {texte, lang} -> audio/wav ; dialecte lu par la voix arabe : en-tête X-Dalila-Lecture (BF8)
 POST /carte/etude           {session_id, lang} -> première question de l'étude de projet guidée (10 questions, PDF)
 GET  /carte/etude/{id}.pdf  -> l'étude en PDF ; pendant une étude, /carte/chatbot reçoit les réponses aux questions
+GET  /carte/demande?lot_id=&session_id=  -> demande d'acquisition préremplie (lot, zone, projet de l'étude, pièces)
+POST /carte/demande/pdf    brouillon de la demande en PDF, seulement si confirme = true ; rien n'est déposé ni gardé (BF11)
 GET  /sante                -> état du service (modèle prêt, base joignable)
 GET  /admin/api/...         administration (questions mal traitées, apprentissage, sources) : voir admin.py
 
@@ -35,6 +37,7 @@ from dalila.config import db
 from dalila.harnais.agent import Agent
 from dalila.harnais.consignes import REPLI
 from dalila.harnais.garde_fous import anonymiser, masquer
+from dalila.traitement.demande import Demande as DemandeAcquisition
 
 log = logging.getLogger("dalila.api")
 AGENT = Agent()
@@ -145,7 +148,10 @@ def chatbot(q: Question):
     if r["source"] == "repli" and texte:
         _ecrire("INSERT INTO agent_needs (texte_anonymise, langue, raison) VALUES (%s, %s, %s)",
                 texte, langue, (r.get("erreur") or "repli")[:60])
-    return Reponse(message=r["reponse"], log_id=log_id, source=r["source"],
+    message = r["reponse"]
+    if any(o["outil"] == "demarche" and (o.get("arguments") or {}).get("service") == "acquisition" for o in outils):
+        message += chr(10) + "[[DEMANDE]]"   # BF11 : l'interface propose de préparer la demande (brouillon, jamais déposé)
+    return Reponse(message=message, log_id=log_id, source=r["source"],
                    action="choix" if "[[CHOIX:" in r["reponse"] else None, duree_s=r["duree_s"],
                    langue=det.get("langue"), ecriture=det.get("ecriture"), session_id=session)
 
@@ -180,6 +186,31 @@ def etude_pdf(jeton: str):
     if not p:
         raise HTTPException(404)
     return FileResponse(p, media_type="application/pdf", filename="etude-de-projet-dalila.pdf")
+
+
+@app.get("/carte/demande")
+def demande_preremplie(lot_id: int | None = None, zone_id: int | None = None, session_id: str | None = None):
+    """BF11 : ce que Dalila sait déjà pour la demande d'acquisition (le visiteur complète et vérifie)."""
+    from dalila.traitement import demande
+    try:
+        return demande.preremplir(lot_id, zone_id, (session_id or "")[:64] or None)
+    except Exception:  # noqa: BLE001  (BNF4)
+        log.exception("demande")
+        raise HTTPException(503, "données indisponibles")
+
+
+@app.post("/carte/demande/pdf")
+def demande_pdf(d: DemandeAcquisition):
+    """Le brouillon en PDF, fait en mémoire : ni déposé, ni gardé, ni journalisé (coordonnées du demandeur)."""
+    from dalila.traitement import demande
+    if not d.confirme:
+        raise HTTPException(400, "confirmation obligatoire : le demandeur doit vérifier le brouillon")
+    try:
+        contenu = demande.produire_pdf(d)
+    except ValueError:
+        raise HTTPException(404, "lot inconnu")
+    return Response(contenu, media_type="application/pdf", headers={
+        "Content-Disposition": f'attachment; filename="demande-acquisition-lot-{d.lot_id}.pdf"', "Cache-Control": "no-store"})
 
 
 @app.post("/carte/chatbot/avis")
