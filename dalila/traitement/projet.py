@@ -13,6 +13,7 @@ Un seul appel rend tout ce que le cahier des charges attend d'un projet décrit 
 Rien n'est estimé : chaque chiffre vient d'un outil de lecture de la base ou d'un texte cité. Les champs manquants
 (lieu, surface, montant) réduisent le guide, sans rien inventer.
 """
+from typing import Literal
 from pydantic import BaseModel, Field
 from dalila.traitement.base import Source
 from dalila.traitement.graphe import Activite, EntreeConseil, Organisme, conseiller as conseiller_graphe
@@ -30,6 +31,8 @@ class EntreeProjet(EntreeConseil):
     surface_m2: float | None = Field(None, gt=0, description="surface de terrain voulue, en m²")
     investissement_dt: float | None = Field(None, gt=0, description="coût d'investissement prévu, en dinars")
     emplois: int | None = Field(None, gt=0, description="nombre d'emplois prévus")
+    proche_de: Literal["aeroport", "port", "gare", "autoroute"] | None = Field(
+        None, description="infrastructure dont le projet a besoin, si aucun lieu n'est donné")
 
 
 class ZoneProposee(BaseModel):
@@ -89,8 +92,8 @@ def _zones(e, infra):
         if r.lieux_a_proposer:
             return [], r.lieux_a_proposer
         candidates = r.zones
-    elif infra:
-        r = zones_proches(EntreeProximite(type=infra[0], distance_max_km=50))
+    elif e.proche_de or infra:
+        r = zones_proches(EntreeProximite(type=e.proche_de or infra[0], distance_max_km=50))
         candidates, kms = r.zones, {z.zone_id: z.km for z in r.zones}
     else:
         candidates = lister_zones(EntreeListeZones()).zones

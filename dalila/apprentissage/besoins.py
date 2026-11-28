@@ -21,7 +21,7 @@ def besoins(depuis=None, tout=False):
     con = db("rw")
     try:
         with con.cursor() as cur:
-            cur.execute("SELECT texte_anonymise, langue, source, avis, created_at FROM agent_turns "
+            cur.execute("SELECT texte_anonymise, langue, source, avis, avis_commentaire, created_at FROM agent_turns "
                         "WHERE texte_anonymise IS NOT NULL AND texte_anonymise <> ''"
                         + (" AND created_at >= %s" if depuis else "") + " ORDER BY created_at",
                         (depuis,) if depuis else ())
@@ -32,14 +32,17 @@ def besoins(depuis=None, tout=False):
     for t in tours:
         g = groupes.setdefault(_norm(t["texte_anonymise"]), {
             "question": t["texte_anonymise"], "langues": set(), "posee": 0, "repli": 0, "pas_utile": 0, "utile": 0,
-            "derniere_fois": None})
+            "derniere_fois": None, "commentaires": []})
+        if t.get("avis_commentaire"):
+            g["commentaires"].append(t["avis_commentaire"])
         g["langues"].add(t["langue"] or "?")
         g["posee"] += 1
         g["repli"] += t["source"] == "repli"
         g["pas_utile"] += t["avis"] == 0
         g["utile"] += t["avis"] == 1
         g["derniere_fois"] = t["created_at"]
-    lignes = [dict(g, langues=",".join(sorted(g["langues"]))) for g in groupes.values()
+    lignes = [dict(g, langues=",".join(sorted(g["langues"])), commentaires=" | ".join(g["commentaires"][-3:]))
+              for g in groupes.values()
               if tout or g["repli"] or g["pas_utile"]]
     return sorted(lignes, key=lambda g: (-(g["repli"] + g["pas_utile"]), -g["posee"]))
 
@@ -52,7 +55,7 @@ def main():
     ap.add_argument("--nombre", type=int, default=30)
     a = ap.parse_args()
     L = besoins(a.depuis, a.tout)
-    champs = ["question", "langues", "posee", "repli", "pas_utile", "utile", "derniere_fois"]
+    champs = ["question", "langues", "posee", "repli", "pas_utile", "utile", "commentaires", "derniere_fois"]
     if a.csv:
         with open(a.csv, "w", newline="", encoding="utf-8-sig") as f:
             w = csv.DictWriter(f, champs)

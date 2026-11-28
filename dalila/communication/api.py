@@ -4,9 +4,9 @@
 
 POST /carte/chatbot        {message, history, lang, contexte, session_id}
                            -> {message, log_id, source, action, duree_s}
-POST /carte/chatbot/avis   {log_id, utile}  -> {ok}
+POST /carte/chatbot/avis   {log_id, utile, commentaire facultatif}  -> {ok}
 POST /carte/voix/transcrire  fichier « audio » (webm, ogg, wav...) + lang facultatif -> {texte, langue, confiance, duree_s}
-POST /carte/voix/lire       {texte, lang} -> audio/wav (204 si aucune voix ne convient : arabizi ; le texte reste affiché)
+POST /carte/voix/lire       {texte, lang} -> audio/wav ; dialecte lu par la voix arabe : en-tête X-Dalila-Lecture (BF8)
 GET  /sante                -> état du service (modèle prêt, base joignable)
 
 Voix (dalila/voix) : l'audio du visiteur est décodé en mémoire, jamais écrit ni gardé (BNF8) ; le texte reconnu est
@@ -60,7 +60,7 @@ def _prechauffer():
 
 app = FastAPI(title="Dalila", version="1.0", lifespan=_demarrage)
 app.add_middleware(CORSMiddleware, allow_origins=os.environ.get("DALILA_CORS", "*").split(","),
-                   allow_methods=["GET", "POST"], allow_headers=["*"])
+                   allow_methods=["GET", "POST"], allow_headers=["*"], expose_headers=["X-Dalila-Lecture"])
 
 
 class Message(BaseModel):
@@ -90,6 +90,7 @@ class Reponse(BaseModel):
 class Avis(BaseModel):
     log_id: int
     utile: bool
+    commentaire: str | None = Field(None, max_length=500, description="facultatif (flux F06), anonymisé")
 
 
 def _ecrire(sql, *p):
@@ -138,7 +139,8 @@ def chatbot(q: Question):
 
 @app.post("/carte/chatbot/avis")
 def avis(a: Avis):
-    ok = bool(_ecrire("UPDATE agent_turns SET avis = %s WHERE id = %s", 1 if a.utile else 0, a.log_id))
+    ok = bool(_ecrire("UPDATE agent_turns SET avis = %s, avis_commentaire = %s WHERE id = %s", 1 if a.utile else 0,
+                      masquer(a.commentaire.strip())[:500] if a.commentaire and a.commentaire.strip() else None, a.log_id))
     return {"ok": ok}
 
 
@@ -172,14 +174,15 @@ async def voix_transcrire(audio: UploadFile = File(...), lang: str | None = Form
 
 @app.post("/carte/voix/lire")
 def voix_lire(l: Lecture):
-    from dalila.voix.synthese import lire
+    from dalila.voix.synthese import lire_avec_note
     try:
         with _VOIX:
-            wav = lire(l.texte, l.lang)
+            wav, note = lire_avec_note(l.texte, l.lang)
     except Exception:  # noqa: BLE001  (BNF7 : la réponse reste affichée en texte)
         log.exception("synthèse")
-        wav = None
-    return Response(content=wav, media_type="audio/wav") if wav else Response(status_code=204)
+        wav, note = None, None
+    entetes = {"X-Dalila-Lecture": note.encode("ascii", "xmlcharrefreplace").decode()} if note else {}
+    return Response(content=wav, media_type="audio/wav", headers=entetes) if wav else Response(status_code=204)
 
 
 @app.get("/essai", include_in_schema=False)

@@ -1,0 +1,150 @@
+{
+ "reussis": "9/9",
+ "modele": "dalila-qwen3-4b",
+ "details": [
+  {
+   "langue": "fr",
+   "question": "La banque me demande un papier pour mon prêt",
+   "reussi": true,
+   "comment": "service trouvé",
+   "duree_s": 28.23,
+   "outils": [
+    [
+     "demarche",
+     {
+      "service": "insertion_hypotheque"
+     }
+    ]
+   ],
+   "reponse": "Pour obtenir une attestation d'insertion d'hypothèque, vous devez faire une demande écrite au PDG de l'AFI, suivie de vérifications et d'une approbation administrative. Le frais est de 50 DT.\n\n[Services de l'AFI](https://www.afi.nat.tn/fr/nos-services/)"
+  },
+  {
+   "langue": "en",
+   "question": "The bank is asking me for a document for my loan",
+   "reussi": true,
+   "comment": "service trouvé",
+   "duree_s": 28.13,
+   "outils": [
+    [
+     "demarche",
+     {
+      "service": "insertion_hypotheque"
+     }
+    ]
+   ],
+   "reponse": "To obtain a loan, you need an attestation d'insertion d'hypothèque from the AFI. This document costs 50 DT and requires a written request to the AFI's CEO, along with specific documents like the registered sales contract.\n\n[Services de l'AFI](https://www.afi.nat.tn/fr/nos-services/)"
+  },
+  {
+   "langue": "ar",
+   "question": "البنك يطلب مني وثيقة من أجل القرض",
+   "reussi": true,
+   "comment": "service trouvé",
+   "duree_s": 28.4,
+   "outils": [
+    [
+     "demarche",
+     {
+      "service": "insertion_hypotheque"
+     }
+    ]
+   ],
+   "reponse": "البنك يطلب مني وثيقة من أجل القرض. للاستفادة من وثيقة التضمين المالي، اطلب كتابة من رئيس مجلس الإدارة، وثيقة توضيحية عن حالة الممتلكات، ونموذج مقدم من قبل الإدارة التجارية، ونسخة من عقد البيع المُسجل. تُدفع تكلفة 50 دينار.\n\n[Services de l'AFI](https://www.afi.nat.tn/fr/nos-services/)"
+  },
+  {
+   "langue": "de",
+   "question": "Die Bank verlangt von mir ein Dokument für meinen Kredit",
+   "reussi": true,
+   "comment": "service trouvé",
+   "duree_s": 28.69,
+   "outils": [
+    [
+     "demarche",
+     {
+      "service": "insertion_hypotheque"
+     }
+    ]
+   ],
+   "reponse": "Um eine Hypotheken-Einbezugserklärung für einen Bankkredit zu erhalten, müssen Sie eine schriftliche Anfrage an das Vorstandsvorstand der AFI stellen. Die Voraussetzungen sind: ein Formular, eine Kopie des vertraglich eingetragenen Verkaufsvertrags und eine offizielle Kopie.\n\n[Services de l'AFI](htt"
+  },
+  {
+   "langue": "tr",
+   "question": "Banka kredim için benden bir belge istiyor",
+   "reussi": true,
+   "comment": "service trouvé",
+   "duree_s": 28.18,
+   "outils": [
+    [
+     "demarche",
+     {
+      "service": "insertion_hypotheque"
+     }
+    ]
+   ],
+   "reponse": "Banka kredim için bir hypotheke katılım sertifikası almak istiyorsunuz.\n\n[Services de l'AFI](https://www.afi.nat.tn/fr/nos-services/)"
+  },
+  {
+   "langue": "tn (arabizi)",
+   "question": "el banka tlabet menni war9a 3al crédit mte3i",
+   "reussi": true,
+   "comment": "service trouvé",
+   "duree_s": 28.35,
+   "outils": [
+    [
+     "demarche",
+     {
+      "service": "insertion_hypotheque"
+     }
+    ]
+   ],
+   "reponse": "Pour obtenir une attestation d'insertion d'hypothèque, vous devez faire une demande écrite au PDG de l'AFI, suivie de vérifications et d'une approbation administrative. Le frais est de 50 DT.\n\n[Services de l'AFI](https://www.afi.nat.tn/fr/nos-services/)"
+  },
+  {
+   "langue": "tn (lettres arabes)",
+   "question": "البنكة طلبت مني ورقة على الكريدي متاعي",
+   "reussi": true,
+   "comment": "service trouvé",
+   "duree_s": 28.01,
+   "outils": [
+    [
+     "demarche",
+     {
+      "service": "insertion_hypotheque"
+     }
+    ]
+   ],
+   "reponse": "البنكة طلبت مني ورقة على الكريدي متاعي. لطلب ورقة على الكريدي، اطلب من رئيس مجلس الإدارة وثيقة مكتوبة. بعد ذلك، تُجرى مراجعة حالة الممتلكات، ثم تُوافق اللجنة المختصة.\n\n[Services de l'AFI](https://www.afi.nat.tn/fr/nos-services/)"
+  },
+  {
+   "langue": "dz",
+   "question": "la banque tlab menni war9a 3la le crédit ta3i",
+   "reussi": true,
+   "comment": "service trouvé",
+   "duree_s": 28.14,
+   "outils": [
+    [
+     "demarche",
+     {
+      "service": "insertion_hypotheque"
+     }
+    ]
+   ],
+   "reponse": "Pour obtenir une attestation d'insertion d'hypothèque, vous devez faire une demande écrite au PDG de l'AFI, suivie de vérifications et d'une approbation administrative. Le frais est de 50 DT.\n\n[Services de l'AFI](https://www.afi.nat.tn/fr/nos-services/)"
+  },
+  {
+   "langue": "ly",
+   "question": "المصرف طلب مني ورقة عشان القرض متاعي",
+   "reussi": true,
+   "comment": "service trouvé",
+   "duree_s": 28.23,
+   "outils": [
+    [
+     "demarche",
+     {
+      "service": "insertion_hypotheque"
+     }
+    ]
+   ],
+   "reponse": "المصرف طلب مني ورقة عشان القرض متاعي. ورقة الـinsertion d'hypothèque مطلوبة، تُقدّم بطلب كتابي إلى رئيس مجلس الإدارة، مع توثيق حالة الممتلكات. تُدفع تكلفة 50 دينار.\n\n[Services de l'AFI](https://www.afi.nat.tn/fr/nos-services/)"
+  }
+ ]
+}

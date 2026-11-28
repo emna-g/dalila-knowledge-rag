@@ -22,7 +22,7 @@ from dalila.config import MODELES
 MODELE_STT = os.environ.get("DALILA_STT", "small")
 MODELE_ARABE = os.environ.get("DALILA_STT_ARABE", "TheBiggyBang/whisper-small-tunisian-derja-ct2") or MODELE_STT
 LANGUES_WHISPER = {"fr", "en", "ar", "de", "tr"}
-DIALECTES = {"aeb", "arq", "ayl", "tn"}
+DIALECTES = {"aeb", "arq", "ayl", "tn", "dz", "ly"}
 TAILLE_MAX = 5 * 1024 * 1024   # octets : ~1 min de parole compressée
 DUREE_MAX_S = 60
 PART_ARABE = 0.15      # probabilité de l'arabe au-delà de laquelle le modèle tunisien transcrit (français mêlé compris)

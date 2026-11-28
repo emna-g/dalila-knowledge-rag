@@ -1,13 +1,14 @@
 """Langue du visiteur parmi les 8 du cahier des charges (BF1), par des modèles, sans règle écrite à la main.
 
     from dalila.langue.detection import detecter
-    detecter("n7eb terrain f Sfax") -> {"langue": "aeb", "ecriture": "latin", "confiance": 0.9}
+    detecter("n7eb terrain f Sfax") -> {"langue": "tn", "ecriture": "latin", "confiance": 0.9}
 
 - Lettres arabes : CAMeL-Lab/bert-base-arabic-camelbert-mix-did-madar-corpus26 (Apache 2.0) distingue 25 villes et
   l'arabe standard ; Tunis et Sfax -> tunisien (aeb), Alger -> algérien (arq), Tripoli et Benghazi -> libyen (ayl),
   arabe standard -> ar ; les autres villes (Caire, Beyrouth...) -> ar (dialectes hors du cahier des charges).
 - Lettres latines : classifieur de n-grammes de caractères (dalila/langue/entrainer_detection.py) : fr, en, de, tr,
   tunisien et algérien en arabizi. Pas de libyen en arabizi : aucune donnée ouverte.
+Codes rendus, ceux du contrat /carte/chatbot : fr, en, ar, de, tr, tn (tunisien), dz (algérien), ly (libyen).
 L'écriture (arabe, latine) est lue sur les lettres elles-mêmes (propriété Unicode). Codes : fr, en, ar, de, tr, aeb, arq,
 ayl. Mesure : python -m dalila.langue.detection --mesurer -> eval/reports/detection_langue.json.
 """
@@ -15,8 +16,10 @@ import argparse, collections, csv, json, sys, threading
 from dalila.config import LEXIQUE, MODELES, RACINE
 
 MADAR = "CAMeL-Lab/bert-base-arabic-camelbert-mix-did-madar-corpus26"
-VILLES = {"TUN": "aeb", "SFX": "aeb", "ALG": "arq", "TRI": "ayl", "BEN": "ayl", "MSA": "ar"}
-CODES_JEUX = {"tn": "aeb", "dz": "arq", "ly": "ayl"}  # codes des jeux de test et du contrat /carte/chatbot
+# codes rendus : ceux du contrat /carte/chatbot (cahier des charges, IV.3) : fr, en, ar, de, tr, tn, dz, ly
+VILLES = {"TUN": "tn", "SFX": "tn", "ALG": "dz", "TRI": "ly", "BEN": "ly", "MSA": "ar"}
+CONTRAT = {"aeb": "tn", "arq": "dz", "ayl": "ly"}  # classes du classifieur (codes ISO) -> codes du contrat
+CODES_JEUX = {}
 _m, _verrou = {}, threading.Lock()
 
 
@@ -50,7 +53,8 @@ def detecter(texte):
                 "variete": r["label"]}
     p = m["latin"].predict_proba([texte])[0]
     i = p.argmax()
-    return {"langue": m["latin"].classes_[i], "ecriture": e, "confiance": round(float(p[i]), 2)}
+    classe = str(m["latin"].classes_[i])
+    return {"langue": CONTRAT.get(classe, classe), "ecriture": e, "confiance": round(float(p[i]), 2)}
 
 
 def mesurer():

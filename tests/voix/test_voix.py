@@ -13,8 +13,17 @@ def test_texte_a_lire():
     assert "2904 mètres carrés" in t and "32 dinars le mètre carré" in t      # unités dites en mots
 
 
+def test_dialecte_lu_en_arabe_et_signale():
+    """BF8 : un dialecte sans voix adaptée est lu en arabe, en le signalant ; l'arabizi est d'abord converti."""
+    wav, note = synthese.lire_avec_note("Fama 2 lots disponibles fi Sfax.", "tn")
+    assert wav and wav[:4] == b"RIFF" and "arabe" in note
+    wav, note = synthese.lire_avec_note("Ma famech lots disponibles fi Sousse b hal chourout.", "fr")  # détecté
+    assert wav and note
+    assert synthese.lire_avec_note("7 lots disponibles à Jendouba.", "fr")[1] is None   # français : aucune note
+
+
 def test_voix_pour():
-    assert synthese.voix_pour("aeb", "Fama 2 lots fi Sfax") is None      # arabizi : pas de voix, le texte reste
+    assert synthese.voix_pour("aeb", "Fama 2 lots fi Sfax") is None      # arabizi non converti : pas de voix
     assert synthese.voix_pour("aeb", "فما زوز مقاسم في صفاقس") == "ar"   # tunisien en lettres arabes : voix arabe
     assert synthese.voix_pour("de", "x") == "de" and synthese.voix_pour(None, "مرحبا") == "ar"
 

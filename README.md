@@ -101,8 +101,9 @@ Pour revoir les décisions sur les données (rarement) :
         -d "{\"message\": \"lot de 2000 m² à Jendouba\", \"lang\": \"fr\"}"
    ```
    Réponse : `message` (avec les balises `[[ZONE]]`, `[[LOT]]`, `[[CHOIX]]`, `[[PDF]]`), `log_id`, `source`
-   (`dalila` ou `repli`), `action` (`choix` si des boutons sont proposés), `duree_s`. Avis : `POST /carte/chatbot/avis`
-   `{"log_id": 12, "utile": true}`. Documentation interactive : http://localhost:8000/docs.
+   (`dalila` ou `repli`), `action` (`choix` si des boutons sont proposés), `duree_s`, `langue` détectée
+   (fr, en, ar, de, tr, tn, dz, ly : codes du contrat) et `ecriture` (arabe ou latin). Avis : `POST /carte/chatbot/avis`
+   `{"log_id": 12, "utile": true, "commentaire": "facultatif"}`. Documentation interactive : http://localhost:8000/docs.
 
 Voix : `POST /carte/voix/transcrire` (fichier `audio` envoyé par le micro du navigateur, `lang`) rend le texte reconnu,
 à afficher puis envoyer à `/carte/chatbot` ; `POST /carte/voix/lire` (`texte`, `lang`) rend la réponse lue (WAV).
