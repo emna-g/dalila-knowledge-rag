@@ -102,3 +102,13 @@ L. SI QUELQUE CHOSE NE RÉPOND PAS
         disponible ».
 [ ] 63. Service arrêté, recharger la page → message « Les zones n'ont pas pu être chargées »
         en haut de la carte. Relancer le service ensuite.
+
+M. ADMINISTRATION (http://127.0.0.1:8000/admin/ , base démarrée)
+[ ] 64. La page s'ouvre avec 3 onglets : Questions mal traitées, Apprentissage, Sources.
+[ ] 65. Poser à Dalila une question hors sujet, la noter « pas utile » → elle apparaît dans « Questions mal
+        traitées » (Actualiser). Filtre « Depuis le » et « Exporter (CSV) ».
+[ ] 66. Onglet « Sources » : les compteurs (à jour, en erreur…) ; cliquer « En erreur » → seules ces adresses ;
+        chercher « FIPA ».
+[ ] 67. Onglet « Apprentissage » : un élément publié a un bouton « Annuler » ; l'annuler → message vert,
+        statut « Annulé », date et auteur affichés ; le bouton disparaît.
+[ ] 68. Base arrêtée : message « La base de données ne répond pas », pas de chiffres faux.

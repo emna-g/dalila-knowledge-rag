@@ -10,6 +10,7 @@ POST /carte/voix/lire       {texte, lang} -> audio/wav ; dialecte lu par la voix
 POST /carte/etude           {session_id, lang} -> première question de l'étude de projet guidée (10 questions, PDF)
 GET  /carte/etude/{id}.pdf  -> l'étude en PDF ; pendant une étude, /carte/chatbot reçoit les réponses aux questions
 GET  /sante                -> état du service (modèle prêt, base joignable)
+GET  /admin/api/...         administration (questions mal traitées, apprentissage, sources) : voir admin.py
 
 Voix (dalila/voix) : l'audio du visiteur est décodé en mémoire, jamais écrit ni gardé (BNF8) ; le texte reconnu est
 rendu à l'interface, qui l'affiche avant de l'envoyer à /carte/chatbot. Le consentement au micro est demandé par
@@ -63,6 +64,9 @@ def _prechauffer():
 app = FastAPI(title="Dalila", version="1.0", lifespan=_demarrage)
 app.add_middleware(CORSMiddleware, allow_origins=os.environ.get("DALILA_CORS", "*").split(","),
                    allow_methods=["GET", "POST"], allow_headers=["*"], expose_headers=["X-Dalila-Lecture"])
+
+from dalila.communication.admin import routeur as _admin  # noqa: E402  (BF12, BF15, BF21 : écrans d'administration)
+app.include_router(_admin)
 
 
 class Message(BaseModel):

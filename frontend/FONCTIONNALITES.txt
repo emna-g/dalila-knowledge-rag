@@ -121,12 +121,23 @@ Un clic sur une zone (carte ou liste) ouvre sa fiche, et la carte va dessus.
   « réduire les animations » du système respecté.
 
 
-8. CE QUI N'EST PAS ENCORE FAIT
+8. ADMINISTRATION (pour l'agent de l'AFI)
+-----------------------------------------
+Adresse : http://127.0.0.1:8000/admin/  (ouverte seulement depuis le serveur, ou avec la clé DALILA_ADMIN_CLE)
+- Questions mal traitées : celles où Dalila a donné sa réponse de secours ou qui ont été notées « pas utile »,
+  regroupées, les plus fréquentes d'abord, avec la langue et les commentaires ; filtre par date ; export CSV.
+- Apprentissage : ce que Dalila a appris des conversations (noms de lieux, mots pour une activité), avec les
+  contrôles passés et les dates. Bouton « Annuler » (avec confirmation) : Dalila arrête tout de suite de l'utiliser,
+  le journal garde la date et l'auteur.
+- Sources : chaque adresse lue chaque semaine (sites et PDF de l'AFI, FIPA, APII, TIA...) : à jour, en erreur (avec
+  le code), à relire, en retard, jamais lue, inactive ; recherche par adresse ou organisme.
+
+
+9. CE QUI N'EST PAS ENCORE FAIT
 -------------------------------
 - Les vraies réponses de Dalila demandent le modèle local (Ollama + qwen3:4b-instruct).
   Sans lui, Dalila répond par un message de secours avec le contact de l'AFI.
 - La bande « J'ai compris » (ce que Dalila a retenu de la question) : l'API ne le renvoie pas encore.
-- Le back-office de l'agent de l'AFI et de l'administrateur.
 - Le fond de carte, les images satellite et les polices viennent d'Internet.
 
 

@@ -7,7 +7,7 @@ Repère les questions mal comprises, fréquentes ou mal notées ; prépare synon
 | **Exigences** | BF12, BF18, BF19, BF21, BNF15, BNF16, BNF17, BNF18 |
 | **Contrat** | Tables `agent_learning_candidates` et `agent_learning_journal` (déjà créées). Jamais un prix, une disponibilité ou une condition venus d'un visiteur ; questions anonymisées avant analyse. |
 | **S'appuie sur** | semantique, connaissances (construire_abox) |
-| **État** | Fait : la boucle d'apprentissage est **journal -> liste pour l'AFI -> exemples vérifiés -> ajustement mesuré** (voir ci-dessous) ; noms de lieux appris en direct. À faire : écran d'administration, synonymes vers le graphe, ajustement périodique automatisé. |
+| **État** | Fait : la boucle d'apprentissage est **journal -> liste pour l'AFI -> exemples vérifiés -> ajustement mesuré** (voir ci-dessous) ; noms de lieux appris en direct. Écran d'administration : /admin/ (questions mal traitées, journal avec « Annuler »). À faire : synonymes vers le graphe, ajustement périodique automatisé. |
 
 ## Comment Dalila apprend
 

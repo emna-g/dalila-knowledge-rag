@@ -10,8 +10,8 @@ Pour chaque point : ce qui manque, où se trouve le code utile, comment s'y pren
 
 | Réf. | Ce qui manque | Où | Comment s'y prendre |
 |---|---|---|---|
-| **Livrable 3** | Un **tableau de mesures unique** (erreurs de reconnaissance vocale, temps de réponse, exactitude des chiffres). Les chiffres existent, dispersés. | `eval/reports/` : `agent_resume.json` (banc d'essai de l'agent), `voix_resume.json`, `bf22_langues.json`, `detection_langue.json`, `recherche_regles.json` ; voix sur vrais extraits tunisiens, algériens et libyens : `docs/decisions.md`, section « Voix ». | Un `docs/mesures.md` qui rassemble ces chiffres, avec la date, le matériel (processeur 8 fils) et la commande qui les reproduit. |
-| **Livrable 5** | La **note d'une page** : limites connues et travail restant avant la production. | Matière : `docs/limites.md` (complet mais long) et ce fichier. | Une page, pour le jury et l'AFI : 5 à 8 limites, chacune avec son effet et ce qui la corrigerait. |
+| **Livrable 3** | Fait : [mesures.md](mesures.md) (2026-11-28). | | |
+| **Livrable 5** | Fait : [note_limites.md](note_limites.md) (2026-11-28). | | |
 | **BF11** (souhaité) | Préparer une **demande d'acquisition** depuis la conversation, sans la déposer sans confirmation. | Données : outil `demarche` (`dalila/traitement/services.py`, service `acquisition` : pièces, lieu de dépôt) ; projet : `dalila/traitement/projet.py` ; étude : `dalila/traitement/etude.py` (même principe d'entretien). | Un outil ou un parcours qui remplit le formulaire (lot choisi, projet, emplois, montant) à partir de la conversation ou de l'étude, rendu comme brouillon à vérifier ; jamais de dépôt automatique. Interface : un formulaire prérempli et un bouton « Je confirme ». |
 | **BF13** (souhaité) | **Conversation vocale continue**, sans bouton à chaque tour. | Interface : `frontend/app/src/dalila/Dalila.tsx` (micro, lecture) ; service : `/carte/voix/transcrire`, `/carte/voix/lire`. | Côté interface : après la lecture d'une réponse, rouvrir le micro ; arrêt sur silence (détection d'activité vocale dans le navigateur) ; garder l'affichage du texte reconnu (BF7). |
 | **Voix tunisienne** (objectif du cahier) | Une **voix tunisienne** pour lire le tunisien. Aujourd'hui : voix arabe standard, en le signalant (BF8 respecté). | `dalila/voix/synthese.py` | Candidat : TunArTTS (Elyadata, Apache 2.0, ESPnet) ; il demande un texte entièrement vocalisé (tashkeel) : trouver ou entraîner un vocaliseur tunisien, puis mesurer à l'écoute. Autres : silma-tts-derja, tunisian-xtts-v1 (cités par le cahier, non évalués). |
@@ -38,7 +38,7 @@ Le jury apportera ses propres questions : à vérifier en priorité.
 | **BNF6** | Démontrer ordinateur, tablette, téléphone et l'arabe de droite à gauche. | À vérifier sur les 3 formats. |
 | **BNF9** | HTTPS en production (le micro du navigateur l'exige). | Nginx du serveur de l'AFI. |
 | **BF9** | Couper ou activer la lecture vocale **à tout moment** (aujourd'hui : bouton par réponse). | Un interrupteur global. |
-| **BF12, BF21, BF15** | Écrans d'administration : liste des questions mal traitées, journal de l'apprentissage avec « Annuler », état des URL. | Données prêtes : `python -m dalila.apprentissage.besoins --csv`, `--lister` et `--annuler` de `lieux_appris` et `synonymes_appris`, table `agent_source_status`. Ajouter des routes de lecture à l'API puis les écrans. |
+| **BF12, BF21, BF15** | Fait : http://127.0.0.1:8000/admin/ (3 écrans) ; routes `/admin/api/...` (`dalila/communication/admin.py`) ; accès par `DALILA_ADMIN_CLE` ou depuis le serveur seulement. | Tests : `python -m tests.communication.test_admin`. |
 | — | Afficher la note de lecture d'un dialecte et le commentaire d'avis | Fait (commit 5c52345). |
 
 ## 4. Points faibles mesurés (pour la suite)
@@ -56,4 +56,4 @@ Le jury apportera ses propres questions : à vérifier en priorité.
 4. Voix : `dalila/voix/README.md` (voix Piper à télécharger ; Whisper, le modèle tunisien, la détection de langue et le modèle des noms se téléchargent au premier appel dans `modeles/`).
 5. Détection de la langue : `python -m dalila.langue.entrainer_detection` (crée `modeles/langue_latin.joblib`).
 6. Lancer : `.venv\Scripts\python -m uvicorn frontend.serveur:app --host 127.0.0.1 --port 8000`, puis http://127.0.0.1:8000/.
-7. Tests : `tests/traitement`, `tests/apprentissage`, `tests/voix`, `tests/langue`, `tests/harnais`, `tests/sources` (chacun : `python -m tests.<dossier>.<fichier>`).
+7. Tests : `tests/traitement`, `tests/apprentissage`, `tests/voix`, `tests/langue`, `tests/harnais`, `tests/sources`, `tests/communication` (chacun : `python -m tests.<dossier>.<fichier>`).
